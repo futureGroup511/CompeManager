@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.ui.theme" value="simple"></constant>
+    <constant name="struts.devMode" value="true"></constant>
+    <constant name="struts.configuration.xml.reload" value="true"></constant>
+    <!-- 禁止缓存 -->
+    <constant name="struts.serve.static.browserCache" value="false" /> 
+	<constant name="struts.action.extension" value="action,do,,"/>
+     
+     <!-- 由spring 管理action的创建  -->
+    <constant name="struts.objectFactory" value="spring" />
+    <package name="default" namespace="/" extends="struts-default">
+    	<action name="testController_*" method="{1}" class="testController">
+    	    <result name="success" >WEB-INF/jsp/test/testSuccess.jsp</result>
+    	    <result name="failure" >WEB-INF/jsp/test/testFailure.jsp</result>
+ 		</action>   	
+    </package>
+</struts>
+
+    
+
+	
+
+
