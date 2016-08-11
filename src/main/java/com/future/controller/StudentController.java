@@ -4,7 +4,6 @@ package com.future.controller;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.future.base.BaseAction;
 import com.future.domain.Student;
 import com.opensymphony.xwork2.ModelDriven;
 
