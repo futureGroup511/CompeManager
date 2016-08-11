@@ -134,7 +134,7 @@ One or more constraints have not been satisfied.	CompeManager		line 1	Maven Java
 			<artifactId>spring-orm</artifactId>
 			<version>4.2.4.RELEASE</version>
 		</dependency>
-
+		
 	</dependencies>
 
 	<build>

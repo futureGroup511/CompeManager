@@ -11,5 +11,7 @@ public interface StudentService {
 
 	public Student login(Student stu);
 	
+	public void addOrUpdateStudent(Student stu);
+	
 }
 

@@ -18,8 +18,12 @@
     	    <result name="failure" >WEB-INF/jsp/test/testFailure.jsp</result>
  		</action> 
  		
-    	<action name="student_*" method="{1}" class="StudentController" >
-    	    <result>WEB-INF/jsp/test/testSuccess.jsp</result>
+    	<action name="student_*" method="{1}" class="com.future.controller.StudentController" >
+    	    <result name="success">WEB-INF/jsp/test/testSuccess.jsp</result>
+    	    <result name="erro">WEB-INF/jsp/test/erro.jsp</result>
+    	    <result name="loginView" >WEB-INF/jsp/student/login.jsp</result>
+    		<result name="addStudentView">WEB-INF/jsp/student/add.jsp</result>
+    		<result name="operation">WEB-INF/jsp/student/index.jsp</result>
     	</action>	
     </package>
    	
