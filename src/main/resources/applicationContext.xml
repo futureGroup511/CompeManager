@@ -43,7 +43,7 @@ xmlns:aop="http://www.springframework.org/schema/aop"
 	</bean>
 	
 	<!-- 配置声明式事物 -->
-	<bean name="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<bean name="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>	
@@ -65,13 +65,6 @@ xmlns:aop="http://www.springframework.org/schema/aop"
 				read-only="true" />
 
 			<tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" />
-		</tx:attributes>
-	</tx:advice>
-	<!-- aop 通知 型事务 -->
-	<tx:advice id="txAddvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="get*"  read-only="true"/>
-			<tx:method name="*"/>
 		</tx:attributes>
 	</tx:advice>
 </beans>
