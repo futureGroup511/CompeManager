@@ -13,6 +13,7 @@
 		<s:textfield name="password"/>
 		<s:submit value="提交"></s:submit>
 	</s:form>
+	<a href="student_login">学生登陆</a>
 </body>
 </html>
 
