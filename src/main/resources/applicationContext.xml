@@ -48,14 +48,30 @@ xmlns:aop="http://www.springframework.org/schema/aop"
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>	
 	<!--2.配置事务属性  -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<!-- 写操作 -->
+			<tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="batch*" propagation="REQUIRED" isolation="DEFAULT" />
+
+			<!-- 读操作 -->
+			<tx:method name="load*" propagation="REQUIRED" isolation="DEFAULT"
+				read-only="true" />
+			<tx:method name="get*" propagation="REQUIRED" isolation="DEFAULT"
+				read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" isolation="DEFAULT"
+				read-only="true" />
+
+			<tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- aop 通知 型事务 -->
 	<tx:advice id="txAddvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="get*"  read-only="true"/>
 			<tx:method name="*"/>
 		</tx:attributes>
 	</tx:advice>
-	<!-- <aop:config>
-	  	<aop:pointcut id="allManagerMethod" expression="execution(* com.future.service..*.*(..))"/>
-	 	 <aop:advisor pointcut-ref="allManagerMethod" advice-ref="txAddvice"/>
-	 </aop:config> -->
 </beans>

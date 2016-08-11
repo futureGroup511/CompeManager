@@ -1,12 +1,14 @@
 package com.future.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.future.domain.Admin;
 import com.future.service.TestService;
 
 @Controller
+@Scope("prototype")
 public class TestController {
 	
 	@Autowired

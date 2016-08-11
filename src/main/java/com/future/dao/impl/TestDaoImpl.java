@@ -1,6 +1,5 @@
 package com.future.dao.impl;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 
 import com.future.base.BaseDao;
