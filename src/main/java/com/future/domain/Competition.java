@@ -1,12 +1,23 @@
 package com.future.domain;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 /**
  * 竞赛
  */
+@Entity
+@Table(name="cm_competitions")
 public class Competition {
 	
 	//竞赛项目id
@@ -32,6 +43,81 @@ public class Competition {
 	private CompetitionName compe_compeName;
 	//所申请竞赛的院系
 	private Department compe_department;
+	
+	@Id
+	@GeneratedValue
+	@Column(unique=true)
+	public Integer getCompe_id() {
+		return compe_id;
+	}
+	public void setCompe_id(Integer compe_id) {
+		this.compe_id = compe_id;
+	}
+	public String getCompe_manager() {
+		return compe_manager;
+	}
+	public void setCompe_manager(String compe_manager) {
+		this.compe_manager = compe_manager;
+	}
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getCompe_requestDate() {
+		return compe_requestDate;
+	}
+	public void setCompe_requestDate(Date compe_requestDate) {
+		this.compe_requestDate = compe_requestDate;
+	}
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getCompe_startTime() {
+		return compe_startTime;
+	}
+	public void setCompe_startTime(Date compe_startTime) {
+		this.compe_startTime = compe_startTime;
+	}
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getCompe_endTime() {
+		return compe_endTime;
+	}
+	public void setCompe_endTime(Date compe_endTime) {
+		this.compe_endTime = compe_endTime;
+	}
+	public String getCompe_money() {
+		return compe_money;
+	}
+	public void setCompe_money(String compe_money) {
+		this.compe_money = compe_money;
+	}
+	public Integer getCompe_status() {
+		return compe_status;
+	}
+	public void setCompe_status(Integer compe_status) {
+		this.compe_status = compe_status;
+	}
+	public String getCompe_program() {
+		return compe_program;
+	}
+	public void setCompe_program(String compe_program) {
+		this.compe_program = compe_program;
+	}
+	public String getCompe_digest() {
+		return compe_digest;
+	}
+	public void setCompe_digest(String compe_digest) {
+		this.compe_digest = compe_digest;
+	}
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=false,fetch=FetchType.EAGER)
+	public CompetitionName getCompe_compeName() {
+		return compe_compeName;
+	}
+	public void setCompe_compeName(CompetitionName compe_compeName) {
+		this.compe_compeName = compe_compeName;
+	}
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=false,fetch=FetchType.EAGER)
+	public Department getCompe_department() {
+		return compe_department;
+	}
+	public void setCompe_department(Department compe_department) {
+		this.compe_department = compe_department;
+	}
 	
 	//竞赛对应的 获奖记录
 	//private Set<AwardRecord> compe_awardRecord = new HashSet<AwardRecord>();

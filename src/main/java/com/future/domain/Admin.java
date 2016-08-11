@@ -3,7 +3,6 @@ package com.future.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -26,7 +25,7 @@ public class Admin {
 	private String ad_sex;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
 	@Column(name="ad_id", unique=true)
 	public Integer getAd_id() {
 		return ad_id;
