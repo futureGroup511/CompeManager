@@ -1,6 +1,6 @@
 
-package com.future.service;
 
+package com.future.service;
 
 import com.future.domain.Student;
 
