@@ -1,5 +1,8 @@
 package com.future.controller;
 
+/**
+ * 注释
+ * */
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
