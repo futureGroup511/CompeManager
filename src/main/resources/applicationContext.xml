@@ -43,12 +43,12 @@ xmlns:aop="http://www.springframework.org/schema/aop"
 	</bean>
 	
 	<!-- 配置声明式事物 -->
-	<bean name="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<bean name="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>	
 	<!--2.配置事务属性  -->
-	<tx:advice id="txAdvice" transaction-manager="txManager">
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<!-- 写操作 -->
 			<tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT" />
