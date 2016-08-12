@@ -6,4 +6,6 @@ public interface CompetitionDao {
 
 	
 	public Page_S findapplyCompetition(Page_S ps);
+
+	public Integer getAllCount();
 }

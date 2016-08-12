@@ -14,7 +14,7 @@
 			<p class="text-muted">报名系统<span class="caret"></span></p>
 		</a>
 		<ul class="dropdown-menu">
-			<li><a href="student_operation">报名</a></li>
+			<li><a href="student_apply">报名</a></li>
 		</ul>
 		</li>	
 		

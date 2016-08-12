@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 
 import com.future.base.BaseAction;
 import com.future.domain.Student;
+import com.future.utils.Page_S;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
 @Controller
@@ -41,8 +43,13 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		return "success";
 	}
 	
-	public String operation(){
-		
+	//报名
+	public String apply(){
+		Page_S ps=new Page_S();
+		ps.setCurrentPage(currentPage);
+		ps.setPageSize(pageSize);
+		ps=comps.findapplyCompetition(ps);
+		ActionContext.getContext().put("ps", ps);
 		return "success";
 		
 	}
