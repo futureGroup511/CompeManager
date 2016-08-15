@@ -2,9 +2,14 @@ package com.future.base;
 
 import java.lang.reflect.ParameterizedType;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.future.service.AwardRecordService;
+import com.future.service.CompetitionService;
+import com.future.service.SignUpService;
+import com.future.service.StudentService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
@@ -14,6 +19,14 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 
 	private static final long serialVersionUID = 1L;
 	protected T model;
+	@Autowired
+	protected StudentService stuser;
+	@Autowired
+	protected CompetitionService comps;
+	@Autowired
+	protected SignUpService sups;
+	@Autowired
+	protected AwardRecordService ars;
 	public BaseAction() {
 		try {
 			ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();

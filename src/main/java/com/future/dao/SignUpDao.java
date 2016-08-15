@@ -2,7 +2,9 @@ package com.future.dao;
 
 import java.util.List;
 
+import com.future.domain.Competition;
 import com.future.domain.SignUp;
+import com.future.domain.Student;
 import com.future.utils.PageBean;
 
 public interface SignUpDao {
@@ -48,4 +50,12 @@ public interface SignUpDao {
 	 * 改变审核状态
 	 */
 	public void changeSignStatus(Integer signId, Integer signStatus);
+	
+	
+	
+	public void addSignUp(SignUp sup);
+	
+	public SignUp jugeStudentuge(Student stu,Competition compe,Integer sup_type);
+	
+	public String jugeTeamexist(String team_name);
 }

@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>添加学生界面</title>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" >
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="modal show ">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close"><span>&times;</span></button>
+					<h1 class="text-center text-primary">添加学生</h1>
+				</div>
+				<div class="modal-body">
+						<form action="student_addStudent" class="form col-md-12 center-block" method="POST">
+							<div class="form-group">
+								<input type="text" class="form-control input-lg" placeholder="账号" name="stu_num">
+							</div>
+							
+							<div class="form-group">
+								<input type="password" class="form-control input-lg" placeholder="密码" name="stu_password">
+							</div>
+							
+							<button class="btn btn-primary btn-lg btn-block">确认添加</button>
+						</form>
+				</div>
+				<div class="modal-footer">
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

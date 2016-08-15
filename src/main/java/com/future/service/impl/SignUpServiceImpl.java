@@ -4,11 +4,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.future.dao.SignUpDao;
+import com.future.domain.Competition;
 import com.future.domain.SignUp;
+import com.future.domain.Student;
 import com.future.service.SignUpService;
 import com.future.utils.PageBean;
 
@@ -16,9 +19,9 @@ import com.future.utils.PageBean;
 @Transactional
 public class SignUpServiceImpl implements SignUpService{
 
-	@Resource
+	@Autowired
 	private SignUpDao signUpDao;
-
+	
 	@Override
 	public List<SignUp> getAllSignUp(PageBean pageBean) {
 		return signUpDao.getAllSignUp(pageBean);
@@ -56,7 +59,6 @@ public class SignUpServiceImpl implements SignUpService{
 
 	@Override
 	public void refreshSignUp(SignUp signUp) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -68,5 +70,22 @@ public class SignUpServiceImpl implements SignUpService{
 	@Override
 	public void changeSignStatus(Integer signId, Integer signStatus) {
 		signUpDao.changeSignStatus(signId, signStatus);
+	}
+	
+
+	@Override
+	public void addSignUp(SignUp sup) {
+		signUpDao.addSignUp(sup);
+	}
+
+	@Override
+	public SignUp jugeStudentuge(Student stu,Competition compe,Integer sup_type) {
+		return signUpDao.jugeStudentuge(stu,compe,sup_type);
+	}
+
+	@Override
+	public String jugeTeamexist(String team_name) {
+		
+		return signUpDao.jugeTeamexist(team_name);
 	}
 }

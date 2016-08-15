@@ -125,7 +125,6 @@ public class Competition {
 	public void setCompe_type(Integer compe_type) {
 		this.compe_type = compe_type;
 	}
-	
 	//竞赛对应的 获奖记录
 	//private Set<AwardRecord> compe_awardRecord = new HashSet<AwardRecord>();
 	

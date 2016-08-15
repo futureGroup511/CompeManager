@@ -1,3 +1,4 @@
+
 package com.future.service.impl;
 
 import java.util.List;
@@ -9,18 +10,32 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.future.dao.CompetitionDao;
 import com.future.domain.Competition;
-import com.future.domain.CompetitionName;
-import com.future.service.CompetitionNameService;
 import com.future.service.CompetitionService;
 import com.future.utils.PageBean;
+import com.future.utils.Page_S;
 
 @Service
 @Transactional
-public class CompetitionServiceImpl implements CompetitionService{
+public class CompetitionServiceImpl  implements CompetitionService{
 
 	@Resource
 	private CompetitionDao competitionDao;
 
+	@Override
+	public Page_S findapplyCompetition(Page_S ps) {
+		return competitionDao.findapplyCompetition(ps);
+	}
+
+	@Override
+	public Competition findCompetitionById(Integer id) {
+		return competitionDao.findCompetitionById(id);
+	}
+
+	@Override
+	public void updateCompetition(Competition comp) {
+		competitionDao.updateCompetition(comp);
+	}
+	
 	@Override
 	public void save(Competition competition) {
 		competitionDao.save(competition);
@@ -45,5 +60,6 @@ public class CompetitionServiceImpl implements CompetitionService{
 	public Integer getCompetitionCount() {
 		return competitionDao.getCompetitionCount();
 	}
+
 
 }

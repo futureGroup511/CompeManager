@@ -25,4 +25,5 @@ public class CompetitionHierarchyServiceImpl implements CompetitionHierarchyServ
 	public List<CompetitionHierarchy> getAll(){
 		return competitionHierarchyDao.getAll();
 	}
+	
 }
