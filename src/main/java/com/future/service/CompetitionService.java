@@ -1,5 +1,6 @@
 package com.future.service;
 
+import com.future.domain.Competition;
 import com.future.utils.Page_S;
 
 public interface CompetitionService {
@@ -11,4 +12,10 @@ public interface CompetitionService {
 	 */
 	public Page_S findapplyCompetition(Page_S ps);
 	
+	
+	public Competition findCompetitionById(Integer id);
+	
+	public void updateCompetition(Competition comp);
+
+
 }

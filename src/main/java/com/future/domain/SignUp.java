@@ -35,6 +35,8 @@ public class SignUp {
 	private Student signUp_student;
 	//该学生 报名的竞赛
 	private Competition signUp_competition;
+	//报名类型   1 团队 2 个人
+	private Integer signUP_type;
 	@Id
 	@GeneratedValue
 	@Column(unique=true)
@@ -68,6 +70,14 @@ public class SignUp {
 	public void setSignUp_status(Integer signUp_status) {
 		this.signUp_status = signUp_status;
 	}
+	
+	
+	public Integer getSignUP_type() {
+		return signUP_type;
+	}
+	public void setSignUP_type(Integer signUP_type) {
+		this.signUP_type = signUP_type;
+	}
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getSignUP_time() {
 		return signUP_time;
@@ -88,6 +98,9 @@ public class SignUp {
 	}
 	public void setSignUp_competition(Competition signUp_competition) {
 		this.signUp_competition = signUp_competition;
+	}
+	public SignUp() {
+		super();
 	}
 	
 	

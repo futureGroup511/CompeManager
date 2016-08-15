@@ -14,5 +14,8 @@ public interface StudentDao {
 	
 	public void addOrUpdateStudent(Student stu);
 	
+	public Student findStudentById(Integer id);
+	
+	public Student findStudentByNameAndNum(Student student);
 }
 

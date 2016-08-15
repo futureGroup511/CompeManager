@@ -39,6 +39,9 @@ public class Competition {
 	//竞赛摘要   (<200)
 	private String compe_digest;
 	
+	//竞赛类型 1团队 2个人 3其他
+	private Integer compe_type;
+	
 	//竞赛项目名称
 	private CompetitionName compe_compeName;
 	//所申请竞赛的院系
@@ -118,6 +121,14 @@ public class Competition {
 	public void setCompe_department(Department compe_department) {
 		this.compe_department = compe_department;
 	}
+	public Integer getCompe_type() {
+		return compe_type;
+	}
+	public void setCompe_type(Integer compe_type) {
+		this.compe_type = compe_type;
+	}
+	
+	
 	
 	//竞赛对应的 获奖记录
 	//private Set<AwardRecord> compe_awardRecord = new HashSet<AwardRecord>();

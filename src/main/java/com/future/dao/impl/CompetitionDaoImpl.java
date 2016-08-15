@@ -17,20 +17,33 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 	public Page_S findapplyCompetition(Page_S ps) {
 		String  hql="From Competition c where c.compe_status=2";
 		Query query=getsession().createQuery(hql);
-		query.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize()+1);
+		query.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());
 		query.setMaxResults(ps.getPageSize());
-		int count=getAllCount();
 		List<Competition> competitions=query.list();
+		int count=getAllCount();
+		
 		Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(), count, competitions);
 		return p;
 	}
 
 	@Override
 	public Integer getAllCount() {
-		String hql="select count(*) as count from Comprtition c";
+		String hql="select count(*) from Competition c";
 		Query query=getsession().createQuery(hql);
 		Integer count=((Number)query.iterate().next()).intValue();
 		return count;
+	}
+
+	@Override
+	public Competition findCompetitionById(Integer id) {
+		String hql="From Competition c where c.compe_id=?";
+		Competition comp=(Competition) getsession().createQuery(hql).setInteger(0, id).uniqueResult();
+		return comp;
+	}
+
+	@Override
+	public void updateCompetition(Competition comp) {
+		getsession().update(comp);
 	}
 
 }

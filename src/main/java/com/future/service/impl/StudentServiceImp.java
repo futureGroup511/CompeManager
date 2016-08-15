@@ -21,5 +21,16 @@ public class StudentServiceImp implements StudentService {
 	public void addOrUpdateStudent(Student stu) {
 		studao.addOrUpdateStudent(stu);
 	}
+	@Override
+	public Student findStudentById(Integer id) {
+		
+		return studao.findStudentById(id);
+	}
+	@Override
+	public Student findStudentByNameAndNum(Student stu) {
+		
+		return studao.findStudentByNameAndNum(stu);
+	}
+	
 
 }

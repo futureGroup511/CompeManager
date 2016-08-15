@@ -98,6 +98,12 @@ public class Page_S {
 	public void setPageCount(Integer pageCount) {
 		this.pageCount = pageCount;
 	}
+
+	@Override
+	public String toString() {
+		return "Page_S [endPageIndex=" + endPageIndex + ", beginPageIndex=" + beginPageIndex + ", pageCount="
+				+ pageCount + "]";
+	}
 	
 	
 	

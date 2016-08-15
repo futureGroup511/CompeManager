@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.future.service.CompetitionService;
+import com.future.service.SignUpService;
 import com.future.service.StudentService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -19,7 +20,10 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 	protected T model;
 	@Autowired
 	protected StudentService stuser;
+	@Autowired
 	protected CompetitionService comps;
+	@Autowired
+	protected SignUpService sups;
 	public BaseAction() {
 		try {
 			ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
