@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.future.service.AwardRecordService;
 import com.future.service.CompetitionService;
 import com.future.service.SignUpService;
 import com.future.service.StudentService;
@@ -24,6 +25,8 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 	protected CompetitionService comps;
 	@Autowired
 	protected SignUpService sups;
+	@Autowired
+	protected AwardRecordService ars;
 	public BaseAction() {
 		try {
 			ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();

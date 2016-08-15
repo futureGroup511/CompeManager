@@ -28,6 +28,8 @@
     		<result name="desccompetition">WEB-INF/jsp/student/competitiondesc.jsp</result>
     		<result name="fillentryform">WEB-INF/jsp/student/entryform.jsp</result>
     		<result name="jugeapply" type="json"></result>
+    		<result name="lookapplystatus">WEB-INF/jsp/student/lookapplystatus.jsp</result>
+    		<result name="lookAward">WEB-INF/jsp/student/award.jsp</result>
     	</action>	
     </package>
    	

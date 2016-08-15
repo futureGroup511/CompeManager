@@ -29,6 +29,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	private Integer compe_id;
 	private SignUp  sup=new SignUp();
 	private List<Student> students=new ArrayList<Student>();
+	
 	public String login(){
 		Student student=stuser.login(stu);
 		if(student!=null){
@@ -148,9 +149,33 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	}
 	
 	
+	public String lookApplyStatus(){
+		//得到学生
+		Student st=(Student) session.get("stu");
+		Page_S page=new Page_S();
+		page.setCurrentPage(currentPage);
+		page.setPageSize(pageSize);
+		page=stuser.lookApplyByStatus(st,page);
+		request.put("page", page);
+		return "lookapplystatus";
+	}
+	
+	//查看所获奖记录
+	public String lookAward(){
+		Student s=(Student) session.get("stu");
+		Page_S page=new Page_S();
+		page.setCurrentPage(currentPage);
+		page.setPageSize(pageSize);
+		page=ars.findAwardByStudent(s, page);
+		request.put("page", page);
+		return "lookAward";
+	}
+	
+	
 	private Student stu;
 	@Override
 	public Student getModel() {
+		
 		stu=new Student();
 		return stu;
 	}
@@ -201,6 +226,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
+
 
 	
 
