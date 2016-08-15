@@ -29,6 +29,8 @@ public class SignUp {
 	private Integer singUp_manager;
 	//报名的状态，表明是否通过审核    1: 报名 2: 审核通过 3：未通过 
 	private Integer signUp_status;
+	//报名的类型	表明是否通过审核    1团体 2个人
+	private Integer singnup_type;
 	//报名时间
 	private Date signUP_time;
 	//报名表的学生
@@ -75,21 +77,25 @@ public class SignUp {
 	public void setSignUP_time(Date signUP_time) {
 		this.signUP_time = signUP_time;
 	}
-	@ManyToOne(cascade=CascadeType.PERSIST,optional=false,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
 	public Student getSignUp_student() {
 		return signUp_student;
 	}
 	public void setSignUp_student(Student signUp_student) {
 		this.signUp_student = signUp_student;
 	}
-	@ManyToOne(cascade=CascadeType.PERSIST,optional=false,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
 	public Competition getSignUp_competition() {
 		return signUp_competition;
 	}
 	public void setSignUp_competition(Competition signUp_competition) {
 		this.signUp_competition = signUp_competition;
 	}
-	
-	
+	public Integer getSingnup_type() {
+		return singnup_type;
+	}
+	public void setSingnup_type(Integer singnup_type) {
+		this.singnup_type = singnup_type;
+	}
 	
 }

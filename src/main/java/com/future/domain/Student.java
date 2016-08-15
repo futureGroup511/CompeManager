@@ -79,7 +79,7 @@ public class Student {
 	public void setStu_sex(String stu_sex) {
 		this.stu_sex = stu_sex;
 	}
-	@ManyToOne(cascade=CascadeType.PERSIST,optional=false,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
 	public Department getStu_department() {
 		return stu_department;
 	}

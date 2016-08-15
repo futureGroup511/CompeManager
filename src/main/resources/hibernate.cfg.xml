@@ -26,5 +26,6 @@
     	<mapping class="com.future.domain.DepManager"/>
     	<mapping class="com.future.domain.SignUp"/>
     	<mapping class="com.future.domain.Student"/>
+    	<mapping class="com.future.domain.Notification"/>
     </session-factory>
 </hibernate-configuration>

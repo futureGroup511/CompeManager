@@ -113,21 +113,21 @@ public class AwardRecord {
 	public void setAwardRecor_picturePath(String awardRecor_picturePath) {
 		this.awardRecor_picturePath = awardRecor_picturePath;
 	}
-	@ManyToOne(cascade=CascadeType.PERSIST,optional=false,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
 	public Competition getAwardRecor_competition() {
 		return awardRecor_competition;
 	}
 	public void setAwardRecor_competition(Competition awardRecor_competition) {
 		this.awardRecor_competition = awardRecor_competition;
 	}
-	@ManyToOne(cascade=CascadeType.PERSIST,optional=false,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
 	public AwardHierarchy getAwardRecor_awadHie() {
 		return awardRecor_awadHie;
 	}
 	public void setAwardRecor_awadHie(AwardHierarchy awardRecor_awadHie) {
 		this.awardRecor_awadHie = awardRecor_awadHie;
 	}
-	@ManyToOne(cascade=CascadeType.PERSIST,optional=false,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
 	public Student getAwardRecor_student() {
 		return awardRecor_student;
 	}
