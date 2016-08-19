@@ -40,5 +40,10 @@ public interface CompetitionService {
 	public Competition findCompetitionById(Integer id);
 	
 	public void updateCompetition(Competition comp);
+	/**
+	 * 得到本年申请的并且已经结束的竞赛
+	 * @return
+	 */
+	public List<Competition> getAvaliableCopetion();
 
 }

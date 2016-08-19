@@ -23,7 +23,8 @@
               <th>学生学号</th>
               <th>所报竞赛名称</th>
               <th>审核通过</th>
-              <th>修改信息</th>
+              <th>审核不通过</th>
+              <th>指定为负责人</th>
           </tr>
       </thead>
       <tbody>
@@ -46,8 +47,36 @@
       				<td>${signUp.signUp_student.stu_name}</td>	
       				<td>${signUp.signUp_student.stu_num}</td>
       				<td>${signUp.signUp_competition.compe_compeName.compeName_name}</td>
-      				<td><a href="depManager_inspectSuccess?signId=${signUp.signUp_id }&currentPage=${requestScope.pb.currentPage}">审核通过</a></td>
-      				<td><a href="">修改报名信息</a></td>	
+      				<td>
+      					<s:if test="#signUp.signUp_status==1">
+	      					<a href="depManager_inspectSuccess?signId=${signUp.signUp_id }&currentPage=${requestScope.pb.currentPage}">我要审核</a>
+      					</s:if>
+      					<s:else>
+      						${signUp.signUp_status==2?"已审核通过":"审核未通过"}
+      					</s:else>
+      				</td>
+      				<td>
+      					<s:if test="#signUp.signUp_status==2">
+	      					<a href="depManager_inspectFailure?signId=${signUp.signUp_id }&currentPage=${requestScope.pb.currentPage}">禁止通过</a>
+      					</s:if>
+      					<s:elseif test="#signUp.signUp_status==1">
+	      					待审核状态
+      					</s:elseif>
+      					<s:else>
+      						已禁止通过
+      					</s:else>
+      				</td>
+      				<td>
+      					<s:if test="#signUp.singUp_manager==1">
+							已是负责人
+      					</s:if>
+      					<s:elseif test="#signUp.singnup_type==2">
+      						个人赛无需指定负责人
+      					</s:elseif>
+      					<s:elseif test="#signUp.singUp_manager==0">
+      						<a href="depManager_inspectToTeamLeader?signId=${signUp.signUp_id }&teamName=${signUp.signUp_team }&currentPage=${requestScope.pb.currentPage}">指定为负责人</a>
+      					</s:elseif>
+      				</td>	
       			</tr>
       		</s:iterator>
       		<tr>

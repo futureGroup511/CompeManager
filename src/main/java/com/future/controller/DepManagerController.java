@@ -5,7 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -19,11 +22,15 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.future.base.BaseAction;
+import com.future.domain.AwardHierarchy;
+import com.future.domain.AwardRecord;
 import com.future.domain.Competition;
 import com.future.domain.CompetitionHierarchy;
 import com.future.domain.CompetitionName;
 import com.future.domain.DepManager;
 import com.future.domain.SignUp;
+import com.future.service.AwardHierarchyService;
+import com.future.service.AwardRecordService;
 import com.future.service.CompetitionHierarchyService;
 import com.future.service.CompetitionNameService;
 import com.future.service.CompetitionService;
@@ -47,7 +54,10 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	private CompetitionService competitionService;
 	@Resource
 	private SignUpService signUpService;
-	
+	@Resource
+	private AwardHierarchyService awardHierarchyService;
+	@Resource
+	private AwardRecordService awardRecordService;
 	//根据 paramterMap 参数判断应该创建那个模型 之后再方法中进行强制转换
 	private Object model = new Object();
 	private Map<String, Object> sessionMap;
@@ -86,10 +96,20 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 * 学院负责人登陆
 	 */
 	public String login(){
-		DepManager depManager = (DepManager)model;
+		
+		DepManager depManager = null;
+		if(model == null || model.getClass() != DepManager.class){
+			return "ReLogin";
+		}
+		depManager = (DepManager)model;
 		System.out.println(depManager.getDepM_num()+":"+depManager.getDepM_password());
 		depManager = depManagerService.getByNumAndPassword(depManager.getDepM_num(), depManager.getDepM_password());
-		
+		/**
+		 * 竞赛已经完成的 可以填写竞赛结果的竞赛 当年申请的竞赛
+		 */
+		List<Competition> compeList = competitionService.getAvaliableCopetion();
+		requestMap.put("compeList", compeList);
+		System.out.println(compeList.size()+"hhhhhhhhhhhhhhhhhhh");
 		if(depManager == null){//如果没有该人就返回重新登陆
 			addActionError("用户名/密码错误");
 			return "ReLogin";
@@ -162,10 +182,11 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 */
 	String wrongFilepath = "fileNotAllowed";//上传失败的界面
 	public String saveApplyCompetition(){
-		if(model.getClass() == Competition.class){
+		if(model != null && model.getClass() == Competition.class){
 			System.out.println("要保存竞赛了");
 		}else{
 			System.out.println("不时地");
+			return "ReLogin";
 		}
 		Competition competition = (Competition)model;
 		String realPath = "";
@@ -272,10 +293,124 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	//报名id
 	private Integer signId;
 	public String inspectSuccess(){
-		
-		return null;//重定向至指定当前页
+		signUpService.changeSignStatus(signId, 2);//改变审核状态  已通过
+		return "RedirectToStudenSignUptPage";//重定向至指定当前页
 	}
-    
+    /**
+     * 禁止审核通过
+     * @return
+     */
+	public String inspectFailure(){
+		signUpService.changeSignStatus(signId, 3);//改变审核状态  禁止通过
+		return "RedirectToStudenSignUptPage";
+	}
+	/**
+	 * 指定其为团队负责人
+	 */
+	//修改团队负责人的团队名称
+	private String teamName;
+	public String inspectToTeamLeader(){
+		try {
+			System.out.println(new String(teamName.getBytes(), "UTF-8"));
+			System.out.println(new String(teamName.getBytes("iso-8859-1"), "UTF-8"));
+			teamName = new String(teamName.getBytes(Charset.forName("iso-8859-1")), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		signUpService.makeToTeamLeader(teamName, signId);
+		return "RedirectToStudenSignUptPage";//重定向至指定的action
+	}
+	private Integer signType;// 1：团队 2： 个人
+	public String registerScore(){
+		if(sessionMap.get("signType") != null){
+			signType = (Integer)sessionMap.get("signType");
+		}
+		if(sessionMap.get("compeId") != null){
+			compeId = (Integer)sessionMap.get("compeId");
+		}
+		if(sessionMap.get("currentPage") != null){
+			currentPage = (Integer)sessionMap.get("currentPage");
+		}
+		System.out.println("竞赛id为============》"+compeId+"类型"+signType);
+		
+		//得到指定竞赛的 还没有录入成绩的 团队报名和个人报名信息
+		Integer pageSize = 6;//每页显示的数量
+		Integer count = signUpService.getCount();
+		if(currentPage == null || (currentPage+"").trim() == ""){
+			currentPage = 0;
+		}
+		PageBean pageBean = new PageBean(currentPage, pageSize, count, null);
+		List<SignUp> signUpList = null;
+		if(signType == 1){
+			signUpList = signUpService.getAvaliableGroupSignUp(compeId, pageBean);
+		}else if(signType == 2){
+			signUpList = signUpService.getAvaliablePersonalSignUp(compeId, pageBean);
+		}
+		requestMap.put("signUpList", signUpList);
+		requestMap.put("isGroup",signType==1?true:false);
+		requestMap.put("currentPage", currentPage);
+		//保存成绩后还可以重新定位到指定页数和指定竞赛的指定竞赛类型的报名信息，来继续进行录入成绩
+		sessionMap.put("signType", signType);
+		sessionMap.put("compeId", compeId);
+		sessionMap.put("currentPage", currentPage);
+		System.out.println(signUpList.size()+"=============zhaoshuo");
+		return "RegisterCompetitionScore";
+	}
+	/**
+	 * 到达录入成绩页面
+	 */
+	private Integer registerSignUpId;//报名表的id
+	private boolean groupIsOrNot;
+	public String registerScoreToPage(){
+		List<AwardHierarchy> hieList = null; 
+		if(groupIsOrNot){
+			//查询所有团体赛 获奖等级
+			hieList = awardHierarchyService.getGroupOrPersonalAwardHie(groupIsOrNot);
+			System.out.println("团体的竞赛录入成绩");
+		}else{
+			hieList = awardHierarchyService.getGroupOrPersonalAwardHie(groupIsOrNot);
+		}
+		SignUp signUp = signUpService.getById(registerSignUpId);
+		requestMap.put("signUp", signUp);
+		requestMap.put("hieList", hieList);
+		requestMap.put("groupIsOrNot", groupIsOrNot);
+	System.out.println(hieList.size()+"**8888888888888888"+groupIsOrNot);
+		return "RegisterStudentScorePage";
+	}
+	/**
+	 * 保存获奖记录
+	 * @return
+	 */
+	private Integer ScoreAdded;
+	private Integer awardHieId;
+/*	private Integer registerSignUpId;
+	private boolean groupIsOrNot;*/
+	public String registerScoreToRecord(){
+		
+		System.out.println(ScoreAdded+" : "+awardHieId+" : "+registerSignUpId+" : "+groupIsOrNot);
+		//更新报名表 改变已获奖状态，下次不需要再录入成绩  属性  ：signUp_registerRecord
+		signUpService.makeSignUpScored(registerSignUpId, 1);
+		//构造获奖记录 并保存
+		AwardRecord awardRecord = new AwardRecord();
+		SignUp signUp = signUpService.getById(registerSignUpId);
+		AwardHierarchy awardHierarchy = awardHierarchyService.getSpecialAwardHie(awardHieId);
+		if(signUp.getSignUp_team() != null){//如果是团队
+			awardRecord.setAwardRecor_team(signUp.getSignUp_team());
+			awardRecord.setAwardRecor_manager(signUp.getSingUp_manager());
+		}
+		awardRecord.setAwardRecor_coachTeacher(signUp.getSignUp_teacher());
+		awardRecord.setAwardRecor_time(new Date());
+		awardRecord.setAwardRecor_status(1);
+		awardRecord.setAwardRecor_stuMoney(awardHierarchy.getAwardHie_standard().getAward_stuMoney());
+		awardRecord.setAwardRecor_teaMoney(awardHierarchy.getAwardHie_standard().getAward_teaMoney());
+		awardRecord.setAwardRecor_score(ScoreAdded);
+		awardRecord.setAwardRecor_student(signUp.getSignUp_student());
+		awardRecord.setAwardRecor_competition(signUp.getSignUp_competition());
+		awardRecord.setAwardRecor_awadHie(awardHierarchy);
+		
+		awardRecordService.saveAwardRecord(awardRecord);
+		return "RedirectToRegisterStudentPage";//重定向至报名表列表 
+ 	}
 	//==============================
 	// 属性的set和get方法
 	//=================================
@@ -364,6 +499,58 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		this.inputStream = inputStream;
 	}
 
+	
+	public Integer getSignId() {
+		return signId;
+	}
+
+	public void setSignId(Integer signId) {
+		this.signId = signId;
+	}
+
+	
+	public String getTeamName() {
+		return teamName;
+	}
+
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+	
+
+	
+	public Integer getRegisterSignUpId() {
+		return registerSignUpId;
+	}
+
+	public void setRegisterSignUpId(Integer registerSignUpId) {
+		this.registerSignUpId = registerSignUpId;
+	}
+
+	public boolean isGroupIsOrNot() {
+		return groupIsOrNot;
+	}
+
+	public void setGroupIsOrNot(boolean groupIsOrNot) {
+		this.groupIsOrNot = groupIsOrNot;
+	}
+	
+	public Integer getScoreAdded() {
+		return ScoreAdded;
+	}
+
+	public void setScoreAdded(Integer scoreAdded) {
+		ScoreAdded = scoreAdded;
+	}
+
+	public Integer getAwardHieId() {
+		return awardHieId;
+	}
+
+	public void setAwardHieId(Integer awardHieId) {
+		this.awardHieId = awardHieId;
+	}
+
 	//====================================
 	// 接口实现方法
 	//=========================
@@ -393,5 +580,13 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	@Override
 	public void setRequest(Map<String, Object> requestMap) {
 		this.requestMap = requestMap;
+	}
+
+	public Integer getSignType() {
+		return signType;
+	}
+
+	public void setSignType(Integer signType) {
+		this.signType = signType;
 	}
 }

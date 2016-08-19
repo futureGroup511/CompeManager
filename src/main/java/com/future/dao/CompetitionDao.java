@@ -28,7 +28,11 @@ public interface CompetitionDao {
 	 * 查询竞赛的数量
 	 */
 	public Integer getCompetitionCount();
-	
+	/**
+	 * 得到本年申请的并且已经结束的竞赛
+	 * @return
+	 */
+	public List<Competition> getAvaliableCopetion();
 	
 	public Page_S findapplyCompetition(Page_S ps);
 	

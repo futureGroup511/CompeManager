@@ -31,5 +31,13 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		return p;
 	}
 
+	/**
+	 * 保存获奖记录
+	 */
+	@Override
+	public void saveAwardRecord(AwardRecord awardRecord) {
+		getsession().save(awardRecord);
+	}
+
 
 }

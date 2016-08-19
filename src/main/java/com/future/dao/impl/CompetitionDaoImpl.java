@@ -85,5 +85,14 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 		getsession().update(comp);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Competition> getAvaliableCopetion() {
+		String sql = "from Competition compe where compe.compe_status = 4 and compe.compe_requestDate >= YEAR(NOW())";
+		List<Competition> compeList = getsession().createQuery(sql)
+													.list();
+		return compeList;
+	}
+
 
 }

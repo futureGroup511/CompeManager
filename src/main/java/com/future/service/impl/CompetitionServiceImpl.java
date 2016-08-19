@@ -61,5 +61,10 @@ public class CompetitionServiceImpl  implements CompetitionService{
 		return competitionDao.getCompetitionCount();
 	}
 
+	@Override
+	public List<Competition> getAvaliableCopetion() {
+		return competitionDao.getAvaliableCopetion();
+	}
+
 
 }

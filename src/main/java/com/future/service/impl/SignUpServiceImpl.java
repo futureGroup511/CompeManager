@@ -88,4 +88,25 @@ public class SignUpServiceImpl implements SignUpService{
 		
 		return signUpDao.jugeTeamexist(team_name);
 	}
+
+	@Override
+	public void makeToTeamLeader(String teamName, Integer signId) {
+		signUpDao.makeToTeamLeader(teamName, signId);
+	}
+
+	
+	@Override
+	public List<SignUp> getAvaliableGroupSignUp(Integer compeId, PageBean pageBean) {
+		return signUpDao.getAvaliableGroupSignUp(compeId, pageBean);
+	}
+
+	@Override
+	public List<SignUp> getAvaliablePersonalSignUp(Integer compeId, PageBean pageBean) {
+		return signUpDao.getAvaliablePersonalSignUp(compeId, pageBean);
+	}
+
+	@Override
+	public void makeSignUpScored(Integer signUpId, Integer signUp_registerRecord) {
+		signUpDao.makeSignUpScored(signUpId, signUp_registerRecord);
+	}
 }

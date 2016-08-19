@@ -39,6 +39,8 @@ public class SignUp {
 	private Competition signUp_competition;
 	//报名类型   1 团队 2 个人
 	private Integer signUP_type;
+	//是否已经录入获奖  0 未录 1 已录入
+	private Integer signUp_registerRecord;
 	@Id
 	@GeneratedValue
 	@Column(unique=true)
@@ -106,6 +108,13 @@ public class SignUp {
 	}
 	public void setSingnup_type(Integer singnup_type) {
 		this.singnup_type = singnup_type;
+	}
+	
+	public Integer getSignUp_registerRecord() {
+		return signUp_registerRecord;
+	}
+	public void setSignUp_registerRecord(Integer signUp_registerRecord) {
+		this.signUp_registerRecord = signUp_registerRecord;
 	}
 	public SignUp() {
 		super();
