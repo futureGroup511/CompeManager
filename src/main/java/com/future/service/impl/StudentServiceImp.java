@@ -1,7 +1,9 @@
 package com.future.service.impl;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.future.dao.StudentDao;
 import com.future.domain.Student;
@@ -36,6 +38,14 @@ public class StudentServiceImp implements StudentService {
 	public Page_S lookApplyByStatus(Student stu, Page_S ps) {
 		
 		return studao.lookApplyByStatus(stu, ps);
+	}
+	@Override  
+	public Page_S findAllStudenyByPage(Page_S ps) {
+		return studao.findAllStudenyByPage(ps);
+	}
+	@Override
+	public void updateStudent(Student stu) {
+		 studao.updateStudent(stu);
 	}
 	
 	

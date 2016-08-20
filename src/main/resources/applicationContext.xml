@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
-				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
 	<!--自动扫描与装配bean 包含子包  -->
 	<context:component-scan base-package="com.future"></context:component-scan>
@@ -14,12 +17,13 @@ xmlns:aop="http://www.springframework.org/schema/aop"
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 	
 	<!--配置sessionFactory  -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
 		<property name="dataSource">
 			<bean class="com.mchange.v2.c3p0.ComboPooledDataSource">
 				<!-- 数据连接信息 -->
-				<property name="jdbcUrl" value="${jdbcUrl}"></property>
+				
+				<property name="jdbcUrl" value="${jdbcUrl}"></property> 
 				<property name="driverClass" value="${driverClass}"></property>
 				<property name="user" value="${user}"></property>
 				<property name="password" value="${password}"></property>
@@ -46,7 +50,7 @@ xmlns:aop="http://www.springframework.org/schema/aop"
 	<bean name="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager"/>	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<!--2.配置事务属性  -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
@@ -55,7 +59,7 @@ xmlns:aop="http://www.springframework.org/schema/aop"
 			<tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" />
 			<tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT" />
 			<tx:method name="batch*" propagation="REQUIRED" isolation="DEFAULT" />
-
+			<tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT" />
 			<!-- 读操作 -->
 			<tx:method name="load*" propagation="REQUIRED" isolation="DEFAULT"
 				read-only="true" />
@@ -67,4 +71,8 @@ xmlns:aop="http://www.springframework.org/schema/aop"
 			<tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" />
 		</tx:attributes>
 	</tx:advice>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.future.*.impl.* .*(..))" id="mypoint"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="mypoint"/>
+	</aop:config>
 </beans>

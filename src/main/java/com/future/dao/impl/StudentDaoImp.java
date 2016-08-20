@@ -27,17 +27,24 @@ public class StudentDaoImp extends BaseDao implements StudentDao{
 	public void addOrUpdateStudent(Student stu) {
 			getsession().saveOrUpdate(stu);
 	}
-
+	/**
+	 * 因为事务问题造成hibernate缓存不能清楚,尝试写了一个flush
+	 */
+	public void updateStudent(Student stu){
+		getsession().update(stu);
+	}
 	@Override
 	public Student findStudentById(Integer id) {
-		String hql="from Student s where s.stu_id=?";
+		/*String hql="from Student s where s.stu_id=?";
 		Student student;
 		//Student student=(Student) getsession().createQuery(hql).setInteger(0, id).uniqueResult();
 		List<Student> students=getsession().createQuery(hql).setInteger(0, id).list();
 		if(students.size()==0){
 			return null;
 		}
-		student=students.get(0);
+		student=students.get(0);*/
+		Student student=new Student();
+		getsession().load(student, id);
 		return student;
 	}
 
@@ -59,6 +66,19 @@ public class StudentDaoImp extends BaseDao implements StudentDao{
 			criteria.setMaxResults(ps.getPageSize());
 			criteria.addOrder(Order.desc("signUP_time"));
 			List<SignUp> sup=criteria.list();
+			Integer num=Integer.valueOf(totalNum.toString());
+			Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(),num , sup);
+			return p;
+	}
+
+	@Override
+	public Page_S findAllStudenyByPage(Page_S ps) {
+			Criteria criteria=getsession().createCriteria(Student.class);
+			Long totalNum = (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();
+			criteria.setProjection(null);
+			criteria.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());
+			criteria.setMaxResults(ps.getPageSize());
+			List<Student> sup=criteria.list();
 			Integer num=Integer.valueOf(totalNum.toString());
 			Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(),num , sup);
 			return p;

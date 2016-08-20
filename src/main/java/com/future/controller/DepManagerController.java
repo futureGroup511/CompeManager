@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,8 @@ import com.future.domain.Competition;
 import com.future.domain.CompetitionHierarchy;
 import com.future.domain.CompetitionName;
 import com.future.domain.DepManager;
+import com.future.domain.Department;
+import com.future.domain.Notification;
 import com.future.domain.SignUp;
 import com.future.service.CompetitionHierarchyService;
 import com.future.service.CompetitionNameService;
@@ -31,6 +34,8 @@ import com.future.service.DepManagerService;
 import com.future.service.SignUpService;
 import com.future.utils.FileUpLoadUtils;
 import com.future.utils.PageBean;
+import com.future.utils.Page_S;
+import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
 public class DepManagerController extends BaseAction<Object> implements SessionAware, ParameterAware, RequestAware{
@@ -79,8 +84,13 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	
 	//竞赛分页相关
 	private Integer currentPage = 0;
+	private Integer pageSize=10;
 	//查看竞赛的详细信息
 	private Integer compeId;
+	private Integer depM_id;
+	//竞赛通知
+	private Notification notification=new Notification();
+	private Integer noti_id;
 	/**
 	 * 赵硕
 	 * 学院负责人登陆
@@ -269,6 +279,12 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		requestMap.put("pb", pb);
 		return "InspectStudentSignUp";
 	}
+	
+	
+	
+
+	
+	
 	//报名id
 	private Integer signId;
 	public String inspectSuccess(){
@@ -364,6 +380,40 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		this.inputStream = inputStream;
 	}
 
+	//发送通知页面
+	public String sendInformView(){
+		
+		return "sendInformView";
+	}
+	
+	//发送通知
+	public  String sendInform(){
+		Date date=new Date();
+		notification.setNoti_time(date);
+		nfs.saveOrUpdate(notification);
+		return "success";
+		
+	}
+	
+	//查看通知页面
+	public String  lookInformView(){
+		Page_S p=new Page_S();
+		p.setCurrentPage(currentPage);
+		p.setPageSize(pageSize);
+		p=nfs.queryAllNotification(p);
+		ActionContext.getContext().put("p", p);
+		return "lookAllInfor";
+		
+	}
+	
+	//查看详细通知
+	public String lookinfo(){
+		Notification no=nfs.findNotiById(noti_id);
+		ActionContext.getContext().put("no", no);
+		return "lookinfo";
+	}
+	
+	
 	//====================================
 	// 接口实现方法
 	//=========================
@@ -394,4 +444,29 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	public void setRequest(Map<String, Object> requestMap) {
 		this.requestMap = requestMap;
 	}
+
+	public Notification getNotification() {
+		return notification;
+	}
+
+	public void setNotification(Notification notification) {
+		this.notification = notification;
+	}
+
+	public Integer getNoti_id() {
+		return noti_id;
+	}
+
+	public void setNoti_id(Integer noti_id) {
+		this.noti_id = noti_id;
+	}
+
+	public Integer getDepM_id() {
+		return depM_id;
+	}
+
+	public void setDepM_id(Integer depM_id) {
+		this.depM_id = depM_id;
+	}
+	
 }

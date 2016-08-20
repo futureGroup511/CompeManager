@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.future.dao.AwardRecordDao;
+import com.future.domain.AwardRecord;
 import com.future.domain.Student;
 import com.future.service.AwardRecordService;
 import com.future.utils.Page_S;
@@ -20,6 +21,16 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 	@Override
 	public Page_S findAwardByStudent(Student s, Page_S ps) {
 		return awardRecordDao.findAwardByStudent(s, ps);
+	}
+
+	@Override
+	public AwardRecord findAwardRecordById(Integer id) {
+		return awardRecordDao.findAwardRecordById(id);
+	}
+
+	@Override
+	public void saveOrUpdaAward(AwardRecord ar) {
+		awardRecordDao.saveOrUpdaAward(ar);
 	}
 
 }

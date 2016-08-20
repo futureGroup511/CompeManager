@@ -12,10 +12,10 @@
      
      <!-- 由spring 管理action的创建  -->
     <constant name="struts.objectFactory" value="spring" />
-    <package name="default" namespace="/" extends="struts-default">
+    <package name="default" namespace="/" extends="json-default">
 	    	<!-- 配置默认 paramsPrepareParam 拦截器栈 -->
 	    	<!-- <default-interceptor-ref name="paramsPrepareParamsStack"></default-interceptor-ref> -->
-	    	<action name="depManager_*" method="{1}" class="depManagerController">
+	    	<action name="depManager_*" method="{1}" class="com.future.controller.DepManagerController">
     		<result name="LoginSuccess" type="dispatcher">/WEB-INF/jsp/DepManagerView/DepManagerLoginSuccess.jsp</result>
     		<result name="ReLogin" type="redirect">/index.jsp</result>
     		<result name="ApplyCompeNameToPage">/WEB-INF/jsp/CompetitionNameView/ApplyCompeNamePage.jsp</result>
@@ -40,6 +40,9 @@
     	 	</result>  
     	 	<result name="ToSeeHistoryCompetition">/WEB-INF/jsp/Competitions/SeeHistoryCompetition.jsp</result>
     	 	<result name="InspectStudentSignUp">/WEB-INF/jsp/SignUpView/InspectSignUpPage.jsp</result>
+ 			<result name="sendInformView">/WEB-INF/jsp/DepManagerView/sendInformView.jsp</result>
+ 			<result name="lookAllInfor">/WEB-INF/jsp/DepManagerView/lookAllInfor.jsp</result>
+ 			<result name="lookinfo">/WEB-INF/jsp/DepManagerView/lookinfo.jsp</result>
  		</action> 
     	<action name="student_*" method="{1}" class="StudentController" >
     	    <result>WEB-INF/jsp/test/testSuccess.jsp</result>
@@ -62,7 +65,47 @@
     		<result name="jugeapply" type="json"></result>
     		<result name="lookapplystatus">WEB-INF/jsp/student/lookapplystatus.jsp</result>
     		<result name="lookAward">WEB-INF/jsp/student/award.jsp</result>
-    	</action>		
+    		<result name="uploadView">WEB-INF/jsp/student/uploadView.jsp</result>
+    	</action>	
+    	
+    	<action name="admin_*" method="{1}" class="com.future.controller.AdminController">
+    	    
+    	    <result name="all">/WEB-INF/jsp/Admin/allDep.jsp</result>
+ 			<result name="deletesuccess" type="redirect">admin_findAll</result>
+ 			<result name="modifyView" >/WEB-INF/jsp/Admin/modifyView.jsp</result>
+    	    <result name="modifysuccess" type="redirect">admin_findAll</result>
+    		<result name="allstudent">/WEB-INF/jsp/Admin/allstudent.jsp</result>
+    		<result name="modityStuView">WEB-INF/jsp/Admin/modityStuView.jsp</result>
+    		<result name="modifyStuSuccess" type="redirect">admin_findAllStudent</result>
+    		<result name="allDepartment">WEB-INF/jsp/Admin/allDepartment.jsp</result>
+    		<result name="modifyDepartView" >WEB-INF/jsp/Admin/modifyDepart.jsp</result>
+    		<result name="modifyDepartsuccess" type="redirect">admin_finAllDepartment</result>
+    		<result name="addDeparmentManegerView">WEB-INF/jsp/Admin/addDeparmentView.jsp</result>
+    		<result name="addSuccess" >index.jsp</result>
+    		<result name="addDepartmentView">WEB-INF/jsp/Admin/addDepartment.jsp</result>
+    		<result name="addCompetitionHierarchyView">WEB-INF/jsp/Admin/addCompetitionHierarchyView.jsp</result>
+    		<result name="addAwardHierarchyView">WEB-INF/jsp/Admin/addAwardHierarchyView.jsp</result>
+    		<result name="addAwardStandView">WEB-INF/jsp/Admin/addAwardStandView.jsp</result>
+    	</action>	
+    
+    	<action name="comphier_*" method="{1}" class="com.future.controller.CompetitionHierarchyController">
+    	    <result name="allcomphier">WEB-INF/jsp/CompetitionHierarcy/allCompetitionHierarcy.jsp</result>
+    	    <result name="modifyCompHierarchyView">WEB-INF/jsp/CompetitionHierarcy/modify.jsp</result>
+    	    <result name="modifysuccess" type="redirect">comphier_findAllcomphier</result>
+    	</action>
+    	
+    	<action name="awardhierar_*" method="{1}" class="com.future.controller.AwardHierarchyController">
+    	    <result name="all">WEB-INF/jsp/AwardHierarchy/all.jsp</result>
+    	    <result name="modifyView">WEB-INF/jsp/AwardHierarchy/modifyView.jsp</result>
+    	    <result name="modifysuccess" type="redirect">awardhierar_findAll</result>
+    	</action>
+    	
+       <action name="awardstand_*" method="{1}" class="com.future.controller.AwardStandardController">
+    	  	<result name="all">WEB-INF/jsp/AwardStand/all.jsp</result>  
+    	    <result name="modifyView">WEB-INF/jsp/AwardStand/modifyView.jsp</result>
+    	    <result name="modifysuccess" type="redirect">awardstand_findAll</result>
+    	</action> 
+    
     </package>
    	
     

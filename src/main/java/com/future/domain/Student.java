@@ -79,7 +79,7 @@ public class Student {
 	public void setStu_sex(String stu_sex) {
 		this.stu_sex = stu_sex;
 	}
-	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.MERGE,optional=true,fetch=FetchType.EAGER)
 	public Department getStu_department() {
 		return stu_department;
 	}
@@ -87,7 +87,7 @@ public class Student {
 		this.stu_department = stu_department;
 	}
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY,mappedBy="signUp_student")
+	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY,mappedBy="signUp_student")
 	public Set<SignUp> getStu_signUps() {
 		return stu_signUps;
 	}
@@ -95,7 +95,7 @@ public class Student {
 		this.stu_signUps = stu_signUps;
 	}
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY,mappedBy="awardRecor_student")
+	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY,mappedBy="awardRecor_student")
 	public Set<AwardRecord> getStu_awardRecord() {
 		return stu_awardRecord;
 	}

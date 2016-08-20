@@ -15,9 +15,19 @@
 		<s:submit value="提交"></s:submit>
 	</s:form>
 	<a href="student_loginView.action">学生登陆</a>
+	<a href="depManager_sendInformView">发布通知</a>
+	<a href="depManager_lookInformView">查看通知</a>	
+	<a href="admin_findAll">查看所有学院负责人</a>
+	<a href="admin_addDeparmentManegerView">添加学院负责人</a>
+	<a href="admin_findAllStudent">查看所有学生</a>
+	<a href="admin_finAllDepartment">查看所有学院</a>
+	<a href="admin_addDepartmentView">添加学院</a>
+	<a href="comphier_findAllcomphier">查看所有竞赛等级</a>
+	<a href="admin_addCompetitionHierarchyView">添加竞赛等级</a>
+	<a href="awardhierar_findAll">查看所有获奖等级</a>
+	<a href="admin_addAwardHierarchyView">添加获奖等级</a>
+	<a href="awardstand_findAll">查看所有奖励标准</a>
+	<a href="admin_addAwardStandView">添加奖励标准</a>
 </body>
 </html>
 
-
-
->>>>>>> c8ee6c416e37e83637bb9d4734793ebc01b6c4ba

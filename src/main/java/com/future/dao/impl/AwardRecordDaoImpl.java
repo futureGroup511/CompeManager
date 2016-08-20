@@ -22,6 +22,7 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		Criteria criteria=getsession().createCriteria(AwardRecord.class);
 		criteria.add(Restrictions.eq("awardRecor_student", s));
 		Long totalnum=(Long)criteria.setProjection(Projections.rowCount()).uniqueResult();
+		criteria.setProjection(null);
 		criteria.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());
 		criteria.setMaxResults(ps.getPageSize());
 		criteria.addOrder(Order.desc("awardRecor_time"));
@@ -29,6 +30,18 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		Integer num=Integer.valueOf(totalnum.toString());
 		Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(),num , awardRecords);
 		return p;
+	}
+
+	@Override
+	public AwardRecord findAwardRecordById(Integer id) {
+		String hql="From AwardRecord a where a.awardRecor_id=?";
+		AwardRecord ar=(AwardRecord) getsession().createQuery(hql).setInteger(0, id).uniqueResult();
+		return ar;
+	}
+
+	@Override
+	public void saveOrUpdaAward(AwardRecord ar) {
+		getsession().saveOrUpdate(ar);
 	}
 
 

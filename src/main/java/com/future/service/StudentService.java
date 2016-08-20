@@ -20,6 +20,8 @@ public interface StudentService {
 
 	public Page_S lookApplyByStatus(Student stu,Page_S ps);
 	
+	public Page_S findAllStudenyByPage(Page_S ps) ;
 	
+	public void updateStudent(Student stu);
 }
 
