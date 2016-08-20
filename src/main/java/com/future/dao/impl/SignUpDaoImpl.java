@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.type.StandardBasicTypes;
 import org.springframework.stereotype.Repository;
 
 import com.future.base.BaseDao;
@@ -16,10 +17,10 @@ import com.future.utils.PageBean;
 
 @Repository
 public class SignUpDaoImpl extends BaseDao implements SignUpDao {
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SignUp> getAllSignUp(PageBean pageBean) {
-		String sql = "from SignUp order by signUP_time desc, signUP_team asc";
+		String sql = "from SignUp order by signUP_team asc, signUP_time desc";
 		List<SignUp> signUpList = getsession().createQuery(sql)
 												.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
 												.setMaxResults(pageBean.getPageSize()).list();
@@ -28,7 +29,7 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 
 	@Override
 	public SignUp getById(Integer id) {
-		String sql = "from SignUP signUp where signUp.signUp_id = :signUp_id";
+		String sql = "from SignUp signUp where signUp.signUp_id = :signUp_id";
 		SignUp signUp = (SignUp)getsession().createQuery(sql)
 										.setParameter("signUp_id", id)
 										.uniqueResult();
@@ -52,6 +53,7 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 
 	@Override
 	public void refreshGroupSignUp(SignUp signUp) {
+		
 		
 	}
 
@@ -77,7 +79,7 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 		String sql = "update SignUp signUp set signUp.signUp_status = :signUp_status where signUp.signUp_id = :signId";
 		getsession().createQuery(sql)
 					.setParameter("signUp_status", signStatus)
-						.setParameter("signUp_id", signId)
+						.setParameter("signId", signId)
 							.executeUpdate();
 									
 	}
@@ -118,6 +120,67 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 			return "notexist";
 		
 		
+	}
+
+	@Override
+	public void makeToTeamLeader(String teamName, Integer signId) {
+		List<Integer> memberIds = getSpecialTeamMembId(teamName);
+		for(Integer memberId:memberIds){
+			makeToNotTeamLeader(memberId);
+		}
+		String sql = "update SignUp signUp set signUp.singUp_manager = 1 where signUp.signUp_id = :signId";
+		getsession().createQuery(sql).setParameter("signId", signId)
+						.executeUpdate();
+		
+	}
+
+	@Override
+	public void makeToNotTeamLeader(Integer signId) {
+		String sql = "update SignUp signUp set signUp.singUp_manager = 0 where signUp.signUp_id = :signId";
+		getsession().createQuery(sql).setParameter("signId", signId)
+						.executeUpdate();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> getSpecialTeamMembId(String teamName) {
+		String sql = "select signUp_id from cm_signups where signUp_team = :teamName";
+		List<Integer> memberIds = getsession().createSQLQuery(sql).addScalar("signUp_id", StandardBasicTypes.INTEGER)
+											.setParameter("teamName", teamName)
+											.list();
+		System.out.println("memberIds =================>"+memberIds);
+		return memberIds;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SignUp> getAvaliableGroupSignUp(Integer compeId, PageBean pageBean) {
+		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id = :compeId and signUp.singnup_type = 1 and signUp.signUp_registerRecord = 0 and signUp.signUp_status = 2 order by signUp.signUp_team desc";
+		List<SignUp> signUpList = getsession().createQuery(sql)
+											.setParameter("compeId", compeId)
+											.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
+											.setMaxResults(pageBean.getPageSize())
+											.list();
+		return signUpList;
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SignUp> getAvaliablePersonalSignUp(Integer compeId, PageBean pageBean) {
+		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id = :compeId and signUp.singnup_type = 2 and signUp.signUp_registerRecord = 0 and signUp.signUp_status = 2 ";
+		List<SignUp> signUpList = getsession().createQuery(sql)
+											.setParameter("compeId", compeId)
+											.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
+											.setMaxResults(pageBean.getPageSize())
+											.list();
+		return signUpList;
+	}
+
+	@Override
+	public void makeSignUpScored(Integer signUpId, Integer signUp_registerRecord) {
+		String sql = "update SignUp signUp set signUp.signUp_registerRecord = :signUp_registerRecord where signUp.signUp_id = :signUpId";
+		getsession().createQuery(sql).setParameter("signUp_registerRecord", signUp_registerRecord)
+										.setParameter("signUpId", signUpId)
+										.executeUpdate();
 	}
 
 }

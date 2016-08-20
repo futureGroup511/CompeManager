@@ -51,10 +51,27 @@ public interface SignUpService {
 	 * 改变审核状态
 	 */
 	public void changeSignStatus(Integer signId, Integer signStatus);
+	/**
+	 * 得到指定竞赛 未录入成绩的 通过审核的  团队报名
+	 */
+	public List<SignUp> getAvaliableGroupSignUp(Integer compeId, PageBean pageBean);
+	/**
+	 * 得到指定竞赛 未录入成绩的 通过审核的  个人报名
+	 */
+	public List<SignUp> getAvaliablePersonalSignUp(Integer compeId, PageBean pageBean);
+	/**
+	 * 改变指定报名表的 已录入成绩状态
+	 * @param sup
+	 */
+	public void makeSignUpScored(Integer signUpId, Integer signUp_registerRecord);
 	
 	public void addSignUp(SignUp sup);
 	
 	public SignUp  jugeStudentuge(Student stu,Competition compe,Integer sup_type);
 	
 	 public String jugeTeamexist(String team_name);
+	 /**
+	  * 修改指定人员为团队负责人
+	  */
+	public void makeToTeamLeader(String teamName, Integer signId);
 }

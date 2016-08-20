@@ -1,5 +1,7 @@
 package com.future.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -30,5 +32,13 @@ public class AwardHierarchyServiceImpl implements AwardHierarchyService{
 	@Override
 	public void addOrupdate(AwardHierarchy awardHierarchy) {
 		awardHierarchyDao.addOrupdate(awardHierarchy);
+	}
+	public List<AwardHierarchy> getGroupOrPersonalAwardHie(boolean isGroup) {
+		return awardHierarchyDao.getGroupOrPersonalAwardHie(isGroup);
+	}
+
+	@Override
+	public AwardHierarchy getSpecialAwardHie(Integer awardHieId) {
+		return awardHierarchyDao.getSpecialAwardHie(awardHieId);
 	}
 }

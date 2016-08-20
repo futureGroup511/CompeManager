@@ -11,4 +11,10 @@ public interface AwardRecordService {
 	public AwardRecord findAwardRecordById(Integer id);
 	
 	public void saveOrUpdaAward(AwardRecord ar);
+	
+
+	/**
+	 * 保存获奖记录
+	 */
+	public void saveAwardRecord(AwardRecord awardRecord);
 }

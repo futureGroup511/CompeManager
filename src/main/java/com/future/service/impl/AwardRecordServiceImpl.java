@@ -32,5 +32,8 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 	public void saveOrUpdaAward(AwardRecord ar) {
 		awardRecordDao.saveOrUpdaAward(ar);
 	}
+	public void saveAwardRecord(AwardRecord awardRecord) {
+		awardRecordDao.saveAwardRecord(awardRecord);
+	}
 
 }

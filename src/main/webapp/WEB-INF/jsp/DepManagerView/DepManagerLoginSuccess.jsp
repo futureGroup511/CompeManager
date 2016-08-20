@@ -21,6 +21,23 @@
 		<li><a href="depManager_seeAllApplyCompetition">查看申报项目审核状态</a></li>
 		<!-- <li><a href="depManager_seeHistoryCompetition">历史申报项目</a></li> -->
 		<li><a href="depManager_inspectStudentApplyPage">审核报名</a></li>
+		<li>
+				<s:if test="#request.compeList != null && #request.compeList.size() > 0">
+					<s:form action="depManager_registerScore">
+						<select name="compeId">
+							<s:iterator value="#request.compeList" var="compe">
+								<option value="<s:property value="#compe.compe_id" />"><s:date name="#compe.compe_requestDate" format="yyyy-MM-dd"/> 申请的 ${compe.compe_compeName.compeName_name}</option>
+							</s:iterator>
+						</select>
+						<s:radio list="#{'1':'团体', '2':'个人' }" name="signType" value="1">
+						</s:radio>
+						<s:submit value="录入此竞赛成绩"></s:submit>
+					</s:form>
+				</s:if>
+				<s:else>
+					暂无竞赛结果需要填写
+				</s:else>
+		</li>
 	</ul>
 </body>
 </html>
