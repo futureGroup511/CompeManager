@@ -24,9 +24,9 @@ public class AwardRecord {
 	private Integer awardRecor_id;
 	//指导老师姓名
 	private String awardRecor_coachTeacher;
-	//如果是团队的话，该学生属于的队伍名称
+	//如果是团队的话，该学生属于的队伍名称   队伍名称标志是团队赛
 	private String awardRecor_team;
-	//如果是团队的话 就有
+	//如果是团队的话 就有     1代表负责人  其余为0          如果个人赛 两项属性都为null
 	private Integer awardRecor_manager;
 	//获奖时间
 	private Date awardRecor_time;
@@ -36,9 +36,9 @@ public class AwardRecord {
 	private String awardRecor_teaMoney;
 	//学生所获 学分
 	private Integer awardRecor_score;
-	//获奖记录的状态	
+	//获奖记录的状态	  1为申请 2为审核通过 3为审核未通过 4为本学生已经提交其他奖励
 	private Integer awardRecor_status;
-	//获奖整数
+	//获奖证书
 	private String awardRecor_picturePath;
 	
 	
@@ -134,9 +134,4 @@ public class AwardRecord {
 	public void setAwardRecor_student(Student awardRecor_student) {
 		this.awardRecor_student = awardRecor_student;
 	}
-	
-	
-	
-	
-	
 }

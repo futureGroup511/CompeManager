@@ -143,8 +143,8 @@ One or more constraints have not been satisfied.	CompeManager		line 1	Maven Java
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -155,6 +155,40 @@ One or more constraints have not been satisfied.	CompeManager		line 1	Maven Java
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+			
+			<!-- 配置虚拟目录 -->
+			<!-- <build>
+		        <finalName>bjm</finalName>
+		        <sourceDirectory>src/main/java</sourceDirectory>
+		        <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
+		        <defaultGoal>install</defaultGoal>
+		        <resources>
+		            <resource>
+		                <targetPath></targetPath>
+		                <directory>src/main/resources</directory>
+		                <filtering>true</filtering>
+		            </resource>
+		        </resources>
+		    </build> -->
+		    
+		    <!-- <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.1</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>src/main/webapp/WEB-INF/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin> -->
+		    
 		</plugins>
 	</build>
 </project>

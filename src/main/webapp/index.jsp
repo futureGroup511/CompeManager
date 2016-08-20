@@ -14,6 +14,8 @@
 		<s:submit value="提交"></s:submit>
 	</s:form>
 	<a href="student_loginView.action">学生登陆</a>
+	<a href="admin_loginView.action">教务处</a>
+	
 </body>
 </html>
 

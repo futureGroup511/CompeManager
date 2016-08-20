@@ -6,6 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.future.service.AdminService;
+import com.future.service.AwardHierarchyService;
+import com.future.service.AwardRecordService;
+import com.future.service.CompetitionNameService;
+import com.future.service.CompetitionService;
+import com.future.service.DepartmentService;
 import com.future.service.StudentService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -18,6 +24,18 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 	protected T model;
 	@Autowired
 	protected StudentService stuser;
+	@Autowired
+	protected AdminService adminService;
+	@Autowired
+	protected CompetitionService competitionService;
+	@Autowired
+	protected CompetitionNameService competitionNameService;
+	@Autowired
+	protected DepartmentService departmentService;
+	@Autowired
+	protected AwardRecordService awardRecordService;
+	@Autowired
+	protected AwardHierarchyService awardHierarchyService;
 	public BaseAction() {
 		try {
 			ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
