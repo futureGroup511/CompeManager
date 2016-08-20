@@ -9,10 +9,20 @@ import com.future.dao.CompetitionNameDao;
 import com.future.domain.Competition;
 import com.future.domain.CompetitionName;
 import com.future.utils.PageBean;
+import java.util.List;
+import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class CompetitionNameDaoImpl extends BaseDao implements CompetitionNameDao{
-
+	
+	@Override
+	public List<CompetitionName> getAllCompeNames() {
+		String sql = "from CompetitionName";
+		List<CompetitionName> competitionNames = getsession().createQuery(sql).list();
+		return competitionNames;
+	}
+	
 	////查询待审核竞赛名称立标
 	@Override
 	public List<CompetitionName> findAllCheckNoName() {

@@ -29,12 +29,18 @@ public class SignUp {
 	private Integer singUp_manager;
 	//报名的状态，表明是否通过审核    1: 报名 2: 审核通过 3：未通过 
 	private Integer signUp_status;
+	//报名的类型	表明是否通过审核    1团体 2个人
+	private Integer singnup_type;
 	//报名时间
 	private Date signUP_time;
 	//报名表的学生
 	private Student signUp_student;
 	//该学生 报名的竞赛
 	private Competition signUp_competition;
+	//报名类型   1 团队 2 个人
+	private Integer signUP_type;
+	//是否已经录入获奖  0 未录 1 已录入
+	private Integer signUp_registerRecord;
 	@Id
 	@GeneratedValue
 	@Column(unique=true)
@@ -68,6 +74,14 @@ public class SignUp {
 	public void setSignUp_status(Integer signUp_status) {
 		this.signUp_status = signUp_status;
 	}
+	
+	
+	public Integer getSignUP_type() {
+		return signUP_type;
+	}
+	public void setSignUP_type(Integer signUP_type) {
+		this.signUP_type = signUP_type;
+	}
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getSignUP_time() {
 		return signUP_time;
@@ -75,19 +89,35 @@ public class SignUp {
 	public void setSignUP_time(Date signUP_time) {
 		this.signUP_time = signUP_time;
 	}
-	@ManyToOne(cascade=CascadeType.PERSIST,optional=false,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
 	public Student getSignUp_student() {
 		return signUp_student;
 	}
 	public void setSignUp_student(Student signUp_student) {
 		this.signUp_student = signUp_student;
 	}
-	@ManyToOne(cascade=CascadeType.PERSIST,optional=false,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
 	public Competition getSignUp_competition() {
 		return signUp_competition;
 	}
 	public void setSignUp_competition(Competition signUp_competition) {
 		this.signUp_competition = signUp_competition;
+	}
+	public Integer getSingnup_type() {
+		return singnup_type;
+	}
+	public void setSingnup_type(Integer singnup_type) {
+		this.singnup_type = singnup_type;
+	}
+	
+	public Integer getSignUp_registerRecord() {
+		return signUp_registerRecord;
+	}
+	public void setSignUp_registerRecord(Integer signUp_registerRecord) {
+		this.signUp_registerRecord = signUp_registerRecord;
+	}
+	public SignUp() {
+		super();
 	}
 	
 	

@@ -42,6 +42,68 @@ public class Page_S {
 	public Page_S() {
 		super();
 	}
+
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public Integer getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public Integer getRecordCount() {
+		return recordCount;
+	}
+
+	public void setRecordCount(Integer recordCount) {
+		this.recordCount = recordCount;
+	}
+
+	public List getRecordlist() {
+		return recordlist;
+	}
+
+	public void setRecordlist(List recordlist) {
+		this.recordlist = recordlist;
+	}
+
+	public Integer getEndPageIndex() {
+		return endPageIndex;
+	}
+
+	public void setEndPageIndex(Integer endPageIndex) {
+		this.endPageIndex = endPageIndex;
+	}
+
+	public Integer getBeginPageIndex() {
+		return beginPageIndex;
+	}
+
+	public void setBeginPageIndex(Integer beginPageIndex) {
+		this.beginPageIndex = beginPageIndex;
+	}
+
+	public Integer getPageCount() {
+		return pageCount;
+	}
+
+	public void setPageCount(Integer pageCount) {
+		this.pageCount = pageCount;
+	}
+
+	@Override
+	public String toString() {
+		return "Page_S [endPageIndex=" + endPageIndex + ", beginPageIndex=" + beginPageIndex + ", pageCount="
+				+ pageCount + "]";
+	}
 	
 	
 	

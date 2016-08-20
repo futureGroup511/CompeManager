@@ -31,19 +31,18 @@ public class Competition {
 	private Date compe_startTime;
 	// 竞赛项目 结束时间
 	private Date compe_endTime;
-	// 竞赛项目
+	//竞赛 所需经费
 	private String compe_money;
-	
-	// 1 团队 2 个人 3 其他
+
+	//竞赛类型  1 团体，2 个人 3 其他
 	private Integer compe_type;
-	// 项目
+	//项目 状态  1 申请 2 审核通过 3进行中 4 正常结束   0 审核未通过
 	private Integer compe_status;
 	// 竞赛方案 文件的url
 	private String compe_program;
 	// 竞赛摘要 (<200)
 	private String compe_digest;
-
-	// 竞赛项目名称
+	//竞赛项目名称
 	private CompetitionName compe_compeName;
 	// 所申请竞赛的院系
 	private Department compe_department;
@@ -134,7 +133,7 @@ public class Competition {
 		this.compe_digest = compe_digest;
 	}
 
-	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch = FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
 	public CompetitionName getCompe_compeName() {
 		return compe_compeName;
 	}
@@ -143,7 +142,7 @@ public class Competition {
 		this.compe_compeName = compe_compeName;
 	}
 
-	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch = FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
 	public Department getCompe_department() {
 		return compe_department;
 	}
@@ -151,8 +150,10 @@ public class Competition {
 	public void setCompe_department(Department compe_department) {
 		this.compe_department = compe_department;
 	}
-
 	// 竞赛对应的 获奖记录
 	// private Set<AwardRecord> compe_awardRecord = new HashSet<AwardRecord>();
+	
+	//竞赛对应的 获奖记录
+	//private Set<AwardRecord> compe_awardRecord = new HashSet<AwardRecord>();
 
 }

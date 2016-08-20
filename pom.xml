@@ -134,7 +134,25 @@ One or more constraints have not been satisfied.	CompeManager		line 1	Maven Java
 			<artifactId>spring-orm</artifactId>
 			<version>4.2.4.RELEASE</version>
 		</dependency>
-		
+		<!--jstl标签库所需jar包  -->
+		<dependency>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+        </dependency>
+        <dependency>
+		    <groupId>taglibs</groupId>
+		    <artifactId>standard</artifactId>
+		    <version>1.1.2</version>
+        </dependency>
+        
+        <!--json所需jar包  -->
+       
+		<dependency>
+		    <groupId>org.apache.struts</groupId>
+		    <artifactId>struts2-json-plugin</artifactId>
+		    <version>2.3.24</version>
+		</dependency>
 	</dependencies>
 
 	<build>

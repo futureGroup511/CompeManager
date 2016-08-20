@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,9 +9,9 @@
 <title>test</title>
 </head>
 <body>
-	<s:form method="post" action="testController_login">
-		<s:textfield name="username"/>
-		<s:textfield name="password"/>
+	<s:form method="post" action="depManager_login">
+		<s:textfield name="depM_num"/>
+		<s:textfield name="depM_password"/>
 		<s:submit value="提交"></s:submit>
 	</s:form>
 	<a href="student_loginView.action">学生登陆</a>

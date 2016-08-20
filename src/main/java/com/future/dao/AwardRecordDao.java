@@ -4,8 +4,12 @@ import java.util.List;
 
 import com.future.domain.AwardRecord;
 import com.future.utils.PageBean;
+import com.future.domain.AwardRecord;
+import com.future.domain.Student;
+import com.future.utils.Page_S;
 
 public interface AwardRecordDao {
+
 
 	//查询待审核竞赛结果
 	List<AwardRecord> findCheckNoAwardRecord();
@@ -43,9 +47,11 @@ public interface AwardRecordDao {
 	//分页条件查询
 	PageBean getPageBeanConditionQuery(int pageNum, int pageSize, AwardRecord model);
 
-
-
-
+	public Page_S findAwardByStudent(Student s,Page_S ps);
 	
-
+	/**
+	 * 保存获奖记录
+	 */
+	public void saveAwardRecord(AwardRecord awardRecord);
+	
 }

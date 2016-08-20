@@ -10,15 +10,33 @@ import org.springframework.transaction.annotation.Transactional;
 import com.future.dao.CompetitionNameDao;
 import com.future.domain.CompetitionName;
 import com.future.service.CompetitionNameService;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.future.service.CompetitionNameService;
 import com.future.utils.PageBean;
 
 @Service
 @Transactional
-public class CompetitionNameServiceImpl implements CompetitionNameService {
-
+public class CompetitionNameServiceImpl implements CompetitionNameService{
 	@Resource
 	private CompetitionNameDao competitionNameDao;
 
+	
+	@Override
+	public void save(CompetitionName competitionName) {
+		competitionNameDao.save(competitionName);
+	}
+
+	@Override
+	public List<CompetitionName> getAllCompeNames() {
+		return competitionNameDao.getAllCompeNames();
+	}
+	
+	//================================
 	//查询待审核竞赛名称
 	@Override
 	public List<CompetitionName> findAllCheckNoName() {
@@ -83,4 +101,7 @@ public class CompetitionNameServiceImpl implements CompetitionNameService {
 	public PageBean getPageBeanNoPassCheck(int pageNum, int pageSize) {
 		return competitionNameDao.getPageBeanNoPassCheck(pageNum,pageSize);
 	}
+	//===========================
+		
+	
 }

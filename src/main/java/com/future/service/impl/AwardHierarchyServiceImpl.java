@@ -23,4 +23,15 @@ public class AwardHierarchyServiceImpl implements AwardHierarchyService{
 	public List<AwardHierarchy> findAllAwardHierarchy() {
 		return awardHierarchyDao.findAllAwardHierarchy();
 	}
+	
+	@Override
+	public List<AwardHierarchy> getGroupOrPersonalAwardHie(boolean isGroup) {
+		return awardHierarchyDao.getGroupOrPersonalAwardHie(isGroup);
+	}
+
+	@Override
+	public AwardHierarchy getSpecialAwardHie(Integer awardHieId) {
+		return awardHierarchyDao.getSpecialAwardHie(awardHieId);
+	}
+
 }

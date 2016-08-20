@@ -1,5 +1,6 @@
 package com.future.dao.impl;
 
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,10 +8,12 @@ import java.util.List;
 
 import org.apache.struts2.components.ActionComponent;
 import org.hibernate.Criteria;
+import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-
 import com.future.base.BaseDao;
 import com.future.dao.AwardRecordDao;
 import com.future.dao.DepartmentDao;
@@ -21,10 +24,37 @@ import com.future.domain.Student;
 import com.future.utils.PageBean;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
+import com.future.domain.AwardRecord;
+import com.future.domain.Student;
+import com.future.utils.Page_S;
 
 @Repository
 public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
+	
+	@Override
+	public Page_S findAwardByStudent(Student s, Page_S ps) {
+		Criteria criteria=getsession().createCriteria(AwardRecord.class);
+		criteria.add(Restrictions.eq("awardRecor_student", s));
+		Long totalnum=(Long)criteria.setProjection(Projections.rowCount()).uniqueResult();
+		criteria.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());
+		criteria.setMaxResults(ps.getPageSize());
+		criteria.addOrder(Order.desc("awardRecor_time"));
+		List<AwardRecord> awardRecords=criteria.list();
+		Integer num=Integer.valueOf(totalnum.toString());
+		Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(),num , awardRecords);
+		return p;
+	}
 
+	/**
+	 * 保存获奖记录
+	 */
+	@Override
+	public void saveAwardRecord(AwardRecord awardRecord) {
+		getsession().save(awardRecord);
+	}
+	
+	
+	//===============================================================
 	//调用service查询待审核竞赛结果
 	@Override
 	public List<AwardRecord> findCheckNoAwardRecord() {
@@ -423,4 +453,5 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		//System.out.println("------------" + count1);
 		return new PageBean(pageNum, pageSize, count1.intValue(),awardRecord);
 	}
+	
 }

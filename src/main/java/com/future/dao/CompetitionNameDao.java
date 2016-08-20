@@ -1,13 +1,13 @@
 package com.future.dao;
 
 import java.util.List;
-
-import com.future.domain.CompetitionName;
 import com.future.utils.PageBean;
+import com.future.domain.CompetitionName;
 
 public interface CompetitionNameDao {
-
-	////查询待审核竞赛名称立标
+	
+	//======================================================
+			//查询待审核竞赛名称立标
 	List<CompetitionName> findAllCheckNoName();
 
 	//1、调用service查询审核成功项目名称
@@ -25,9 +25,6 @@ public interface CompetitionNameDao {
 	//通过id获得具体数据
 	CompetitionName findById(Integer id);
 
-	//保存
-	void save(CompetitionName competitionName);
-
 	//分页查看审核成功竞赛名称
 	PageBean getPageBeanCheckSuccessName(int pageNum, int pageSize);
 
@@ -36,5 +33,16 @@ public interface CompetitionNameDao {
 
 	//分页查看未通过审核竞赛名称
 	PageBean getPageBeanNoPassCheck(int pageNum, int pageSize);
-
+	//======================================================
+	/**
+	 * zhaoshuo
+	 * 保存竞赛名称
+	 */
+	public void save(CompetitionName competitionName);
+	
+	/**
+	 * zhaoshuo
+	 * 得到所有的竞赛名称
+	 */
+	public List<CompetitionName> getAllCompeNames();
 }

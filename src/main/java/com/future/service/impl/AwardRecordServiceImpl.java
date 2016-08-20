@@ -9,16 +9,32 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.future.dao.AwardRecordDao;
 import com.future.domain.AwardRecord;
+
 import com.future.service.AwardRecordService;
 import com.future.utils.PageBean;
+import com.future.domain.Student;
+import com.future.service.AwardRecordService;
+import com.future.utils.Page_S;
 
 @Service
 @Transactional
-public class AwardRecordServiceImpl implements AwardRecordService {
+
+public class AwardRecordServiceImpl implements AwardRecordService{
 
 	@Resource
 	private AwardRecordDao awardRecordDao;
-
+	
+	@Override
+	public Page_S findAwardByStudent(Student s, Page_S ps) {
+		return awardRecordDao.findAwardByStudent(s, ps);
+	}
+	
+	@Override
+	public void saveAwardRecord(AwardRecord awardRecord) {
+		awardRecordDao.saveAwardRecord(awardRecord);
+	}
+	
+	//====================================================
 	//调用service查询待审核竞赛结果
 	@Override
 	public List<AwardRecord> findCheckNoAwardRecord() {
@@ -91,6 +107,8 @@ public class AwardRecordServiceImpl implements AwardRecordService {
 	public PageBean getPageBeanConditionQuery(int pageNum, int pageSize, AwardRecord model) {
 		return awardRecordDao.getPageBeanConditionQuery(pageNum,pageSize,model);
 	}
+	//====================================================
 
+	
 	
 }

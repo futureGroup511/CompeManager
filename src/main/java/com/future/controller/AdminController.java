@@ -22,6 +22,8 @@ import com.opensymphony.xwork2.ActionContext;
 @Scope("prototype")
 public class AdminController extends BaseAction<Admin>{
 
+	
+	
 	//显示主页面
 	public String loginView(){
 		//System.out.println("访问成功");
@@ -129,3 +131,12 @@ public class AdminController extends BaseAction<Admin>{
 	}
 	
 }
+/*=======
+import com.future.domain.Admin;
+@Controller
+@Scope("prototype")
+public class AdminController extends BaseAction<Admin>{
+
+}
+>>>>>>> branch 'master' of https://github.com/futureGroup511/CompeManager.git
+*/
