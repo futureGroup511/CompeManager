@@ -5,10 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import org.apache.struts2.components.ActionComponent;
-import org.hibernate.Criteria;
-import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -452,6 +449,19 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		}
 		//System.out.println("------------" + count1);
 		return new PageBean(pageNum, pageSize, count1.intValue(),awardRecord);
+	}
+	
+
+	@Override
+	public AwardRecord findAwardRecordById(Integer id) {
+		String hql="From AwardRecord a where a.awardRecor_id=?";
+		AwardRecord ar=(AwardRecord) getsession().createQuery(hql).setInteger(0, id).uniqueResult();
+		return ar;
+	}
+
+	@Override
+	public void saveOrUpdaAward(AwardRecord ar) {
+		getsession().saveOrUpdate(ar);
 	}
 	
 }

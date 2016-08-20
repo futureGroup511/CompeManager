@@ -3,14 +3,11 @@ package com.future.dao;
 import java.util.List;
 
 import com.future.domain.AwardRecord;
-import com.future.utils.PageBean;
-import com.future.domain.AwardRecord;
 import com.future.domain.Student;
+import com.future.utils.PageBean;
 import com.future.utils.Page_S;
 
 public interface AwardRecordDao {
-
-
 	//查询待审核竞赛结果
 	List<AwardRecord> findCheckNoAwardRecord();
 
@@ -49,6 +46,10 @@ public interface AwardRecordDao {
 
 	public Page_S findAwardByStudent(Student s,Page_S ps);
 	
+	
+	public AwardRecord findAwardRecordById(Integer id);
+
+	public void saveOrUpdaAward(AwardRecord ar);
 	/**
 	 * 保存获奖记录
 	 */

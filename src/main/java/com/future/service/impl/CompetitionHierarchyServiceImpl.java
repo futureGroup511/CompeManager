@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.future.dao.CompetitionHierarchyDao;
 import com.future.domain.CompetitionHierarchy;
 import com.future.service.CompetitionHierarchyService;
+import com.future.utils.Page_S;
 
 @Service
 @Transactional
@@ -24,6 +25,21 @@ public class CompetitionHierarchyServiceImpl implements CompetitionHierarchyServ
 	 */
 	public List<CompetitionHierarchy> getAll(){
 		return competitionHierarchyDao.getAll();
+	}
+
+	@Override
+	public Page_S findAllCompeHierarchy(Page_S ps) {
+		return competitionHierarchyDao.findAllCompeHierarchy(ps);
+	}
+
+	@Override
+	public CompetitionHierarchy fomdByID(Integer id) {
+		return competitionHierarchyDao.fomdByID(id);
+	}
+
+	@Override
+	public void addOrupdate(CompetitionHierarchy competitionHierarchy) {
+		competitionHierarchyDao.addOrupdate(competitionHierarchy);
 	}
 	
 }

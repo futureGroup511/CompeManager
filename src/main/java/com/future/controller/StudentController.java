@@ -1,19 +1,29 @@
-
 package com.future.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.future.base.BaseAction;
+import com.future.domain.AwardRecord;
 import com.future.domain.Competition;
+import com.future.domain.Department;
 import com.future.domain.SignUp;
 import com.future.domain.Student;
 import com.future.utils.Page_S;
@@ -28,8 +38,13 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	private Integer pageSize=10;
 	private Integer compe_id;
 	private SignUp  sup=new SignUp();
+	private Integer award_id;
 	private List<Student> students=new ArrayList<Student>();
+
 	
+	private File file;
+	private String fileFileName;//  
+	private String fileContentType;//
 	public String login(){
 		Student student=stuser.login(stu);
 		if(student!=null){
@@ -45,6 +60,8 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	}
 	
 	public String addStudentView(){
+		List<Department> departments=departservice.getAllDepartMent();
+		request.put("departments", departments);
 		return "addStudentView";
 	}
 	
@@ -171,7 +188,46 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		return "lookAward";
 	}
 	
+	//跳转到上传附件的页面
+	public String uploadView(){
+		request.put("award_id", award_id);
+		return "uploadView";
+	}
 	
+	//文件上传
+	public String uploadFile(){
+		String root = ServletActionContext.getServletContext().getRealPath(
+		               "/UploadFile");// 上传路径
+	    InputStream inputStream;
+	    File destFile;
+	    OutputStream os;
+        String pre= getFileFileName().substring(0,getFileFileName().indexOf("."));  
+	    String sfx=getFileFileName().substring(getFileFileName().indexOf("."));
+	    root=root+"\\"+pre+UUID.randomUUID()+sfx;
+             try {
+				inputStream = new FileInputStream(file);
+				destFile = new File(root);
+		        os = new FileOutputStream(destFile);
+		              byte[] buffer = new byte[400];
+		             int length = 0;
+		             while ((length = inputStream.read(buffer)) > 0) {
+		                  os.write(buffer, 0, length);
+		            }
+		      
+		     inputStream.close();
+		     os.close();
+             } catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+           
+             
+        AwardRecord ar=ars.findAwardRecordById(award_id);
+        ar.setAwardRecor_picturePath(root);
+		ars.saveOrUpdaAward(ar);
+        return "success";
+	}
 	private Student stu;
 	@Override
 	public Student getModel() {
@@ -183,18 +239,8 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	
 	
 	
-	Map<String, Object> session;
-	Map<String, Object> request;
-	@Override
-	public void setSession(Map<String, Object> arg0) {
-		session=arg0;
-	}
-
-	@Override
-	public void setRequest(Map<String, Object> arg0) {
-		request=arg0;
-	}
-
+	
+	
 	public Integer getCurrentPage() {
 		return currentPage;
 	}
@@ -227,11 +273,54 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		this.students = students;
 	}
 
+	public Integer getAward_id() {
+		return award_id;
+	}
 
+	public void setAward_id(Integer award_id) {
+		this.award_id = award_id;
+	}
+
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+
+	public String getFileFileName() {
+		return fileFileName;
+	}
+
+	public void setFileFileName(String fileFileName) {
+		this.fileFileName = fileFileName;
+	}
+
+	public String getFileContentType() {
+		return fileContentType;
+	}
+
+	public void setFileContentType(String fileContentType) {
+		this.fileContentType = fileContentType;
+	}
+
+	Map<String, Object> session;
+	Map<String, Object> request;
+	@Override
+	public void setRequest(Map<String, Object> arg0) {
+		request=arg0;
+	}
+
+	@Override
+	public void setSession(Map<String, Object> arg0) {
+		session=arg0;
+	}
 	
-
-
+	
+	
 	
 	
 	
 }
+

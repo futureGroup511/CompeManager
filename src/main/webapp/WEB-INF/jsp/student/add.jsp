@@ -1,5 +1,6 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,8 +28,27 @@
 							<div class="form-group">
 								<input type="password" class="form-control input-lg" placeholder="密码" name="stu_password">
 							</div>
+							<div class="form-group">
+								<input type="text" class="form-control input-lg" placeholder="姓名" name="stu_name">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control input-lg" placeholder="班级" name="stu_class">
+							</div>
+							<div>
+								性别:<input type="radio"  name="stu_sex" value="男" required="required">男
+									 <input type="radio"  name="stu_sex" value="女" required="required">女
+							         <input type="radio"  name="stu_sex" value="其他" required="required">其他
+							</div>
+							<div class="form-group">
+								<select name="stu_department.de_id">
+									<c:forEach items="${departments}" var="department">
+	     								<option value="${department.de_id}">${department.de_name }</option>
+	     							</c:forEach>
+								</select>
+							</div>
 							
 							<button class="btn btn-primary btn-lg btn-block">确认添加</button>
+						
 						</form>
 				</div>
 				<div class="modal-footer">
@@ -39,4 +59,4 @@
 	</div>
 
 </body>
-</html> --%>
+</html>

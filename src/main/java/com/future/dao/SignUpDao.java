@@ -12,6 +12,7 @@ public interface SignUpDao {
 	 * 得到所有的报名信息
 	 */
 	public List<SignUp> getAllSignUp(PageBean pageBean);
+	
 	/**
 	 * 由id得到指定的报名信息
 	 */

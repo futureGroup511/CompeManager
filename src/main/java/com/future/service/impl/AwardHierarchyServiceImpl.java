@@ -10,13 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.future.dao.AwardHierarchyDao;
 import com.future.domain.AwardHierarchy;
 import com.future.service.AwardHierarchyService;
+import com.future.utils.Page_S;
 
 @Service
 @Transactional
 public class AwardHierarchyServiceImpl implements AwardHierarchyService{
 
-	@Resource
-	private AwardHierarchyDao awardHierarchyDao;
 
 	//查询所有奖项
 	@Override
@@ -24,7 +23,23 @@ public class AwardHierarchyServiceImpl implements AwardHierarchyService{
 		return awardHierarchyDao.findAllAwardHierarchy();
 	}
 	
+	@Resource
+	private AwardHierarchyDao awardHierarchyDao;
+
 	@Override
+	public Page_S findAll(Page_S ps) {
+		return awardHierarchyDao.findAll(ps);
+	}
+
+	@Override
+	public AwardHierarchy fomdByID(Integer id) {
+		return awardHierarchyDao.fomdByID(id);
+	}
+
+	@Override
+	public void addOrupdate(AwardHierarchy awardHierarchy) {
+		awardHierarchyDao.addOrupdate(awardHierarchy);
+	}
 	public List<AwardHierarchy> getGroupOrPersonalAwardHie(boolean isGroup) {
 		return awardHierarchyDao.getGroupOrPersonalAwardHie(isGroup);
 	}
@@ -33,5 +48,4 @@ public class AwardHierarchyServiceImpl implements AwardHierarchyService{
 	public AwardHierarchy getSpecialAwardHie(Integer awardHieId) {
 		return awardHierarchyDao.getSpecialAwardHie(awardHieId);
 	}
-
 }

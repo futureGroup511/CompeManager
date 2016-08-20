@@ -34,6 +34,16 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 		awardRecordDao.saveAwardRecord(awardRecord);
 	}
 	
+	@Override
+	public AwardRecord findAwardRecordById(Integer id) {
+		return awardRecordDao.findAwardRecordById(id);
+	}
+
+	@Override
+	public void saveOrUpdaAward(AwardRecord ar) {
+		awardRecordDao.saveOrUpdaAward(ar);
+	}
+	
 	//====================================================
 	//调用service查询待审核竞赛结果
 	@Override
@@ -108,6 +118,8 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 		return awardRecordDao.getPageBeanConditionQuery(pageNum,pageSize,model);
 	}
 	//====================================================
+	
+	
 
 	
 	
