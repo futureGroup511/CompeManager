@@ -1,6 +1,11 @@
 package com.future.base;
 
 
+
+
+
+
+
 import java.lang.reflect.ParameterizedType;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +31,6 @@ import com.opensymphony.xwork2.Preparable;
 @Controller
 @Scope("prototype")
 public abstract class BaseAction<T> extends ActionSupport implements ModelDriven<T>,Preparable{
-
 	private static final long serialVersionUID = 1L;
 	protected T model;
 	@Autowired

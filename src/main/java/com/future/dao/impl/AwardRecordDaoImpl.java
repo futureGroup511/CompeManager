@@ -33,6 +33,7 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		Criteria criteria=getsession().createCriteria(AwardRecord.class);
 		criteria.add(Restrictions.eq("awardRecor_student", s));
 		Long totalnum=(Long)criteria.setProjection(Projections.rowCount()).uniqueResult();
+		criteria.setProjection(null);
 		criteria.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());
 		criteria.setMaxResults(ps.getPageSize());
 		criteria.addOrder(Order.desc("awardRecor_time"));
