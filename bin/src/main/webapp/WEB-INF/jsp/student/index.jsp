@@ -4,12 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>学生首页</title>
+<title>学生页面</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" >
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 	<jsp:include page="operation.jsp"></jsp:include>
+
 </body>
 </html>

@@ -70,6 +70,9 @@
       					<s:if test="#signUp.singUp_manager==1">
 							已是负责人
       					</s:if>
+      					<s:elseif test="#signUp.signUp_status==3">
+      						审核未通过
+      					</s:elseif>
       					<s:elseif test="#signUp.singnup_type==2">
       						个人赛无需指定负责人
       					</s:elseif>

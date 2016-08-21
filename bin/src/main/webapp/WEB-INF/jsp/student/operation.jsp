@@ -18,7 +18,9 @@
 			<li><a href="student_lookApplyStatus">查看报名状态</a></li>
 		</ul>
 		</li>
-		<li><a href="student_lookAward"><p class="text-muted">查看获奖记录</p></a></li>	
+		<li><a href="student_lookAward">查看获奖记录</a></li>	
 	</ul>
 </body>
+
+
 </html>

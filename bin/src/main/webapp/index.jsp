@@ -15,6 +15,8 @@
 		<s:submit value="提交"></s:submit>
 	</s:form>
 	<a href="student_loginView.action">学生登陆</a>
+
+	<a href="admin_loginView.action">教务处</a>
 	<a href="depManager_sendInformView">发布通知</a>
 	<a href="depManager_lookInformView">查看通知</a>	
 	<a href="admin_findAll">查看所有学院负责人</a>

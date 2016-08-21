@@ -9,7 +9,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">  
     -->
-         <welcome-file-list>
+    <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 	<!-- 配置加载log4j.xml文件路径 --> 
@@ -28,11 +28,9 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
 	</listener> 
 	<context-param>  
-    <param-name>contextConfigLocation</param-name>  
-    <param-value>  
-        classpath:applicationContext.xml  
-        </param-value>  
-</context-param>  
+	    <param-name>contextConfigLocation</param-name>  
+	    <param-value>classpath:applicationContext.xml</param-value>  
+	</context-param>  
 	<!-- hibernate 懒加载的问题过滤 ,可以不配置 -->
     <filter>
         <description>hibernateSession 过滤器</description>

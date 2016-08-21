@@ -25,21 +25,21 @@
 	</table>
 	<div class="center-block" style="width:500px">
 			<ul class="pagination">
-			<s:if test="#request.p.beginPageIndex-1 <= 0">
+			<s:if test="#request.p.currentPage-1 <= 0">
 				<li><a href="${pageContext.request.contextPath}/depManager_lookInformView?currentPage=1"><span>&laquo;</span></a></li>
 			</s:if>
-			<s:elseif test="#request.p.beginPageIndex-1 >= 1">
-				<li><a href="${pageContext.request.contextPath}/depManager_lookInformView?currentPage=${request.p.beginPageIndex-1}"><span>&laquo;</span></a></li>				
+			<s:elseif test="#request.p.currentPage-1 >= 1">
+				<li><a href="${pageContext.request.contextPath}/depManager_lookInformView?currentPage=${request.p.currentPage-1}"><span>&laquo;</span></a></li>				
 			</s:elseif>
 			<c:forEach begin="1" end="${request.p.pageCount}" varStatus="sta">
 				<li><a href="${pageContext.request.contextPath}/depManager_lookInformView?currentPage=${request.p.beginPageIndex+sta.index-1}">${request.p.beginPageIndex+sta.index-1}</a></li>	
 			</c:forEach>
 			
-			<s:if test="#request.p.endPageIndex+1 > #request.p.pageCount">
+			<s:if test="#request.p.currentPage+1 => #request.p.pageCount">
 				<li><a href="${pageContext.request.contextPath}/depManager_lookInformView?currentPage=${request.p.pageCount}"><span>&raquo;</span></a></li>	
 			</s:if>
-			<s:elseif test="#request.p.beginPageIndex+1 <= #request.p.pageCount">
-				<li><a href="${pageContext.request.contextPath}/depManager_lookInformView?currentPage=${request.p.beginPageIndex+1}"><span>&raquo;</span></a></li>				
+			<s:elseif test="#request.p.currentPage+1 < #request.p.pageCount">
+				<li><a href="${pageContext.request.contextPath}/depManager_lookInformView?currentPage=${request.p.currentPage+1}"><span>&raquo;</span></a></li>				
 			</s:elseif>
 			
 			</ul>

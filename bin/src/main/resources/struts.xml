@@ -12,10 +12,10 @@
      
      <!-- 由spring 管理action的创建  -->
     <constant name="struts.objectFactory" value="spring" />
+    
     <package name="default" namespace="/" extends="json-default">
 	    	<!-- 配置默认 paramsPrepareParam 拦截器栈 -->
 	    	<!-- <default-interceptor-ref name="paramsPrepareParamsStack"></default-interceptor-ref> -->
-	    	<action name="depManager_*" method="{1}" class="com.future.controller.DepManagerController">
 	    <action name="depManager_*" method="{1}" class="depManagerController">
     		<result name="LoginSuccess" type="dispatcher">/WEB-INF/jsp/DepManagerView/DepManagerLoginSuccess.jsp</result>
     		<result name="ReLogin" type="redirect">/index.jsp</result>
@@ -48,6 +48,7 @@
     	 	<result name="RegisterCompetitionScore">/WEB-INF/jsp/Competitions/RegisterCompetitionScore.jsp</result>
     	 	<result name="RegisterStudentScorePage">/WEB-INF/jsp/SignUpView/RegisterStudentScore.jsp</result>
     	 	<result name="RedirectToRegisterStudentPage" type="redirectAction">depManager_registerScore</result>
+ 			<result name="sendInformsuccess" type="redirect">depManager_lookInformView</result>
  		</action> 
  		
     	<action name="testController_*" method="{1}" class="testController">
@@ -61,16 +62,27 @@
     	    <result name="loginView" >WEB-INF/jsp/student/login.jsp</result>
     		<result name="addStudentView">WEB-INF/jsp/student/add.jsp</result>
     		<result name="operation">WEB-INF/jsp/student/index.jsp</result>
+    		<result name="uploadView">WEB-INF/jsp/student/uploadView.jsp</result>
     		<result name="apply">WEB-INF/jsp/student/apply.jsp</result>
     		<result name="desccompetition">WEB-INF/jsp/student/competitiondesc.jsp</result>
     		<result name="fillentryform">WEB-INF/jsp/student/entryform.jsp</result>
     		<result name="jugeapply"></result>
     		<result name="lookapplystatus">WEB-INF/jsp/student/lookapplystatus.jsp</result>
     		<result name="lookAward">WEB-INF/jsp/student/award.jsp</result>
-    		<result name="uploadView">WEB-INF/jsp/student/uploadView.jsp</result>
-    	</action>	
-    	
+    	</action>		
+
+    	<!-- 教务处 -->	
     	<action name="admin_*" method="{1}" class="com.future.controller.AdminController">
+    		<!-- 刘阳 -->
+    		 <result name="success">WEB-INF/jsp/Admin/index.jsp</result>
+    	    <result name="checkNoProject">WEB-INF/jsp/Admin/checkNoProjec.jsp</result>
+    	    <result name="checkSuccessProject">WEB-INF/jsp/Admin/checkSuccessProject.jsp</result>
+    		<result name="checkSuccess" type="redirectAction">admin_checkNoProject</result>
+    		<result name="checkNo" type="redirectAction">admin_checkNoProject</result>
+    		<!-- 查看未通过审核,这里和查看审核成功项目用了同一个jsp -->
+    		<result name="noPassCheck">WEB-INF/jsp/Admin/noPassCheck.jsp</result>
+    	    <result name="alterCompetitionUI">WEB-INF/jsp/Admin/alterCompetitionUI.jsp</result>
+    	    <!-- 刘阳 -->
     	    
     	    <result name="all">/WEB-INF/jsp/Admin/allDep.jsp</result>
  			<result name="deletesuccess" type="redirect">admin_findAll</result>
@@ -82,14 +94,47 @@
     		<result name="allDepartment">WEB-INF/jsp/Admin/allDepartment.jsp</result>
     		<result name="modifyDepartView" >WEB-INF/jsp/Admin/modifyDepart.jsp</result>
     		<result name="modifyDepartsuccess" type="redirect">admin_finAllDepartment</result>
-    		<result name="addDeparmentManegerView">WEB-INF/jsp/Admin/addDeparmentView.jsp</result>
+    		<result name="addDeparmentManegerView">WEB-INF/jsp/Admin/addDeparmentManagerView.jsp</result>
     		<result name="addSuccess" >index.jsp</result>
     		<result name="addDepartmentView">WEB-INF/jsp/Admin/addDepartment.jsp</result>
     		<result name="addCompetitionHierarchyView">WEB-INF/jsp/Admin/addCompetitionHierarchyView.jsp</result>
     		<result name="addAwardHierarchyView">WEB-INF/jsp/Admin/addAwardHierarchyView.jsp</result>
     		<result name="addAwardStandView">WEB-INF/jsp/Admin/addAwardStandView.jsp</result>
     	</action>	
-    
+    	
+    	<!-- 竞赛项目 -->
+    	<action name="competition_*" method="{1}" class="com.future.controller.CompetitionController" >
+    		<result name="alterCompetition" type="redirectAction">admin_checkNoProject</result>
+    		<result name="success" type="stream">
+    			<param name="contentType">application/octet-stream</param>
+    			<param name="inputName">targetFile</param>
+    			<param name="contentDisposition">attachment;filename="${inputPath}"</param>
+    			<param name="bufferSize">4096</param>
+    		</result>
+    	</action>
+    	
+    	<!-- 竞赛项目名称 -->
+    	<action name="competitionName_*" method="{1}" class="com.future.controller.CompetitionNameController" >
+    		<result name="checkNoName">WEB-INF/jsp/CompetitionName/checkNoName.jsp</result>
+    		<result name="checkSuccessName">WEB-INF/jsp/CompetitionName/checkSuccessName.jsp</result>
+    		<result name="noPassCheck">WEB-INF/jsp/CompetitionName/noPassCheck.jsp</result>
+    		<result name="pass" type="redirectAction">competitionName_checkNoName</result>
+    		<result name="noPass" type="redirectAction">competitionName_checkNoName</result>
+    		<result name="alterSuccess" type="redirectAction">competitionName_checkNoName</result>
+    		<result name="alterCompetitionNameUI">WEB-INF/jsp/CompetitionName/alterCompetitionNameUI.jsp</result>
+    	</action>	
+    	
+    	<!-- 获奖记录 -->
+    	<action name="awardRecord_*" method="{1}" class="com.future.controller.AwardRecordController" >
+    		<result name="checkNoAwardRecord">WEB-INF/jsp/AwardRecord/checkNoAwardRecord.jsp</result>
+    		<result name="checkSuccessAwardRecord">WEB-INF/jsp/AwardRecord/checkSuccessAwardRecord.jsp</result>
+    		<result name="noPassCheckAwardRecord">WEB-INF/jsp/AwardRecord/noPassCheckAwardRecord.jsp</result>
+    		<result name="pass" type="redirectAction">awardRecord_checkNoAwardRecord</result>
+    		<result name="noPass" type="redirectAction">awardRecord_checkNoAwardRecord</result>
+    		<result name="findAllAwardRecord">WEB-INF/jsp/AwardRecord/findAllAwardRecord.jsp</result>
+    		<result name="conditionQuery">WEB-INF/jsp/AwardRecord/conditionQuery.jsp</result>
+    	</action>
+
     	<action name="comphier_*" method="{1}" class="com.future.controller.CompetitionHierarchyController">
     	    <result name="allcomphier">WEB-INF/jsp/CompetitionHierarcy/allCompetitionHierarcy.jsp</result>
     	    <result name="modifyCompHierarchyView">WEB-INF/jsp/CompetitionHierarcy/modify.jsp</result>
@@ -107,9 +152,7 @@
     	    <result name="modifyView">WEB-INF/jsp/AwardStand/modifyView.jsp</result>
     	    <result name="modifysuccess" type="redirect">awardstand_findAll</result>
     	</action> 
-    
+    	
     </package>
-   	
-    
 </struts>
 
