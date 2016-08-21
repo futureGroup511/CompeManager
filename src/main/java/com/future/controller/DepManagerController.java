@@ -178,7 +178,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 			return "ReLogin";
 		}
 		//得到所有的竞赛名称
-		competitionNames = competitionNameService.getAllCompeNames();
+		competitionNames = competitionNameService.getAvailableCompeNames();
 		System.out.println(competitionNames);
 		return "ToApplyCompePage";
 	}
@@ -247,10 +247,11 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	
 	//文件下载
 	// 隐含属性 targetFile ,用于封装下载文件  
-    public InputStream getInputStream() throws FileNotFoundException{  
+    public InputStream getInputStream(){  
     	 try {
 			filename = new String(filename.getBytes("iso-8859-1"), "utf8");
-		} catch (UnsupportedEncodingException e) {
+			//TODO  注意配置全局的文件异常映射，防止文件被删除之后还去下载从而引发错误
+		} catch (Exception e) {
 			System.out.println("文件下载错误");
 			return null;
 		}
