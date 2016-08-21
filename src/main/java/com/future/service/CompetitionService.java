@@ -1,13 +1,14 @@
 package com.future.service;
 
 import java.util.List;
-
 import com.future.domain.Competition;
 import com.future.utils.PageBean;
 import com.future.utils.Page_S;
 
 public interface CompetitionService {
 
+	//传入model，在service层实现修改
+	void alterCompetition(Competition model);
 	/**
 	 * 保存竞赛信息
 	 */

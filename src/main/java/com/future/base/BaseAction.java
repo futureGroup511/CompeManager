@@ -1,18 +1,26 @@
 package com.future.base;
 
-import java.lang.reflect.ParameterizedType;
 
+import java.lang.reflect.ParameterizedType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
+import com.future.service.AwardStandardService;
+import com.future.service.CompetitionHierarchyService;
+import com.future.service.DepManagerService;
+import com.future.service.NotificationService;
+import com.future.service.AdminService;
+import com.future.service.AwardHierarchyService;
 import com.future.service.AwardRecordService;
+import com.future.service.CompetitionNameService;
 import com.future.service.CompetitionService;
+import com.future.service.DepartmentService;
 import com.future.service.SignUpService;
 import com.future.service.StudentService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
+
 @Controller
 @Scope("prototype")
 public abstract class BaseAction<T> extends ActionSupport implements ModelDriven<T>,Preparable{
@@ -20,13 +28,38 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 	private static final long serialVersionUID = 1L;
 	protected T model;
 	@Autowired
-	protected StudentService stuser;
+	protected AdminService adminService;
+	@Autowired
+	protected CompetitionService competitionService;
 	@Autowired
 	protected CompetitionService comps;
 	@Autowired
-	protected SignUpService sups;
+	protected CompetitionNameService competitionNameService;
+	@Autowired
+	protected DepartmentService departmentService;
+	@Autowired
+	protected DepartmentService departservice;
+	@Autowired
+	protected AwardRecordService awardRecordService;
 	@Autowired
 	protected AwardRecordService ars;
+	@Autowired
+	protected AwardHierarchyService awardHierarchyService;
+	@Autowired
+	protected AwardHierarchyService ahserv;
+	@Autowired
+	protected StudentService stuser;
+	@Autowired
+	protected SignUpService sups;
+	@Autowired
+	protected NotificationService nfs;
+	@Autowired
+	protected DepManagerService depManagerService;
+	@Autowired
+	protected CompetitionHierarchyService comphieser;
+	@Autowired
+	protected AwardStandardService  awardstandser;
+	
 	public BaseAction() {
 		try {
 			ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
@@ -43,5 +76,5 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 	@Override
 	public  T getModel(){
 		return model;
-	};
+	};	
 }

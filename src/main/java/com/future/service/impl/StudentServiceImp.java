@@ -13,31 +13,43 @@ public class StudentServiceImp implements StudentService {
 
 	@Autowired
 	private StudentDao studao;
+
 	@Override
 	public Student login(Student stu) {
-		Student student=studao.login(stu);
+		Student student = studao.login(stu);
 		return student;
 	}
+
 	@Override
 	public void addOrUpdateStudent(Student stu) {
 		studao.addOrUpdateStudent(stu);
 	}
+
 	@Override
 	public Student findStudentById(Integer id) {
-		
+
 		return studao.findStudentById(id);
 	}
+
 	@Override
 	public Student findStudentByNameAndNum(Student stu) {
-		
+
 		return studao.findStudentByNameAndNum(stu);
 	}
+
 	@Override
 	public Page_S lookApplyByStatus(Student stu, Page_S ps) {
-		
+
 		return studao.lookApplyByStatus(stu, ps);
 	}
-	
-	
 
+	@Override
+	public Page_S findAllStudenyByPage(Page_S ps) {
+		return studao.findAllStudenyByPage(ps);
+	}
+
+	@Override
+	public void updateStudent(Student stu) {
+		studao.updateStudent(stu);
+	}
 }

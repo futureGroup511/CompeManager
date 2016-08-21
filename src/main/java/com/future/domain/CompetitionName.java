@@ -16,6 +16,10 @@ import javax.persistence.Table;
 /**
  * 竞赛名称
  */
+/**
+ * @author Administrator
+ *
+ */
 @Entity
 @Table(name="cm_competitionnames")
 public class CompetitionName {
@@ -28,7 +32,6 @@ public class CompetitionName {
 	private String compeName_descr;
 	//竞赛项目 的状态  1提交申请 正在审核 ,2 审核通过,  0 审核失败
 	private String compeName_status;
-	
 	//竞赛名称 对应的竞赛项目
 	private Set<Competition> compeName_competitions = new HashSet<Competition>();
 	//竞赛名称 对应的竞赛级别
@@ -49,6 +52,7 @@ public class CompetitionName {
 	public void setCompeName_name(String compeName_name) {
 		this.compeName_name = compeName_name;
 	}
+	
 	public String getCompeName_descr() {
 		return compeName_descr;
 	}
