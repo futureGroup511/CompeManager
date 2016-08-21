@@ -109,14 +109,12 @@ public class CompetitionNameDaoImpl extends BaseDao implements CompetitionNameDa
 		
 		return new PageBean(pageNum, pageSize, count.intValue(), list);
 	}
-<<<<<<< HEAD
 	@Override
 	public List<CompetitionName> getAvailableCompeNames() {
 		String sql = "from CompetitionName where compeName_status = 2";
 		List<CompetitionName> competitionNames = getsession().createQuery(sql).list();
 		return competitionNames;
-=======
-
+	}
 	//分页查看未通过审核竞赛名称
 	@Override
 	public PageBean getPageBeanNoPassCheck(int pageNum, int pageSize) {
@@ -129,6 +127,5 @@ public class CompetitionNameDaoImpl extends BaseDao implements CompetitionNameDa
 				.uniqueResult();
 		
 		return new PageBean(pageNum, pageSize, count.intValue(), list);
->>>>>>> d0594f5ddcb9d17d763536e8ba97d8b5b137b10f
 	}
 }

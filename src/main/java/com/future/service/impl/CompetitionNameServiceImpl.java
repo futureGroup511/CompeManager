@@ -35,14 +35,11 @@ public class CompetitionNameServiceImpl implements CompetitionNameService{
 	public List<CompetitionName> getAllCompeNames() {
 		return competitionNameDao.getAllCompeNames();
 	}
-<<<<<<< HEAD
 
 	@Override
 	public List<CompetitionName> getAvailableCompeNames() {
 		return competitionNameDao.getAvailableCompeNames();
 	}
-=======
-	
 	//================================
 	//查询待审核竞赛名称
 	@Override
@@ -108,8 +105,4 @@ public class CompetitionNameServiceImpl implements CompetitionNameService{
 	public PageBean getPageBeanNoPassCheck(int pageNum, int pageSize) {
 		return competitionNameDao.getPageBeanNoPassCheck(pageNum,pageSize);
 	}
-	//===========================
-		
-	
->>>>>>> d0594f5ddcb9d17d763536e8ba97d8b5b137b10f
 }
