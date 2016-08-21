@@ -524,7 +524,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		Date date=new Date();
 		notification.setNoti_time(date);
 		nfs.saveOrUpdate(notification);
-		return "success";
+		return "sendInformsuccess";
 		
 	}
 	

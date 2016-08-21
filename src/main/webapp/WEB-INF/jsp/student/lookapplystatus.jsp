@@ -51,21 +51,21 @@
 		</table>
 		<div class="center-block" style="width:500px">
 			<ul class="pagination">
-			<s:if test="#request.page.beginPageIndex-1 <= 0">
+			<s:if test="#request.page.currentPage-1 <= 0">
 				<li><a href="${pageContext.request.contextPath}/student_lookApplyStatus?currentPage=1"><span>&laquo;</span></a></li>
 			</s:if>
-			<s:elseif test="#request.page.beginPageIndex-1 >= 1">
-				<li><a href="${pageContext.request.contextPath}/student_lookApplyStatus?currentPage=${request.page.beginPageIndex-1}"><span>&laquo;</span></a></li>				
+			<s:elseif test="#request.page.currentPage-1 >= 1">
+				<li><a href="${pageContext.request.contextPath}/student_lookApplyStatus?currentPage=${request.page.currentPage-1}"><span>&laquo;</span></a></li>				
 			</s:elseif>
 			<c:forEach begin="1" end="${request.page.pageCount}" varStatus="sta">
 				<li><a href="${pageContext.request.contextPath}/student_lookApplyStatus?currentPage=${request.page.beginPageIndex+sta.index-1}">${request.page.beginPageIndex+sta.index-1}</a></li>	
 			</c:forEach>
 			
-			<s:if test="#request.page.endPageIndex+1 > #request.page.pageCount">
+			<s:if test="#request.page.currentPage+1 > #request.page.pageCount">
 				<li><a href="${pageContext.request.contextPath}/student_lookApplyStatus?currentPage=${request.page.pageCount}"><span>&raquo;</span></a></li>	
 			</s:if>
-			<s:elseif test="#request.page.beginPageIndex+1 <= #request.page.pageCount">
-				<li><a href="${pageContext.request.contextPath}/student_lookApplyStatus?currentPage=${request.page.beginPageIndex+1}"><span>&raquo;</span></a></li>				
+			<s:elseif test="#request.page.currentPage+1 <= #request.page.pageCount">
+				<li><a href="${pageContext.request.contextPath}/student_lookApplyStatus?currentPage=${request.page.currentPage+1}"><span>&raquo;</span></a></li>				
 			</s:elseif>
 			
 			</ul>

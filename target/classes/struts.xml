@@ -48,6 +48,7 @@
     	 	<result name="RegisterCompetitionScore">/WEB-INF/jsp/Competitions/RegisterCompetitionScore.jsp</result>
     	 	<result name="RegisterStudentScorePage">/WEB-INF/jsp/SignUpView/RegisterStudentScore.jsp</result>
     	 	<result name="RedirectToRegisterStudentPage" type="redirectAction">depManager_registerScore</result>
+ 			<result name="sendInformsuccess" type="redirect">depManager_lookInformView</result>
  		</action> 
  		
     	<action name="testController_*" method="{1}" class="testController">
@@ -93,7 +94,7 @@
     		<result name="allDepartment">WEB-INF/jsp/Admin/allDepartment.jsp</result>
     		<result name="modifyDepartView" >WEB-INF/jsp/Admin/modifyDepart.jsp</result>
     		<result name="modifyDepartsuccess" type="redirect">admin_finAllDepartment</result>
-    		<result name="addDeparmentManegerView">WEB-INF/jsp/Admin/addDeparmentView.jsp</result>
+    		<result name="addDeparmentManegerView">WEB-INF/jsp/Admin/addDeparmentManagerView.jsp</result>
     		<result name="addSuccess" >index.jsp</result>
     		<result name="addDepartmentView">WEB-INF/jsp/Admin/addDepartment.jsp</result>
     		<result name="addCompetitionHierarchyView">WEB-INF/jsp/Admin/addCompetitionHierarchyView.jsp</result>
