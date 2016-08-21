@@ -27,4 +27,9 @@ public class CompetitionNameServiceImpl implements CompetitionNameService{
 	public List<CompetitionName> getAllCompeNames() {
 		return competitionNameDao.getAllCompeNames();
 	}
+
+	@Override
+	public List<CompetitionName> getAvailableCompeNames() {
+		return competitionNameDao.getAvailableCompeNames();
+	}
 }

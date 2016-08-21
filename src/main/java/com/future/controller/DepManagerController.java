@@ -156,7 +156,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 * @return
 	 */
 	public String seeAllApplyCompNames(){
-		competitionNames = competitionNameService.getAllCompeNames();
+		competitionNames = competitionNameService.getAvailableCompeNames();
 		return "ToSeeAllApplyCompeNamePage";
 	}
 	

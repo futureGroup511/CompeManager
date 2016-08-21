@@ -22,5 +22,10 @@ public class CompetitionNameDaoImpl extends BaseDao implements CompetitionNameDa
 		List<CompetitionName> competitionNames = getsession().createQuery(sql).list();
 		return competitionNames;
 	}
-
+	@Override
+	public List<CompetitionName> getAvailableCompeNames() {
+		String sql = "from CompetitionName where compeName_status = 2";
+		List<CompetitionName> competitionNames = getsession().createQuery(sql).list();
+		return competitionNames;
+	}
 }
