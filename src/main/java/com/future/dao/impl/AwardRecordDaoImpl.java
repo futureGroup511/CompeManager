@@ -163,7 +163,7 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		if(model.getAwardRecor_competition().getCompe_id() != 0){
 			criteria.add(Restrictions.eq("awardRecor_competition.compe_id", model.getAwardRecor_competition().getCompe_id()));
 		}
-		
+	
 		//如果选择了奖项  默认请选择=0，所以要！=0
 		if(model.getAwardRecor_awadHie().getAwardHie_id() != 0){
 			if(model.getAwardRecor_awadHie().getAwardHie_id() == 23){
@@ -235,6 +235,8 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 	}
 
 	
+	
+
 	//拿到学院所有获奖记录id
 	private List findAllAwardIdForDepartment(Integer de_id) {//getAwardRecor_student().getStu_department().getDe_id()
 		String hql = "select a.awardRecor_id from AwardRecord a where a.awardRecor_student.stu_department.de_id = ?";
@@ -274,23 +276,7 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		return (List<AwardRecord>) getsession().createQuery(hql).setParameter(0, departmentId).list();
 	}
 
-	//根据id全国奖找到 全国开头的奖项
-	public List findAllCountry(Integer id){
-		if(id == 23 ){
-			String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
-			return getsession().createQuery(hql).setParameter("name", "%" + "国际" + "%").list();
-		} else if(id == 24){
-			String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
-			return getsession().createQuery(hql).setParameter("name", "%" + "国家" + "%").list();
-		} else if(id == 26){
-			String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
-			return getsession().createQuery(hql).setParameter("name", "%" + "省" + "%").list();
-		} else if(id == 25){
-			String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
-			return getsession().createQuery(hql).setParameter("name", "%" + "校级" + "%").list();
-		}
-		return null;
-	}
+	
 
 	//分页条件查询
 	@Override
@@ -302,18 +288,33 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			criteria.add(Restrictions.eq("awardRecor_competition.compe_id", model.getAwardRecor_competition().getCompe_id()));
 		}
 		
+		
+		//查询国际奖id
+		Integer guojiId = findguojiId();
+		System.out.println("国际奖励id：" + guojiId);
+		//查询全国奖id
+		Integer quanguoId = findquanguoId();
+		System.out.println("全国奖：" + quanguoId);
+		//查询校级奖id
+		Integer xiaojiId = findxiaojiId();
+		System.out.println("校级奖：" + xiaojiId);
+		//查询省级奖id
+		Integer shengjiId = findshengjiId();
+		System.out.println("省级奖：" + shengjiId);
+		
 		//如果选择了奖项  默认请选择=0，所以要！=0
 		if(model.getAwardRecor_awadHie().getAwardHie_id() != 0){
-			if(model.getAwardRecor_awadHie().getAwardHie_id() == 23){
+			//国际奖
+			if(model.getAwardRecor_awadHie().getAwardHie_id() == guojiId){
 				List list = findAllCountry(23);  
 				criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));			
-			} else if(model.getAwardRecor_awadHie().getAwardHie_id() == 24){
+			} else if(model.getAwardRecor_awadHie().getAwardHie_id() == quanguoId){
 				List list = findAllCountry(24);  
 				criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));
-			} else if(model.getAwardRecor_awadHie().getAwardHie_id() == 26){
+			} else if(model.getAwardRecor_awadHie().getAwardHie_id() == shengjiId){
 				List list = findAllCountry(26);  
 				criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));
-			} else if(model.getAwardRecor_awadHie().getAwardHie_id() == 25){
+			} else if(model.getAwardRecor_awadHie().getAwardHie_id() == xiaojiId){
 				List list = findAllCountry(25);  
 				criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));
 			} else {
@@ -397,16 +398,16 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			
 			//如果选择了奖项  默认请选择=0，所以要！=0
 			if(model.getAwardRecor_awadHie().getAwardHie_id() != 0){
-				if(model.getAwardRecor_awadHie().getAwardHie_id() == 23){
+				if(model.getAwardRecor_awadHie().getAwardHie_id() == guojiId){
 					List list = findAllCountry(23);  
 					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));			
-				} else if(model.getAwardRecor_awadHie().getAwardHie_id() == 24){
+				} else if(model.getAwardRecor_awadHie().getAwardHie_id() == quanguoId){
 					List list = findAllCountry(24);  
 					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));
-				} else if(model.getAwardRecor_awadHie().getAwardHie_id() == 26){
+				} else if(model.getAwardRecor_awadHie().getAwardHie_id() == shengjiId){
 					List list = findAllCountry(26);  
 					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));
-				} else if(model.getAwardRecor_awadHie().getAwardHie_id() == 25){
+				} else if(model.getAwardRecor_awadHie().getAwardHie_id() == xiaojiId){
 					List list = findAllCountry(25);  
 					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));
 				} else {
@@ -450,6 +451,49 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		//System.out.println("------------" + count1);
 		return new PageBean(pageNum, pageSize, count1.intValue(),awardRecord);
 	}
+	
+	//查询省级奖id
+	private Integer findshengjiId() {
+		String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
+		return (Integer) getsession().createQuery(hql).setParameter("name", "%" + "省级奖" + "%").uniqueResult();
+	}
+
+	//查询校级奖id
+	private Integer findxiaojiId() {
+		String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
+		return (Integer) getsession().createQuery(hql).setParameter("name", "%" + "校级奖" + "%").uniqueResult();
+	}
+
+	//查询国际奖id
+	private Integer findguojiId() {
+		String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
+		return (Integer) getsession().createQuery(hql).setParameter("name", "%" + "国际奖" + "%").uniqueResult();
+	}
+	
+	//查询全国奖id
+	private Integer findquanguoId() {
+		String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
+		return (Integer) getsession().createQuery(hql).setParameter("name", "%" + "全国奖" + "%").uniqueResult();
+	}
+	
+	//根据id全国奖找到 全国开头的奖项
+	public List findAllCountry(Integer id){
+		if(id == 23 ){
+			String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
+			return getsession().createQuery(hql).setParameter("name", "%" + "国际" + "%").list();
+		} else if(id == 24){
+			String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
+			return getsession().createQuery(hql).setParameter("name", "%" + "国家" + "%").list();
+		} else if(id == 26){
+			String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
+			return getsession().createQuery(hql).setParameter("name", "%" + "省" + "%").list();
+		} else if(id == 25){
+			String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
+			return getsession().createQuery(hql).setParameter("name", "%" + "校级" + "%").list();
+		}
+		return null;
+	}
+	
 	
 
 	@Override
