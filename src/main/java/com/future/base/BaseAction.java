@@ -2,19 +2,21 @@ package com.future.base;
 
 
 import java.lang.reflect.ParameterizedType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import com.future.service.AwardStandardService;
-import com.future.service.CompetitionHierarchyService;
-import com.future.service.DepManagerService;
-import com.future.service.NotificationService;
+
 import com.future.service.AdminService;
 import com.future.service.AwardHierarchyService;
 import com.future.service.AwardRecordService;
+import com.future.service.AwardStandardService;
+import com.future.service.CompetitionHierarchyService;
 import com.future.service.CompetitionNameService;
 import com.future.service.CompetitionService;
+import com.future.service.DepManagerService;
 import com.future.service.DepartmentService;
+import com.future.service.NotificationService;
 import com.future.service.SignUpService;
 import com.future.service.StudentService;
 import com.opensymphony.xwork2.ActionSupport;
