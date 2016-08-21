@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/target/
+=======
 .mymetadata
 .checkstyle
 .classpath
@@ -14,3 +17,4 @@
 /src/main/webapp/WEB-INF/classes/*
 /src/main/webapp/userfiles/*
 /target/
+>>>>>>> c764746bea302bfa88bd8356c720f2d67fad33fe
