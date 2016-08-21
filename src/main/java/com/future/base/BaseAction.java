@@ -26,7 +26,6 @@ import com.opensymphony.xwork2.Preparable;
 @Controller
 @Scope("prototype")
 public abstract class BaseAction<T> extends ActionSupport implements ModelDriven<T>,Preparable{
-
 	private static final long serialVersionUID = 1L;
 	protected T model;
 	@Autowired

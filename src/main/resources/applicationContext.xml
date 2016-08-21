@@ -45,7 +45,6 @@
 			</bean>
 		</property>
 	</bean>
-	
 	<!-- 配置声明式事物 -->
 	<bean name="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
