@@ -35,16 +35,14 @@ public class StudentDaoImp extends BaseDao implements StudentDao{
 	}
 	@Override
 	public Student findStudentById(Integer id) {
-		/*String hql="from Student s where s.stu_id=?";
+		String hql="from Student s where s.stu_id=?";
 		Student student;
 		//Student student=(Student) getsession().createQuery(hql).setInteger(0, id).uniqueResult();
 		List<Student> students=getsession().createQuery(hql).setInteger(0, id).list();
 		if(students.size()==0){
 			return null;
 		}
-		student=students.get(0);*/
-		Student student=new Student();
-		getsession().load(student, id);
+		student=students.get(0);
 		return student;
 	}
 

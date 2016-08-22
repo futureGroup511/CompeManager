@@ -145,6 +145,7 @@ $(function(){
 			data:data,
 			dataType:'json',
 			success:function(data){
+				alert(data);
 				if(data=="notexist"){
 					$("#addteam").show();
 					$("#namealready").hide();

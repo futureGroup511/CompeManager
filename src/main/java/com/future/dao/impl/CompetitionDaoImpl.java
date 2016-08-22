@@ -1,5 +1,6 @@
 package com.future.dao.impl;
 
+import org.springframework.expression.spel.ast.Projection;
 import org.springframework.stereotype.Repository;
 
 import com.future.base.BaseDao;
@@ -7,7 +8,11 @@ import com.future.dao.CompetitionDao;
 import com.future.domain.Competition;
 import com.future.utils.Page_S;
 import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import com.future.utils.PageBean;
 
@@ -67,20 +72,28 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 	
 	@Override
 	public Page_S findapplyCompetition(Page_S ps) {
-		String  hql="From Competition c where c.compe_status=2";
+		/*String  hql="From Competition c where c.compe_status=2";
 		Query query=getsession().createQuery(hql);
 		query.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());
 		query.setMaxResults(ps.getPageSize());
 		List<Competition> competitions=query.list();
-		int count=getAllCount();
+	
 		
-		Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(), count, competitions);
+		Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(), count, competitions);*/
+		Criteria criteria=getsession().createCriteria(Competition.class);
+		criteria.add(Restrictions.eq("compe_status", 2));
+		Long  tatolnum=(Long) criteria.setProjection(Projections.rowCount()).uniqueResult();
+		criteria.setProjection(null);
+		criteria.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());
+		criteria.setMaxResults(ps.getPageSize());
+		List<Competition> competitions=criteria.list();
+		Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(), Integer.valueOf(tatolnum.toString()), competitions);
 		return p;
 	}
 	
 	@Override
 	public Integer getAllCount() {
-		String hql="select count(*) from Competition c";
+		String hql="select count(*) from Competition c c.compe_status=2";
 		Query query=getsession().createQuery(hql);
 		Integer count=((Number)query.iterate().next()).intValue();
 		return count;
