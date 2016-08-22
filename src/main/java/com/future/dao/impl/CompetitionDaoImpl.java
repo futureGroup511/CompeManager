@@ -101,9 +101,26 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Competition> getAvaliableCopetion() {
-		String sql = "from Competition compe where compe.compe_status = 4 and compe.compe_requestDate >= YEAR(NOW())";
+		String sql = "from Competition compe where compe.compe_requestDate >= YEAR(NOW()) and compe.compe_endTime <= NOW() compe.compe_status != 3";
 		List<Competition> compeList = getsession().createQuery(sql)
 													.list();
+		
+		/**
+		 * 之前的时候进行查询所有的该竞赛的报名通过的是不是已经全部都录完成绩
+		 */
+		String sqlStr = "from SignUp signUp where signUp.signUp_status = 2 and signUp.signUp_competition.compe_id =  :compeId and signUp.signUp_registerRecord = 0";
+		for(int i=0;i<compeList.size();i++){
+			Competition compe = compeList.get(i);
+			List list = getsession().createQuery(sqlStr).setParameter("compeId", compe.getCompe_id()).list();
+			if(list.isEmpty() || list.size() == 0){
+				compeList.remove(i);
+				String sqlStr01 = "update Competition compe set compe.compe_status = 3 where compe.compe_id = :compeId";
+				getsession().createQuery(sqlStr01)
+								.setParameter("compe_id", compe.getCompe_id())
+									.executeUpdate();
+				
+			}
+		}
 		return compeList;
 	}
 

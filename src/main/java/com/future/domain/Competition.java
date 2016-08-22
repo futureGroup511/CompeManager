@@ -36,7 +36,7 @@ public class Competition {
 
 	//竞赛类型  1 团体，2 个人 3 其他
 	private Integer compe_type;
-	//项目 状态  1 申请 2 审核通过 3进行中 4 正常结束   0 审核未通过
+	//项目 状态  1 申请 2 审核通过 3：成绩已经录完    0 审核未通过
 	private Integer compe_status;
 	// 竞赛方案 文件的url
 	private String compe_program;
