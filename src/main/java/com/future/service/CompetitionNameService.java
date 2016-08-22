@@ -4,9 +4,7 @@ package com.future.service;
 import java.util.List;
 
 import com.future.domain.CompetitionName;
-import java.util.List;
 
-import com.future.domain.CompetitionName;
 import com.future.utils.PageBean;
 
 public interface CompetitionNameService {

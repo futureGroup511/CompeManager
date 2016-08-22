@@ -29,7 +29,7 @@
 <br>
 =======================================================
 <br>
-<a href="awardRecord_findAllAwardRecord">查看学生获奖情况</a>
+<a href="awardRecord_findAllAwardRecord.action">查看学生获奖情况</a>
 
 </body>
 </html>

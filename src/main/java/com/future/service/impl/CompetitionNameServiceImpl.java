@@ -10,14 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.future.dao.CompetitionNameDao;
 import com.future.domain.CompetitionName;
 import com.future.service.CompetitionNameService;
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import com.future.service.CompetitionNameService;
 import com.future.utils.PageBean;
+
+
 
 @Service
 @Transactional
