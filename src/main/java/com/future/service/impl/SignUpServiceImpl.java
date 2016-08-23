@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.future.dao.SignUpDao;
+import com.future.domain.AwardRecord;
 import com.future.domain.Competition;
 import com.future.domain.SignUp;
 import com.future.domain.Student;
@@ -108,5 +109,10 @@ public class SignUpServiceImpl implements SignUpService{
 	@Override
 	public void makeSignUpScored(Integer signUpId, Integer signUp_registerRecord) {
 		signUpDao.makeSignUpScored(signUpId, signUp_registerRecord);
+	}
+
+	@Override
+	public void updateSignUpByAwardRecord(AwardRecord aw) {
+		signUpDao.updateSignUpByAwardRecord(aw);
 	}
 }

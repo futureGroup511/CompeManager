@@ -11,9 +11,13 @@
 .settings/*
 /indexes/*
 /target/*
-/src/main/webapp/WEB-INF/classes/*
-/src/main/webapp/userfiles/*
+
+
+
 /target/
+<<<<<<< HEAD
+/bin/
+=======
 /target/
 /target/
 /target/
@@ -33,3 +37,4 @@
 /target/
 /target/
 /target/
+>>>>>>> 30b358244612f1409055a25421ab512c96a5fd99

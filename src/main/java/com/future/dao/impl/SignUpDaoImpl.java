@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.future.base.BaseDao;
 import com.future.dao.SignUpDao;
+import com.future.domain.AwardRecord;
 import com.future.domain.Competition;
 import com.future.domain.SignUp;
 import com.future.domain.Student;
@@ -181,6 +182,21 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 		getsession().createQuery(sql).setParameter("signUp_registerRecord", signUp_registerRecord)
 										.setParameter("signUpId", signUpId)
 										.executeUpdate();
+	}
+
+	
+	public void updateSignUpByAwardRecord(AwardRecord aw) {
+		String team=aw.getAwardRecor_team();
+		Integer type;
+		if(team==null ||team.equals("")){
+			type=2;
+		}else{
+			type=1;
+		}
+		String hql="select signUp_id from cm_signups cs where cs.signUp_student_stu_id = :stu_id and cs.signUp_competition_compe_id =:comp_id and cs.singnup_type=:singnup_type";
+		List result=getsession().createSQLQuery(hql).setParameter("stu_id", aw.getAwardRecor_student().getStu_id()).setParameter("comp_id", aw.getAwardRecor_competition().getCompe_id()).setParameter("singnup_type",type).list();
+		String hq="update SignUp s set s.signUp_registerRecord=0 where s.signUp_id ="+(Integer)result.get(0);
+		getsession().createQuery(hq).executeUpdate();
 	}
 
 }

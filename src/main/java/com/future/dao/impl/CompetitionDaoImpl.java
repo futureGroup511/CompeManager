@@ -7,6 +7,8 @@ import com.future.base.BaseDao;
 import com.future.dao.CompetitionDao;
 import com.future.domain.Competition;
 import com.future.utils.Page_S;
+
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -80,8 +82,11 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 	
 		
 		Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(), count, competitions);*/
+		Date date=new Date();
 		Criteria criteria=getsession().createCriteria(Competition.class);
 		criteria.add(Restrictions.eq("compe_status", 2));
+		criteria.add(Restrictions.ge("compe_requestDate",date));
+		criteria.add(Restrictions.lt("compe_startTime",date));
 		Long  tatolnum=(Long) criteria.setProjection(Projections.rowCount()).uniqueResult();
 		criteria.setProjection(null);
 		criteria.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());

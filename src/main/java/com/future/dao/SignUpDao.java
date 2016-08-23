@@ -2,6 +2,7 @@ package com.future.dao;
 
 import java.util.List;
 
+import com.future.domain.AwardRecord;
 import com.future.domain.Competition;
 import com.future.domain.SignUp;
 import com.future.domain.Student;
@@ -82,4 +83,11 @@ public interface SignUpDao {
 	public SignUp jugeStudentuge(Student stu,Competition compe,Integer sup_type);
 	
 	public String jugeTeamexist(String team_name);
+	
+	/**
+	 * 通过id修改包名表的状态为0来表示未录入成绩的
+	 * @param id
+	 */
+	public void updateSignUpByAwardRecord(AwardRecord aw);
+
 }
