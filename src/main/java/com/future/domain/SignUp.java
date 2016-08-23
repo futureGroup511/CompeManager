@@ -40,7 +40,7 @@ public class SignUp {
 	//报名类型   1 团队 2 个人
 	private Integer signUP_type;
 	//是否已经录入获奖  0 未录 1 已录入
-	private Integer signUp_registerRecord;
+	private Integer signUp_registerRecord = 0;
 	@Id
 	@GeneratedValue
 	@Column(unique=true)
