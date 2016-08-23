@@ -90,8 +90,8 @@ public class CompetitionServiceImpl  implements CompetitionService{
 	//======================================================
 
 	@Override
-	public List<Competition> getNextClassCompetition() {
-		return competitionDao.getNextClassCompetition();
+	public List<Competition> getNextClassCompetition(Integer depId) {
+		return competitionDao.getNextClassCompetition(depId);
 	}
 
 	@Override

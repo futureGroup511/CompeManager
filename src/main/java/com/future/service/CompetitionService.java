@@ -49,7 +49,7 @@ public interface CompetitionService {
 	/**
 	 * 得到 进入下级比赛的竞赛项目
 	 */
-	public List<Competition> getNextClassCompetition();
+	public List<Competition> getNextClassCompetition(Integer depId);
 	/**
 	 * 更改之指定项目的状态，使其可以再次进行成绩的录入，学生进行报名
 	 */
