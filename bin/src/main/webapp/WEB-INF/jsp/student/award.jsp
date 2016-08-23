@@ -23,6 +23,7 @@
 						<th>获奖等级</th>
 						<th>获得奖金</th>
 						<th>上传附件</th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -42,12 +43,12 @@
 							<td>${award.awardRecor_stuMoney}</td>
 							
 							<td>
-							
-								<a href="student_uploadView?award_id=${award.awardRecor_id }" class="btn btn-primary">上传附件</a>
-								<c:if test="${award.awardRecor_picturePath eq null }">
+							    <a href="student_uploadView?award_id=${award.awardRecor_id }" class="btn btn-primary">上传附件</a>
+								<c:if test="${award.awardRecor_picturePath not empty }">
 										(<span class="text-danger">已上传过</span>)
 								</c:if>
 							</td>
+							
 						</tr>
 					
 					</c:forEach>
