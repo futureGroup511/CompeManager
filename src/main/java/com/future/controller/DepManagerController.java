@@ -436,7 +436,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 * 得到 成绩录完的 项目 进行下一级别的比赛 再次录入成绩
 	 */
 	public String nextClassCompetition(){
-		List<Competition> compeList = competitionService.getNextClassCompetition();
+		List<Competition> compeList = competitionService.getNextClassCompetition(((DepManager)sessionMap.get("depManager")).getDepM_id());
 		requestMap.put("compeList", compeList);
 		return "ToNextClassCompetition";
 	}
