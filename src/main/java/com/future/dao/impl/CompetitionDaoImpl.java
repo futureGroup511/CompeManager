@@ -1,13 +1,5 @@
 package com.future.dao.impl;
 
-import org.springframework.expression.spel.ast.Projection;
-import org.springframework.stereotype.Repository;
-
-import com.future.base.BaseDao;
-import com.future.dao.CompetitionDao;
-import com.future.domain.Competition;
-import com.future.utils.Page_S;
-
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +8,12 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
+import com.future.base.BaseDao;
+import com.future.dao.CompetitionDao;
+import com.future.domain.Competition;
 import com.future.utils.PageBean;
+import com.future.utils.Page_S;
 
 @Repository
 public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
@@ -83,10 +80,11 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 		
 		Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(), count, competitions);*/
 		Date date=new Date();
+		java.sql.Date comparetime=new java.sql.Date(date.getTime());
 		Criteria criteria=getsession().createCriteria(Competition.class);
 		criteria.add(Restrictions.eq("compe_status", 2));
-		criteria.add(Restrictions.ge("compe_requestDate",date));
-		criteria.add(Restrictions.lt("compe_startTime",date));
+		criteria.add(Restrictions.lt("compe_requestDate",comparetime));
+		criteria.add(Restrictions.gt("compe_startTime",comparetime));
 		Long  tatolnum=(Long) criteria.setProjection(Projections.rowCount()).uniqueResult();
 		criteria.setProjection(null);
 		criteria.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());
