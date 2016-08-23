@@ -34,4 +34,7 @@ public interface AdminDao {
 	//分页查看未通过审核项目
 	PageBean getPageBeanNoPassCheck(int pageNum, int pageSize);
 
+	//准备数据，查询状态=3（结果录入完毕）所有竞赛项目
+	List<Competition> findAllHaveResultProject();
+
 }

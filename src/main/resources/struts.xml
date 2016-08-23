@@ -49,7 +49,7 @@
     	 	<result name="RegisterStudentScorePage">/WEB-INF/jsp/SignUpView/RegisterStudentScore.jsp</result>
     	 	<result name="RedirectToRegisterStudentPage" type="redirectAction">depManager_registerScore</result>
  			<result name="sendInformsuccess" type="redirect">depManager_lookInformView</result>
- 		</action> 
+ 		</action>
  		
     	<action name="testController_*" method="{1}" class="testController">
     	    <result name="success">WEB-INF/jsp/test/testSuccess.jsp</result>
