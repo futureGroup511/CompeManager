@@ -34,7 +34,7 @@ public class Competition {
 	//竞赛 所需经费
 	private String compe_money;
 
-	//竞赛类型  1 团体，2 个人 3 其他
+	//竞赛类型  1 团体   ，2 个人 3 其他
 	private Integer compe_type;
 	//项目 状态  1 申请 2 审核通过 3：成绩已经录完    0 审核未通过
 	private Integer compe_status;

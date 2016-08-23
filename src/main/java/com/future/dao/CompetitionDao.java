@@ -38,6 +38,16 @@ public interface CompetitionDao {
 	 * @return
 	 */
 	public List<Competition> getAvaliableCopetion();
+	/**
+	 * 得到 进入下级比赛的竞赛项目
+	 */
+	public List<Competition> getNextClassCompetition();
+	/**
+	 * 更改之指定项目的状态，使其可以再次进行成绩的录入，学生进行报名
+	 */
+	public void changeCompetitionStatus(Integer compeId, Integer compeStatus);
+	
+	
 	
 	public Page_S findapplyCompetition(Page_S ps);
 	
