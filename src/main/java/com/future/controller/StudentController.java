@@ -38,7 +38,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	private Integer pageSize=10;
 	private Integer compe_id;
 	private SignUp  sup=new SignUp();
-	private Integer award_id;
+	private Integer award_id; 
 	private List<Student> students=new ArrayList<Student>();
 
 	
@@ -123,6 +123,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		int index=1;
 		while(iterator.hasNext()){
 			SignUp sgp=new SignUp();
+			sgp.setSignUp_status(1);
 			sgp.setSignUp_teacher(sup.getSignUp_teacher());
 			sgp.setSignUp_team(sup.getSignUp_team());
 			sgp.setSignUP_type(sup.getSignUP_type());
@@ -176,7 +177,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		request.put("page", page);
 		return "lookapplystatus";
 	}
-	
+	 
 	//查看所获奖记录
 	public String lookAward(){
 		Student s=(Student) session.get("stu");
@@ -184,7 +185,9 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		page.setCurrentPage(currentPage);
 		page.setPageSize(pageSize);
 		page=ars.findAwardByStudent(s, page);
+		Date jugePromotion=new Date();
 		request.put("page", page);
+		request.put("jugePromotion", jugePromotion);
 		return "lookAward";
 	}
 	
@@ -227,6 +230,16 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
         ar.setAwardRecor_picturePath(root);
 		ars.saveOrUpdaAward(ar);
         return "success";
+	}
+	
+	//学生进入下一阶段
+	public String promotion(){
+		AwardRecord ar=awardRecordService.findAwardRecordById(award_id);
+		ar.getAwardRecor_competition();
+		ar.getAwardRecor_student();
+		ar.getAwardRecor_student();
+		sups.updateSignUpByAwardRecord(ar);
+		return "success";
 	}
 	private Student stu;
 	@Override

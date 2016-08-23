@@ -1,5 +1,6 @@
 package com.future.dao.impl;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -81,8 +82,12 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 	
 		
 		Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(), count, competitions);*/
+		Date date=new Date();
+		java.sql.Date comparetime=new java.sql.Date(date.getTime());
 		Criteria criteria=getsession().createCriteria(Competition.class);
 		criteria.add(Restrictions.eq("compe_status", 2));
+		criteria.add(Restrictions.lt("compe_requestDate",comparetime));
+		criteria.add(Restrictions.gt("compe_startTime",comparetime));
 		Long  tatolnum=(Long) criteria.setProjection(Projections.rowCount()).uniqueResult();
 		criteria.setProjection(null);
 		criteria.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());

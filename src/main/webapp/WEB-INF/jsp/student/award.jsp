@@ -23,6 +23,7 @@
 						<th>获奖等级</th>
 						<th>获得奖金</th>
 						<th>上传附件</th>
+					    <th>是否进入下一阶段</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,11 +43,17 @@
 							<td>${award.awardRecor_stuMoney}</td>
 							
 							<td>
-							
 								<a href="student_uploadView?award_id=${award.awardRecor_id }" class="btn btn-primary">上传附件</a>
-								<c:if test="${award.awardRecor_picturePath eq null }">
+								
+								<c:if test="${!empty award.awardRecor_picturePath }">
 										(<span class="text-danger">已上传过</span>)
 								</c:if>
+							</td>
+							<td>
+								<c:if test="${jugePromotion le award.awardRecor_competition.compe_endTime and jugePromotion ge  award.awardRecor_time}">
+										<a href="${pageContext.request.contextPath}/student_promotion?award_id=${award.awardRecor_id }" class="btn btn-primary">进入下一阶段</a>
+								</c:if>
+							
 							</td>
 						</tr>
 					

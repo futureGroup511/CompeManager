@@ -2,6 +2,7 @@ package com.future.service;
 
 import java.util.List;
 
+import com.future.domain.AwardRecord;
 import com.future.domain.Competition;
 import com.future.domain.SignUp;
 import com.future.domain.Student;
@@ -74,4 +75,10 @@ public interface SignUpService {
 	  * 修改指定人员为团队负责人
 	  */
 	public void makeToTeamLeader(String teamName, Integer signId);
+
+	/**
+	 * 通过id修改包名表的状态为0来表示未录入成绩的
+	 * @param id
+	 */
+	public void updateSignUpByAwardRecord(AwardRecord aw);
 }
