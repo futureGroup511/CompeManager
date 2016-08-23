@@ -56,9 +56,7 @@
 							
 							</td>
 						</tr>
-					
 					</c:forEach>
-				
 				</tbody>
 		</table>
 		<div class="center-block" style="width:500px">
