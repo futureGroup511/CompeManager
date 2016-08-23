@@ -89,5 +89,15 @@ public class CompetitionServiceImpl  implements CompetitionService{
 	}
 	//======================================================
 
+	@Override
+	public List<Competition> getNextClassCompetition() {
+		return competitionDao.getNextClassCompetition();
+	}
+
+	@Override
+	public void changeCompetitionStatus(Integer compeId, Integer compeStatus) {
+		competitionDao.changeCompetitionStatus(compeId, compeStatus);
+	}
+
 
 }

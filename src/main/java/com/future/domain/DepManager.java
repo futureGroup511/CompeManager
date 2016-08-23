@@ -29,7 +29,6 @@ public class DepManager {
 	
 	
 	//学院负责人 负责的院系
-	
 	private Department depM_department;
 
 	@Id

@@ -37,7 +37,7 @@ public class AwardRecord {
 	//学生所获 学分
 	private Integer awardRecor_score;
 	//获奖记录的状态	  1申请 2审核通过 3 审核未通过 4 本学生已经获得其他奖励
-	private Integer awardRecor_status;
+	private Integer awardRecor_status = 0;
 	//获奖证书
 	private String awardRecor_picturePath;
 	

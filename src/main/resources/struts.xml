@@ -49,6 +49,8 @@
     	 	<result name="RegisterStudentScorePage">/WEB-INF/jsp/SignUpView/RegisterStudentScore.jsp</result>
     	 	<result name="RedirectToRegisterStudentPage" type="redirectAction">depManager_registerScore</result>
  			<result name="sendInformsuccess" type="redirect">depManager_lookInformView</result>
+ 			<result name="ToNextClassCompetition">/WEB-INF/jsp/Competitions/NextClassCompetition.jsp</result>
+ 			<result name="RedirectToNextClassCompetitionPage" type="redirect">depManager_nextClassCompetition</result>
  		</action> 
  		
     	<action name="testController_*" method="{1}" class="testController">

@@ -1,20 +1,21 @@
 package com.future.dao.impl;
 
-import org.springframework.expression.spel.ast.Projection;
-import org.springframework.stereotype.Repository;
-
-import com.future.base.BaseDao;
-import com.future.dao.CompetitionDao;
-import com.future.domain.Competition;
-import com.future.utils.Page_S;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
+import com.future.base.BaseDao;
+import com.future.dao.CompetitionDao;
+import com.future.domain.AwardRecord;
+import com.future.domain.Competition;
 import com.future.utils.PageBean;
+import com.future.utils.Page_S;
 
 @Repository
 public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
@@ -114,7 +115,7 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Competition> getAvaliableCopetion() {
-		String sql = "from Competition compe where compe.compe_requestDate >= YEAR(NOW()) and compe.compe_endTime <= NOW() and compe.compe_status != 3";
+		String sql = "from Competition compe where compe.compe_requestDate >= YEAR(NOW()) and compe.compe_status = 2";
 		List<Competition> compeList = getsession().createQuery(sql)
 													.list();
 		
@@ -132,10 +133,64 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 								.setParameter("compeId", compe.getCompe_id())
 									.executeUpdate();
 				
+				/**
+				 * 成绩录完之后，默认提交该学生的最高的奖励
+				 */
+				String sqlstr02 = "from AwardRecord awardRecord where awardRecord.awardRecor_competition.compe_id = :compeId";//得到对应的
+				List<AwardRecord> awardList = getsession().createQuery(sqlstr02).setParameter("compeId", compe.getCompe_id())
+																					.list();
+				Set<Integer> stuIdSet = new HashSet<Integer>();
+				for(AwardRecord awardRecord : awardList){
+					stuIdSet.add(awardRecord.getAwardRecor_student().getStu_id());
+				}
+				
+				for(Integer stuId : stuIdSet){
+					Integer compeId = compe.getCompe_id();
+					
+					//更新该学生的该项目的获奖记录为已经获得其他获奖记录
+					String sqlStr03 = "update AwardRecord awardRecord set awardRecord.awardRecor_status = 4  where awardRecord.awardRecor_competition.compe_id = :compeId and awardRecord.awardRecor_student.stu_id = :stuId";
+					getsession().createQuery(sqlStr03).setParameter("compeId", compeId)
+															.setParameter("stuId", stuId)
+																.executeUpdate();
+					//得到记录中 获奖等级id最小的那个
+					String sqlStr04 = "from AwardRecord awardRecord where awardRecord.awardRecor_competition.compe_id = :compeId and awardRecord.awardRecor_student.stu_id = :stuId";
+					List<AwardRecord> awardRecordList = getsession().createQuery(sqlStr04).setParameter("compeId", compeId)
+																								.setParameter("stuId", stuId)
+																									.list();
+					Integer minHieId = awardRecordList.get(0).getAwardRecor_awadHie().getAwardHie_id();
+					for(AwardRecord record : awardRecordList){
+						Integer hieId = record.getAwardRecor_awadHie().getAwardHie_id();
+						if(hieId <= minHieId){
+							minHieId = hieId;
+						}
+					}
+					//更新该项目该学生中获奖记录的获奖级别最高的提交给教务处负责人 奖励级别 的id 最小的那个奖励记录
+					String sqlStr05 = "update AwardRecord awardRecord set awardRecord.awardRecor_status = 1 where awardRecord.awardRecor_awadHie.awardHie_id = "+minHieId;
+					getsession().createQuery(sqlStr05)
+									.executeUpdate();
+					
+				}
 			}
 		}
 		return compeList;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Competition> getNextClassCompetition() {
+		String sql = "from Competition compe where compe.compe_requestDate >= year(NOW()) and compe.compe_status = 3";
+		List<Competition> compeList = getsession().createQuery(sql)
+												.list();
+		return compeList;
+	}
+
+	@Override
+	public void changeCompetitionStatus(Integer compeId, Integer compeStatus) {
+		String sql = "update Competition compe set compe.compe_status = :compeStatus where compe.compe_id = :compeId";
+		getsession().createQuery(sql).setParameter("compeStatus", compeStatus)
+										.setParameter("compeId", compeId)
+						   						.executeUpdate();
+	}
+ 
 
 }

@@ -24,7 +24,7 @@
               <th>录入成绩</th>
           </tr>
 		</thead>
-		<s:if test="#request.signUpList != null && #request.signUpList.size()">
+		<s:if test="#request.signUpList != null && #request.signUpList.size() > 0">
 			<s:iterator value="#request.signUpList" var="signUp">
 				<tr>
 					<td><s:property value="#signUp.signUp_student.stu_department.de_name"/></td>

@@ -21,6 +21,7 @@
 		<li><a href="depManager_seeAllApplyCompetition">查看申报项目审核状态</a></li>
 		<!-- <li><a href="depManager_seeHistoryCompetition">历史申报项目</a></li> -->
 		<li><a href="depManager_inspectStudentApplyPage">审核报名</a></li>
+		<li><a href="depManager_nextClassCompetition">继续下级比赛</a></li>
 		<li>
 				<s:if test="#request.compeList != null && #request.compeList.size() > 0">
 					<s:form action="depManager_registerScore">
