@@ -21,10 +21,8 @@
         <label>摘要&nbsp;:</label>
         <s:textfield name="compe_digest" maxlength="200" width="300px"/><br>
         <%-- <label>竞赛方案&nbsp;:</label><s:textfield name="compe_program" /><br> --%>
-        
-        
-        <label>竞赛方案&nbsp;:</label><s:file name="upload" label="上传"></s:file><br>
     	<s:submit value="提交"></s:submit>    
      </s:form>
+     <a href="competition_alterCompetitionProgramUI?compe_id=${compe_id }">修改竞赛方案</a>
 </body>
 </html>

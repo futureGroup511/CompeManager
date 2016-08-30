@@ -54,4 +54,7 @@ public interface CompetitionService {
 	 * 更改之指定项目的状态，使其可以再次进行成绩的录入，学生进行报名
 	 */
 	public void changeCompetitionStatus(Integer compeId, Integer compeStatus);
+	
+	//传过路径和id，让service去处理
+	void updateCompetitionPro(Integer compe_id, String realPath);
 }

@@ -107,6 +107,9 @@
     	<!-- 竞赛项目 -->
     	<action name="competition_*" method="{1}" class="com.future.controller.CompetitionController" >
     		<result name="alterCompetition" type="redirectAction">admin_checkNoProject</result>
+    		<result name="alterCompetitionProgram" type="redirectAction">admin_checkNoProject</result>
+    		<result name="alterCompetitionProgramUI">WEB-INF/jsp/Admin/alterCompetitionProgramUI.jsp</result>
+    		
     		<result name="success" type="stream">
     			<param name="contentType">application/octet-stream</param>
     			<param name="inputName">targetFile</param>

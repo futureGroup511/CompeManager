@@ -83,7 +83,7 @@ public class CompetitionServiceImpl  implements CompetitionService{
 		competition.setCompe_startTime(model.getCompe_startTime());
 		competition.setCompe_endTime(model.getCompe_endTime());
 		competition.setCompe_digest(model.getCompe_digest());
-		competition.setCompe_program(model.getCompe_program());
+		//competition.setCompe_program(model.getCompe_program());
 		
 		competitionDao.save(competition);
 	}
@@ -97,6 +97,14 @@ public class CompetitionServiceImpl  implements CompetitionService{
 	@Override
 	public void changeCompetitionStatus(Integer compeId, Integer compeStatus) {
 		competitionDao.changeCompetitionStatus(compeId, compeStatus);
+	}
+
+	//传过路径和id，让service去处理
+	@Override
+	public void updateCompetitionPro(Integer compe_id, String realPath) {
+		Competition competiton = findCompetitionById(compe_id);
+		competiton.setCompe_program(realPath);
+		//System.out.println(compe_id + realPath);
 	}
 
 
