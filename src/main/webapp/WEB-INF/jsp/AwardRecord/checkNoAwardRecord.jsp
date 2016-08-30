@@ -6,6 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>待审核竞赛结果</title>
+<!-- 去掉这3行，则点击直接显示原图，如果移动至下面则IE浏览器报错 begin -->
+<script type='text/javascript' src='ly/js/jquery.js'></script>
+<script type='text/javascript' src='ly/js/jquery.scripts.js'></script>
+<script type='text/javascript' src='ly/js/jquery.custom.js'></script>
+<!-- 去掉这3行，则点击直接显示原图，如果移动至下面则IE浏览器报错 end -->
+<link rel="stylesheet" type="text/css" media="all" href="ly/css/style.min.css" />
+
 </head>
 <body>
 <table border="1" cellpadding="1" cellspacing="0">
@@ -55,7 +62,14 @@
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>
 				<td>
-					<a href="${awardRecor_picturePath }" target="_blank"><img alt="" src="${awardRecor_picturePath }" width="100px" height="30px"></a>
+					<s:if test="awardRecor_picturePath == ''">
+				未上传
+				</s:if>
+				<s:else>
+					<a class="image-icon" rel="gallery[modal]" href="${awardRecor_picturePath }">
+					<img height="20" width="100" src="${awardRecor_picturePath }"></a>
+					<%-- <img alt="" src="${awardRecor_picturePath }"> --%>
+				</s:else>
 				</td>
 				<td>
 					<a href="awardRecord_pass?id=${awardRecor_id }">通过</a>
