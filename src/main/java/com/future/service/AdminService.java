@@ -2,6 +2,7 @@ package com.future.service;
 
 import java.util.List;
 
+import com.future.domain.Admin;
 import com.future.domain.Competition;
 import com.future.utils.PageBean;
 
@@ -33,9 +34,11 @@ public interface AdminService {
 
 	//分页查看未通过审核项目
 	public PageBean getPageBeanNoPassCheck(int pageNum, int pageSize);
-
+	
+	//登陆
+	public Admin jugeByNumAndPassword(String num, String password);
+	
 	//准备数据，查询状态=3（结果录入完毕）所有竞赛项目
 	public List<Competition> findAllHaveResultProject();
-
 
 }

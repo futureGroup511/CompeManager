@@ -51,7 +51,7 @@
 							</td>
 							<td>
 								<c:if test="${jugePromotion ge award.awardRecor_competition.compe_endTime and  award.awardRecor_competition.compe_status eq 2}">
-										<a href="${pageContext.request.contextPath}/student_promotion?award_id=${award.awardRecor_id }" class="btn btn-primary">进入下一阶段</a>
+										<a href="${pageContext.request.contextPath}/student_promotion?award_id=${award.awardRecor_id }" class="btn btn-primary" onclick="return jugeNext();">进入下一阶段</a>
 								</c:if>
 							
 							</td>
@@ -84,4 +84,14 @@
 		</div>
 		
 </body>
+<script type="text/javascript">
+ function jugeNext(){
+	var juge=confirm("是否进入下一阶段");
+	if(juge===false){
+		return false;
+	}
+ }
+ 
+
+</script>
 </html>

@@ -115,4 +115,14 @@ public class SignUpServiceImpl implements SignUpService{
 	public void updateSignUpByAwardRecord(AwardRecord aw) {
 		signUpDao.updateSignUpByAwardRecord(aw);
 	}
+
+	@Override
+	public List<SignUp> getSpecialCompetitionSignUps(Integer copeId) {
+		return signUpDao.getSpecialCompetitionSignUps(copeId);
+	}
+
+	@Override
+	public List<SignUp> getSpecialCompeSignUpsByPage(PageBean pageBean, Integer compeId) {
+		return signUpDao.getSpecialCompeSignUpsByPage(pageBean, compeId);
+	}
 }

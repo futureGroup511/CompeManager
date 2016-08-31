@@ -15,6 +15,7 @@
 </head>
 <body>
 	<ul>
+		<li><a href="depManager_lookProcessingCompetitionStatus">查看正在进行项目的报名情况</a></li>
 		<li><a href="depManager_applyCompeName">申报项目名称</a></li>
 		<li><a href="depManager_seeAllApplyCompNames">查看申报项目名称审核状态</a></li>
 		<li><a href="depManager_applyCompetitionPage">申报项目</a></li>

@@ -59,16 +59,16 @@
 							
 							<div class="col-md-4">
 								<s:if test="#request.comp.compe_type==1">
-										<input hidden class="from-control compe_type"  value ="1" type="text" name="sup.signUP_type" readonly="readonly"><label class="control-lable">团队</label>
+										<input hidden class="from-control compe_type"  value ="1" type="text" name="sup.singnup_type" readonly="readonly"><label class="control-lable">团队</label>
 								</s:if>
 								<s:if test="#request.comp.compe_type==2">
-										<input hidden class="from-control compe_type"  value ="2" type="text" name="sup.signUP_type" readonly="readonly"><label class="control-lable">个人</label>
+										<input hidden class="from-control compe_type"  value ="2" type="text" name="sup.singnup_type" readonly="readonly"><label class="control-lable">个人</label>
 								</s:if>
 								
 								<s:if test="#request.comp.compe_type==3">
-										<input type="radio" class="from-control compe_type" onclick="jugeCompType(1,this);" name="sup.signUP_type" value="1"><label class="control-lable">团队</label>
+										<input type="radio" class="from-control compe_type" onclick="jugeCompType(1,this);" name="sup.singnup_type" value="1"><label class="control-lable">团队</label>
 										
-										<input type="radio" class="from-control compe_type"  onclick="jugeCompType(2,this);"name="sup.signUP_type" value="2"><label class="control-lable">个人</label>
+										<input type="radio" class="from-control compe_type"  onclick="jugeCompType(2,this);"name="sup.singnup_type" value="2"><label class="control-lable">个人</label>
 								</s:if>
 								
 							</div>
@@ -168,7 +168,7 @@ function JqValidate()  
 					signUp_teacher:"required",
 					stu_name:"required",
 					stu_num:"required",
-					signUP_type:"required",
+					singnup_type:"required",
 				}
 				
     });  
@@ -207,7 +207,7 @@ function jugeCompType(type,arr){
 				data={
 						"stu_id":stu_id,
 						"compe_id":comp_id,
-						"sup.signUP_type":comp_type
+						"sup.singnup_type":comp_type
 				}
 				$.ajax({
 					url:"student_jugeapply",
@@ -276,7 +276,7 @@ function addTeamMember(){
 				data={
 						"stu_id":stu_id,
 						"compe_id":comp_id,
-						"sup.signUP_type":comp_type
+						"sup.singnup_type":comp_type
 				}
 				$.ajax({
 					url:"student_jugeapply",
@@ -304,7 +304,7 @@ function addTeamMember(){
 							"stu_name":s_name,
 							"stu_num":s_num,
 							"compe_id":comp_id,
-							"sup.signUP_type":comp_type
+							"sup.singnup_type":comp_type
 					}
 					$.ajax({
 						url:"student_jugeapply",

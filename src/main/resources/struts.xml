@@ -51,6 +51,8 @@
  			<result name="sendInformsuccess" type="redirect">depManager_lookInformView</result>
  			<result name="ToNextClassCompetition">/WEB-INF/jsp/Competitions/NextClassCompetition.jsp</result>
  			<result name="RedirectToNextClassCompetitionPage" type="redirect">depManager_nextClassCompetition</result>
+ 			<result name="ToProcessingCompetition">/WEB-INF/jsp/Competitions/ProcessingCompetitionSignUpNum.jsp</result>
+ 			<result name="CompeSignUpAllStudentsInfo">/WEB-INF/jsp/Competitions/CompetitionAllSignUpInfo.jsp</result>
  		</action> 
  		
     	<action name="testController_*" method="{1}" class="testController">
@@ -58,7 +60,8 @@
     	    <result name="failure">WEB-INF/jsp/test/testFailure.jsp</result>
  		</action> 
  		
- 		<action name="student_*" method="{1}" class="com.future.controller.StudentController">
+ 		
+    	<action name="student_*" method="{1}" class="com.future.controller.StudentController">
     	    <result name="success">index.jsp</result>
     	    <result name="erro">WEB-INF/jsp/test/erro.jsp</result>
     	    <result name="loginView" >WEB-INF/jsp/student/login.jsp</result>
@@ -71,12 +74,12 @@
     		<result name="jugeapply" type="json"></result>
     		<result name="lookapplystatus">WEB-INF/jsp/student/lookapplystatus.jsp</result>
     		<result name="lookAward">WEB-INF/jsp/student/award.jsp</result>
-    	</action>		
-
+    	</action>	
+    	
     	<!-- 教务处 -->	
     	<action name="admin_*" method="{1}" class="com.future.controller.AdminController">
     		<!-- 刘阳 -->
-    		<result name="success">WEB-INF/jsp/Admin/index.jsp</result>
+    		 <result name="success">WEB-INF/jsp/Admin/index.jsp</result>
     	    <result name="checkNoProject">WEB-INF/jsp/Admin/checkNoProjec.jsp</result>
     	    <result name="checkSuccessProject">WEB-INF/jsp/Admin/checkSuccessProject.jsp</result>
     		<result name="checkSuccess" type="redirectAction">admin_checkNoProject</result>
@@ -107,9 +110,8 @@
     	<!-- 竞赛项目 -->
     	<action name="competition_*" method="{1}" class="com.future.controller.CompetitionController" >
     		<result name="alterCompetition" type="redirectAction">admin_checkNoProject</result>
-    		<result name="alterCompetitionProgram" type="redirectAction">admin_checkNoProject</result>
-    		<result name="alterCompetitionProgramUI">WEB-INF/jsp/Admin/alterCompetitionProgramUI.jsp</result>
-    		
+            <result name="alterCompetitionProgram" type="redirectAction">admin_checkNoProject</result>
+            <result name="alterCompetitionProgramUI">WEB-INF/jsp/Admin/alterCompetitionProgramUI.jsp</result>
     		<result name="success" type="stream">
     			<param name="contentType">application/octet-stream</param>
     			<param name="inputName">targetFile</param>
@@ -158,7 +160,14 @@
     	    <result name="modifysuccess" type="redirect">awardstand_findAll</result>
     	</action> 
     	
-    	<!-- 院系查询 -->
+       <action name="loginControll_*" method="{1}" class="com.future.controller.LoginController">
+           <result name="success">index.jsp</result>
+           <result name="info" type="json"></result> 
+     	   <result name="censorCookie" type="redirect">loginControll_firstLogin</result> 
+     	   <result name="loginView">login.jsp</result>	
+       </action>
+       
+       <!-- 院系查询 -->
     	<action name="department_*" method="{1}" class="com.future.controller.DepartmentController">
     	  	<result name="findAllAwardRecord">WEB-INF/jsp/Department/findAllAwardRecord.jsp</result>  
     	  	<result name="conditionQuery">WEB-INF/jsp/Department/conditionQuery.jsp</result>  
@@ -166,4 +175,3 @@
     	
     </package>
 </struts>
-

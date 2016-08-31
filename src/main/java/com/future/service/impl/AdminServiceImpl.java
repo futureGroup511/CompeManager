@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.future.dao.AdminDao;
+import com.future.domain.Admin;
 import com.future.domain.Competition;
 import com.future.service.AdminService;
 import com.future.utils.PageBean;
@@ -75,6 +76,12 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.getPageBeanNoPassCheck(pageNum,pageSize);
 	}
 
+
+	@Override
+	public Admin jugeByNumAndPassword(String num, String password) {
+		return adminDao.jugeByNumAndPassword(num, password);
+	}
+	
 	//准备数据，查询状态=3（结果录入完毕）所有竞赛项目
 	@Override
 	public List<Competition> findAllHaveResultProject() {
