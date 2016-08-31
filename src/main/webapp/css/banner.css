@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	padding:0;
+	margin:0;
+}
+.container{
+	width:100%;
+}
+.row{
+	width:100%;
+}
+.row p{
+	font-size:38px;
+}
+.banner{
+	background-image:url(../images/tou1.png); 
+}
+.banner{
+	width:100%;
+	height:217px;
+	background-repeat: no-repeat;
+}

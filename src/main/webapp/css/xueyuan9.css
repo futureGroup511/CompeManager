@@ -1,0 +1,70 @@
+@charset "utf-8";
+{
+  padding:0;
+  margin:0;
+}
+a:hover{
+  text-decoration: none;
+  color:#FFCA00;
+}
+.row{
+  width:100%;
+}
+.dangqian{
+  margin-top:2%;
+}
+.table .one{
+  font-size:13px;
+} 
+.table .two{
+  font-size:12px;
+}
+.table .three{
+  font-size:12px;
+}
+.table .four{
+  font-size:12px;
+}
+.table .five{
+  font-size:12px;
+}
+.table .six{
+  font-size:12px;
+}
+.table .seven{
+  font-size:12px;
+}
+.table .eight{
+  font-size:12px;
+}
+.table .nine{
+  font-size:12px;
+}
+.table .ten{
+  font-size:12px;
+}
+.table .eleven{
+  font-size:12px;
+}
+.table .twelve{
+  font-size:12px;
+}
+.table .thriteen{
+  font-size:12px;
+}
+.table .fourteen{
+  font-size;
+}
+.table .fiveteen{
+  font-size:12px;
+}
+.container{
+  width:95%;
+  margin-top:3%;
+}
+.footer{
+  margin-left:40%;
+  margin-top:8%;
+}
+/* CSS Document */
+
