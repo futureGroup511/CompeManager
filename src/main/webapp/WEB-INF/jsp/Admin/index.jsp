@@ -30,6 +30,7 @@
 =======================================================
 <br>
 <a href="awardRecord_findAllAwardRecord.action">查看学生获奖情况</a>
+<a href="department_findAllAwardRecord.action">查看本院系获奖情况，传入院系id</a>
 
 </body>
 </html>

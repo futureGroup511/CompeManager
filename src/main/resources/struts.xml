@@ -158,6 +158,12 @@
     	    <result name="modifysuccess" type="redirect">awardstand_findAll</result>
     	</action> 
     	
+    	<!-- 院系查询 -->
+    	<action name="department_*" method="{1}" class="com.future.controller.DepartmentController">
+    	  	<result name="findAllAwardRecord">WEB-INF/jsp/Department/findAllAwardRecord.jsp</result>  
+    	  	<result name="conditionQuery">WEB-INF/jsp/Department/conditionQuery.jsp</result>  
+    	</action> 
+    	
     </package>
 </struts>
 
