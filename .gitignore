@@ -8,12 +8,10 @@
 .rar
 .idea
 *.iml
+.gitignore
 .settings/*
 /indexes/*
 /target/*
 /bin/
-
-
-/bin/
+target/*
 /target/
-target/

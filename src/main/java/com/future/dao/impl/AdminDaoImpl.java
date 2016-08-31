@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.future.base.BaseDao;
 import com.future.dao.AdminDao;
+import com.future.domain.Admin;
 import com.future.domain.Competition;
 import com.future.utils.PageBean;
 
@@ -112,5 +113,12 @@ public class AdminDaoImpl extends BaseDao implements AdminDao
 				.uniqueResult();
 		
 		return new PageBean(pageNum, pageSize, count.intValue(), list);
+	}
+
+	@Override
+	public Admin jugeByNumAndPassword(String num, String password) {
+		String hql="From Admin a where a.ad_num=:num and a.ad_password=:password";
+		Admin admin=(Admin) getsession().createQuery(hql).setParameter("num", num).setParameter("password", password).uniqueResult();
+		return admin;
 	}
 }

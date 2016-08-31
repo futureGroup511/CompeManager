@@ -2,11 +2,15 @@ package com.future.dao;
 
 import java.util.List;
 
+import com.future.domain.Admin;
 import com.future.domain.Competition;
 import com.future.utils.PageBean;
 
 public interface AdminDao {
 
+	//根据账号密码判断是否存在
+	public Admin jugeByNumAndPassword(String num,String password);
+	
 	//查询所有待审核项目
 	List<Competition> findAllNoCheckProject();
 
