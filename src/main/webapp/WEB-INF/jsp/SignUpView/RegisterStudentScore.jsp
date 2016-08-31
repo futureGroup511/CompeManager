@@ -5,7 +5,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>登记获奖学生学分</title>
+<script type="text/javascript" src="JQueryResources/jquery-2.1.4.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var oldValue = null;
+		$("#awardHieSelect").change(function(){
+			if(oldValue != null){
+				$("."+oldValue)[0].style.display="none";
+				$("."+oldValue)[1].style.display="none";
+			}
+			var value = $(this).children('option:selected').val();
+			$("."+value)[0].style.display="inline";
+			$("."+value)[1].style.display="inline";
+			oldValue = value;
+		})
+	});
+</script>
 </head>
 <body>
 <table>
@@ -19,6 +35,8 @@
               <th>竞赛名称</th>
               <th>所加学分</th>
               <th>获奖等级</th>
+              <th>老师奖金</th>
+              <th>学生奖金</th>
               <th></th>
           </tr>
 		</thead>
@@ -32,7 +50,11 @@
 					<td><s:property value="#request.signUp.signUp_competition.compe_compeName.compeName_name"/></td>
 					<s:form action="depManager_registerScoreToRecord" method="post">
 						<td><s:textfield name="ScoreAdded"></s:textfield></td>
-						<td><s:select name="awardHieId" list="#request.hieList" listKey="awardHie_id" listValue="awardHie_name"></s:select></td>
+						<td><s:select id="awardHieSelect" name="awardHieId" list="#request.hieList" listKey="awardHie_id" listValue="awardHie_name"></s:select></td>
+						<s:iterator value="#request.hieList" var="hie">
+							<td class="${hie.awardHie_id }" style="display: none">${hie.awardHie_standard.award_stuMoney }</td>
+							<td class="${hie.awardHie_id }" style="display: none">${hie.awardHie_standard.award_teaMoney }</td>
+						</s:iterator>
 						<s:hidden name="registerSignUpId" value="%{#request.signUp.signUp_id }"></s:hidden>
 						<s:hidden name="groupIsOrNot" value="%{#request.groupIsOrNot }"></s:hidden>
 						<s:hidden name="currentPage" value="%{#request.currentPage }"></s:hidden>
@@ -42,7 +64,7 @@
 		</s:if>
 		<s:else>
 			<tr>
-				<td colspan="9">
+				<td colspan="11">
 					没有需要录入成绩的信息
 				</td>
 			</tr>

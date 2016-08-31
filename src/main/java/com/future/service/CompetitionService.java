@@ -54,4 +54,8 @@ public interface CompetitionService {
 	 * 更改之指定项目的状态，使其可以再次进行成绩的录入，学生进行报名
 	 */
 	public void changeCompetitionStatus(Integer compeId, Integer compeStatus);
+	/**
+	 * 得到正在进行中的所有竞赛
+	 */
+	public List<Competition> getProcessingCompetition();
 }
