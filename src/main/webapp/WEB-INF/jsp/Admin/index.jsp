@@ -8,7 +8,7 @@
 </head>
 <body>
 <a href="admin_checkNoProject.action">查看待审核竞赛项目</a>===
-<a href="admin_checkSuccessProject.action">查看审核成功竞赛项目</a>===
+<a href="admin_checkSuccessProject.action">查看审核成功并且正在进行的竞赛项目</a>===
 <a href="admin_noPassCheck.action">查看未通过审核竞赛项目</a>===
 <br>
 =======================================================

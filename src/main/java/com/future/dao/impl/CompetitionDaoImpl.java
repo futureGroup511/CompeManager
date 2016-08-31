@@ -197,6 +197,12 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 										.setParameter("compeId", compeId)
 						   						.executeUpdate();
 	}
+
+	@Override
+	public List<Competition> getProcessingCompetition() {
+		String sql = "from Competition compe where compe.compe_status = 2";
+		return getsession().createQuery(sql).list();
+	}
  
 
 }

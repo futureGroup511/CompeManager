@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -336,10 +337,15 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	}
 	private Integer signType;// 1：团队 2： 个人
 	public String registerScore(){
-		if(sessionMap.get("signType") != null){
+		if(signType != null){
+			
+		}else{
 			signType = (Integer)sessionMap.get("signType");
 		}
-		if(sessionMap.get("compeId") != null){
+		if(compeId != null){
+			
+		}else{
+			
 			compeId = (Integer)sessionMap.get("compeId");
 		}
 		if(sessionMap.get("currentPage") != null){
@@ -439,6 +445,41 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		System.out.println(compeId+"==============zhaohsuo ===>>>");
 		competitionService.changeCompetitionStatus(compeId, 2);
 		return "RedirectToNextClassCompetitionPage";
+	}
+	/**
+	 *查看进行中项目的报名情况，总人数，以及可以进行人数的详细查询 
+	 */
+	public String lookProcessingCompetitionStatus(){
+		//得到正在进行中的竞赛项目
+		List<Competition> compeList = competitionService.getProcessingCompetition();
+		// 竞赛 id 为键 报名人数为值
+		Map<Integer,Integer> compeSignUpsMap = new HashMap<Integer,Integer>();
+		for(Competition compe:compeList){
+			Integer compeId = compe.getCompe_id();
+			List<SignUp> signUpList = signUpService.getSpecialCompetitionSignUps(compeId);
+			compeSignUpsMap.put(compeId, signUpList.size());
+		}
+		requestMap.put("compeList", compeList);
+		requestMap.put("compeSignUpsMap", compeSignUpsMap);
+		System.out.println("compeList"+compeList.size());
+		System.out.println("compeSignUpMap"+compeSignUpsMap.values());
+		return "ToProcessingCompetition";
+	}
+	/**
+	 * 查看指定项目详细报名情况  报名该项目的所有学生的信息
+	 */
+	public String seeSignUpsDetails(){
+		System.out.println("《》《》《》《》《》zhaoshuo"+compeId);
+		Integer pageSize = 1;//每页显示的数量
+		Integer count = signUpService.getSpecialCompetitionSignUps(compeId).size();
+		if(currentPage == null || (currentPage+"").trim() == ""){
+			currentPage = 0;
+		}
+		PageBean pageBean = new PageBean(currentPage, pageSize, count, null);
+		List<SignUp> signUpList = signUpService.getSpecialCompeSignUpsByPage(pageBean, compeId);
+		pageBean.setRecordList(signUpList);
+		requestMap.put("pageBean", pageBean);
+		return "CompeSignUpAllStudentsInfo";
 	}
 	//==============================
 	// 属性的set和get方法

@@ -50,7 +50,7 @@
 								</c:if>
 							</td>
 							<td>
-								<c:if test="${jugePromotion ge award.awardRecor_competition.compe_endTime and  award.awardRecor_competition.compe_status eq 2}">
+								<c:if test="${jugePromotion le award.awardRecor_competition.compe_endTime and jugePromotion ge  award.awardRecor_time}">
 										<a href="${pageContext.request.contextPath}/student_promotion?award_id=${award.awardRecor_id }" class="btn btn-primary">进入下一阶段</a>
 								</c:if>
 							

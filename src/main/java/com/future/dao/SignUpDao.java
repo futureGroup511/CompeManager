@@ -77,7 +77,14 @@ public interface SignUpDao {
 	 * @param sup
 	 */
 	public void makeSignUpScored(Integer signUpId, Integer signUp_registerRecord);
-	
+	/**
+	 * 查询得到指定竞赛的全部报名人员
+	 */
+	public List<SignUp> getSpecialCompetitionSignUps(Integer copeId);
+	/**
+	 * 分页查询 得到指定竞赛的报名信息
+	 */
+	public List<SignUp> getSpecialCompeSignUpsByPage(PageBean pageBean, Integer compeId);
 	public void addSignUp(SignUp sup);
 	
 	public SignUp jugeStudentuge(Student stu,Competition compe,Integer sup_type);
