@@ -6,6 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询所有获奖记录</title>
+<!-- 去掉这3行，则点击直接显示原图，如果移动至下面则IE浏览器报错 begin -->
+<script type='text/javascript' src='ly/js/jquery.js'></script>
+<script type='text/javascript' src='ly/js/jquery.scripts.js'></script>
+<script type='text/javascript' src='ly/js/jquery.custom.js'></script>
+<!-- 去掉这3行，则点击直接显示原图，如果移动至下面则IE浏览器报错 end -->
+<link rel="stylesheet" type="text/css" media="all" href="ly/css/style.min.css" />
+
 </head>
 <body>
 
@@ -78,7 +85,14 @@
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>
 				<td>
-				<img alt="" src="${awardRecor_picturePath }">
+				<s:if test="awardRecor_picturePath == ''">
+				未上传
+				</s:if>
+				<s:else>
+					<a class="image-icon" rel="gallery[modal]" href="${awardRecor_picturePath }">
+					<img height="20" width="100" src="${awardRecor_picturePath }"></a>
+					<%-- <img alt="" src="${awardRecor_picturePath }"> --%>
+				</s:else>
 				</td>
 			</tr>
 	</s:iterator>
@@ -139,9 +153,5 @@ function display_alert(url)
 	return url;
   }
 </script>
-
-<input type="button" onclick="display_alert()"
-value="Display alert box" />
-
 </body>
 </html>

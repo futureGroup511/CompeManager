@@ -337,10 +337,15 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	}
 	private Integer signType;// 1：团队 2： 个人
 	public String registerScore(){
-		if(sessionMap.get("signType") != null){
+		if(signType != null){
+			
+		}else{
 			signType = (Integer)sessionMap.get("signType");
 		}
-		if(sessionMap.get("compeId") != null){
+		if(compeId != null){
+			
+		}else{
+			
 			compeId = (Integer)sessionMap.get("compeId");
 		}
 		if(sessionMap.get("currentPage") != null){

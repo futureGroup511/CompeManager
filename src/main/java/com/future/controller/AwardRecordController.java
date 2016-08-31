@@ -45,7 +45,8 @@ public class AwardRecordController extends BaseAction<AwardRecord>{
 		ActionContext.getContext().put("departments", departments);
 		
 		//准备数据，查询所有竞赛项目
-		List<Competition> competitons =adminService.findAllSuccessCheckProject();
+		//List<Competition> competitons =adminService.findAllSuccessCheckProject();
+		List<Competition> competitons =adminService.findAllHaveResultProject();
 		//查询出来之后应该处理一下竞赛项目名称 比如果 2015蓝桥杯2016蓝桥杯  他只显示蓝桥杯，处理一下在列表中显示竞赛项目前具体加上年份
 		//这里弄了一个内部类临时存放了id和竞赛项目
 		List<Compe> compe = new ArrayList<Compe>();
@@ -157,8 +158,8 @@ public class AwardRecordController extends BaseAction<AwardRecord>{
 		List<Department> departments = departmentService.findAllDepartment();
 		ActionContext.getContext().put("departments", departments);
 		
-		//准备数据，查询所有竞赛项目
-		List<Competition> competitons =adminService.findAllSuccessCheckProject();
+		//准备数据，查询状态=3（结果录入完毕）所有竞赛项目
+		List<Competition> competitons =adminService.findAllHaveResultProject();
 		List<Compe> compe = new ArrayList<Compe>();
 		for(Competition obj:competitons){
 			Date time = obj.getCompe_requestDate();

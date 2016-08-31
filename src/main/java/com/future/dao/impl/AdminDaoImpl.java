@@ -23,7 +23,7 @@ public class AdminDaoImpl extends BaseDao implements AdminDao
 	//查看审核成功项目
 	@Override
 	public List<Competition> findAllSuccessCheckProject() {
-		String hql="from Competition c where c.compe_status=2";
+		String hql="from Competition c where c.compe_status = 2";
 		return getsession().createQuery(hql).list();
 	}
 
@@ -112,5 +112,12 @@ public class AdminDaoImpl extends BaseDao implements AdminDao
 				.uniqueResult();
 		
 		return new PageBean(pageNum, pageSize, count.intValue(), list);
+	}
+
+	//准备数据，查询状态=3（结果录入完毕）所有竞赛项目
+	@Override
+	public List<Competition> findAllHaveResultProject() {
+		String hql="from Competition c where c.compe_status = 3";
+		return getsession().createQuery(hql).list();
 	}
 }
