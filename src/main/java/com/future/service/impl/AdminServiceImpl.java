@@ -76,16 +76,14 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.getPageBeanNoPassCheck(pageNum,pageSize);
 	}
 
-<<<<<<< HEAD
 	@Override
 	public Admin jugeByNumAndPassword(String num, String password) {
 		return adminDao.jugeByNumAndPassword(num, password);
-=======
 	//准备数据，查询状态=3（结果录入完毕）所有竞赛项目
+	}
 	@Override
 	public List<Competition> findAllHaveResultProject() {
 		return adminDao.findAllHaveResultProject();
->>>>>>> e016aa37ccaed1a196b4393df6ae984cd98dfce2
 	}
 
 	

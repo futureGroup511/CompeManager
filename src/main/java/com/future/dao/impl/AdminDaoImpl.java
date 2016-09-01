@@ -115,18 +115,16 @@ public class AdminDaoImpl extends BaseDao implements AdminDao
 		return new PageBean(pageNum, pageSize, count.intValue(), list);
 	}
 
-<<<<<<< HEAD
 	@Override
 	public Admin jugeByNumAndPassword(String num, String password) {
 		String hql="From Admin a where a.ad_num=:num and a.ad_password=:password";
 		Admin admin=(Admin) getsession().createQuery(hql).setParameter("num", num).setParameter("password", password).uniqueResult();
 		return admin;
-=======
-	//准备数据，查询状态=3（结果录入完毕）所有竞赛项目
+	}
+		//准备数据，查询状态=3（结果录入完毕）所有竞赛项目
 	@Override
 	public List<Competition> findAllHaveResultProject() {
 		String hql="from Competition c where c.compe_status = 3";
 		return getsession().createQuery(hql).list();
->>>>>>> e016aa37ccaed1a196b4393df6ae984cd98dfce2
 	}
 }
