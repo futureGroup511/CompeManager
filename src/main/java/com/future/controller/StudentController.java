@@ -224,10 +224,9 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-           
-             
         AwardRecord ar=ars.findAwardRecordById(award_id);
-        ar.setAwardRecor_picturePath(root);
+        String path=root.substring(root.indexOf("UploadFile"));
+        ar.setAwardRecor_picturePath(path);
 		ars.saveOrUpdaAward(ar);
         return "success";
 	}

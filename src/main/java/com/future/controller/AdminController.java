@@ -23,11 +23,8 @@ import com.future.domain.Department;
 import com.future.domain.Student;
 import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ModelDriven;
 import com.future.domain.Competition;
-import com.future.service.AdminService;
 import com.future.utils.PageBean;
-import com.opensymphony.xwork2.ActionContext;
 
 @Controller
 @Scope("prototype")

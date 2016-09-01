@@ -4,10 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -69,7 +66,7 @@ public class AwardRecordController extends BaseAction<AwardRecord>{
 		//处理年度
 		if(Integer.parseInt(year) != 0){
 			Date date = new SimpleDateFormat("yyyy-MM-dd").parse(year +"-01-01"); 
-			//System.out.println(date);
+			//System.out.println("ZZZZZZZZZZZZZ" + date);
 			model.setAwardRecor_time(date);
 		}
 		//把model传给Service经i选哪个操作

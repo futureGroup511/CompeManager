@@ -12,16 +12,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>学院负责人</title>
-<link rel="stylesheet" href="/css/bootstrap.css" />
-<link rel="stylesheet" href="/css/xueyuan5.css" />
-<script src="/js/jquery-2.2.3.min.js"></script>
-<script src="/js/bootstrap.js"></script>
+<link rel="stylesheet" href="<%=basePath %>css/bootstrap.css" />
+<link rel="stylesheet" href="<%=basePath %>css/xueyuan5.css" />
+<script src="<%=basePath %>js/jquery-3.0.0.min.js"></script>
+<script src="<%=basePath %>js/bootstrap.js"></script>
 </head>
 <body>
 		<div class="dangqian">
     		<div class="row">
 		        <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
-		            <a><p>添加信息</p></a>
+		            <a> <p>  </p> </a>
 		        </div>
 		        <div class="col-lg-2 col-lg-offset-6 col-md-3 col-md-offset-3 col-xs-5  col-xs-offset-1">
 		            <p>当前位置：学院负责人>>登陆成功</p>
@@ -41,7 +41,8 @@
 		<!-- <li><a href="depManager_seeHistoryCompetition">历史申报项目</a></li> -->
 		<li><a href="depManager_inspectStudentApplyPage">审核报名</a></li>
 		<li><a href="depManager_nextClassCompetition">继续下级比赛</a></li>
-		<li class="one">
+	</ul>
+			
 				<s:if test="#request.compeList != null && #request.compeList.size() > 0">
 					<s:form action="depManager_registerScore">
 					<div class="row">
@@ -61,8 +62,6 @@
 				<s:else>
 					暂无竞赛结果需要填写
 				</s:else>
-		</li>
-	</ul>
 </div>
 </body>
 </html>

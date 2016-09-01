@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+  padding:0;
+  margin:0;
+}
+.container{
+  width:100%;
+}
+.row{
+  width:100%;
+}
+.row a:hover{
+  text-decoration: none;
+  color:#FFCA00;
+}
+.dangqian .row{
+  margin-top:2%;
+}
+.container .col-lg-offset-6 p{
+  font-size: 23px;
+  color:#0078D7;
+  margin-left:-16%;
+  margin-top: 10%;
+}
+.form-group input{
+  width:40%;
+}
+.form-group{
+  margin-top: 20px;
+   width:90%;
+}
+.three .row{
+  width:94%;
+}
+.four .row{
+  width:78%;
+  margin-top: 8px;
+}
+.btn-primary {
+  font-size:18px;
+  width:40%;
+  height:40px;
+  margin-left: 2%;
+}

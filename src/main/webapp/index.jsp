@@ -9,6 +9,18 @@
 <title>test</title>
 </head>
 <body>
+	<s:if test="#session.stu!=null">
+		你好,${sessionScope.stu.stu_name} <a href="loginControll_loginOut">退出</a>
+	</s:if>
+	<s:elseif test="#session.depManager!=null">
+		你好,${sessionScope.depManager.depM_name} <a href="loginControll_loginOut">退出</a>
+	</s:elseif>
+	<s:elseif test="#session.admin!=null">
+		你好,${sessionScope.admin.ad_name} <a href="loginControll_loginOut">退出</a>
+	</s:elseif>
+	<s:else>
+		<a href="loginControll_loginView">登陆</a>
+	</s:else>
 	<s:form method="post" action="depManager_login">
 		<s:textfield name="depM_num"/>
 		<s:textfield name="depM_password"/>

@@ -1,6 +1,12 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%
+	//得到url的根路径
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,15 +22,43 @@
 				$("."+oldValue)[1].style.display="none";
 			}
 			var value = $(this).children('option:selected').val();
-			$("."+value)[0].style.display="inline";
-			$("."+value)[1].style.display="inline";
+			$("."+value)[0].style.display="table-cell";
+			$("."+value)[1].style.display="table-cell";
 			oldValue = value;
 		})
+		$(".btn").click(function(){
+			$(".scoreAddedSpan").css("display", 'none');
+			var ScoreAdded = $(".ScoreAdded").val();
+			if(ScoreAdded == null || ScoreAdded.trim()==""){
+				$(".scoreAddedSpan").css("display", 'inline');
+				return false;
+			}
+			return true;
+		});
+		
 	});
 </script>
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/xueyuan 7css.css" />
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="js/bootstrap.js"></script>
 </head>
 <body>
-<table>
+<div class="dangqian">
+    		<div class="row">
+		        <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
+		            <a> <p>  </p> </a>
+		        </div>
+		        <div class="col-lg-2 col-lg-offset-6 col-md-3 col-md-offset-3 col-xs-5  col-xs-offset-1">
+		            <p>当前位置：学院负责人>>登陆成功</p>
+		        </div>
+		        <div class="col-lg-2 col-md-3 col-xs-3">
+		            <p>欢迎 	${sessionScope.depManager.depM_name }  登录本系统</p>
+		        </div>
+    		</div>
+		</div>
+<div class="container">
+<table class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
 			  <th>学生所在院系</th>
@@ -35,9 +69,9 @@
               <th>竞赛名称</th>
               <th>所加学分</th>
               <th>获奖等级</th>
+              <th>提交</th>
               <th>老师奖金</th>
               <th>学生奖金</th>
-              <th></th>
           </tr>
 		</thead>
 		<s:if test="#request.signUp != null">
@@ -49,16 +83,22 @@
 					<td><s:property value="#request.signUp.signUp_teacher"/></td>
 					<td><s:property value="#request.signUp.signUp_competition.compe_compeName.compeName_name"/></td>
 					<s:form action="depManager_registerScoreToRecord" method="post">
-						<td><s:textfield name="ScoreAdded"></s:textfield></td>
-						<td><s:select id="awardHieSelect" name="awardHieId" list="#request.hieList" listKey="awardHie_id" listValue="awardHie_name"></s:select></td>
+						<td>
+						<s:textfield  class="ScoreAdded form-control" name="ScoreAdded"></s:textfield>
+						<span class="scoreAddedSpan" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
+						</td>
+						
+						<td>
+						<s:select  class="form-control" id="awardHieSelect" name="awardHieId" list="#request.hieList" listKey="awardHie_id" listValue="awardHie_name"></s:select>
+						</td>
+						<td><s:submit value="提交" class="btn btn-default  active"></s:submit></td>
 						<s:iterator value="#request.hieList" var="hie">
-							<td class="${hie.awardHie_id }" style="display: none">${hie.awardHie_standard.award_stuMoney }</td>
-							<td class="${hie.awardHie_id }" style="display: none">${hie.awardHie_standard.award_teaMoney }</td>
+						<td class="${hie.awardHie_id }" style="display: none">${hie.awardHie_standard.award_stuMoney }</td>
+						<td class="${hie.awardHie_id }" style="display: none">${hie.awardHie_standard.award_teaMoney }</td>
 						</s:iterator>
 						<s:hidden name="registerSignUpId" value="%{#request.signUp.signUp_id }"></s:hidden>
 						<s:hidden name="groupIsOrNot" value="%{#request.groupIsOrNot }"></s:hidden>
 						<s:hidden name="currentPage" value="%{#request.currentPage }"></s:hidden>
-						<td><s:submit value="提交"></s:submit></td>
 					</s:form>
 				</tr>
 		</s:if>
@@ -70,5 +110,6 @@
 			</tr>
 		</s:else>
 	</table>
+</div>
 </body>
 </html>

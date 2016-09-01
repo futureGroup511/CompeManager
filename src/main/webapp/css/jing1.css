@@ -1,0 +1,34 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+  padding:0;
+  margin:0;
+}
+.container{
+  width:100%;
+}
+.dangqian{
+  margin-top:2%;
+}
+.row{
+  width:100%;
+}
+.row a:hover{
+  text-decoration: none;
+  color:#FFCA00;
+}
+.container{
+  margin-top:30px;
+  font-size:16px;
+}
+.table-responsive{
+  width:86%;
+  margin:auto;
+   margin-top: 25px;
+}
+.col-lg-5{
+  margin-top:7%;
+}
+.pagination{
+  margin-top: -8%;
+}

@@ -1,0 +1,102 @@
+@charset "utf-8";
+*{
+  padding:0;
+  margin:0;
+}
+.one{
+  margin-top:3%;
+}
+.row{
+width:100%;
+}
+.one h3{
+  font-family:"微软雅黑";
+  color:#306AB0;
+  background-image:url(../imgs/%E4%B8%8B%E5%88%92%E7%BA%BF.png);
+  background-repeat: no-repeat;
+  background-position:-60px 15px;
+  height: 32px;
+  display:block;
+  border-bottom:1px #3574C1 solid;
+  width:90%;
+  margin-left:5%;
+}
+.two .row{
+  margin-top:50px;
+  width:90%;
+  margin-left:5%;
+}
+.two .col-sm-5 ul{
+  margin-top:-30px;
+  height:300px;
+}
+.two .col-sm-5 li{
+  margin-top:11px;
+}
+.two .col-sm-5 a{
+  text-decoration: none;
+}
+.two .col-lg-2 li{
+   margin-top:11px;
+}
+.two .col-lg-2 ul{
+  margin-top:-30px;
+  
+}
+.two .col-lg-2 li{
+  list-style: none;
+}
+.two .col-lg-2 a{
+  text-decoration: none;
+}
+.two .col-lg-2 ul{
+  margin-left:-20%;
+}
+.two .right{
+  margin-top:-14%
+}
+.two button{
+  margin-top:13%;
+}
+.input-group  select{
+  height:40px;
+}
+.input-one .input-lg{
+  font-size:15px;
+}
+.input-one{
+  margin-top:9%;
+} 
+.input-two{
+  margin-top:7.5%
+}
+.input-three{
+  margin-top:7.5%;
+}
+.input-three img{
+  height:20px;
+}
+.input-one .input-group-addon p{
+  font-size: 12px;
+}
+.input-one .input-group-addon p{
+  width:20px;
+  margin-top:5px;
+  margin-left:-5px;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #A9A9A9;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #A9A9A9;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #A9A9A9;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #A9A9A9;
+}
+/* CSS Document */
+
