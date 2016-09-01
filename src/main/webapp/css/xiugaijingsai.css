@@ -1,0 +1,55 @@
+@charset "utf-8";
+*{
+  padding:0;
+  margin:0;
+}
+a:hover{
+  text-decoration: none;
+  color:#FFCA00;
+}
+.dangqian{
+  margin-top:2%;
+}
+.row{
+  width:100%;
+}
+.row p{
+  font-size:16px;
+}
+.container{
+  margin-top:3%;
+}
+
+.container .row .col-lg-2 p{
+  margin-top:3%;
+  display: block;
+}
+.container .two{
+  margin-top:2%;
+}
+.container .three{
+  margin-top:2%;
+}
+.container .four{
+  margin-top:2%;
+}
+.container .five{
+  margin-top:2%;
+}
+.container .five a{
+  margin-top:5%;
+  display:block;
+  margin-left:-18%;
+}
+.container .last{
+  margin-top:5%;
+  margin-left:92.5%;
+  width:5%;
+}
+.lastlast{
+  margin-left:75%;
+  margin-top:-2.5%;
+  font-size:15px;
+}
+/* CSS Document */
+
