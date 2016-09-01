@@ -12,8 +12,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>学院负责人</title>
+<link rel="stylesheet" href="/css/bootstrap.css" />
+<link rel="stylesheet" href="/css/xueyuan5.css" />
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script src="/js/bootstrap.js"></script>
 </head>
 <body>
+		<div class="dangqian">
+    		<div class="row">
+		        <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
+		            <a><p>添加信息</p></a>
+		        </div>
+		        <div class="col-lg-2 col-lg-offset-6 col-md-3 col-md-offset-3 col-xs-5  col-xs-offset-1">
+		            <p>当前位置：学院负责人>>登陆成功</p>
+		        </div>
+		        <div class="col-lg-2 col-md-3 col-xs-3">
+		            <p>欢迎 	${sessionScope.depManager.depM_name }  登录本系统</p>
+		        </div>
+    		</div>
+		</div>
+	<div class="container">
 	<ul>
 		<li><a href="depManager_lookProcessingCompetitionStatus">查看正在进行项目的报名情况</a></li>
 		<li><a href="depManager_applyCompeName">申报项目名称</a></li>
@@ -23,14 +41,18 @@
 		<!-- <li><a href="depManager_seeHistoryCompetition">历史申报项目</a></li> -->
 		<li><a href="depManager_inspectStudentApplyPage">审核报名</a></li>
 		<li><a href="depManager_nextClassCompetition">继续下级比赛</a></li>
-		<li>
+		<li class="one">
 				<s:if test="#request.compeList != null && #request.compeList.size() > 0">
 					<s:form action="depManager_registerScore">
+					<div class="row">
+              		 <div class="col-lg-4 col-md-4 col-xs-5">
 						<select name="compeId">
 							<s:iterator value="#request.compeList" var="compe">
 								<option value="<s:property value="#compe.compe_id" />"><s:date name="#compe.compe_requestDate" format="yyyy-MM-dd"/> 申请的 ${compe.compe_compeName.compeName_name}</option>
 							</s:iterator>
 						</select>
+						</div>
+						</div>
 						<s:radio list="#{'1':'团体', '2':'个人' }" name="signType" value="1">
 						</s:radio>
 						<s:submit value="录入此竞赛成绩"></s:submit>
@@ -41,5 +63,6 @@
 				</s:else>
 		</li>
 	</ul>
+</div>
 </body>
 </html>
