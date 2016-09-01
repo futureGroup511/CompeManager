@@ -42,4 +42,6 @@ public interface AdminService {
 	public List<Competition> findAllHaveResultProject();
 
 
+	
+
 }

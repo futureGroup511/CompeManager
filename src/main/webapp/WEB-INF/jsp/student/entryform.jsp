@@ -13,8 +13,9 @@
 </head>
 <body id="body">
 		<jsp:include page="operation.jsp"></jsp:include>
-		
-		<div class="panel panel-default" style="margin-top: 50px">
+		<div class="container-fluid">
+			<div class="col-lg-8 col-lg-offset-2">
+			<div class="panel panel-default" style="margin-top: 50px">
 			<div class="panel-heading">
 					<h3 class="panel-title">${comp.compe_compeName.compeName_name }竞赛报名表</h3>
 			</div>
@@ -36,7 +37,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-lable col-md-1">竞赛的名称:</label>
+							<label class="control-lable col-md-1">竞赛名称:</label>
 							<div class="col-md-4">
 								<label class="control-lable">${comp.compe_compeName.compeName_name}</label>
 								<input id="compe_id" type="text" hidden name="compe_id" value="${comp.compe_id }" >
@@ -117,6 +118,11 @@
 					</div>
 			</div>	
 		</div>
+		
+		</div>
+		</div>
+		
+		
 </body>
 <script type="text/javascript">
 var index=1;

@@ -79,6 +79,8 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Admin jugeByNumAndPassword(String num, String password) {
 		return adminDao.jugeByNumAndPassword(num, password);
+
+	
 	//准备数据，查询状态=3（结果录入完毕）所有竞赛项目
 	}
 	@Override

@@ -4,6 +4,7 @@ package com.future.service;
 import java.util.List;
 
 import com.future.domain.AwardRecord;
+import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
 import com.future.domain.Student;
 import com.future.utils.Page_S;
@@ -55,5 +56,11 @@ public interface AwardRecordService {
 	public AwardRecord findAwardRecordById(Integer id);
 	
 	public void saveOrUpdaAward(AwardRecord ar);
+
+	//分页查询当前院系所有获奖记录
+	PageBean getPageBeanDefindAllAwardRecord(int pageNum, int pageSize, Integer department);
+
+	//分页院系条件查询
+	PageBean getPageBeanDeConditionQuery(int pageNum, int pageSize, DeQuery model, Integer department);
 	
 }

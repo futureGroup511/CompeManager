@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+  padding:0;
+  margin:0;
+}
+.container{
+  width:100%;
+}
+.row{
+  width:100%;
+}
+.row a:hover{
+  text-decoration: none;
+  color:#FFCA00;
+}
+.row textarea{
+  width:100%;
+  margin-top:30px;
+}
+.form-group{
+  width:100%;
+}
+.row p{
+  margin-top:30px;
+}
+.form-horizontal{
+  margin-top: 30px;
+}
+.row button{
+  margin-top: 20px;
+}

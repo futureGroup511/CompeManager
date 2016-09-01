@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+  padding:0;
+  margin:0;
+}
+.container{
+  width:100%;
+}
+.row{
+  width:100%;
+}
+
+.row a:hover{
+  text-decoration: none;
+  color:#FFCA00;
+}
+.dangqian .row{
+  margin-top:2%;
+}
+.container .col-lg-offset-6 p{
+  font-size: 23px;
+  color:#0078D7;
+  margin-left:-16%;
+  margin-top: 10%;
+}
+.form-group input{
+  width:40%;
+}
+.form-group{
+  margin-top: 20px;
+   width:90%;
+}
+.redio-inline #inlineRadiol{
+  margin-left: 35%
+}
+.form-group select {
+  width:107%;
+}
+.btn-primary {
+  font-size:18px;
+  height:40px;
+  width:64.3%;
+  margin-left:12.6%;
+}

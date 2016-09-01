@@ -5,24 +5,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import org.apache.struts2.components.ActionComponent;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
 import com.future.base.BaseDao;
 import com.future.dao.AwardRecordDao;
-import com.future.dao.DepartmentDao;
 import com.future.domain.AwardRecord;
-import com.future.domain.Competition;
-import com.future.domain.Department;
 import com.future.domain.Student;
+import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
-import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionContext;
-import com.future.domain.AwardRecord;
-import com.future.domain.Student;
 import com.future.utils.Page_S;
 
 @Repository
@@ -508,5 +503,171 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 	public void saveOrUpdaAward(AwardRecord ar) {
 		getsession().saveOrUpdate(ar);
 	}
+
+	//分页查询当前院系所有获奖记录
+	@Override
+	public PageBean getPageBeanDefindAllAwardRecord(int pageNum, int pageSize, Integer department) {
+		List list = (List) getsession().createQuery("from AwardRecord a where a.awardRecor_student.stu_department.de_id = ?")
+				.setFirstResult((pageNum - 1 ) * pageSize)
+				.setMaxResults(pageSize)
+				.setParameter(0, department)
+				.list();
+		
+		Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a where a.awardRecor_student.stu_department.de_id = ?")
+				.setParameter(0, department)
+				.uniqueResult();
+		
+		return new PageBean(pageNum, pageSize, count.intValue(), list);
+	}
+
+	private void list() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	//分页院系条件查询  ly
+	@Override
+	public PageBean getPageBeanDeConditionQuery(int pageNum, int pageSize, DeQuery model, Integer department) {
+		//System.out.println("model===" + model.getYear());
+		//System.out.println("model===" + model.getAward());
+		//System.out.println("model===" + model.getCompetiton());
+		//System.out.println("model===" + department);
+		Criteria criteria=getsession().createCriteria(AwardRecord.class);
+		
+		if(model.getCompetiton() != 0){
+			criteria.add(Restrictions.eq("awardRecor_competition.compe_id", model.getCompetiton()));
+		}
+		
+		//查询国际奖id
+		Integer guojiId = findguojiId();
+		System.out.println("国际奖励id：" + guojiId);
+		//查询全国奖id
+		Integer quanguoId = findquanguoId();
+		System.out.println("全国奖：" + quanguoId);
+		//查询校级奖id
+		Integer xiaojiId = findxiaojiId();
+		System.out.println("校级奖：" + xiaojiId);
+		//查询省级奖id
+		Integer shengjiId = findshengjiId();
+		System.out.println("省级奖：" + shengjiId);
+		
+		//如果选择了奖项  默认请选择=0，所以要！=0
+		if(model.getAward() != 0){
+			//国际奖
+			if(model.getAward() == guojiId){
+				List list = findAllCountry(23);  
+				criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));			
+			} else if(model.getAward() == quanguoId){
+				List list = findAllCountry(24);  
+				criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));
+			} else if(model.getAward() == shengjiId){
+				List list = findAllCountry(26);  
+				criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));
+			} else if(model.getAward() == xiaojiId){
+				List list = findAllCountry(25);  
+				criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list));
+			} else {
+				//根据id拿到名称，名且根据名称拿到id
+				List list = findByIdTwoId(model.getAward());
+				//criteria.add(Restrictions.eq("awardRecor_awadHie.awardHie_id", model.getAwardRecor_awadHie().getAwardHie_id()));
+				criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id", list));
+			}
+		}
+		
+		//年度
+		if(Integer.parseInt(model.getYear()) != 0){
+			try {
+				//System.out.println("ZZZZZZZZZ" + model.getYear());
+				Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(model.getYear() + "-01-01");
+				//System.out.println("11111111" + date1);
+				Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(model.getYear() + "-12-31");
+				System.out.println(date2);
+				criteria.add(Restrictions.between("awardRecor_time", date1, date2));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		List list = findAllAwardIdForDepartment(department); 
+		if(list!=null && !list.isEmpty()){
+			criteria.add(Restrictions.in("awardRecor_id",list));
+		} else{
+			criteria.add(Restrictions.eq("awardRecor_id",0));
+		}
+		criteria.setFirstResult((pageNum - 1) * pageSize); 
+		criteria.setMaxResults(pageSize);
+		List<AwardRecord> awardRecord=criteria.list();
+		criteria.setProjection(Projections.rowCount());
+		Long count1 = (Long)criteria.uniqueResult();
+		
+		//此方法是临时解决办法，条件第二次分页查询出现count1为null的错误
+		if(count1==null){
+			criteria=getsession().createCriteria(AwardRecord.class);
+			//如果选择了竞赛    默认请选择=0，所以要！=0
+			if(model.getCompetiton() != 0){
+				criteria.add(Restrictions.eq("awardRecor_competition.compe_id", model.getCompetiton()));
+			}
+			
+			//如果选择了奖项  默认请选择=0，所以要！=0
+			if(model.getAward() != 0){
+				//国际奖
+				if(model.getAward() == guojiId){
+					List list1 = findAllCountry(23);  
+					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list1));			
+				} else if(model.getAward() == quanguoId){
+					List list1 = findAllCountry(24);  
+					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list1));
+				} else if(model.getAward() == shengjiId){
+					List list1 = findAllCountry(26);  
+					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list1));
+				} else if(model.getAward() == xiaojiId){
+					List list1 = findAllCountry(25);  
+					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list1));
+				} else {
+					//根据id拿到名称，名且根据名称拿到id
+					List list1 = findByIdTwoId(model.getAward());
+					//criteria.add(Restrictions.eq("awardRecor_awadHie.awardHie_id", model.getAwardRecor_awadHie().getAwardHie_id()));
+					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id", list1));
+				}
+			}
+			
+			//年度
+			if(Integer.parseInt(model.getYear()) != 0){
+				try {
+					//System.out.println("ZZZZZZZZZ" + model.getYear());
+					Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(model.getYear() + "-01-01");
+					//System.out.println("11111111" + date1);
+					Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(model.getYear() + "-12-31");
+					System.out.println(date2);
+					criteria.add(Restrictions.between("awardRecor_time", date1, date2));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			List list2 = findAllAwardIdForDepartment(department); 
+			if(list!=null && !list.isEmpty()){
+				criteria.add(Restrictions.in("awardRecor_id",list2));
+			} else{
+				criteria.add(Restrictions.eq("awardRecor_id",0));
+			}
+			
+			
+			criteria.setProjection(Projections.rowCount());
+			count1 = (Long)criteria.uniqueResult();
+			System.out.println("++++++++++++++++++++" + count1);
+		}
+		
+		
+		
+		
+		
+		
+		return new PageBean(pageNum, pageSize, count1.intValue(),awardRecord);
+		//return new PageBean(pageNum, pageSize, 300,awardRecord);
+	}
+
+	
+	
 	
 }

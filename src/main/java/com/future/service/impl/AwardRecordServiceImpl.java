@@ -11,9 +11,9 @@ import com.future.dao.AwardRecordDao;
 import com.future.domain.AwardRecord;
 
 import com.future.service.AwardRecordService;
+import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
 import com.future.domain.Student;
-import com.future.service.AwardRecordService;
 import com.future.utils.Page_S;
 
 @Service
@@ -118,6 +118,18 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 		return awardRecordDao.getPageBeanConditionQuery(pageNum,pageSize,model);
 	}
 	//====================================================
+
+	//分页查询当前院系所有获奖记录
+	@Override
+	public PageBean getPageBeanDefindAllAwardRecord(int pageNum, int pageSize, Integer department) {
+		return awardRecordDao.getPageBeanDefindAllAwardRecord(pageNum,pageSize,department);
+	}
+
+	//分页院系条件查询
+	@Override
+	public PageBean getPageBeanDeConditionQuery(int pageNum, int pageSize, DeQuery model, Integer department) {
+		return awardRecordDao.getPageBeanDeConditionQuery(pageNum, pageSize,model,department);
+	}
 	
 	
 
