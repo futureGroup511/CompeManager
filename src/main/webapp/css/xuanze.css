@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+padding:0;
+margin:0;
+}
+.container{
+  width:100%;
+}
+.row{
+  width:100%;
+}
+.row p{
+  margin-top:30px;
+}
+.form-group{
+  width:80%;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+.col-lg-2  .seven{
+  margin-left: -60%;
+  margin-top:5px;
+}
+.col-md-offset-1{
+  margin-left: 0%;
+}

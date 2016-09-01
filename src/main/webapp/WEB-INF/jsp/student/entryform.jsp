@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<!DOCTYPE html >
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,101 +17,102 @@
 			<div class="col-lg-8 col-lg-offset-2">
 			<div class="panel panel-default" style="margin-top: 50px">
 			<div class="panel-heading">
-					<h3 class="panel-title">${comp.compe_compeName.compeName_name }竞赛报名表</h3>
+					<h3 class="panel-title">${comp.compe_compeName.compeName_name }竞赛报名表<span class="text-center text-danger">(请填写完整内容否则报名失败)</span></h3>
 			</div>
 			<div class="panel-body">
 					<form action="student_finishApply" class="form-horizontal" method="post" id="form">
-						<div class="form-group">
-							<label class="control-lable col-md-1">学生姓名:</label>
-							<div class="col-md-4">
-								<label class="control-lable">${stu.stu_name}</label>
-								<input id="stu_id"  type="text" hidden value="${stu.stu_id}" name="students[0].stu_id">
-								<input type="text" hidden value="${stu.stu_name}" name="students[0].stu_name">
-								<input type="text" hidden value="${stu.stu_num}" name="students[0].stu_num">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-lable col-md-1">指导老师:</label>
-							<div class="col-md-4">
-								<input  type="text" class="from-control"  placeholder="指导老师"  name="sup.signUp_teacher" required="required">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-lable col-md-1">竞赛名称:</label>
-							<div class="col-md-4">
-								<label class="control-lable">${comp.compe_compeName.compeName_name}</label>
-								<input id="compe_id" type="text" hidden name="compe_id" value="${comp.compe_id }" >
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-lable col-md-1">开始时间:</label>
-							<div class="col-md-4">
-								<label class="control-lable">${comp.compe_startTime}</label>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-lable col-md-1">结束时间:</label>
-							<div class="col-md-4">
-								<label class="control-lable">${comp.compe_endTime}</label>
-							</div>
-						</div>
-						<div   class="form-group">
-							<label class="control-lable col-md-1">竞赛类型:</label>
+					</form>
+					<table class="table-hover table-bordered col-md-12">
+						<tbody id="content">
+							<tr>
+								<td class="col-md-4"><h4 class=" text-lg">学生姓名:</h4></td>
+								<td class="col-md-8 "><h4 class="text-lg">${stu.stu_name}</h4>
+									<input id="stu_id"  type="text" hidden value="${stu.stu_id}" name="students[0].stu_id" form="form">
+									<input type="text" hidden value="${stu.stu_name}" name="students[0].stu_name" form="form">
+									<input type="text" hidden value="${stu.stu_num}" name="students[0].stu_num" form="form">
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-4"><h4 class=" text-lg">指导老师:</h4></td>
+								<td class="col-md-8 "><input  form="form" required="true"  type="text" class="from-control "  placeholder="指导老师"  name="sup.signUp_teacher" ></td>
+							</tr>
+							<tr>
+								<td class="col-md-4"><h4 class=" text-lg">竞赛名称:</h4></td>
+								<td class="col-md-8 "><h4 class="text-lg">${comp.compe_compeName.compeName_name}</h4>
+									<input form="form" id="compe_id" type="text" hidden name="compe_id" value="${comp.compe_id }" >
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-4"><h4 class=" text-lg">开始时间 :</h4></td>
+								<td class="col-md-8 ">
+								<h4 class="text-lg">${comp.compe_startTime}</h4>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-4"><h4 class=" text-lg">结束时间 :</h4></td>
+								<td class="col-md-8 ">
+								<h4 class="text-lg">${comp.compe_endTime}</h4>
+								</td>
+							</tr>
 							
-							<div class="col-md-4">
-								<s:if test="#request.comp.compe_type==1">
-										<input hidden class="from-control compe_type"  value ="1" type="text" name="sup.singnup_type" readonly="readonly"><label class="control-lable">团队</label>
-								</s:if>
-								<s:if test="#request.comp.compe_type==2">
-										<input hidden class="from-control compe_type"  value ="2" type="text" name="sup.singnup_type" readonly="readonly"><label class="control-lable">个人</label>
-								</s:if>
-								
-								<s:if test="#request.comp.compe_type==3">
-										<input type="radio" class="from-control compe_type" onclick="jugeCompType(1,this);" name="sup.singnup_type" value="1"><label class="control-lable">团队</label>
+							<tr>
+								<td class="col-md-4"><h4 class=" text-lg">竞赛类型 :</h4></td>
+								<td class="col-md-8 ">
+									<s:if test="#request.comp.compe_type==1">
+										<input form="form" hidden class="from-control compe_type"  value ="1" type="text" name="sup.singnup_type" readonly="readonly"><label class="control-lable">团队</label>
+										</s:if>
+										<s:if test="#request.comp.compe_type==2">
+												<input form="form" hidden class="from-control compe_type"  value ="2" type="text" name="sup.singnup_type" readonly="readonly"><label class="control-lable">个人</label>
+										</s:if>
 										
-										<input type="radio" class="from-control compe_type"  onclick="jugeCompType(2,this);"name="sup.singnup_type" value="2"><label class="control-lable">个人</label>
-								</s:if>
-								
-							</div>
-						</div>
-						
-						<s:if test="#request.comp.compe_type==1">
-							<div class="form-group">
-								<label class="control-lable col-md-1">团队名称:</label>
-								<div class="col-md-4">
-									<input id="teammanager" type="text" class="from-control"  placeholder="团队名称" required="required"  placeholder="团队名称" name="sup.signUp_team">
-									<button id="addteam" type="button" class="btn btn-primary" onclick="addTeamMember();">添加团队成员</button>
-									<label class="control-lable " hidden id="namealready">此团队名已被占用</label>
-								</div>
-								
-							</div>
-						</s:if>
-						<s:if test="#request.comp.compe_type==3">
-							<div  class="form-group teamscope">
-									<label class="control-lable col-md-1">团队名称:</label>
-									<div class="col-md-4">
-										<input id="teammanager" type="text" class="from-control"  placeholder="团队名称" required="required"  placeholder="团队名称" name="sup.signUp_team">
+										<s:if test="#request.comp.compe_type==3">
+												<input form="form" type="radio" class="from-control compe_type" onclick="jugeCompType(1);" name="sup.singnup_type" value="1"><label class="control-lable">团队</label>
+												
+												<input form="form" type="radio" class="from-control compe_type"  onclick="jugeCompType(2);"name="sup.singnup_type" value="2"><label class="control-lable">个人</label>
+										</s:if>
+								</td>
+							</tr>
+							
+							<s:if test="#request.comp.compe_type==1">
+								<tr>
+									<td class="col-md-4"><h4 class=" text-lg">团队名称:</h4></td>
+									<td class="col-md-8">
+										<input form="form" id="teammanager" type="text" class="from-control"  placeholder="团队名称" required="required"  placeholder="团队名称" name="sup.signUp_team">
 										<button id="addteam" type="button" class="btn btn-primary" onclick="addTeamMember();">添加团队成员</button>
 										<label class="control-lable " hidden id="namealready">此团队名已被占用</label>
-									</div>
-						    </div>
+									</td>
+								</tr>
+						</s:if>
+						<s:if test="#request.comp.compe_type==3">
+							<tr class="teamscope">
+								<td class="col-md-4"><h4 class=" text-lg">团队名称:</h4></td>
+								<td class="col-md-8">
+										<input form="form" id="teammanager" type="text" class="from-control"  placeholder="团队名称" required="required"  placeholder="团队名称" name="sup.signUp_team">
+										<button id="addteam" type="button" class="btn btn-primary" onclick="addTeamMember();">添加团队成员</button>
+										<label class="control-lable " hidden id="namealready">此团队名已被占用</label>
+								</td>
+							</tr>
 					    </s:if>
-					    <div class="form-group teamscope">
 					    
-					    	<label class="control-lable col-md-1">团队负责人:</label>
-								<div class="col-md-4">
+					    <tr class="teamscope">
+					    	<td class="col-md-4"><h4 class=" text-lg">团队负责人:</h4></td>
+							<td class="col-md-8">
 									<label class="control-lable ">姓名:</label>
-									<input readonly="readonly" class="from-control s_name" value="${stu.stu_name}">
+									<input form="form" readonly="readonly" class="from-control s_name" value="${stu.stu_name}">
 									<label class="control-lable ">学号:</label>
-									<input readonly="readonly" type="text" class="from-control member"  value="${stu.stu_num}" >
-								</div>
-					    </div>
-						
-					</form>
+									<input form="form" readonly="readonly" type="text" class="from-control member"  value="${stu.stu_num}" >
+							</td>	
+					    </tr>
+					    
+						</tbody>
+					
+					</table>
+					
+					    <p id="already" hidden class="text-danger">此用户已经报过名</p>
+						<p id="notexist" hidden class="text-danger">此用户不存在</p>
+						<p id="success" hidden class="text-success">此用户可报名</p>
 			</div>
-			<p id="already" hidden class="text-danger">此用户已经报过名</p>
-			<p id="notexist" hidden class="text-danger">此用户不存在</p>
-			<p id="success" hidden class="text-success">此用户可报名</p>
+			
 			<div class="panel panel-footer">
 					<div class="col-md-4 col-md-offset-4">
 							<button onclick="form_submit();"  class="btn btn-primary btn-lg btn-block">提交</button>
@@ -151,7 +152,6 @@ $(function(){
 			data:data,
 			dataType:'json',
 			success:function(data){
-				alert(data);
 				if(data=="notexist"){
 					$("#addteam").show();
 					$("#namealready").hide();
@@ -169,15 +169,16 @@ $(function(){
 
 function JqValidate()  
 {  
-    return $("#form").validate({  
-				rules:{
-					signUp_teacher:"required",
-					stu_name:"required",
-					stu_num:"required",
-					singnup_type:"required",
-				}
+
+		var value=$("input[name='sup.signUp_teacher']").val();
+		if(value===""||value===null){
+			alert("请填写完整内容")
+			return false;
+		}else{
+			return true;
+		}
 				
-    });  
+	
 } 
 
  
@@ -198,49 +199,52 @@ $(document).on("change",".s_num",function(){
 	
 });
 
-function jugeCompType(type,arr){
+function jugeCompType(type){
 	var teammanager=document.getElementById("teammanager");
-	if(type==1){
-
-		var data;
-		//竞赛的ID
-		var comp_id=$("#compe_id").attr("value");
-		//竞赛的类型
-		var comp_type=$(".compe_type").attr("value");
-		//学生的ID
-		var stu_id=$("#stu_id").attr("value");
-		
-				data={
-						"stu_id":stu_id,
-						"compe_id":comp_id,
-						"sup.singnup_type":comp_type
+	
+	//竞赛的ID
+	var comp_id=$("#compe_id").attr("value");
+	//竞赛的类型
+	var comp_type=$(".compe_type").attr("value");
+	//学生的ID
+	var stu_id=$("#stu_id").attr("value");
+	
+	var data={
+			"stu_id":stu_id,
+			"compe_id":comp_id,
+			"sup.singnup_type":comp_type
+	}
+	$.ajax({
+		url:"student_jugeapply",
+		type:'post',
+		data:data,
+		dataType:'json',
+		success:function(data){
+			if(data!=null){
+				//报过名显示为1
+				status=2;
+				$("#already").show();
+				return false;
+				
+			}else{
+				$("#already").hide();
+				status=1;
+				if(type===1){
+					$(".teamscope").show();
+					$("#addteam").hide();
+					$("#teammanager").attr("disabled",false);
+					$(".compe_type").attr("value",1);
 				}
-				$.ajax({
-					url:"student_jugeapply",
-					type:'post',
-					data:data,
-					dataType:'json',
-					success:function(data){
-						if(data!=null){
-							//报过名显示为1
-							status=2;
-							$("#already").show();
-							return false;
-							
-						}else{
-							$("#already").hide();
-							status=1;
-							$(".teamscope").show();
-							$("#addteam").hide();
-							$("#teammanager").attr("disabled",false);
-							$(".compe_type").attr("value",1);
-						}
-						
-					}
-				});
+				return true;
+			}
+		}
+	});
 		
-	}else if(type==2){
+	if(type==2){
+		//$("#already").hide();
 		$(".teamscope").hide();
+		$(".will").empty();
+		index=1;
 		$("#teammanager").attr("disabled",true);
 		$(".compe_type").attr("value",2);
 	}
@@ -248,21 +252,33 @@ function jugeCompType(type,arr){
 
 function addTeamMember(){
 	
-		var s= 		"<div class='form-group teamscope'>"	
-	        +"<label class='control-lable col-md-1'>团队成员:</label>"
-			+"<div class='col-md-4'>"
+	/*  
+		<tr class="teamscope">
+					    	<td class="col-md-4"><h4 class=" text-lg">团队负责人:</h4></td>
+							<td class="col-md-8">
+									<label class="control-lable ">姓名:</label>
+									<input form="form" readonly="readonly" class="from-control s_name" value="${stu.stu_name}">
+									<label class="control-lable ">学号:</label>
+									<input form="form" readonly="readonly" type="text" class="from-control member"  value="${stu.stu_num}" >
+							</td>	
+					    </tr>
+	*/
+	
+		var s= "<tr class='teamscope will'>"	
+	        +"<td class='col-md-4'><h4 class=' text-lg'>团队成员:</h4></td>"
+			+"<td class='col-md-8'>"
 			+"<label class='control-lable '>姓名:</label>"
-			+"<input required='required' class='from-control s_name' placeholder='姓名' name='students["+index+"].stu_name' value>"
+			+"<input form='form' required='required' class='from-control s_name' placeholder='姓名' name='students["+index+"].stu_name' value>"
 			+"<label class='control-lable '>学号:</label>"
-			+"<input required='required' type='text' class='from-control s_num'  placeholder='学号'  name='students["+index+"].stu_num' value>"
-			+"</div>" 
-			+"</div>"
+			+"<input form='form' required='required' type='text' class='from-control s_num'  placeholder='学号'  name='students["+index+"].stu_num' value>"
+			+"</td>	" 
+			+"</td>	"
 			; 
 		s_name="",s_num="";	
-		if(num==0){
-			num++;	
-		}
-		$(".form-horizontal").append(s);
+		
+		
+		$("#content").append(s);
+		$(".teamscope").show();
 		index++;
 
 	
@@ -291,7 +307,7 @@ function addTeamMember(){
 					data:data,
 					dataType:'json',
 					success:function(data){
-						if(data!=null){
+						if(data==="already"){
 							//报过名显示为1
 							status=2;
 							alert("此用户已报过名");
@@ -325,7 +341,7 @@ function addTeamMember(){
 								status=2;
 								$("#addteam").hide();
 								return false;
-							}else if(data!=null){
+							}else if(data==="already"){
 								//报过名显示为1
 								$("#notexist").hide();
 								$("#already").show();
@@ -333,7 +349,11 @@ function addTeamMember(){
 								status=2;
 								$("#addteam").hide();
 								return false;
-							} else{
+							} else if(data==="success"){
+								//检查团队负责人是否报过名
+								if(num==0){
+									num++;	
+								}
 								$("#addteam").show();
 								$("#notexist").hide();
 								$("#already").hide();
@@ -354,6 +374,9 @@ function addTeamMember(){
 	}
 
 	function form_submit(){
+		$("#notexist").hide();
+		$("#already").hide();
+		$("#success").hide();
 		var comp_type=$(".compe_type").attr("value");
 		if(comp_type==2){
 			VaStudents();
@@ -363,9 +386,9 @@ function addTeamMember(){
 		}
 	
 		if(status==1){
-			if(JqValidate()){    
+			if(JqValidate()&&jugeCompType()){    
 				 $(".form-horizontal").submit();
-				     } 
+			} 
 		}
 		 
 	
