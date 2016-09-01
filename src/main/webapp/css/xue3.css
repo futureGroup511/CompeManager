@@ -10,6 +10,7 @@
 .row{
   width:100%;
 }
+
 .row a:hover{
   text-decoration: none;
   color:#FFCA00;
@@ -30,16 +31,15 @@
   margin-top: 20px;
    width:90%;
 }
-.three .row{
-  width:94%;
+.redio-inline #inlineRadiol{
+  margin-left: 35%
 }
-.four .row{
-  width:78%;
-  margin-top: 8px;
+.form-group select {
+  width:107%;
 }
 .btn-primary {
   font-size:18px;
-  width:40%;
   height:40px;
-  margin-left: 2%;
+  width:64.3%;
+  margin-left:12.6%;
 }

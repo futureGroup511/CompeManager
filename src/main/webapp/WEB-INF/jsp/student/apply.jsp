@@ -8,16 +8,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>报名页面</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" >
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/xue2.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
 		<jsp:include page="operation.jsp"></jsp:include>
+		<div class="dangqian">
+		  <div class="row">
+		        <div class="col-lg-2 col-lg-offset-6 col-md-3 col-md-offset-3 col-xs-5  col-xs-offset-1">
+		            <p>当前位置：学生服务>>报名</p>
+		        </div>
+		        <div class="col-lg-2 col-md-3 col-xs-3">
+		            <p>欢迎登录本系统</p>
+		        </div>
+		  </div>
+		</div>
 		
-		
-		<table class="table table-bordered table-hover">
+		<div class="table-responsive">
+			<table class="table table table-bordered table-hover table-striped">
 				<thead>
-					<tr>
+					<tr class="two">
 						<th>#</th>
 						<th>竞赛名称</th>
 						<th>报名</th>
@@ -32,27 +43,36 @@
 						<tr>
 					</c:forEach>
 				</tbody>
-		</table>	
-		<div class="center-block" style="width: 300px">
-			<ul class="pagination">
-			<s:if test="#request.ps.currentPage-1 <= 0">
-				<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=1"><span>&laquo;</span></a></li>	
-			</s:if>
-			<s:elseif test="#request.ps.currentPage-1 >= 1">
-				<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=${request.ps.currentPage-1}"><span>&laquo;</span></a></li>				
-			</s:elseif>
-			<c:forEach begin="1" end="${request.ps.pageCount}" varStatus="sta">
-				<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=${request.ps.beginPageIndex+sta.index-1}">${request.ps.beginPageIndex+sta.index-1}</a></li>	
-			</c:forEach>
+			</table>
+		</div>
 			
-			<s:if test="#request.ps.currentPage+1 > #request.ps.pageCount">
-				<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=${request.ps.pageCount}"><span>&raquo;</span></a></li>	
-			</s:if>
-			<s:elseif test="#request.ps.currentPage+1 <= #request.ps.pageCount">
-				<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=${request.ps.currentPage+1}"><span>&raquo;</span></a></li>				
-			</s:elseif>
 			
-			</ul>
+		<div class="row">
+			<div class="col-lg-5 col-lg-offset-5 col-md-5 col-md-offset-5 col-sm-5 col-sm-offset-5">
+				<ul class="pagination">
+				<s:if test="#request.ps.currentPage-1 <= 0">
+					<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=1"><span>&laquo;</span></a></li>	
+				</s:if>
+				<s:elseif test="#request.ps.currentPage-1 >= 1">
+					<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=${request.ps.currentPage-1}"><span>&laquo;</span></a></li>				
+				</s:elseif>
+				<c:forEach begin="1" end="${request.ps.pageCount}" varStatus="sta">
+					<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=${request.ps.beginPageIndex+sta.index-1}">${request.ps.beginPageIndex+sta.index-1}</a></li>	
+				</c:forEach>
+				
+				<s:if test="#request.ps.currentPage+1 > #request.ps.pageCount">
+					<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=${request.ps.pageCount}"><span>&raquo;</span></a></li>	
+				</s:if>
+				<s:elseif test="#request.ps.currentPage+1 <= #request.ps.pageCount">
+					<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=${request.ps.currentPage+1}"><span>&raquo;</span></a></li>				
+				</s:elseif>
+				
+				</ul>
+			
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2">
+  			</div>
+			
 		</div>
 				
 </body>

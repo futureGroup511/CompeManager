@@ -4,22 +4,58 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/xue1.css">
+
 <title>发送通知页面</title>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" >
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
 
 </head>
 <body>
-	<div style="width:800px;">
-	<form action="depManager_sendInform" method="post" id="form">
-		<label>标题</label>
-		<input type="text" name="notification.noti_title">
-		<textarea class="ckeditor" name="notification.noti_content" id="myEditor" style="width:400px; height:200px">这里写你的初始化内容</textarea>  
-		<button onclick="">提交</button>
+	<div class="dangqian">
+	  <div class="row">
+	   
+	        <div class="col-lg-2 col-lg-offset-6 col-md-3 col-md-offset-3 col-xs-5  col-xs-offset-1">
+	            <p>当前位置：学生服务>>报名</p>
+	        </div>
+	        <div class="col-lg-2 col-md-3 col-xs-3">
+	            <p>欢迎登录本系统</p>
+	        </div>
+	  </div>
+	</div>
+	
+	<form action="depManager_sendInform" method="post" id="form" class="form-horizontal">
+	
+		 <div class="form-group">
+		    <label for="inputEmail3" class="col-lg-2 col-md-2 col-xs-3 control-label">标题</label>
+		    <div class="col-lg-2 col-md-2 col-xs-3">
+		      <input type="text" class="form-control" name="notification.noti_title" id="inputEmail3" placeholder="">
+		    </div>
+		    <div class="col-lg-9">
+		    </div>
+  		</div>
+  		
+  		<div class="row">
+		　 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+		     <textarea rows="11" class="ckeditor" name="notification.noti_content" id="myEditor" style="width:400px; height:200px">这里写你的初始化内容</textarea>  
+		   </div>
+		   <div class="col-lg-1">
+		   </div>
+		</div>
+  		
+		<div class="container">
+		  <div class="row">
+		   <div class="col-lg-2 col-lg-offset-9 col-md-2 col-md-offset-9 col-xs-3 col-xs-offset-9">
+		      <button class="btn btn-primary">提交</button>
+		   </div>
+		  </div>
+	  </div>
 	</form>
 	
-	</div>
+	
 	
 	
  
