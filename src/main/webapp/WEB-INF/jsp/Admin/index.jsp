@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>学院框架5</title>
+<title>欢迎使用大学生竞赛管理系统</title>
 </head>
 <frameset rows="16%,*" cols="100%" frameborder="no" border="0" framespacing="0">
 	<frame src="index-head-111.html" scrolling="no"></frame>

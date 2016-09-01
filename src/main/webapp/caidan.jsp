@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,16 +34,16 @@
         
             <dl class="channel">
                 <dt>教务处服务<img src="images/select_xl01.png"></dt>
-                <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">11待审核竞赛项目</a></dd>
-                <dd><a href="#">正在进行竞赛项目</a></dd>
-                <dd><a href="#">未通过审核竞赛项目</a></dd>
-                <dd><a href="#">待审核竞赛名称</a></dd>
-                <dd><a href="#">待审核通过竞赛名称</a></dd>
-                <dd><a href="#">未通过审核竞赛名称</a></dd>
-                <dd><a href="#">待核竞赛结果</a></dd>
-                <dd><a href="#">审核通过结果</a></dd>
-                <dd><a href="#">未通过审核竞赛结果</a></dd>
-                <dd><a href="#">学生获奖情况</a></dd>
+                <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
+                <dd><a href="admin_checkSuccessProject.action" target="right">正在进行竞赛项目</a></dd>
+                <dd><a href="admin_noPassCheck.action" target="right">未通过审核竞赛项目</a></dd>
+                <dd><a href="competitionName_checkNoName.action" target="right">待审核竞赛名称</a></dd>
+                <dd><a href="competitionName_checkSuccessName.action" target="right">审核通过竞赛名称</a></dd>
+                <dd><a href="competitionName_noPassCheck.action" target="right">未通过审核竞赛名称</a></dd>
+                <dd><a href="awardRecord_checkNoAwardRecord.action" target="right">待审核竞赛结果</a></dd>
+                <dd><a href="awardRecord_checkSuccessAwardRecord.action" target="right">审核通过结果</a></dd>
+                <dd><a href="awardRecord_noPassCheckAwardRecord.action" target="right">未通过审核竞赛结果</a></dd>
+                <dd><a href="awardRecord_findAllAwardRecord.action" target="right">学生获奖情况</a></dd>
             </dl>
     </div>
 

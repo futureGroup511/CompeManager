@@ -6,53 +6,76 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询所有获奖记录</title>
-<!-- 去掉这3行，则点击直接显示原图，如果移动至下面则IE浏览器报错 begin -->
-<script type='text/javascript' src='ly/js/jquery.js'></script>
-<script type='text/javascript' src='ly/js/jquery.scripts.js'></script>
-<script type='text/javascript' src='ly/js/jquery.custom.js'></script>
-<!-- 去掉这3行，则点击直接显示原图，如果移动至下面则IE浏览器报错 end -->
-<link rel="stylesheet" type="text/css" media="all" href="ly/css/style.min.css" />
-
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/jiao10.css">
 </head>
-<body>
-<form action="awardRecord_conditionQuery">
-按学院查询： 
-<s:select label="按学院查询" name="awardRecor_student.stu_department.de_id" list="departments" listKey="de_id" listValue="de_name" headerKey="0" headerValue="请选择"/>
-按年度查询：        
-<%-- <s:select label="按年度" name="awardRecor_id" list="awardRecords" listKey="awardRecor" listValue="awardRecor_time" headerKey="0" headerValue="请选择"/> --%>
-<%-- <s:select label="年度" name="awardRecor_time" list="year" listKey="key" listValue="value" headerKey="0" headerValue="请选择" /> --%> 
-<%-- <s:select label="按年度查询" name="list" list="year" headerKey="0" headerValue="请选择" /> --%>
-<s:select label="按年度查询" name="year" list="years" listKey="id" listValue="name"  headerKey="0" headerValue="请选择" />
 
-按奖项查询：      
-<s:select label="按奖项查询" name="awardRecor_awadHie.awardHie_id" list="awardHieraychys" listKey="awardHie_id" listValue="awardHie_name" headerKey="0" headerValue="请选择" />
-按竞赛项目查询：      
-<%-- <s:select label="按竞赛项目查询" name="awardRecor_competition.compe_id" list="competitons" listKey="compe_id" listValue="compe_compeName.compeName_name"  headerKey="0" headerValue="请选择" /> --%>
-<s:select label="按竞赛项目查询" name="awardRecor_competition.compe_id" list="competitons" listKey="id" listValue="name"  headerKey="0" headerValue="请选择" />
-<input type="submit" value="提交" />
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
+            <a><p></p></a>
+        </div>
+        <div class="col-lg-2 col-lg-offset-6 col-md-3 scol-md-offset-3 col-xs-5  col-xs-offset-1">
+            <p>当前位置：教务处服务>>查询所有获奖记录</p>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-3">
+            <p>欢迎登录本系统</p>
+        </div>
+  </div>
+</div>
+
+<form action="awardRecord_conditionQuery">
+<div class="container">
+  <div class="row">
+    <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">按学院查询：</label>
+    <div class="col-lg-1 col-md-1 col-sm-1">
+          <s:select cssClass="form-control" label="按学院查询" name="awardRecor_student.stu_department.de_id" list="departments" listKey="de_id" listValue="de_name" headerKey="0" headerValue="请选择"/>
+     </div>
+     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">按年度查询：</label>
+    <div class="col-lg-1 col-md-1 col-sm-1">
+          <s:select cssClass="form-control" label="按年度查询" name="year" list="years" listKey="id" listValue="name"  headerKey="0" headerValue="请选择" />
+     </div>
+     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">按奖项查询：</label>
+     <div class="col-lg-1 col-md-1 col-sm-1">
+          <s:select cssClass="form-control" label="按奖项查询" name="awardRecor_awadHie.awardHie_id" list="awardHieraychys" listKey="awardHie_id" listValue="awardHie_name" headerKey="0" headerValue="请选择" />
+     </div>
+     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">按项目查询：</label>
+     <div class="col-lg-1 col-md-1 col-sm-1">
+          <s:select cssClass="form-control" label="按竞赛项目查询" name="awardRecor_competition.compe_id" list="competitons" listKey="id" listValue="name"  headerKey="0" headerValue="请选择" />
+     </div>
+     <div class="col-lg-1 col-lg-offset-1 col-md-1 col-md-offset-1 col-sm-1 col-sm-offset-1">
+          <input class="btn" type="submit" value="提交" />
+     </div>
+     <div class="col-lg-2 col-md-2 col-sm-2">
+     </div>
+  </div>
+</div>
 </form>
 
 
-<table border="1" cellpadding="1" cellspacing="0">
-	<tr>
-		<th>序号</th>
-		<th>学号</th>
-		<th>姓名</th>
-		<th>性别</th>
-		<th>班级</th>
-		<th>院系</th>
-		<th>获奖比赛</th>
-		<th>指导老师</th>
-		<!-- <th>团队名称</th>
-		<th>是否为负责人</th> -->
-		<th>获奖等级</th>
-		<th>获奖日期</th>
-		<th>所加学分</th>
-		<th>所获奖金</th>
-		<th>指导老师所获奖金</th>
-		<th>获奖证书</th>
-	</tr>
-	<s:iterator value="recordList" status="id">
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+    <thead>
+      <tr class="two">
+         <th>序号</th>
+         <th>学号</th>
+         <th>姓名</th>
+         <th>性别</th>
+         <th>班级</th>
+         <th>获奖比赛</th>
+         <th>指导老师</th>
+         <th>团队名称</th>
+         <th>是否为负责人</th>
+         <th>获奖等级</th>
+         <th>所加学分</th>
+         <th>所获奖金</th>
+         <th>指导老师所获奖金</th>
+         <th>获奖证书</th>
+       </tr>
+      </thead>
+      <tbody>
+        <s:iterator value="recordList" status="id">
 			<tr>
 				<s:hidden name="awardRecor_id"></s:hidden>
 				<td>${id.index+1 }</td>
@@ -94,17 +117,36 @@
 				</td>
 			</tr>
 	</s:iterator>
-</table>
-
-<div style="float:center;">
-	每页显示${pageSize }条，总记录数${recordCount }条
-	<a href="javascript:gotoPage(1)">首页</a>
-	<a href="javascript:gotoPage(${pageNum }-1)">上一页</</a>
-	${currentPage }/${pageCount }
-	<a href="javascript:gotoPage(${pageNum }+1)">下一页</</a>
-	<a href="javascript:gotoPage(${pageCount })">尾页</a>
+       
+      </tbody>
+    </table>
 </div>
-            
+
+
+<div class="container">
+  <div class="row">
+   <div class="col-lg-5 col-lg-offset-5 col-md-5 col-md-offset-4 col-xs-5 col-xs-offset-4">
+           <p class="xixnxi">每页显示${pageSize }条，总记录数${recordCount }条</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-5 col-lg-offset-5 col-md-6 col-md-offset-4 col-xs-6 col-xs-offset-4">
+           <nav>
+          <ul class="pagination">
+            </li>
+            <li><a href="javascript:gotoPage(1)">首页</a></li>
+            <li><a href="javascript:gotoPage(${pageNum }-1)">上一页</a></li>
+            <li><a href="#">${currentPage }/${pageCount }</a></li>
+            <li><a href="javascript:gotoPage(${pageNum }+1)">下一页</a></li>
+            <li><a href="javascript:gotoPage(${pageCount })">尾页</a></li>
+            </li>
+          </ul>
+        </nav>
+        </div>
+      </div>
+</div>
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/bootstrap.js"></script>
 <script type="text/javascript">
 	function gotoPage(pageNum){
 		if(pageNum > "${pageCount}"){
@@ -118,3 +160,31 @@
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+<!-- 去掉这3行，则点击直接显示原图，如果移动至下面则IE浏览器报错 begin -->
+<script type='text/javascript' src='ly/js/jquery.js'></script>
+<script type='text/javascript' src='ly/js/jquery.scripts.js'></script>
+<script type='text/javascript' src='ly/js/jquery.custom.js'></script>
+<!-- 去掉这3行，则点击直接显示原图，如果移动至下面则IE浏览器报错 end -->
+<link rel="stylesheet" type="text/css" media="all" href="ly/css/style.min.css" />
+</head>
