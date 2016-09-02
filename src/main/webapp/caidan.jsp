@@ -65,7 +65,11 @@
             	<dd><a href="admin_addAwardStandView" target="right">添加奖励标准</a></dd>
             </dl>
         	</c:if>
-					
+				
+			<dl class="system_log">
+                <dt onClick="changeImage()">退出登陆<img src="images/select_xl01.png"></dt>
+                <dd class="first_dd"><a href="loginControll_loginOut">退出</a></dd>
+            </dl>	
 			
     </div>
 
