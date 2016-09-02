@@ -115,9 +115,9 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		/**
 		 * 竞赛已经完成的 可以填写竞赛结果的竞赛 当年申请的竞赛
 		 */
-		List<Competition> compeList = competitionService.getAvaliableCopetion();
+		/*List<Competition> compeList = competitionService.getAvaliableCopetion();
 		requestMap.put("compeList", compeList);
-		System.out.println(compeList.size()+"hhhhhhhhhhhhhhhhhhh");
+		System.out.println(compeList.size()+"hhhhhhhhhhhhhhhhhhh");*/
 		if(depManager == null){//如果没有该人就返回重新登陆
 			addActionError("用户名/密码错误");
 			return "ReLogin";
@@ -127,6 +127,17 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		return "LoginSuccess";
 	}
 	
+	
+	public String registerScoreToDb(){
+		
+		/**
+		 * 竞赛已经完成的 可以填写竞赛结果的竞赛 当年申请的竞赛
+		 */
+		List<Competition> compeList = competitionService.getAvaliableCopetion();
+		requestMap.put("compeList", compeList);
+		System.out.println(compeList.size()+"hhhhhhhhhhhhhhhhhhh");
+		return "RegisterScoreToDb";
+	}
 	/**
 	 * 赵硕
 	 * 学院负责人 申请项目名称 

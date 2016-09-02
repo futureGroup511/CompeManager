@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="<%=basePath %>css/xueyuan5.css" />
 <script src="<%=basePath %>js/jquery-3.0.0.min.js"></script>
 <script src="<%=basePath %>js/bootstrap.js"></script>
+<script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=basePath %>JQueryResources/fixError.js"></script>
 </head>
 <body>
 		<div class="dangqian">
@@ -41,9 +43,9 @@
 		<!-- <li><a href="depManager_seeHistoryCompetition">历史申报项目</a></li> -->
 		<li><a href="depManager_inspectStudentApplyPage">审核报名</a></li>
 		<li><a href="depManager_nextClassCompetition">继续下级比赛</a></li>
+		<li><a href="depManager_registerScoreToDb">录入竞赛成绩</a></li>
 	</ul>
-			
-				<s:if test="#request.compeList != null && #request.compeList.size() > 0">
+				<%-- <s:if test="#request.compeList != null && #request.compeList.size() > 0">
 					<s:form action="depManager_registerScore">
 					<div class="row">
               		 <div class="col-lg-4 col-md-4 col-xs-5">
@@ -61,7 +63,7 @@
 				</s:if>
 				<s:else>
 					暂无竞赛结果需要填写
-				</s:else>
+				</s:else> --%>
 </div>
 </body>
 </html>
