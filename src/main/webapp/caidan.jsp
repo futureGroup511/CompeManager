@@ -12,7 +12,6 @@
 <body id="bg">
 
 <div class="container">
-
     <div class="leftsidebar_box">
         <div class="line"></div>
         	<c:if test="${sessionScope.stu != null}">
@@ -22,43 +21,28 @@
                 <dd><a href="student_lookApplyStatus" target="right">报名状态</a></dd>
                 <dd><a href="student_lookAward" target="right">获奖记录</a></dd>
             </dl>
-<<<<<<< HEAD
-        
-            <!-- <dl class="custom">
-                <dt onClick="changeImage()">学院负责人服务<img src="images/select_xl01.png"></dt>
-                <dd class="first_dd"><a href="#">申报项目名称</a></dd>
-                <dd><a href="#">申报项目名称审核状态</a></dd>
-                <dd><a href="#">申报项目</a></dd>
-                <dd class="first_dd"><a href="#">申报项目状态</a></dd>
-                <dd><a href="#">审核报名</a></dd>
-                <dd><a href="#">选择比赛进入下一阶段</a></dd>
-                <dd><a href="#">录入成绩</a></dd>
-            </dl> -->
-        
-           <dl class="channel">
-           		<dt>教务处服务<img src="images/select_xl01.png"></dt>
-=======
+
         	</c:if>
         		
         	
         	<c:if test="${sessionScope.depManager != null}">
         		<dl class="custom">
-	                <dt onClick="changeImage()">学院负责人服务<img src="images/select_xl01.png"></dt>
-	                <dd class="first_dd"><a href="#">申报项目名称</a></dd>
-	                <dd><a href="#">申报项目名称审核状态</a></dd>
-	                <dd><a href="#">申报项目</a></dd>
-	                <dd class="first_dd"><a href="#">申报项目状态</a></dd>
-	                <dd><a href="#">审核报名</a></dd>
-	                <dd><a href="#">选择比赛进入下一阶段</a></dd>
-	                <dd><a href="#">录入成绩</a></dd>
-	            	 <dd><a href="depManager_sendInformView">发布通知</a></dd>
+                <dt>学院负责人<img src="images/select_xl01.png"></dt>
+               	<dd><a target="right" href="depManager_lookProcessingCompetitionStatus">查看正在进行项目的报名情况</a></dd>
+                <dd><a target="right" href="depManager_applyCompeName">申报项目名称</a></dd>
+                <dd><a target="right" href="depManager_seeAllApplyCompNames">查看申报项目名称审核状态</a></dd>
+                <dd><a target="right" href="depManager_applyCompetitionPage">申报项目</a></dd>
+                <dd><a target="right" href="depManager_seeAllApplyCompetition">查看申报项目审核状态</a></dd>
+                <dd><a target="right" href="depManager_inspectStudentApplyPage">审核报名</a></dd>
+                <dd><a target="right" href="depManager_nextClassCompetition">继续下级比赛</a></dd>
+                <dd><a target="right" href="depManager_registerScoreToDb">录入竞赛成绩</a></dd>
+	            <dd><a target="right" href="depManager_sendInformView">发布通知</a></dd>
 	            </dl>
         	</c:if>
 				
 			<c:if test="${sessionScope.admin != null}">
         			<dl class="channel">
                 <dt>教务处服务<img src="images/select_xl01.png"></dt>
->>>>>>> 7eacff2382ea2dcffec0121e0b2e807ebe6220a8
                 <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
                 <dd><a href="admin_checkSuccessProject.action" target="right">正在进行竞赛项目</a></dd>
                 <dd><a href="admin_noPassCheck.action" target="right">未通过审核竞赛项目</a></dd>
@@ -81,8 +65,7 @@
             	<dd><a href="awardstand_findAll" target="right">查看所有奖励标准</a></dd>
             	<dd><a href="admin_addAwardStandView" target="right">添加奖励标准</a></dd>
             </dl>
-<<<<<<< HEAD
-             <dl class="channel">
+             <!-- <dl class="channel">
                 <dt>学院负责人<img src="images/select_xl01.png"></dt>
                	<dd><a target="right" href="depManager_lookProcessingCompetitionStatus">查看正在进行项目的报名情况</a></dd>
                 <dd><a target="right" href="depManager_applyCompeName">申报项目名称</a></dd>
@@ -92,12 +75,10 @@
                 <dd><a target="right" href="depManager_inspectStudentApplyPage">审核报名</a></dd>
                 <dd><a target="right" href="depManager_nextClassCompetition">继续下级比赛</a></dd>
                 <dd><a target="right" href="depManager_registerScoreToDb">录入竞赛成绩</a></dd>
-            </dl>
-=======
+            </dl> -->
         	</c:if>
 					
 			
->>>>>>> 7eacff2382ea2dcffec0121e0b2e807ebe6220a8
     </div>
 
 </div>
