@@ -18,15 +18,18 @@
 	.container{
 		margin-top:200px;
 	}
+	.dangqian{
+	margin-top:50px;
+	}
 </style>
 </head>
 
 <body>
 <div class="dangqian">
    <div class="row">
-        <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
+       <!--  <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
             <a><p>  </p></a>
-        </div>
+        </div> -->
         <div class="col-lg-3 col-lg-offset-5 col-md-4 col-md-offset-2 col-xs-6">
             <p>当前位置：学院负责人>>录入成绩</p>
         </div>
