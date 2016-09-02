@@ -237,17 +237,14 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
         String path=root.substring(root.indexOf("UploadFile"));
         ar.setAwardRecor_picturePath(path);
 		ars.saveOrUpdaAward(ar);
-        return "success";
+        return "uploadFile";
 	}
 	
 	//学生进入下一阶段
 	public String promotion(){
 		AwardRecord ar=awardRecordService.findAwardRecordById(award_id);
-		ar.getAwardRecor_competition();
-		ar.getAwardRecor_student();
-		ar.getAwardRecor_student();
 		sups.updateSignUpByAwardRecord(ar);
-		return "success";
+		return "promotion";
 	}
 	private Student stu;
 	@Override

@@ -12,7 +12,7 @@
 <title>所有学院</title>
 </head>
 <body>
-	
+<a href="admin_addDepartmentView">添加学院</a>
 		<table class="table table-bordered table-hover">
 		<thead>
 				<tr>

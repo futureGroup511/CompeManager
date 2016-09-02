@@ -17,7 +17,7 @@
             <p>当前位置：教务处>>修改竞赛方案</p>
         </div>
         <div class="col-lg-2 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
-            <p>欢迎登录本系统</p>
+            <p>欢迎 	${sessionScope.admin.ad_name}  登录本系统</p>
         </div>
   </div>
 </div>

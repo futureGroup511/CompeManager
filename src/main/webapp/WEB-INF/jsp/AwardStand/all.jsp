@@ -12,6 +12,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
+<a href="admin_addAwardStandView">添加奖励标准</a>
 		<table class="table table-bordered table-hover">
 		<thead>
 				<tr>
