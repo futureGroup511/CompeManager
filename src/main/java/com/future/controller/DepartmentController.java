@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import com.future.base.BaseAction;
 import com.future.domain.AwardHierarchy;
 import com.future.domain.Competition;
+import com.future.domain.DepManager;
 import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
 import com.opensymphony.xwork2.ActionContext;
@@ -21,6 +22,12 @@ public class DepartmentController extends BaseAction<DeQuery>{
 	private Integer department = 1;
 	//条件分页查询
 	public String conditionQuery(){
+		//从当前session得到登陆id
+		DepManager  de= (DepManager) ActionContext.getContext().getSession().get("depManager");		//年度
+		//System.out.println("111111111111111111111" + de);
+		department = de.getDepM_department().getDe_id();
+		//System.out.println("111111111111111111111" + de.getDepM_department().getDe_id());
+				
 		System.out.println(model);
 		System.out.println(model.getYear() + "==" + model.getAward()+ "==" + model.getCompetiton());
 		//准备数据，年度   年度  往前推5年
@@ -71,8 +78,14 @@ public class DepartmentController extends BaseAction<DeQuery>{
 	
 	//分页查询当前院系所有获奖记录
 	public String findAllAwardRecord(){
-		//年度
+		//从当前session得到登陆id
+		DepManager  de= (DepManager) ActionContext.getContext().getSession().get("depManager");		//年度
+		//System.out.println("111111111111111111111" + de);
+		department = de.getDepM_department().getDe_id();
+		//System.out.println("111111111111111111111" + de.getDepM_department().getDe_id());
+		
 		//准备数据。年度  往前推5年
+		
 		Date currentDate = new Date();
 		SimpleDateFormat currentFormat = new SimpleDateFormat("yyyy");
 		String currentTime=currentFormat.format(currentDate);
