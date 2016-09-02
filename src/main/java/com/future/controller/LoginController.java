@@ -18,8 +18,10 @@ import org.springframework.stereotype.Controller;
 import com.future.base.BaseAction;
 import com.future.domain.Admin;
 import com.future.domain.DepManager;
+import com.future.domain.Notification;
 import com.future.domain.Student;
 import com.future.utils.CookieUtiles;
+import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
@@ -38,6 +40,10 @@ public class LoginController extends BaseAction<Object> implements SessionAware,
 	private Boolean JUGE=false;
 	private Boolean useCookie=false;
 	private CookieUtiles cookieutils=new CookieUtiles();
+	private Integer currentPage=1;
+	private Integer pageSize=8;
+	private Integer noti_id;
+	
 	/**
 	 * 登陆
 	 * @author 牛洧鹏
@@ -107,7 +113,7 @@ public class LoginController extends BaseAction<Object> implements SessionAware,
 	}
 	
 	public String loginView(){
-		
+		lookInformView();
 		return "loginView";
 	}
 	
@@ -119,6 +125,7 @@ public class LoginController extends BaseAction<Object> implements SessionAware,
 		Cookie cookie = cookieutils.delCookie(request);  
         if (cookie != null)  
         reponse.addCookie(cookie); 
+        lookInformView();
 	    return "loginView";
 	}
 	
@@ -129,14 +136,29 @@ public class LoginController extends BaseAction<Object> implements SessionAware,
 		if(juge){
 			return "success";
 		}
+		lookInformView();
 		return "loginView";
 	}
 	
 	
 	
 	
+	public String lookinfo(){
+		Notification no=nfs.findNotiById(noti_id);
+		ActionContext.getContext().put("no", no);
+		return "lookinfo";
+	}
 	
 	
+	
+	//查看通知页面
+	public void  lookInformView(){
+		Page_S p=new Page_S();
+		p.setCurrentPage(currentPage);
+		p.setPageSize(pageSize);
+		p=nfs.queryAllNotification(p);
+		ActionContext.getContext().put("p", p);
+	}
 	public String getNumber() {
 		return number;
 	}
@@ -164,6 +186,30 @@ public class LoginController extends BaseAction<Object> implements SessionAware,
 
 	public void setUseCookie(Boolean useCookie) {
 		this.useCookie = useCookie;
+	}
+
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public Integer getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public Integer getNoti_id() {
+		return noti_id;
+	}
+
+	public void setNoti_id(Integer noti_id) {
+		this.noti_id = noti_id;
 	}
 
 

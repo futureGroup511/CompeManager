@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -81,28 +84,44 @@ body {
         </div>
         <div class="col-sm-5 col-md-4 col-lg-3 col-lg-offset-1 col-md-offset-1 col-xs-offset-1">
         	<ul class="xinxi">
-            	<li><a href="#">蓝桥杯竞赛已拉开帷幕，敬请期待</a></li>
-                <li><a href="#">蓝桥杯竞赛已拉开帷幕，敬请期待</a></li>
-                <li><a href="#">蓝桥杯竞赛已拉开帷幕，敬请期待</a></li>
-                <li><a href="#">蓝桥杯竞赛已拉开帷幕，敬请期待</a></li>
-                <li><a href="#">蓝桥杯竞赛已拉开帷幕，敬请期待</a></li>
-                <li><a href="#">蓝桥杯竞赛已拉开帷幕，敬请期待</a></li>
-                <li><a href="#">蓝桥杯竞赛已拉开帷幕，敬请期待</a></li>
-                <li><a href="#">蓝桥杯竞赛已拉开帷幕，敬请期待</a></li>
+        		<c:forEach items="${p.recordlist}" var="no">
+				<%-- <tr>
+					<td><a href="depManager_lookinfo?noti_id=${no.noti_id }">${no.noti_title}</a></td>
+					
+				</tr> --%>
+				<li><a href="loginControll_lookinfo?noti_id=${no.noti_id }" target="bank">${no.noti_title}</a></li>
+				</c:forEach>
             </ul>
+           <!--  <div class="center-block" style="width:500px"> -->
+			<ul class="pagination">
+			<s:if test="#request.p.currentPage-1 <= 0">
+				<li><a href="${pageContext.request.contextPath}/loginControll_loginView?currentPage=1"><span>&laquo;</span></a></li>
+			</s:if>
+			<s:elseif test="#request.p.currentPage-1 >= 1">
+				<li><a href="${pageContext.request.contextPath}/loginControll_loginView?currentPage=${request.p.currentPage-1}"><span>&laquo;</span></a></li>				
+			</s:elseif>
+			<c:forEach begin="1" end="${request.p.pageCount}" varStatus="sta">
+				<li><a href="${pageContext.request.contextPath}/loginControll_loginView?currentPage=${request.p.beginPageIndex+sta.index-1}">${request.p.beginPageIndex+sta.index-1}</a></li>	
+			</c:forEach>
+			
+			<s:if test="#request.p.currentPage+1  > #request.p.pageCount">
+				<li><a href="${pageContext.request.contextPath}/loginControll_loginView?currentPage=${request.p.pageCount}"><span>&raquo;</span></a></li>	
+			</s:if>
+			<s:elseif test="#request.p.currentPage+1 <= #request.p.pageCount">
+				<li><a href="${pageContext.request.contextPath}/loginControll_loginView?currentPage=${request.p.currentPage+1}"><span>&raquo;</span></a></li>				
+			</s:elseif>
+			
+			</ul>
+		<!-- </div> -->
         </div>
         <div class="col-sm-2 col-md-2  col-lg-2">
         	<ul>
-            	<li><a href="#">2016-2-4</a></li>
-                <li><a href="#">2016-2-4</a></li>
-                <li><a href="#">2016-2-4</a></li>
-                <li><a href="#">2016-2-4</a></li>
-                <li><a href="#">2016-2-4</a></li>
-                <li><a href="#">2016-2-4</a></li>
-                <li><a href="#">2016-2-4</a></li>
-                <li><a href="#">2016-2-4</a></li>
+        		<c:forEach items="${p.recordlist}" var="no">
+        		
+        			<li><a href="#">${fn:substring(no.noti_time, 0,11)} </a></li>
+        		</c:forEach>
             </ul>	
-        </div>
+        </div> 
         <div class="col-sm-3 col-md-3  col-lg-3 col-xs-pull-1">
          <div class="right">
         	<div class="input-one">
@@ -152,12 +171,6 @@ body {
 		
 		
 	});
-	
-	
-
-	
-	
-	
 	
 	function login(){
         var num=$("input[name='number']").val(); 

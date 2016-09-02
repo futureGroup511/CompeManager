@@ -168,6 +168,7 @@
            <result name="info" type="json"></result> 
      	   <result name="censorCookie" type="redirect">loginControll_firstLogin</result> 
      	   <result name="loginView">index222.jsp</result>	
+       	   <result name="lookinfo">lookinfo.jsp</result>
        </action>
        
        <!-- 院系查询 -->
