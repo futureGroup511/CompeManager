@@ -1,7 +1,6 @@
 package com.future.controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -87,7 +86,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	//================================
 	private String filename;//初始化要保存的文件名
 	private String savePath = "/UploadFile/";//下载文件所在路径 默认
-	private InputStream inputStream;
+	public InputStream inputStream;
 	//=======================
 	
 	//竞赛分页相关
@@ -217,11 +216,12 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		} catch (IOException e) {
 			//处理上传文件失败
 			addActionError("文件上传输出未知错误，请重试！！！");
-			return "ToApplyCompePage";
+			return "fileNotAllowed";
 		}
 		//保存文件路径
 		competition.setCompe_program(realPath);
 		competitionService.save(competition);
+		//TODO 项目申请成功到达的界面
 		return "SaveApplyCompetition";
 	}
 	
@@ -260,14 +260,17 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	//文件下载
 	// 隐含属性 targetFile ,用于封装下载文件  
     public InputStream getInputStream(){  
+    	System.out.println(filename);
     	 try {
 			filename = new String(filename.getBytes("iso-8859-1"), "utf8");
+			System.out.println("编码之后的文件名称"+filename);
 			//TODO  注意配置全局的文件异常映射，防止文件被删除之后还去下载从而引发错误
 		} catch (Exception e) {
 			System.out.println("文件下载错误");
 			return null;
 		}
-    	inputStream = ServletActionContext.getServletContext().getResourceAsStream(savePath+filename);
+    	inputStream = ServletActionContext.getServletContext().getResourceAsStream(filename);
+    	System.out.println(savePath+filename);
     	if(inputStream == null){
     		System.out.println("down file error");
     	}
@@ -276,6 +279,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
     }  
     
     public String downloadCompeProgram(){
+    	System.out.println("我要下载东西了");
     	return SUCCESS;
     }
     

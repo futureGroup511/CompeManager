@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+  padding:0;
+  margin:0;
+}
+.container.row{
+  width: 100%;
+}
+.row p{
+  margin-top: 25px;
+}
+ a:hover{
+  text-decoration: none;
+  color:#FFCA00;
+}
+.table{
+  width:59.4%;
+  margin:0 auto;
+  margin-top: 20px;
+}
+.row  .xixnxi{
+	margin-left:4%;
+	margin-top:8%;
+}
+.pagination{
+	margin-left:-3%;
+}
