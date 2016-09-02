@@ -5,15 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登陆界面</title>
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" >
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-		// 在被嵌套时就刷新上级窗口
-		if(window.parent != window){
-			window.parent.location.reload(true);
-		}
-</script>
+  
 </head>
 <body>
 		<div class="modal show">

@@ -193,7 +193,7 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 		}else{
 			type=1;
 		}
-		String hql="select signUp_id from cm_signups cs where cs.signUp_student.stu_id = :stu_id and cs.signUp_competition.compe_id =:comp_id and cs.singnup_type=:singnup_type";
+		String hql="select signUp_id from cm_signups cs where cs.signUp_student_stu_id = :stu_id and cs.signUp_competition_compe_id =:comp_id and cs.singnup_type=:singnup_type";
 		List result=getsession().createSQLQuery(hql).setParameter("stu_id", aw.getAwardRecor_student().getStu_id()).setParameter("comp_id", aw.getAwardRecor_competition().getCompe_id()).setParameter("singnup_type",type).list();
 		String hq="update SignUp s set s.signUp_registerRecord=0 where s.signUp_id ="+(Integer)result.get(0);
 		getsession().createQuery(hq).executeUpdate();
