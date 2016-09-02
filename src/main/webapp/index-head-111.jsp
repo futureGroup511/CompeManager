@@ -144,7 +144,7 @@ The final pattern effect works perfectly in Chrome, Firefox and IE seems to lose
 
 <div class="headingWrapper color-bright">
   <p class="header header--pushDown header--shadow" title="HOVER ME">大学生竞赛管理系统</p>
-   <s:if test="#session.stu!=null">
+   <%-- <s:if test="#session.stu!=null">
 		你好,${sessionScope.stu.stu_name} <a href="loginControll_loginOut">退出</a>
 	</s:if>
 	<s:elseif test="#session.depManager!=null">
@@ -155,7 +155,7 @@ The final pattern effect works perfectly in Chrome, Firefox and IE seems to lose
 	</s:elseif>
 	<s:else>
 		<a href="loginControll_loginView">登陆</a>
-	</s:else> 
+	</s:else>  --%>
 </div>
 
 </body>
