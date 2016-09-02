@@ -20,7 +20,7 @@
 		            <p>当前位置：学生服务>>报名状态</p>
 		        </div>
 		        <div class="col-lg-2 col-md-3 col-xs-3">
-		            <p>欢迎登录本系统</p>
+		            <p>欢迎${stu.stu_name}登录本系统</p>
 		        </div>
 		  </div>
 		</div>

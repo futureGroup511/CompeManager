@@ -154,6 +154,8 @@ The final pattern effect works perfectly in Chrome, Firefox and IE seems to lose
 		你好,${sessionScope.admin.ad_name} <a href="loginControll_loginOut">退出</a>
 	</s:elseif>
 	<s:else>
+		<a href="loginControll_loginView" target="_top">登陆</a>
+	</s:else> 
 		<a href="loginControll_loginView">登陆</a>
 	</s:else>  --%>
 </div>
