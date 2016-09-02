@@ -78,6 +78,7 @@
 				if(msg==="erro"){
 					$("#prompt").show();
 				}else if(msg==="correct"){
+					$("#prompt").hide();
 					$($("form").get(0)).submit();
 				}
 			}

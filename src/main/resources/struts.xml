@@ -161,7 +161,7 @@
     	</action> 
     	
        <action name="loginControll_*" method="{1}" class="com.future.controller.LoginController">
-           <result name="success">index.jsp</result>
+           <result name="success">WEB-INF/jsp/Admin/index.jsp</result>
            <result name="info" type="json"></result> 
      	   <result name="censorCookie" type="redirect">loginControll_firstLogin</result> 
      	   <result name="loginView">login.jsp</result>	

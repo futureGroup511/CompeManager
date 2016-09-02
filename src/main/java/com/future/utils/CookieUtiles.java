@@ -51,7 +51,7 @@ public class CookieUtiles {
 	}
 	
 	//得到cookie
-	public void getcookie(Map<String, Object> session,HttpServletRequest request,StudentService stuser,DepManagerService dempser,AdminService adminser) throws UnsupportedEncodingException{
+	public Boolean getcookie(Map<String, Object> session,HttpServletRequest request,StudentService stuser,DepManagerService dempser,AdminService adminser) throws UnsupportedEncodingException{
 		//可以通过request得到cookie
 		Cookie[] cookies=request.getCookies();
 		if(cookies!=null){
@@ -72,16 +72,19 @@ public class CookieUtiles {
 							student=stuser.login(student);
 							if(student!=null){
 								session.put("stu", student);
+								return true;
 							}
 						}else if(role.equals(DEPARTMENT)){
 							DepManager depManager=dempser.getByNumAndPassword(number, password);
 							if(depManager!=null){
 								session.put("depManager", depManager);
+								return true;
 							}
 						}else if(role.equals(DEAN)){
 							Admin admin=adminser.jugeByNumAndPassword(number, password);
 							if(admin!=null){
 								session.put("admin", admin);
+								return true;
 							}
 						}
 						
@@ -89,7 +92,7 @@ public class CookieUtiles {
 				}
 			}
 		}
-		
+		return false;
 	}
 	
 	//消除cookie
