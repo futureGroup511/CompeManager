@@ -161,6 +161,13 @@
             </div>
         </div>
      </div>
+     <div class="six">
+     	<div class="col-lg-9  col-md-offset-1">
+     	竞赛描述：
+     	<s:textarea class="compeDesc form-control" name="compe_digest" rows="5"></s:textarea>
+     	<span class="zsCompeDesc" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
+        </div>
+     </div>
      <div class="five">
         <div class="row">
             <div class="col-lg-1 col-md-2  col-xs-2 col-xs-offset-1"><p>竞赛方案</p></div>
@@ -169,13 +176,6 @@
             </div>
             <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-3 col-xs-offset-1"><a style="display:none">未选择任何文件</a></div>
          </div>
-     </div>
-     <div class="six">
-     	<div class="col-lg-9  col-md-offset-1">
-     	竞赛描述：
-     	<s:textarea class="compeDesc form-control" name="compe_digest" rows="5"></s:textarea>
-     	<span class="zsCompeDesc" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
-        </div>
      </div>
      <div class="last">
      	<s:submit value="提交竞赛申请" class="btn btn-default  active"></s:submit>
