@@ -18,7 +18,7 @@
 	<script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery-1.11.1.js"></script>
 	<script src="<%=basePath %>js/jquery-2.2.3.min.js"></script>
 	<script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="<%=basePath %>JQueryResources/fixError.js"></script>
+<%-- <script type="text/javascript" src="<%=basePath %>JQueryResources/fixError.js"></script> --%>
 	<script src="<%=basePath %>js/bootstrap.js"></script>
 	<script type="text/javascript">
 	
@@ -92,9 +92,9 @@
 <body>
 	<div class="dangqian">
     		<div class="row">
-		        <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
+		        <!-- <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
 		            <a> <p>  </p> </a>
-		        </div>
+		        </div> -->
 		        <div class="col-lg-2 col-lg-offset-6 col-md-3 col-md-offset-3 col-xs-5  col-xs-offset-1">
 		            <p>当前位置：学院负责人>>申请竞赛</p>
 		        </div>
