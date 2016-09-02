@@ -64,13 +64,13 @@
          <th>班级</th>
          <th>获奖比赛</th>
          <th>指导老师</th>
-         <th>团队名称</th>
-         <th>是否为负责人</th>
+        <!--  <th>团队名称</th>
+         <th>是否为负责人</th> -->
          <th>获奖等级</th>
-         <th>所加学分</th>
-         <th>所获奖金</th>
-         <th>指导老师所获奖金</th>
-         <th>获奖证书</th>
+         <th>学分</th>
+         <th>奖金</th>
+         <th>老师奖金</th>
+         <th>证书</th>
        </tr>
       </thead>
       <tbody>
@@ -83,7 +83,7 @@
 				<td>${awardRecor_student.stu_sex }</td>
 				<td>${awardRecor_student.stu_class }</td>
 				<td>${awardRecor_student.stu_department.de_name }</td>
-				<td>${awardRecor_competition.compe_compeName.compeName_name }</td>
+				<td><s:date name="awardRecor_time" format="yyyy年" />${awardRecor_competition.compe_compeName.compeName_name }</td>
 				<td>${awardRecor_coachTeacher }</td>
 				<%-- <s:if test="awardRecor_team ==null ">
 					<td>----------</td>
@@ -100,7 +100,7 @@
 					</s:else>
 				</s:else> --%>
 				<td>${awardRecor_awadHie.awardHie_name }</td>
-				<td><s:date name="awardRecor_time" format="yyyy-MM-dd" /></td>
+				<%-- <td><s:date name="awardRecor_time" format="yyyy-MM-dd" /></td> --%>
 				<td>${awardRecor_score }</td>
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>

@@ -1,0 +1,49 @@
+@charset "utf-8";
+*{
+  padding:0;
+  margin:0;
+}
+a:hover{
+  text-decoration: none;
+  color:#FFCA00;
+}
+.row{
+  width:100%;
+}
+.row p{
+  font-size:16px;
+}
+.container{
+  margin-top:3%;
+}
+.container .row .col-lg-2 p{
+  margin-top:3%;
+  display: block;
+}
+.container .two{
+  margin-top:2%;
+}
+.two input{
+  background:#FCFEBF;
+}
+.container .three{
+  margin-top:2%;
+}
+.redio-two{
+  margin-left:20%;
+}
+.last{
+  margin-top:2%;
+  width:5%;
+  margin-left:86%;
+}
+.add{
+  width:80%;
+  margin-left:10%;
+  margin-top:2%;
+}
+.add .col-md-3 p{
+ margin-left:-18%;
+}
+/* CSS Document */
+
