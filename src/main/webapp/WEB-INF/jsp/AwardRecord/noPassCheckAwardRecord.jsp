@@ -12,13 +12,10 @@
 <body>
 <div class="container">
   <div class="row">
-     <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
-            <a><p>添加信息</p></a>
+        <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
+            <p>当前位置：教务处服务>>查看审核通过竞赛结果</p>
         </div>
-        <div class="col-lg-2 col-lg-offset-6 col-md-3 scol-md-offset-3 col-xs-5  col-xs-offset-1">
-            <p>当前位置：学生服务>>报名</p>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-3">
+        <div class="col-lg-2 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
             <p>欢迎登录本系统</p>
         </div>
   </div>
@@ -41,7 +38,7 @@
          <th>所加学分</th>
          <th>所获奖金</th>
          <th>指导老师所获奖金</th>
-         <th>获奖证书</th>
+         <!-- <th>获奖证书</th> -->
        </tr>
       </thead>
       <tbody>
@@ -73,7 +70,7 @@
 				<td>${awardRecor_score }</td>
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>
-				<td>${awardRecor_picturePath }</td>
+				<%-- <td>${awardRecor_picturePath }</td> --%>
 			</tr>
 	</s:iterator>
         

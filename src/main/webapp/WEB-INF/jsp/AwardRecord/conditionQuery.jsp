@@ -13,13 +13,10 @@
 <body>
 <div class="container">
   <div class="row">
-    <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
-            <a><p></p></a>
-        </div>
-        <div class="col-lg-2 col-lg-offset-6 col-md-3 scol-md-offset-3 col-xs-5  col-xs-offset-1">
+        <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
             <p>当前位置：教务处服务>>查询所有获奖记录</p>
         </div>
-        <div class="col-lg-2 col-md-3 col-xs-3">
+        <div class="col-lg-2 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
             <p>欢迎登录本系统</p>
         </div>
   </div>
@@ -30,19 +27,19 @@
 <form action="awardRecord_conditionQuery">
 <div class="container">
   <div class="row">
-    <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">按学院查询：</label>
+    <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">学院：</label>
     <div class="col-lg-1 col-md-1 col-sm-1">
           <s:select id ="department"  cssClass="form-control" label="按学院查询" name="awardRecor_student.stu_department.de_id" list="departments" listKey="de_id" listValue="de_name" headerKey="0" headerValue="请选择"/>
      </div>
-     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">按年度查询：</label>
+     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">年度：</label>
     <div class="col-lg-1 col-md-1 col-sm-1">
           <s:select id="year" cssClass="form-control" name="awardRecor_time" label="按年度查询" name="year" list="years" listKey="id" listValue="name"  headerKey="0" headerValue="请选择" />
      </div>
-     <label for="inputEmail3"  class="col-lg-1 col-md-1 col-sm-1 control-label">按奖项查询：</label>
+     <label for="inputEmail3"  class="col-lg-1 col-md-1 col-sm-1 control-label">奖项：</label>
      <div class="col-lg-1 col-md-1 col-sm-1">
           <s:select  id="awardHie" cssClass="form-control" label="按奖项查询" name="awardRecor_awadHie.awardHie_id" list="awardHieraychys" listKey="awardHie_id" listValue="awardHie_name" headerKey="0" headerValue="请选择" />
      </div>
-     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">按项目查询：</label>
+     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">项目：</label>
      <div class="col-lg-1 col-md-1 col-sm-1">
           <s:select id="competition"  cssClass="form-control" label="按竞赛项目查询" name="awardRecor_competition.compe_id" list="competitons" listKey="id" listValue="name"  headerKey="0" headerValue="请选择" />
      </div>
