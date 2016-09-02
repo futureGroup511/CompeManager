@@ -14,6 +14,7 @@
 
 </head>
 <body>
+<a href="admin_addDeparmentManegerView">添加学院负责人</a>
 	<table class="table table-bordered table-hover">
 		<thead>
 				<tr>

@@ -40,7 +40,7 @@
         	</c:if>
 				
 			<c:if test="${sessionScope.admin != null}">
-        			<dl class="channel">
+        	<dl class="channel">
                 <dt>教务处服务<img src="images/select_xl01.png"></dt>
                 <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
                 <dd><a href="admin_checkSuccessProject.action" target="right">正在进行竞赛项目</a></dd>
@@ -52,7 +52,7 @@
                 <dd><a href="awardRecord_checkSuccessAwardRecord.action" target="right">审核通过结果</a></dd>
                 <dd><a href="awardRecord_noPassCheckAwardRecord.action" target="right">未通过审核竞赛结果</a></dd>
                 <dd><a href="awardRecord_findAllAwardRecord.action" target="right">学生获奖情况</a></dd>
-            	<dd><a href="admin_findAll" target="right">查看所有学院负责人</a> </dd>
+<!--             	<dd><a href="admin_findAll" target="right">查看所有学院负责人</a> </dd>
            		<dd><a href="admin_addDeparmentManegerView" target="right">添加学院负责人</a></dd>
            		<dd><a href="admin_findAllStudent" target="right">查看所有学生</a></dd>
             	<dd><a href="admin_finAllDepartment" target="right">查看所有学院</a></dd>
@@ -62,9 +62,27 @@
             	<dd><a href="awardhierar_findAll" target="right">查看所有获奖等级</a></dd>
            		<dd><a href="admin_addAwardHierarchyView" target="right">添加获奖等级</a></dd>
             	<dd><a href="awardstand_findAll" target="right">查看所有奖励标准</a></dd>
-            	<dd><a href="admin_addAwardStandView" target="right">添加奖励标准</a></dd>
+            	<dd><a href="admin_addAwardStandView" target="right">添加奖励标准</a></dd> -->
+            </dl>
+            
+            <dl class="channel">
+                <dt>教务处所属功能<img src="images/select_xl01.png"></dt>
+            	<dd><a href="admin_findAll" target="right">查看所有学院负责人</a> </dd>
+           		<dd><a href="admin_findAllStudent" target="right">查看所有学生</a></dd>
+            	<dd><a href="admin_finAllDepartment" target="right">查看所有学院</a></dd>
+            	<dd><a href="comphier_findAllcomphier" target="right">查看所有竞赛等级</a></dd>
+            	<dd><a href="awardhierar_findAll" target="right">查看所有获奖等级</a></dd>
+            	<dd><a href="awardstand_findAll" target="right">查看所有奖励标准</a></dd>
+            	<!-- <dd><a href="student_addStudentView" target="right">添加学生</a></dd> -->
+           		<!-- <dd><a href="admin_addDeparmentManegerView" target="right">添加学院负责人</a></dd> -->
+           		<!-- <dd><a href="admin_addDepartmentView" target="right">添加学院</a></dd> -->
+           		<!-- <dd><a href="admin_addCompetitionHierarchyView" target="right">添加竞赛等级</a></dd> -->
+           		<!-- <dd><a href="admin_addAwardHierarchyView" target="right">添加获奖等级</a></dd> -->
+            	<!-- <dd><a href="admin_addAwardStandView" target="right">添加奖励标准</a></dd> -->
             </dl>
         	</c:if>
+				
+				
 				
 			<dl class="system_log">
                 <dt onClick="changeImage()">退出登陆<img src="images/select_xl01.png"></dt>

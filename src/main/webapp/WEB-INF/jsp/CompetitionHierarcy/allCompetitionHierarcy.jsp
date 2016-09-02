@@ -12,6 +12,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
+<a href="admin_addCompetitionHierarchyView">添加竞赛等级</a>
 	<table class="table table-bordered table-hover">
 		<thead>
 				<tr>

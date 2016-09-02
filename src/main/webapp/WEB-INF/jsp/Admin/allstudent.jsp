@@ -12,6 +12,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
+<a href="student_addStudentView">添加学生</a>
 		<table class="table table-bordered table-hover">
 		<thead>
 				<tr>
