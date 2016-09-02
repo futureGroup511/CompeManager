@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	padding:0;
+	margin:0;
+}
+#beijing{
+	background-image:url(../images/huanying.png);
+	height:500px;
+	width:100%;
+}
+.row{
+	width:82%;
+}
+.row .one{
+	font-size:46px;
+	color:white;
+	margin-top: 300px;
+}
+.row .two{
+	font-size:34px;
+	color:white;
+}

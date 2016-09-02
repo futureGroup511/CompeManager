@@ -9,7 +9,7 @@
 
 <frameset cols="15%,85%" rows="100%" frameborder="yes"  framespacing="1">
 	<frame src="caidan.jsp" scrolling="no" ></frame>
-    <frame src="xueyuan5.html"  frameborder="yes" name="right" framespacing="1"></frame>
+    <frame src="huanyingdenglu.html" frameborder="yes" name="right" framespacing="1"></frame>
     </frameset>
     <noframes></noframes>
 <body>
