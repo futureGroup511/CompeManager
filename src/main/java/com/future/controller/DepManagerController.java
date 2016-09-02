@@ -222,7 +222,8 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		competition.setCompe_program(realPath);
 		competitionService.save(competition);
 		//TODO 项目申请成功到达的界面
-		return "SaveApplyCompetition";
+		/*return "SaveApplyCompetition";*/
+		return "ToSuccessPage";
 	}
 	
 	
