@@ -119,14 +119,17 @@ public class LoginController extends BaseAction<Object> implements SessionAware,
 		Cookie cookie = cookieutils.delCookie(request);  
         if (cookie != null)  
         reponse.addCookie(cookie); 
-	    return "success";
+	    return "loginView";
 	}
 	
 	
 	public String firstLogin() throws UnsupportedEncodingException{
 		//是否存在cookie由前台来决定
-		cookieutils.getcookie(session,request, stuser, depManagerService, adminService);
-		return "success";
+		boolean juge=cookieutils.getcookie(session,request, stuser, depManagerService, adminService);
+		if(juge){
+			return "success";
+		}
+		return "loginView";
 	}
 	
 	

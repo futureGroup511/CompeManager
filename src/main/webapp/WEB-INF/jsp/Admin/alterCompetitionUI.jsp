@@ -13,13 +13,10 @@
 <body>
 <div class="dangqian">
    <div class="row">
-        <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
-            <a><p></p></a>
-        </div>
-        <div class="col-lg-3 col-lg-offset-5 col-md-5 col-md-offset-2 col-xs-6">
+        <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
             <p>当前位置：教务处服务>>修改竞赛项目</p>
         </div>
-        <div class="col-lg-2 col-md-3 col-xs-3">
+        <div class="col-lg-2 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
             <p>欢迎登录本系统</p>
         </div>
     </div>
@@ -90,7 +87,9 @@
      </s:form>
      
      <div class="lastlast">
-     	<p><a>修改竞赛方案</a></p>
+     	<p>
+     		<a href="competition_alterCompetitionProgramUI?compe_id=${compe_id }">修改竞赛方案</a>
+     	</p>
      </div>
 </div>
 </body>

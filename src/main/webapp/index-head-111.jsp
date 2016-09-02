@@ -1,3 +1,7 @@
+
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -140,6 +144,18 @@ The final pattern effect works perfectly in Chrome, Firefox and IE seems to lose
 
 <div class="headingWrapper color-bright">
   <p class="header header--pushDown header--shadow" title="HOVER ME">大学生竞赛管理系统</p>
+   <s:if test="#session.stu!=null">
+		你好,${sessionScope.stu.stu_name} <a href="loginControll_loginOut">退出</a>
+	</s:if>
+	<s:elseif test="#session.depManager!=null">
+		你好,${sessionScope.depManager.depM_name} <a href="loginControll_loginOut">退出</a>
+	</s:elseif>
+	<s:elseif test="#session.admin!=null">
+		你好,${sessionScope.admin.ad_name} <a href="loginControll_loginOut">退出</a>
+	</s:elseif>
+	<s:else>
+		<a href="loginControll_loginView">登陆</a>
+	</s:else> 
 </div>
 
 </body>

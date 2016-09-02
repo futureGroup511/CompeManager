@@ -5,7 +5,8 @@
 <title>欢迎使用大学生竞赛管理系统</title>
 </head>
 <frameset rows="16%,*" cols="100%" frameborder="no" border="0" framespacing="0">
-	<frame src="index-head-111.html" scrolling="no"></frame>
+	 <frame src="index-head-111.jsp" scrolling="no"></frame>
+
 <frameset cols="15%,85%" rows="100%" frameborder="yes"  framespacing="1">
 	<frame src="caidan.jsp" scrolling="no" ></frame>
     <frame src="xueyuan5.html"  frameborder="yes" name="right" framespacing="1"></frame>
@@ -17,7 +18,7 @@
 
 
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -48,4 +49,4 @@
 <a href="department_findAllAwardRecord.action">查看本院系获奖情况，传入院系id</a>
 
 </body>
-</html>
+</html> --%>

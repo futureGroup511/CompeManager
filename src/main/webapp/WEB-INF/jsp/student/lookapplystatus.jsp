@@ -42,10 +42,10 @@
 						<td>${statu.index+1}</td>
 						<td>${signup.signUp_competition.compe_compeName.compeName_name}</td>				
 						<td>${signup.signUP_time}</td>
-						<c:if test="${signup.signUP_type eq 1}"> 
+						<c:if test="${signup.singnup_type eq 1}"> 
 							<td>团队</td>
 						</c:if>
-						<c:if test="${signup.signUP_type eq 2}" > 
+						<c:if test="${signup.singnup_type eq 2}" > 
 							<td>个人</td>
 						</c:if>
 						<c:if test="${signup.signUp_status eq 1}"> 
