@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="<%=basePath %>css/bootstrap.css" />
 <link rel="stylesheet" href="<%=basePath %>css/xueyuan8.css" />
 <script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=basePath %>JQueryResources/fixError.js"></script>
 <script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery.validate.min.js"></script>
 <script type="text/javascript">
 $(function() {

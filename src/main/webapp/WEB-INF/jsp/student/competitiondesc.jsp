@@ -12,8 +12,8 @@
 </head>
 <body>
 		<jsp:include page="operation.jsp"></jsp:include>
-
-		<div class="panel panel-default" style="margin-top: 50px">
+		<div class="col-lg-8 col-lg-offset-2">
+			<div class="panel panel-default" style="margin-top: 50px">
 			<div class="panel-heading">
 				<h3 class="panel-title">竞赛详细信息</h3>			
 			</div>
@@ -72,5 +72,7 @@
 			
 			</div>
 		</div>
+		</div>
+		
 </body>
 </html>

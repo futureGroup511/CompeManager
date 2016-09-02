@@ -42,7 +42,7 @@
          <th>所加学分</th>
          <th>所获奖金</th>
          <th>指导老师所获奖金</th>
-         <th>获奖证书</th>
+        <!--  <th>获奖证书</th> -->
        </tr>
       </thead>
       <tbody>
@@ -74,7 +74,7 @@
 				<td>${awardRecor_score }</td>
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>
-				<td>${awardRecor_picturePath }</td>
+				<%-- <td>${awardRecor_picturePath }</td> --%>
 			</tr>
 	</s:iterator>
        

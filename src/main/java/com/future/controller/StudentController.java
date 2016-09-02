@@ -109,8 +109,15 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 			return "jugeapply";
 		}
 		Competition c=comps.findCompetitionById(compe_id);
-		SignUp s=sups.jugeStudentuge(stdent,c , sup.getSignUP_type());
-		ActionContext.getContext().getValueStack().push(s);
+		SignUp s=sups.jugeStudentuge(stdent,c ,sup.getSingnup_type());
+		if(s!=null){
+			//报过名
+			ActionContext.getContext().getValueStack().push("already");
+		}else{
+			//没报过名
+			ActionContext.getContext().getValueStack().push("success");
+		}
+		
 		return "jugeapply";
 	}
 	
@@ -118,8 +125,14 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	public String finishApply(){
 		Date apply=new Date();
 		Competition compt=new Competition();
-		compt.setCompe_id(compe_id);
+		compt.setCompe_id(compe_id);	
 		Iterator<Student> iterator=students.iterator();
+		while(iterator.hasNext()){
+			Student s=iterator.next();
+			if(s.getStu_num().equals("")||s.getStu_name().equals("")){
+				return "erro";
+			}
+		}
 		int index=1;
 		while(iterator.hasNext()){
 			SignUp sgp=new SignUp();
@@ -129,21 +142,17 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 			sgp.setSignUP_type(sup.getSignUP_type());
 			Student s=iterator.next();
 			s=stuser.findStudentByNameAndNum(s);
-			if(s==null){
-				return "erro";
+			if(index==1&&students.size()!=1){
+				sgp.setSingUp_manager(1);
 			}else{
-				if(index==1&&students.size()!=1){
-					sgp.setSingUp_manager(1);
-				}else{
-					if(students.size()!=1){
-						sgp.setSingUp_manager(0);
-					}else if(students.size()==1){
-						sgp.setSingUp_manager(null);
-					}
-					
+				if(students.size()!=1){
+					sgp.setSingUp_manager(0);
+				}else if(students.size()==1){
+					sgp.setSingUp_manager(null);
 				}
-				sgp.setSignUp_student(s);
+				
 			}
+			sgp.setSignUp_student(s);
 			sgp.setSignUP_time(apply);
 			sgp.setSignUp_status(1);
 			sgp.setSignUp_competition(compt);

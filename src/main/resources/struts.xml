@@ -53,7 +53,7 @@
  			<result name="RedirectToNextClassCompetitionPage" type="redirect">depManager_nextClassCompetition</result>
  			<result name="ToProcessingCompetition">/WEB-INF/jsp/Competitions/ProcessingCompetitionSignUpNum.jsp</result>
  			<result name="CompeSignUpAllStudentsInfo">/WEB-INF/jsp/Competitions/CompetitionAllSignUpInfo.jsp</result>
- 			<result name="RegisterScoreToDb"></result>
+ 			<result name="RegisterScoreToDb">/WEB-INF/jsp/DepManagerView/RegisterScoreToDb.jsp</result>
  		</action> 
  		
     	<action name="testController_*" method="{1}" class="testController">

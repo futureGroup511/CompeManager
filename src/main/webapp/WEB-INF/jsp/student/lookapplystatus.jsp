@@ -8,14 +8,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>报名情况</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" >
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/xue2.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
 		<jsp:include page="operation.jsp"></jsp:include>
-		<table class="table table-bordered table-hover">
+		<div class="dangqian">
+		  <div class="row">
+		        <div class="col-lg-2 col-lg-offset-6 col-md-3 col-md-offset-3 col-xs-5  col-xs-offset-1">
+		            <p>当前位置：学生服务>>报名状态</p>
+		        </div>
+		        <div class="col-lg-2 col-md-3 col-xs-3">
+		            <p>欢迎登录本系统</p>
+		        </div>
+		  </div>
+		</div>
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover table-striped">
 			<thead>
-				<tr>
+				<tr class="two">
 					<th>#</th>
 					<th>竞赛名称</th>
 					<th>报名时间</th>
@@ -49,6 +61,9 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		
+		</div>
+		
 		<div class="center-block" style="width:500px">
 			<ul class="pagination">
 			<s:if test="#request.page.currentPage-1 <= 0">

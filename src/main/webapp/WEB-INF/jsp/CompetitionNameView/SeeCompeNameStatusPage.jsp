@@ -14,6 +14,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=basePath %>css/bootstrap.css" />
 <link rel="stylesheet" href="<%=basePath %>css/xueyuan1-2.css" />
+<script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=basePath %>JQueryResources/fixError.js"></script>
 </head>
 <body>
 		<div class="dangqian">

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,7 @@
                 <dd><a href="#">获奖记录</a></dd>
             </dl>
         
-            <dl class="custom">
+            <!-- <dl class="custom">
                 <dt onClick="changeImage()">学院负责人服务<img src="images/select_xl01.png"></dt>
                 <dd class="first_dd"><a href="#">申报项目名称</a></dd>
                 <dd><a href="#">申报项目名称审核状态</a></dd>
@@ -30,10 +31,10 @@
                 <dd><a href="#">审核报名</a></dd>
                 <dd><a href="#">选择比赛进入下一阶段</a></dd>
                 <dd><a href="#">录入成绩</a></dd>
-            </dl>
+            </dl> -->
         
-            <dl class="channel">
-                <dt>教务处服务<img src="images/select_xl01.png"></dt>
+           <dl class="channel">
+           		<dt>教务处服务<img src="images/select_xl01.png"></dt>
                 <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
                 <dd><a href="admin_checkSuccessProject.action" target="right">正在进行竞赛项目</a></dd>
                 <dd><a href="admin_noPassCheck.action" target="right">未通过审核竞赛项目</a></dd>
@@ -44,6 +45,17 @@
                 <dd><a href="awardRecord_checkSuccessAwardRecord.action" target="right">审核通过结果</a></dd>
                 <dd><a href="awardRecord_noPassCheckAwardRecord.action" target="right">未通过审核竞赛结果</a></dd>
                 <dd><a href="awardRecord_findAllAwardRecord.action" target="right">学生获奖情况</a></dd>
+            </dl>
+             <dl class="channel">
+                <dt>学院负责人<img src="images/select_xl01.png"></dt>
+               	<dd><a target="right" href="depManager_lookProcessingCompetitionStatus">查看正在进行项目的报名情况</a></dd>
+                <dd><a target="right" href="depManager_applyCompeName">申报项目名称</a></dd>
+                <dd><a target="right" href="depManager_seeAllApplyCompNames">查看申报项目名称审核状态</a></dd>
+                <dd><a target="right" href="depManager_applyCompetitionPage">申报项目</a></dd>
+                <dd><a target="right" href="depManager_seeAllApplyCompetition">查看申报项目审核状态</a></dd>
+                <dd><a target="right" href="depManager_inspectStudentApplyPage">审核报名</a></dd>
+                <dd><a target="right" href="depManager_nextClassCompetition">继续下级比赛</a></dd>
+                <dd><a target="right" href="depManager_registerScoreToDb">录入竞赛成绩</a></dd>
             </dl>
     </div>
 

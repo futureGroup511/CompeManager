@@ -14,6 +14,8 @@
 <title>查看竞赛审核转台</title>
 <link rel="stylesheet" href="<%=basePath %>css/bootstrap.css" />
 <link rel="stylesheet" href="<%=basePath %>css/xueyuan4.css"/>
+<script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=basePath %>JQueryResources/fixError.js"></script>
 </head>
 <body>
 <div class="dangqian">
@@ -22,7 +24,7 @@
 		            <a> <p>  </p> </a>
 		        </div>
 		        <div class="col-lg-2 col-lg-offset-6 col-md-3 col-md-offset-3 col-xs-5  col-xs-offset-1">
-		            <p>当前位置：学院负责人>>申请竞赛名称</p>
+		            <p>当前位置：学院负责人>>竞赛审核状态</p>
 		        </div>
 		        <div class="col-lg-2 col-md-3 col-xs-3">
 		            <p>欢迎 	${sessionScope.depManager.depM_name }  登录本系统</p>

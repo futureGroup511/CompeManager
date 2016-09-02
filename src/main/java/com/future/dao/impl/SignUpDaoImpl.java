@@ -101,7 +101,7 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 		Criteria criteria=getsession().createCriteria(SignUp.class);
 		criteria.add(Restrictions.eq("signUp_student", stu));
 		criteria.add(Restrictions.eq("signUp_competition", compe));
-		criteria.add(Restrictions.eq("signUP_type", sup_type));
+		criteria.add(Restrictions.eq("singnup_type", sup_type));
 		List<SignUp> sups=criteria.list();
 		if(sups.size()==0){
 			return null;
