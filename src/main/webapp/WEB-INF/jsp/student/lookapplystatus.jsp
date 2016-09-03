@@ -75,7 +75,6 @@
 			<c:forEach begin="1" end="${request.page.pageCount}" varStatus="sta">
 				<li><a href="${pageContext.request.contextPath}/student_lookApplyStatus?currentPage=${request.page.beginPageIndex+sta.index-1}">${request.page.beginPageIndex+sta.index-1}</a></li>	
 			</c:forEach>
-			
 			<s:if test="#request.page.currentPage+1 > #request.page.pageCount">
 				<li><a href="${pageContext.request.contextPath}/student_lookApplyStatus?currentPage=${request.page.pageCount}"><span>&raquo;</span></a></li>	
 			</s:if>

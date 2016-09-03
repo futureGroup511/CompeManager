@@ -218,11 +218,14 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 			addActionError("文件上传输出未知错误，请重试！！！");
 			return "fileNotAllowed";
 		}
+		//新增
+		competition.setCompe_department(((DepManager)sessionMap.get("depManager")).getDepM_department());
 		//保存文件路径
 		competition.setCompe_program(realPath);
 		competitionService.save(competition);
 		//TODO 项目申请成功到达的界面
-		return "SaveApplyCompetition";
+		/*return "SaveApplyCompetition";*/
+		return "ToSuccessPage";
 	}
 	
 	
