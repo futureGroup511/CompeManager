@@ -118,11 +118,8 @@ public class LoginController extends BaseAction<Object> implements SessionAware,
 		return "loginView";
 	}
 	
-	
 	public String loginOut(){
-		session.remove("stu");
-		session.remove("depManager");
-		session.remove("admin");
+		session.clear();
 		Cookie cookie = cookieutils.delCookie(request);  
         if (cookie != null)  
         reponse.addCookie(cookie); 
