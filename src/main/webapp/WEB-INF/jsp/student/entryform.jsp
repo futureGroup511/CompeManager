@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -45,13 +46,13 @@
 							<tr>
 								<td class="col-md-4"><h4 class=" text-lg">开始时间 :</h4></td>
 								<td class="col-md-8 ">
-								<h4 class="text-lg">${comp.compe_startTime}</h4>
+								<h4 class="text-lg">${fn:substring(comp.compe_startTime,0,11)}</h4>
 								</td>
 							</tr>
 							<tr>
 								<td class="col-md-4"><h4 class=" text-lg">结束时间 :</h4></td>
 								<td class="col-md-8 ">
-								<h4 class="text-lg">${comp.compe_endTime}</h4>
+								<h4 class="text-lg">${fn:substring(comp.compe_endTime,0,11)}</h4>
 								</td>
 							</tr>
 							
@@ -172,7 +173,8 @@ function JqValidate()  
 
 		var value=$("input[name='sup.signUp_teacher']").val();
 		if(value===""||value===null){
-			alert("请填写完整内容")
+			$("#prompt").text("");
+			$("#prompt").text("请填写完整内容");
 			return false;
 		}else{
 			return true;
@@ -272,18 +274,6 @@ function jugeCompType(type,async){
 
 function addTeamMember(){
 	
-	/*  
-		<tr class="teamscope">
-					    	<td class="col-md-4"><h4 class=" text-lg">团队负责人:</h4></td>
-							<td class="col-md-8">
-									<label class="control-lable ">姓名:</label>
-									<input form="form" readonly="readonly" class="from-control s_name" value="${stu.stu_name}">
-									<label class="control-lable ">学号:</label>
-									<input form="form" readonly="readonly" type="text" class="from-control member"  value="${stu.stu_num}" >
-							</td>	
-					    </tr>
-	*/
-	
 		var s= "<tr class='teamscope will'>"	
 	        +"<td class='col-md-4'><h4 class=' text-lg'>团队成员:</h4></td>"
 			+"<td class='col-md-8'>"
@@ -295,13 +285,9 @@ function addTeamMember(){
 			+"</td>	"
 			; 
 		s_name="",s_num="";	
-		
-		
 		$("#content").append(s);
 		$(".teamscope").show();
 		index++;
-
-	
 }
 
 	function VaStudents(){
@@ -330,7 +316,8 @@ function addTeamMember(){
 						if(result[0]==="already"){
 							//报过名显示为1
 							status=2;
-							alert("此用户已报过名");
+							$("#prompt").text("");
+							$("#prompt").text("此用户已报过名");
 							return false;
 							
 						}else{
@@ -354,7 +341,6 @@ function addTeamMember(){
 						data:data,
 						dataType:'json',
 						success:function(data){
-							alert(data);
 							var result=data.split(",");
 							if(result[0]=="notexist"){
 								$("#prompt").text("");
@@ -385,17 +371,15 @@ function addTeamMember(){
 					return false;
 				}
 			}
-			
-			
-		
 	}
-
 	function form_submit(){
+		
 		$("#prompt").text("");
 		var comp_type=$(".compe_type").attr("value");
-		if(comp_type===1){
+		
+		if(comp_type==1){
 			if(s_name===""&&s_num===""){
-				alert("请填写完整内容");
+				$("#prompt").text("请填写完整内容");
 				return false;
 			}
 		}

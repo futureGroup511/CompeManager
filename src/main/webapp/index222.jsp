@@ -150,7 +150,7 @@ body {
 				<input  form="form" type="checkbox" name="useCookie" value="true" >自动登陆
 			</div>
          	<p class="text-center text-danger" id="prompt">账号密码错误</p>
-            <button class="btn btn-large btn-block btn-primary" type="button" onclick="login();">登录</button>
+            <button class="btn btn-large btn-block btn-primary" type="submit" onclick="login();">登录</button>
          </div>
         </div>
     </div>
@@ -166,11 +166,14 @@ body {
 <script type="text/javascript">
 	
 	$(function(){
-			
 		$("#prompt").hide();
-		
-		
-	});
+		//监听键盘enter键的按下
+		 $(document).keydown(function(e) {
+			    if (e.keyCode == 13) {
+			    	login();
+			    }
+			  });
+		});
 	
 	function login(){
         var num=$("input[name='number']").val(); 

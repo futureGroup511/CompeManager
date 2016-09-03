@@ -50,7 +50,8 @@ public class LoginController extends BaseAction<Object> implements SessionAware,
 	 * @return
 	 */
 	public String juge(){
-		
+		//清空session防止菜单出现多功能
+		session.clear();
 		if(role.equals(STUDENT)){
 			//查看学生是否有此人
 			Student stu=new Student();
