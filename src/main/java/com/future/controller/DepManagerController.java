@@ -235,7 +235,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	public String seeAllApplyCompetition(){
 		Integer recordCount = competitionService.getCompetitionCount();
 		List<Competition> recordList = new ArrayList<Competition>();
-		Integer pageSize = 6;//每页显示的数量
+		Integer pageSize = 10;//每页显示的数量
 		if(currentPage == null || (currentPage+"").trim() == ""){
 			currentPage = 0;
 		}
@@ -307,7 +307,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 */
 	public String inspectStudentApplyPage(){
 		Integer count = signUpService.getCount();
-		Integer pageSize = 6;//每页显示的数量
+		Integer pageSize = 10;//每页显示的数量
 		if(currentPage == null || (currentPage+"").trim() == ""){
 			currentPage = 0;
 		}
@@ -372,7 +372,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		System.out.println("竞赛id为============》"+compeId+"类型"+signType);
 		
 		//得到指定竞赛的 还没有录入成绩的 团队报名和个人报名信息
-		Integer pageSize = 6;//每页显示的数量
+		Integer pageSize = 10;//每页显示的数量
 		Integer count = signUpService.getCount();
 		if(currentPage == null || (currentPage+"").trim() == ""){
 			currentPage = 0;
@@ -492,7 +492,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 */
 	public String seeSignUpsDetails(){
 		System.out.println("《》《》《》《》《》zhaoshuo"+compeId);
-		Integer pageSize = 1;//每页显示的数量
+		Integer pageSize =10;//每页显示的数量
 		Integer count = signUpService.getSpecialCompetitionSignUps(compeId).size();
 		if(currentPage == null || (currentPage+"").trim() == ""){
 			currentPage = 0;
