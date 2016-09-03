@@ -63,8 +63,13 @@
 								</c:if>
 							</td>
 							<td>
-								<c:if test="${jugePromotion ge award.awardRecor_competition.compe_endTime and  award.awardRecor_competition.compe_status eq 2}">
-										<a href="${pageContext.request.contextPath}/student_promotion?award_id=${award.awardRecor_id }" class="btn btn-primary" onclick="return jugeNext();">进入下一阶段</a>
+								<c:if test="${jugePromotion ge award.awardRecor_competition.compe_endTime and  award.awardRecor_competition.compe_status eq 2  }">.
+										<c:when test="${!empty award.awardRecor_picturePath}">
+											<a href="${pageContext.request.contextPath}/student_promotion?award_id=${award.awardRecor_id }" class="btn btn-primary" onclick="return jugeNext();">进入下一阶段</a>
+										</c:when>
+										<c:otherwise>
+											(<span class="text-danger">请先上传附件</span>)
+										</c:otherwise>
 								</c:if>
 							
 							</td>
