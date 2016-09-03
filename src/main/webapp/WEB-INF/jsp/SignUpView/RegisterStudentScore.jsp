@@ -28,11 +28,19 @@
 		})
 		$(".btn").click(function(){
 			$(".scoreAddedSpan").css("display", 'none');
+			$(".zsCompeHieClass").css("display", 'none');
 			var ScoreAdded = $(".ScoreAdded").val();
 			if(ScoreAdded == null || ScoreAdded.trim()==""){
 				$(".scoreAddedSpan").css("display", 'inline');
 				return false;
 			}
+			var compeHieClassVal = $(".compeHieClass option:selected").val();
+			
+			if(compeHieClassVal ==null || compeHieClassVal ==0){
+				$(".zsCompeHieClass").css("display", 'inline');
+				return false;
+			}
+			
 			return true;
 		});
 		
@@ -91,7 +99,8 @@
 						</td>
 						
 						<td>
-						<s:select  class="form-control" id="awardHieSelect" name="awardHieId" list="#request.hieList" listKey="awardHie_id" listValue="awardHie_name"></s:select>
+						<s:select  class="compeHieClass form-control" id="awardHieSelect" name="awardHieId" list="#request.hieList" listKey="awardHie_id" listValue="awardHie_name" headerKey="0" headerValue="==请选择=="></s:select>
+						<span class="zsCompeHieClass" style="display:none;color:red;font-size:20px;">请选择此项内容</span>
 						</td>
 						<td><s:submit value="提交" class="btn btn-default  active"></s:submit></td>
 						<s:iterator value="#request.hieList" var="hie">

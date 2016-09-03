@@ -392,6 +392,10 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		sessionMap.put("compeId", compeId);
 		sessionMap.put("currentPage", currentPage);
 		System.out.println(signUpList.size()+"=============zhaoshuo");
+		if(signUpList.size()==0){
+			//更新竞赛的状态为录入成绩完成
+			competitionService.changeCompetitionStatus(compeId, 3);
+		}
 		return "RegisterCompetitionScore";
 	}
 	/**
