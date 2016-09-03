@@ -61,8 +61,8 @@
 </div>
 <div class="container">
   <div class="row">
-   <div class="col-lg-5 col-lg-offset-5 col-md-5 col-md-offset-4 col-xs-5 col-xs-offset-4">
-           <p class="xixnxi">每页显示${ps.pageSize }条，总记录数${ps.recordCount }条</p>
+   <div class="col-lg-5 col-lg-offset-4 col-md-5 col-md-offset-4 col-xs-5 col-xs-offset-4">
+           <p class="xixnxi">每页显示${ps.pageSize }条，总记录数${ps.recordCount }条(当前页数：${ps.currentPage }/总页数：${ps.pageCount })</p>
         </div>
       </div>
       <div class="row">
@@ -70,10 +70,24 @@
            <nav>
           <ul class="pagination">
             </li>
+            <!-- <li><a href="#"></a></li> -->
             <li><a href="${pageContext.request.contextPath}/awardhierar_findAll?currentPage=1">首页</a></li>
-            <li><a href="${pageContext.request.contextPath}/awardhierar_findAll?currentPage=${ps.currentPage-1}">上一页</a></li>
-            <li><a href="#">${ps.currentPage }/${ps.pageCount }</a></li>
-            <li><a href="${pageContext.request.contextPath}/awardhierar_findAll?currentPage=${ps.currentPage+1}">下一页</a></li>
+            <s:if test="#request.ps.currentPage-1 <= 0">
+				<li><a href="${pageContext.request.contextPath}/awardhierar_findAll?currentPage=1"><span>&laquo;</span></a></li>
+			</s:if>
+			<s:elseif test="#request.ps.currentPage-1 >= 1">
+				<li><a href="${pageContext.request.contextPath}/awardhierar_findAll?currentPage=${ps.currentPage-1}"><span>&laquo;</span></a></li>				
+			</s:elseif>
+			<c:forEach begin="1" end="${request.ps.pageCount}" varStatus="sta">
+				<li><a href="${pageContext.request.contextPath}/awardhierar_findAll?currentPage=${ps.beginPageIndex+sta.index-1}">${ps.beginPageIndex+sta.index-1}</a></li>	
+			</c:forEach>
+			
+			<s:if test="#request.ps.currentPage+1 > #request.ps.pageCount">
+				<li><a href="${pageContext.request.contextPath}/awardhierar_findAll?currentPage=${ps.pageCount}"><span>&raquo;</span></a></li>	
+			</s:if>
+			<s:elseif test="#request.ps.currentPage+1 <= #request.ps.pageCount">
+				<li><a href="${pageContext.request.contextPath}/awardhierar_findAll?currentPage=${ps.currentPage+1}"><span>&raquo;</span></a></li>				
+			</s:elseif>
             <li><a href="${pageContext.request.contextPath}/awardhierar_findAll?currentPage=${ps.pageCount}">尾页</a></li>
             </li>
           </ul>

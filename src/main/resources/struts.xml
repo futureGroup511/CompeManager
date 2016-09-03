@@ -77,6 +77,7 @@
     		<result name="lookAward">WEB-INF/jsp/student/award.jsp</result>
     		<result name="promotion" type="redirect">student_lookAward</result>
     		<result name="uploadFile" type="redirect">student_lookAward</result>
+    		<result name="finishApply" type="redirect">student_apply</result>
     	</action>	
     	
     	<!-- 教务处 -->	

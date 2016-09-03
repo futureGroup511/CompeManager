@@ -108,9 +108,8 @@
 					
 					</table>
 					
-					    <p id="already" hidden class="text-danger">此用户已经报过名</p>
-						<p id="notexist" hidden class="text-danger">此用户不存在</p>
-						<p id="success" hidden class="text-success">此用户可报名</p>
+					    <p id="prompt"  class="text-danger"></p>
+						
 			</div>
 			
 			<div class="panel panel-footer">
@@ -142,6 +141,7 @@ $(function(){
 	}); */
 	$("#addteam").hide();
 	$("#teammanager").change(function(){
+		$(".will").empty();
 		var teamname=$(this).val();
 		var data={
 				"sup.signUp_team":teamname
@@ -199,9 +199,13 @@ $(document).on("change",".s_num",function(){
 	
 });
 
-function jugeCompType(type){
+function jugeCompType(type,async){
+	$("#teamnum").hide();
 	var teammanager=document.getElementById("teammanager");
-	
+	if(async===undefined){
+		async=true;	
+	}
+	var juge=0;
 	//竞赛的ID
 	var comp_id=$("#compe_id").attr("value");
 	//竞赛的类型
@@ -217,17 +221,26 @@ function jugeCompType(type){
 	$.ajax({
 		url:"student_jugeapply",
 		type:'post',
+		async:async,
 		data:data,
 		dataType:'json',
 		success:function(data){
-			if(data!=null){
+			var result=data.split(",");
+			if(result[0]==="already"){
 				//报过名显示为1
 				status=2;
-				$("#already").show();
-				return false;
-				
-			}else{
-				$("#already").hide();
+				$("#prompt").text("");
+				$("#prompt").text(result[1]+"报过名");
+				juge=1;
+			}else if(result[0]==="notexist"){
+				$("#prompt").text("");
+				$("#prompt").text(result[1]+"不存在");
+				juge=1;
+			}
+			else if(result[0]==="success"){
+				juge=2;
+				$("#prompt").text("");
+				$("#prompt").text(result[1]+"可以报名");
 				status=1;
 				if(type===1){
 					$(".teamscope").show();
@@ -235,11 +248,10 @@ function jugeCompType(type){
 					$("#teammanager").attr("disabled",false);
 					$(".compe_type").attr("value",1);
 				}
-				return true;
 			}
 		}
 	});
-		
+	
 	if(type==2){
 		//$("#already").hide();
 		$(".teamscope").hide();
@@ -248,6 +260,14 @@ function jugeCompType(type){
 		$("#teammanager").attr("disabled",true);
 		$(".compe_type").attr("value",2);
 	}
+	if(juge===1){
+		return false;
+	}else if(juge===2){
+		return true;
+	}
+		
+		
+	
 }
 
 function addTeamMember(){
@@ -286,7 +306,7 @@ function addTeamMember(){
 
 	function VaStudents(){
 		
-		
+		$("#teamnum").hide();
 		var data;
 		//竞赛的ID
 		var comp_id=$("#compe_id").attr("value");
@@ -302,12 +322,12 @@ function addTeamMember(){
 				}
 				$.ajax({
 					url:"student_jugeapply",
-					async:false,
 					type:'post',
 					data:data,
 					dataType:'json',
 					success:function(data){
-						if(data==="already"){
+						var result=data.split(",");
+						if(result[0]==="already"){
 							//报过名显示为1
 							status=2;
 							alert("此用户已报过名");
@@ -334,31 +354,28 @@ function addTeamMember(){
 						data:data,
 						dataType:'json',
 						success:function(data){
-							if(data=="notexist"){
-								$("#already").hide();
-								$("#notexist").show();
-								$("#success").hide();
+							alert(data);
+							var result=data.split(",");
+							if(result[0]=="notexist"){
+								$("#prompt").text("");
+								$("#prompt").text(result[1]+"不存在");
 								status=2;
 								$("#addteam").hide();
-								return false;
-							}else if(data==="already"){
+							}else if(result[0]==="already"){
 								//报过名显示为1
-								$("#notexist").hide();
-								$("#already").show();
-								$("#success").hide();
+								$("#prompt").text("");
+								$("#prompt").text(result[1]+"报过名");
 								status=2;
 								$("#addteam").hide();
-								return false;
-							} else if(data==="success"){
+							} else if(result[0]==="success"){
 								//检查团队负责人是否报过名
 								if(num==0){
 									num++;	
 								}
 								$("#addteam").show();
-								$("#notexist").hide();
-								$("#already").hide();
+								$("#prompt").text("");
+								$("#prompt").text(result[1]+"可以报名");
 								status=1;
-								$("#success").show();
 							}
 							
 						}
@@ -374,19 +391,24 @@ function addTeamMember(){
 	}
 
 	function form_submit(){
-		$("#notexist").hide();
-		$("#already").hide();
-		$("#success").hide();
+		$("#prompt").text("");
 		var comp_type=$(".compe_type").attr("value");
+		if(comp_type===1){
+			if(s_name===""&&s_num===""){
+				alert("请填写完整内容");
+				return false;
+			}
+		}
 		if(comp_type==2){
 			VaStudents();
 		}else if(comp_type==1&&num==0){
-			alert("团队赛报名人数必须两名以上");
+			$("#teamnum").show();
 			return false;
 		}
-	
+		
 		if(status==1){
-			if(JqValidate()&&jugeCompType()){    
+			if(Boolean(JqValidate())&&Boolean(jugeCompType(0,false))){ 
+				   
 				 $(".form-horizontal").submit();
 			} 
 		}

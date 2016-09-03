@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%--  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html >
@@ -97,14 +97,13 @@
 </body>
 </html>
 
+ --%>
 
 
 
 
 
-
-
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html >
@@ -172,14 +171,12 @@
 	<div class="form-group">
 		 <label for="inputEmail3" class="col-lg-1 col-lg-offset-5 col-md-1 col-md-offset-5 col-sm-1 col-sm-offset-5 control-label">学院：</label>
 		 <div class="col-lg-2 col-md-5 col-xs-5">
-		 	 <select class="form-control input-lg">
-	                      <option>信息工程学院</option>
-	                      <option>艺术学院</option>
-	                      <option>园艺园林学院</option>
+		 	 <select class="form-control input-lg" name="depatrment_id">
+		 	 	<c:forEach items="${departments}" var="depatrment">
+		 	 		 <option value="${depatrment.de_id}">${depatrment.de_name}</option>
+		 	 	</c:forEach>
 	          </select>
-		 
 		 </div>
-	            	 
 	</div>
 
 	<div class="form-group">
@@ -192,8 +189,6 @@
        </label>
    </div>
 	
-  
-
     <div class="form-group">
 	     <div class="col-lg-4 col-lg-offset-5 col-md-4 col-md-offset-5 col-xs-4 col-xs-offset-5">
 		   <button class="btn btn-primary " >确认添加</button>
@@ -205,4 +200,3 @@
 
 </body>
 </html>
- --%>

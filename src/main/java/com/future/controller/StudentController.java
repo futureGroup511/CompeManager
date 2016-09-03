@@ -39,8 +39,9 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	private Integer compe_id;
 	private SignUp  sup=new SignUp();
 	private Integer award_id; 
+	private Integer depatrment_id;
 	private List<Student> students=new ArrayList<Student>();
-
+	
 	
 	private File file;
 	private String fileFileName;//  
@@ -66,6 +67,8 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	}
 	
 	public String addStudent(){
+		Department department=departservice.findDepartById(depatrment_id);
+		stu.setStu_department(department);
 		stuser.addOrUpdateStudent(stu);
 		return "success";
 	}
@@ -105,17 +108,17 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		 stdent=stuser.findStudentByNameAndNum(stu);
 		}
 		if(stdent==null){
-			ActionContext.getContext().getValueStack().push("notexist");
+			ActionContext.getContext().getValueStack().push("notexist,");
 			return "jugeapply";
 		}
 		Competition c=comps.findCompetitionById(compe_id);
 		SignUp s=sups.jugeStudentuge(stdent,c ,sup.getSingnup_type());
 		if(s!=null){
 			//报过名
-			ActionContext.getContext().getValueStack().push("already");
+			ActionContext.getContext().getValueStack().push("already,"+stdent.getStu_name());
 		}else{
 			//没报过名
-			ActionContext.getContext().getValueStack().push("success");
+			ActionContext.getContext().getValueStack().push("success,"+stdent.getStu_name());
 		}
 		
 		return "jugeapply";
@@ -134,13 +137,14 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 			}
 		}
 		int index=1;
-		while(iterator.hasNext()){
+		Iterator<Student> iterator2=students.iterator();
+		while(iterator2.hasNext()){
 			SignUp sgp=new SignUp();
 			sgp.setSignUp_status(1);
 			sgp.setSignUp_teacher(sup.getSignUp_teacher());
 			sgp.setSignUp_team(sup.getSignUp_team());
-			sgp.setSignUP_type(sup.getSignUP_type());
-			Student s=iterator.next();
+			sgp.setSingnup_type(sup.getSingnup_type());
+			Student s=iterator2.next();
 			s=stuser.findStudentByNameAndNum(s);
 			if(index==1&&students.size()!=1){
 				sgp.setSingUp_manager(1);
@@ -159,7 +163,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 			sups.addSignUp(sgp);
 			index++;
 		}
-		return "success";
+		return "finishApply";
 	}
 	
 	//查看团队报名的队名是否重复
@@ -333,6 +337,14 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	@Override
 	public void setSession(Map<String, Object> arg0) {
 		session=arg0;
+	}
+
+	public Integer getDepatrment_id() {
+		return depatrment_id;
+	}
+
+	public void setDepatrment_id(Integer depatrment_id) {
+		this.depatrment_id = depatrment_id;
 	}
 	
 	
