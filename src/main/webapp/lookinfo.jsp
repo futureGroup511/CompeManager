@@ -55,9 +55,9 @@ body {
 </style>
 </head>
 <body>
-	<div class="headingWrapper color-bright">
+	<!-- <div class="headingWrapper color-bright">
   		<p class="header header--pushDown header--shadow" title="HOVER ME">大学生竞赛管理系统</p>
-	</div>
+	</div> -->
 	<div class="container">
 		<div class="head"></div>
 		<div class="jumbotron">
