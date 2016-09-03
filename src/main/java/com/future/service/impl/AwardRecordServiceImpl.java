@@ -78,7 +78,7 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 	//分页查看未通过审核竞赛结果
 	@Override
 	public PageBean getPageBeanNoPassCheckAwardRecord(int pageNum, int pageSize) {
-		return awardRecordDao.getPageBeanCheckSuccessAwardRecord(pageNum,pageSize);
+		return awardRecordDao.getPageBeanNoPassCheckAwardRecord(pageNum,pageSize);
 	}
 
 
