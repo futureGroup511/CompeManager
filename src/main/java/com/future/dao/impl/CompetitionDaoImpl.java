@@ -183,7 +183,7 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Competition> getNextClassCompetition(Integer depId) {
-		String sql = "from Competition compe where compe.compe_requestDate >= year(NOW()) and compe.compe_status = 3 and compe.compe_department.de_id = :depId";
+		String sql = "from Competition compe where compe.compe_requestDate >= year(NOW()) and compe.compe_status = 3 and compe.compe_department.de_id = :depId and now() >= compe.compe_endTime";
 		List<Competition> compeList = getsession().createQuery(sql)
 														.setParameter("depId", depId)
 															.list();
