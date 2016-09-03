@@ -5,8 +5,9 @@
 	margin:0;
 }
 #beijing{
+
 	background-image:url(../images/huanying.png);
-	height:500px;
+	height:680px;
 	width:100%;
 }
 .row{
@@ -15,9 +16,9 @@
 .row .one{
 	font-size:46px;
 	color:white;
-	margin-top: 300px;
+	margin-top: 200px;
 }
 .row .two{
-	font-size:34px;
+	font-size:30px;
 	color:white;
 }
