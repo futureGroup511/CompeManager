@@ -13,7 +13,7 @@
 <div class="container">
   <div class="row">
         <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
-            <p>当前位置：教务处服务>>查看审核通过竞赛结果</p>
+            <p>当前位置：教务处服务>>查看未通过审核竞赛结果</p>
         </div>
         <div class="col-lg-2 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
             <p>欢迎 	${sessionScope.admin.ad_name}  登录本系统</p>

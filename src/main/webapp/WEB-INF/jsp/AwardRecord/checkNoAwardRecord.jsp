@@ -33,20 +33,20 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>序号</th>
+         <th>#</th>
          <th>学号</th>
          <th>姓名</th>
          <th>性别</th>
          <th>班级</th>
          <th>比赛</th>
-         <th>指导老师</th>
+         <th>老师</th>
          <th>团队名称</th>
          <th>负责人</th>
-         <th>获奖等级</th>
+         <th>等级</th>
          <th>学分</th>
          <th>奖金</th>
-         <th>指导老师奖金</th>
-         <th>获奖证书</th>
+         <th>老师奖金</th>
+         <th>证书</th>
          <th>编辑</th>
        </tr>
       </thead>

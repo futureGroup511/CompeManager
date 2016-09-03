@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -41,7 +42,7 @@
 					<tr>
 						<td>${statu.index+1}</td>
 						<td>${signup.signUp_competition.compe_compeName.compeName_name}</td>				
-						<td>${signup.signUP_time}</td>
+						<td>${fn:substring(signup.signUP_time,0,11)}</td>
 						<c:if test="${signup.singnup_type eq 1}"> 
 							<td>团队</td>
 						</c:if>
