@@ -105,11 +105,13 @@
     		<result name="modifyDepartView" >WEB-INF/jsp/Admin/modifyDepart.jsp</result>
     		<result name="modifyDepartsuccess" type="redirect">admin_finAllDepartment</result>
     		<result name="addDeparmentManegerView">WEB-INF/jsp/Admin/addDeparmentManagerView.jsp</result>
-    		<result name="addSuccess" >index.jsp</result>
+    		<result name="addSuccess" type="redirect">awardhierar_findAll</result>
     		<result name="addDepartmentView">WEB-INF/jsp/Admin/addDepartment.jsp</result>
-    		<result name="addCompetitionHierarchyView">WEB-INF/jsp/Admin/addCompetitionHierarchyView.jsp</result>
+    		<result name="addCompetitionHierarchyView" type="redirect">comphier_findAllcomphier</result>
     		<result name="addAwardHierarchyView">WEB-INF/jsp/Admin/addAwardHierarchyView.jsp</result>
     		<result name="addAwardStandView">WEB-INF/jsp/Admin/addAwardStandView.jsp</result>
+    		<result name="addManagerSuccess" type="redirect">admin_findAll</result>
+    		<result name="addDepartmentSuccess" type="redirect">admin_allDepartment</result>
     	</action>	
     	
     	<!-- 竞赛项目 -->
