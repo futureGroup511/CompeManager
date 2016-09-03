@@ -23,8 +23,8 @@
 </div>
 
 <form action="awardhierar_modify" method="post">	
-<input type="hidden" name="awardHie_id" value="${awardh.awardHie_id}">
-<input type="hidden" name="awardHie_standard.award_id" value="${awardh.awardHie_standard.award_id}">
+<input type="hidden" name="awardh.awardHie_id" value="${awardh.awardHie_id}">
+<input type="hidden" name="awardh.awardHie_standard.award_id" value="${awardh.awardHie_standard.award_id}">
 	<div class="container">
 		<div class="one">
 	    	<div class="row">

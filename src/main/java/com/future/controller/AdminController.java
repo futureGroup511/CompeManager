@@ -256,7 +256,7 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 
 	public String addDepartment() {
 		departservice.addOrupdate(department);
-		return "addSuccess";
+		return "addDepartmentSuccess";
 	}
 
 	/**
@@ -266,7 +266,7 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 	 */
 	public String addDepartmentManager() {
 		depManagerService.addOrUpdate(dm);
-		return "addSuccess";
+		return "addManagerSuccess";
 	}
 
 	public String addCompetitionHierarchyView() {

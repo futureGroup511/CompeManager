@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,11 +45,11 @@
 									</tr>
 									<tr>
 										<td class="col-md-4"><h4 class=" text-lg">竞赛开始时间：</h4></td>
-										<td class="col-md-8 "><h4 class=" text-lg">${comp.compe_startTime}</h4></td>
+										<td class="col-md-8 "><h4 class=" text-lg">${fn:substring(comp.compe_startTime,0,11)}</h4></td>
 									</tr>
 									<tr>
 										<td class="col-md-4"><h4 class=" text-lg">竞赛结束时间：</h4></td>	
-										<td class="col-md-8 "><h4 class=" text-lg">${comp.compe_endTime}</h4></td>
+										<td class="col-md-8 "><h4 class=" text-lg">${fn:substring(comp.compe_endTime,0,11)}</h4></td>
 									</tr>
 									<tr>
 										<td class="col-md-4"><h4 class=" text-lg">摘要:</h4></td>

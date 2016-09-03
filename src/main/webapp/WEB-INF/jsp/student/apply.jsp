@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,7 +21,7 @@
 		            <p>当前位置：学生服务>>报名</p>
 		        </div>
 		        <div class="col-lg-2 col-md-3 col-xs-3">
-		            <p>欢迎${stu.stu_name}登录本系统</p>
+		            <p>欢迎,${stu.stu_name}登录本系统</p>
 		        </div>
 		  </div>
 		</div>
@@ -31,6 +32,9 @@
 					<tr class="two">
 						<th>#</th>
 						<th>竞赛名称</th>
+						<th>竞赛开始时间</th>
+						<th>竞赛结束时间</th>
+						<th>竞赛等级</th>
 						<th>报名</th>
 					</tr>
 				</thead>
@@ -38,7 +42,10 @@
 					<c:forEach items="${request.ps.recordlist}" var="competition" varStatus="status" >
 						<tr>
 							 <td>${status.index+1}</td>
-							 <td><a href="${pageContext.request.contextPath}/student_lookDescComp?compe_id=${competition.compe_id}">${competition.compe_compeName.compeName_name }</a></td> 
+							 <td><a href="${pageContext.request.contextPath}/student_lookDescComp?compe_id=${competition.compe_id}">${competition.compe_compeName.compeName_name }</a></td>
+							 <td>${fn:substring(competition.compe_startTime, 0, 11) }</td>
+							 <td>${fn:substring(competition.compe_endTime, 0, 11)}</td>
+							 <td>${competition.compe_compeName.compeName_compeHierarchy.compeHie_name }</td>
 							 <td><a class="btn btn-primary" href="${pageContext.request.contextPath}/student_lookDescComp?compe_id=${competition.compe_id}">报名</a></td> 
 						<tr>
 					</c:forEach>
