@@ -165,7 +165,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		}
 		competitionName.setCompeName_status(1+"");//提交申请，正在审核状态
 		competitionNameService.save(competitionName);
-		return "LoginSuccess";
+		return "ToSuccessPage";
 	}
 	
 	/**
@@ -392,7 +392,10 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		sessionMap.put("compeId", compeId);
 		sessionMap.put("currentPage", currentPage);
 		System.out.println(signUpList.size()+"=============zhaoshuo");
-		if(signUpList.size()==0){
+		
+		List signUpListGroup = signUpService.getAvaliableGroupSignUp(compeId, pageBean);
+		List signUpListPersonal = signUpService.getAvaliablePersonalSignUp(compeId, pageBean);
+		if(signUpListGroup.size()==0 && signUpListPersonal.size() ==0){
 			//更新竞赛的状态为录入成绩完成
 			competitionService.changeCompetitionStatus(compeId, 3);
 		}

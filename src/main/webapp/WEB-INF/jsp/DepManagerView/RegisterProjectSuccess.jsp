@@ -41,7 +41,7 @@
 <body style="background-image:url(<%=basePath %>images/background.jpg);">
 <div class="container">
 	<div class="article">
-		项目申请成功<br/>待审核
+		申请成功<br/>待审核
 	</div>
 </div>
 </body>

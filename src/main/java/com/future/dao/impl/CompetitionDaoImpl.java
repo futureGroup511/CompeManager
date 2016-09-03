@@ -133,10 +133,10 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 			List list = getsession().createQuery(sqlStr).setParameter("compeId", compe.getCompe_id()).list();
 			if(list.isEmpty() || list.size() == 0){
 				compeList.remove(i);
-				String sqlStr01 = "update Competition compe set compe.compe_status = 3 where compe.compe_id = :compeId";
+				/*String sqlStr01 = "update Competition compe set compe.compe_status = 3 where compe.compe_id = :compeId";
 				getsession().createQuery(sqlStr01)
 								.setParameter("compeId", compe.getCompe_id())
-									.executeUpdate();
+									.executeUpdate();*/
 				
 				/**
 				 * 成绩录完之后，默认提交该学生的最高的奖励
