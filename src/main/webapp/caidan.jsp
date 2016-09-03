@@ -38,6 +38,7 @@
                 <dd><a target="right" href="depManager_registerScoreToDb">录入竞赛成绩</a></dd>
 	            <dd><a target="right" href="depManager_sendInformView">发布通知</a></dd>
 	            <dd><a target="right" href="department_findAllAwardRecord.action">查看学生获奖情况</a></dd>
+	           	<dd><a href="depManager_lookInformView" target="right">查看通知</a></dd>
 	            </dl>
         	</c:if>
 				
