@@ -7,7 +7,7 @@
 <frameset rows="16%,*" cols="100%" frameborder="no" border="0" framespacing="0">
 	 <frame src="index-head-111.jsp" scrolling="no"></frame>
 
-<frameset cols="15%,85%" rows="100%" frameborder="yes"  framespacing="1">
+<frameset cols="12%,85%" rows="100%" frameborder="yes"  framespacing="1">
 	<frame src="caidan.jsp" scrolling="no" ></frame>
     <frame src="huanyingdenglu.html" frameborder="yes" name="right" framespacing="1"></frame>
     </frameset>
