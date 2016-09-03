@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -92,6 +93,7 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 		criteria.setProjection(null);
 		criteria.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());
 		criteria.setMaxResults(ps.getPageSize());
+		criteria.addOrder(Order.desc("compe_startTime"));
 		List<Competition> competitions=criteria.list();
 		Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(), Integer.valueOf(tatolnum.toString()), competitions);
 		return p;
