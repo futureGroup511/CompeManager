@@ -62,5 +62,6 @@ public interface AwardRecordDao {
 	//分页院系条件查询
 	PageBean getPageBeanDeConditionQuery(int pageNum, int pageSize, DeQuery model, Integer department);
 
-	
+	//默认提交最高的奖金
+	public void beCalled();
 }

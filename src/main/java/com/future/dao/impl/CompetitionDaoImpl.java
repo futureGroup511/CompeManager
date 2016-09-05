@@ -172,23 +172,29 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 						}
 					}
 					//更新该项目该学生中获奖记录的获奖级别最高的提交给教务处负责人 奖励级别 的id 最小的那个奖励记录
-					String sqlStr05 = "update AwardRecord awardRecord set awardRecord.awardRecor_status = 1 where awardRecord.awardRecor_awadHie.awardHie_id = "+minHieId;
+					String sqlStr05 = "update AwardRecord awardRecord set awardRecord.awardRecor_status = 3 where awardRecord.awardRecor_awadHie.awardHie_id = :minHieId and awardRecord.awardRecor_competition.compe_id = :compeId and awardRecord.awardRecor_student.stu_id = :stuId";
 					getsession().createQuery(sqlStr05)
+									.setParameter("minHieId", minHieId)
+									.setParameter("compeId", compeId)
+									.setParameter("stuId", stuId)
 									.executeUpdate();
+					//TODO zhaoshuo
 					
 				}
 			}
 		}
 		return compeList;
 	}
-
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Competition> getNextClassCompetition(Integer depId) {
-		String sql = "from Competition compe where compe.compe_requestDate >= year(NOW()) and compe.compe_status = 3 and compe.compe_department.de_id = :depId and now() >= compe.compe_endTime";
+		String sql = "from Competition compe where compe.compe_requestDate >= year(NOW()) and compe.compe_status = 3 and compe.compe_department.de_id = :depId and NOW() >= compe.compe_endTime";
 		List<Competition> compeList = getsession().createQuery(sql)
 														.setParameter("depId", depId)
 															.list();
+		System.out.println(compeList.size());
 		return compeList;
 	}
 

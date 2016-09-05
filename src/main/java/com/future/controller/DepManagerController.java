@@ -453,7 +453,8 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		awardRecord.setAwardRecor_competition(signUp.getSignUp_competition());
 		awardRecord.setAwardRecor_awadHie(awardHierarchy);
 		
-		awardRecordService.saveAwardRecord(awardRecord);    
+		awardRecordService.saveAwardRecord(awardRecord);
+		awardRecordService.beCalled();
 		return "RedirectToRegisterStudentPage";//重定向至报名表列表 
  	}
 	
@@ -462,7 +463,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 * 得到 成绩录完的 项目 进行下一级别的比赛 再次录入成绩
 	 */
 	public String nextClassCompetition(){
-		List<Competition> compeList = competitionService.getNextClassCompetition(((DepManager)sessionMap.get("depManager")).getDepM_id());
+		List<Competition> compeList = competitionService.getNextClassCompetition(((DepManager)sessionMap.get("depManager")).getDepM_department().getDe_id());
 		requestMap.put("compeList", compeList);
 		return "ToNextClassCompetition";
 	}

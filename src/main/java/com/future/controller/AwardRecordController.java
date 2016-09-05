@@ -87,6 +87,7 @@ public class AwardRecordController extends BaseAction<AwardRecord>{
 		
 		//分页查看待审核竞赛结果
 		PageBean pageBean = awardRecordService.getPageBeanCheckNoAwardRecord(pageNum,pageSize);
+		System.out.println("是这里嘛 ?");
 		ActionContext.getContext().getValueStack().push(pageBean);
 		
 		return "checkNoAwardRecord";

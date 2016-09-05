@@ -132,7 +132,10 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 	}
 	
 	
-
+	//默认提交最高的奖金
+	public void beCalled(){
+		awardRecordDao.beCalled();
+	}
 	
 	
 }

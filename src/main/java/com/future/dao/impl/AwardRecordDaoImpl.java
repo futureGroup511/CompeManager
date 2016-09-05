@@ -4,7 +4,9 @@ package com.future.dao.impl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import com.future.base.BaseDao;
 import com.future.dao.AwardRecordDao;
 import com.future.domain.AwardRecord;
+import com.future.domain.Competition;
 import com.future.domain.Student;
 import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
@@ -667,7 +670,74 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		//return new PageBean(pageNum, pageSize, 300,awardRecord);
 	}
 
-	
+	//让保存成绩的进行调用
+	//默认提交最高的奖金
+		public void beCalled(){
+			
+			
+			String sql = "from Competition compe where compe.compe_requestDate >= YEAR(NOW()) and compe.compe_status = 2 and NOW()>= compe.compe_endTime";
+			List<Competition> compeList = getsession().createQuery(sql)
+														.list();
+			
+			/**
+			 * 之前的时候进行查询所有的该竞赛的报名通过的是不是已经全部都录完成绩
+			 */
+			String sqlStr = "from SignUp signUp where signUp.signUp_status = 2 and signUp.signUp_competition.compe_id=:compeId and signUp.signUp_registerRecord = 0";
+			for(int i=0;i<compeList.size();i++){
+				Competition compe = compeList.get(i);											
+				List list = getsession().createQuery(sqlStr).setParameter("compeId", compe.getCompe_id()).list();
+				if(list.isEmpty() || list.size() == 0){
+					compeList.remove(i);
+					/*String sqlStr01 = "update Competition compe set compe.compe_status = 3 where compe.compe_id = :compeId";
+					getsession().createQuery(sqlStr01)
+									.setParameter("compeId", compe.getCompe_id())
+										.executeUpdate();*/
+					
+					/**
+					 * 成绩录完之后，默认提交该学生的最高的奖励
+					 */
+					String sqlstr02 = "from AwardRecord awardRecord where awardRecord.awardRecor_competition.compe_id = :compeId";//得到对应的
+					List<AwardRecord> awardList = getsession().createQuery(sqlstr02).setParameter("compeId", compe.getCompe_id())
+																						.list();
+					Set<Integer> stuIdSet = new HashSet<Integer>();
+					for(AwardRecord awardRecord : awardList){
+						stuIdSet.add(awardRecord.getAwardRecor_student().getStu_id());
+					}
+					
+					for(Integer stuId : stuIdSet){
+						Integer compeId = compe.getCompe_id();
+						
+						//更新该学生的该项目的获奖记录为已经获得其他获奖记录
+						String sqlStr03 = "update AwardRecord awardRecord set awardRecord.awardRecor_status = 4  where awardRecord.awardRecor_competition.compe_id = :compeId and awardRecord.awardRecor_student.stu_id = :stuId";
+						getsession().createQuery(sqlStr03).setParameter("compeId", compeId)
+																.setParameter("stuId", stuId)
+																	.executeUpdate();
+						//得到记录中 获奖等级id最小的那个
+						String sqlStr04 = "from AwardRecord awardRecord where awardRecord.awardRecor_competition.compe_id = :compeId and awardRecord.awardRecor_student.stu_id = :stuId";
+						List<AwardRecord> awardRecordList = getsession().createQuery(sqlStr04).setParameter("compeId", compeId)
+																									.setParameter("stuId", stuId)
+																										.list();
+						Integer minHieId = awardRecordList.get(0).getAwardRecor_awadHie().getAwardHie_id();
+						for(AwardRecord record : awardRecordList){
+							Integer hieId = record.getAwardRecor_awadHie().getAwardHie_id();
+							if(hieId <= minHieId){
+								minHieId = hieId;
+							}
+						}
+						//更新该项目该学生中获奖记录的获奖级别最高的提交给教务处负责人 奖励级别 的id 最小的那个奖励记录
+						String sqlStr05 = "update AwardRecord awardRecord set awardRecord.awardRecor_status = 3 where awardRecord.awardRecor_awadHie.awardHie_id = :minHieId and awardRecord.awardRecor_competition.compe_id = :compeId and awardRecord.awardRecor_student.stu_id = :stuId";
+						getsession().createQuery(sqlStr05)
+										.setParameter("minHieId", minHieId)
+										.setParameter("compeId", compeId)
+										.setParameter("stuId", stuId)
+										.executeUpdate();
+						//TODO zhaoshuo
+						
+					}
+				}
+			}
+		}
+
 	
 	
 }
