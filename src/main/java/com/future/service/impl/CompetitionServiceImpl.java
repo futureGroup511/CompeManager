@@ -83,7 +83,7 @@ public class CompetitionServiceImpl  implements CompetitionService{
 		competition.setCompe_startTime(model.getCompe_startTime());
 		competition.setCompe_endTime(model.getCompe_endTime());
 		competition.setCompe_digest(model.getCompe_digest());
-		competition.setCompe_program(model.getCompe_program());
+		//competition.setCompe_program(model.getCompe_program());
 		
 		competitionDao.save(competition);
 	}

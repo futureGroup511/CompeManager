@@ -69,10 +69,9 @@
 					<s:if test="compe_program == null ">
 						无 
 					</s:if>	
-						
-					<s:else>
+					<s:if test="compe_program != null ">
 						<a href="competition_upload?inputPath=${compe_program }">单击下载 </a>
-					</s:else>
+					</s:if>
 					
 					
 				<td>
