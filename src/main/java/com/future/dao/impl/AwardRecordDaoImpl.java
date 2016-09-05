@@ -75,12 +75,12 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 	//分页查看待审核竞赛结果
 	@Override
 	public PageBean getPageBeanCheckNoAwardRecord(int pageNum, int pageSize) {
-		List list = getsession().createQuery("from AwardRecord a where a.awardRecor_status = 1")
+		List list = getsession().createQuery("from AwardRecord a where a.awardRecor_status = 3 and awardRecor_picturePath !=''")
 				.setFirstResult((pageNum - 1 ) * pageSize)
 				.setMaxResults(pageSize)
 				.list();
 		
-		Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a  where a.awardRecor_status = 1")
+		Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a  where a.awardRecor_status = 3 and awardRecor_picturePath !=''")
 				.uniqueResult();
 		
 		return new PageBean(pageNum, pageSize, count.intValue(), list);
