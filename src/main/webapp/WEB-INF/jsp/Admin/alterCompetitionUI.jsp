@@ -8,6 +8,8 @@
 <title>修改竞赛项目</title>
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="css/xiugaijingsai.css" />
+<script src="${pageContext.request.contextPath}/JQueryResources/laydate/laydate.js"></script>
+<script type="text/javascript" src="jQuery-validator/jquery-1.11.1.js"></script>
 </head>
 
 <body>
@@ -21,7 +23,6 @@
         </div>
     </div>
 </div>
-
 
 <s:form  action="competition_alterCompetition" method="post" enctype="multipart/form-data">
 		<s:hidden name="compe_id"></s:hidden>
@@ -65,7 +66,11 @@
             </div>
             <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>申报时间:</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
-            	<s:textfield cssClass="form-control" name="compe_requestDate"/>
+            	<%-- <s:textfield cssClass="form-control" name="compe_requestDate"/> --%>
+            	<%-- <s:textfield name="compe_requestDate" placeholder="请输入日期" cssClass="form-control compe_requestDate" onclick="laydate()"></s:textfield> --%>
+            	<%-- <s:textfield cssClass="form-control" name="compe_requestDate" onclick="laydate()"/> --%>
+            	<input class="form-control" type="text" name="compe_requestDate" onclick="laydate()" value="<s:date name='compe_requestDate' format='yyyy-MM-dd' />">
+            	<%-- <s:date name='compe_requestDate' format='yyyy-MM-dd' /> --%>
             </div>
         </div>
     </div>
@@ -73,11 +78,13 @@
     	<div class="row">
         	<div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>开始时间:</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
-            	<s:textfield cssClass="form-control" name="compe_startTime" />
+            	<%-- <s:textfield cssClass="form-control" name="compe_startTime" /> --%>
+            	<input class="form-control" type="text" name="compe_startTime" onclick="laydate()" value="<s:date name='compe_startTime' format='yyyy-MM-dd' />">
             </div>
             <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>结束时间:</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
-            	<s:textfield cssClass="form-control" name="compe_endTime"/>
+            	<%-- <s:textfield cssClass="form-control" name="compe_endTime"/> --%>
+            	<input class="form-control" type="text" name="compe_endTime" onclick="laydate()" value="<s:date name='compe_endTime' format='yyyy-MM-dd' />">
             </div>
         </div>
      </div>
@@ -92,6 +99,16 @@
      	</p>
      </div>
 </div>
+
+<script type="text/javascript">
+	$(function(){
+		var a = $('.compe_requestDate').val();
+		$(".compe_requestDate").css("display", 'none');
+	})
+	
+
+</script>
+
 </body>
 </html>
 
