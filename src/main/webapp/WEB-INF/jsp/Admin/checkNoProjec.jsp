@@ -65,7 +65,16 @@
 				<td><s:date name="compe_startTime" format="yyyy-MM-dd" /></td>
 				<td><s:date name="compe_endTime" format="yyyy-MM-dd" /></td>
 				<td>${compe_digest }</td>
-				<td><a href="competition_upload?inputPath=${compe_program }">单击下载 </a></td>
+				<td>
+					<s:if test="compe_program == null ">
+						无 
+					</s:if>	
+						
+					<s:else>
+						<a href="competition_upload?inputPath=${compe_program }">单击下载 </a>
+					</s:else>
+					
+					
 				<td>
 					
 					<a href="admin_pass?id=${compe_id }">通过</a>
