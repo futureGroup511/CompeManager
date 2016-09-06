@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>竞赛成绩录入</title>
 <link rel="stylesheet" href="<%=basePath %>css/bootstrap.css" />
 <link rel="stylesheet" href="<%=basePath %>css/xueyuan4.css"/>
 <script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery-1.11.1.js"></script>
@@ -20,13 +20,10 @@
 <body>
 <div class="dangqian">
     		<div class="row">
-		        <!-- <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
-		            <a> <p>  </p> </a>
-		        </div> -->
-		        <div class="col-lg-2 col-lg-offset-6 col-md-3 col-md-offset-3 col-xs-5  col-xs-offset-1">
+		        <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
 		            <p>当前位置：学院负责人>>竞赛成绩录入</p>
 		        </div>
-		        <div class="col-lg-2 col-md-3 col-xs-3">
+		        <div class="col-lg-2 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
 		            <p>欢迎 	${sessionScope.depManager.depM_name }  登录本系统</p>
 		        </div>
     		</div>

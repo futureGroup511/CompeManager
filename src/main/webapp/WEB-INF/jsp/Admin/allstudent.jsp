@@ -38,7 +38,7 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>#</th>
+         <th>序号</th>
          <th>学生姓名</th>
          <th>所属班级</th>
          <th>所属院系</th>
@@ -48,7 +48,7 @@
       <tbody>
         <c:forEach items="${ps.recordlist}" varStatus="status" var="stu">
 					<tr>
-					   	<th>${statu.index+1}</th>
+					   	<th>${status.index+1}</th>
 						<th>${stu.stu_name }</th>
 						<th>${stu.stu_class }</th>
 						<th>${stu.stu_department.de_name }</th>

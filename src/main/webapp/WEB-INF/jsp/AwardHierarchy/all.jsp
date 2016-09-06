@@ -40,7 +40,7 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>#</th>
+         <th>序号</th>
          <th>竞赛获奖等级</th>
          <th>描述</th>
          <th>修改</th>

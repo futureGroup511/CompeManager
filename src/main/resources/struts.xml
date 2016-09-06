@@ -179,6 +179,9 @@
     	<action name="department_*" method="{1}" class="com.future.controller.DepartmentController">
     	  	<result name="findAllAwardRecord">WEB-INF/jsp/Department/findAllAwardRecord.jsp</result>  
     	  	<result name="conditionQuery">WEB-INF/jsp/Department/conditionQuery.jsp</result>  
+
+    	  	<result name="findAllDeCoAwardRecord">WEB-INF/jsp/Department/findAllDeCoAwardRecord.jsp</result>  
+    		
     	</action> 
     	
     </package>

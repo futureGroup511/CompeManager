@@ -38,7 +38,7 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>#</th>
+         <th>序号</th>
          <th>竞赛类型</th>
          <th>竞赛获奖等级</th>
          <th>老师所获奖金</th>

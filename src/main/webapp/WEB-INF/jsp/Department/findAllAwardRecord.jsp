@@ -62,11 +62,12 @@
          <th>学号</th>
          <th>姓名</th>
          <th>性别</th>
+         <th>院系</th>
          <th>班级</th>
          <th>获奖比赛</th>
          <th>指导老师</th>
-         <th>团队名称</th>
-         <th>是否为负责人</th>
+         <!-- <th>团队名称</th>
+         <th>是否为负责人</th> -->
          <th>获奖等级</th>
          <th>所加学分</th>
          <th>所获奖金</th>
@@ -82,9 +83,12 @@
 				<td>${awardRecor_student.stu_num }</td>
 				<td>${awardRecor_student.stu_name }</td>
 				<td>${awardRecor_student.stu_sex }</td>
-				<td>${awardRecor_student.stu_class }</td>
 				<td>${awardRecor_student.stu_department.de_name }</td>
-				<td>${awardRecor_competition.compe_compeName.compeName_name }</td>
+				<td>${awardRecor_student.stu_class }</td>
+				<td>
+					<s:date name="awardRecor_time" format="yyyy" />
+					${awardRecor_competition.compe_compeName.compeName_name }
+				</td>
 				<td>${awardRecor_coachTeacher }</td>
 				<%-- <s:if test="awardRecor_team ==null ">
 					<td>----------</td>
@@ -101,18 +105,17 @@
 					</s:else>
 				</s:else> --%>
 				<td>${awardRecor_awadHie.awardHie_name }</td>
-				<td><s:date name="awardRecor_time" format="yyyy-MM-dd" /></td>
+				<%-- <td><s:date name="awardRecor_time" format="yyyy-MM-dd" /></td> --%>
 				<td>${awardRecor_score }</td>
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>
 				<td>
-				<s:if test="awardRecor_picturePath == ''">
+				<s:if test="awardRecor_picturePath == null">
 				未上传
 				</s:if>
 				<s:else>
 					<a class="image-icon" rel="gallery[modal]" href="${awardRecor_picturePath }">
 					<img height="20" width="100" src="${awardRecor_picturePath }"></a>
-					<%-- <img alt="" src="${awardRecor_picturePath }"> --%>
 				</s:else>
 				</td>
 			</tr>

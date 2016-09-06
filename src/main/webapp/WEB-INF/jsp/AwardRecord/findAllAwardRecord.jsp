@@ -104,7 +104,7 @@
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>
 				<td>
-				<s:if test="awardRecor_picturePath == ''">
+				<s:if test="awardRecor_picturePath == null">
 				未上传
 				</s:if>
 				<s:else>

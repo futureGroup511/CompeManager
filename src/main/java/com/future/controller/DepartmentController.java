@@ -18,6 +18,25 @@ import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
 public class DepartmentController extends BaseAction<DeQuery>{
+	
+	
+	//分页查询当前院系申报项目的所有获奖记录  
+	public String findAllDeCoAwardRecord(){
+		
+		return "findAllDeCoAwardRecord";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//获取当前session中
 	private Integer department = 1;
 	//条件分页查询

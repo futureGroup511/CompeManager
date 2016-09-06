@@ -43,7 +43,7 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>#</th>
+         <th>序号</th>
          <th>负责人姓名</th>
          <th>所属院系</th>
          <th>性别</th>
@@ -54,7 +54,7 @@
       <tbody>
         <c:forEach items="${ps.recordlist}" varStatus="status" var="Dep">
 			<tr>
-			   	<th>${statu.index+1}</th>
+			   	<th>${status.index+1}</th>
 				<th>${Dep.depM_name }</th>
 				<th>${Dep.depM_department.de_name }</th>
 				<th>${Dep.depM_sex }</th>
