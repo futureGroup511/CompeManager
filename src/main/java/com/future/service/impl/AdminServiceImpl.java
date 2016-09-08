@@ -88,5 +88,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.findAllHaveResultProject();
 	}
 
+	//查询当前院系申报了那些竞赛
+	public List<Competition> findDeCompe(Integer department) {
+		return adminDao.findDeCompe(department);
+	}
+
 	
 }

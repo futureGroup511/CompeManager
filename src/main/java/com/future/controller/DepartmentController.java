@@ -19,26 +19,105 @@ import com.opensymphony.xwork2.ActionContext;
 @Scope("prototype")
 public class DepartmentController extends BaseAction<DeQuery>{
 	
-	
-	//分页查询当前院系申报项目的所有获奖记录  
-	public String findAllDeCoAwardRecord(){
-		
-		return "findAllDeCoAwardRecord";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	//获取当前session中
 	private Integer department = 1;
+	
+	//学院负责人查看本院申请项目获奖情况
+	public String findAllDeCoAcCond(){
+		
+		//从当前session得到登陆id
+		DepManager de= (DepManager) ActionContext.getContext().getSession().get("depManager");		//年度
+		department = de.getDepM_department().getDe_id();
+		
+		//准备数据，年度   年度  往前推5年
+		Date currentDate = new Date();
+		SimpleDateFormat currentFormat = new SimpleDateFormat("yyyy");
+		String currentTime=currentFormat.format(currentDate);
+		Integer intTime = Integer.parseInt(currentTime);
+		List<Compe> first = new ArrayList<Compe>();
+		for(int i=intTime;i>intTime-5;i--){
+			Compe co = new Compe();
+			co.setId(i);
+			co.setName(String.valueOf(i));
+			first.add(co);
+		}
+		ActionContext.getContext().put("years", first);
+		
+		//准备数据，查询所有奖项
+		List<AwardHierarchy> awardHieraychys = awardHierarchyService.findAllAwardHierarchy();
+		ActionContext.getContext().put("awardHieraychys", awardHieraychys);
+		
+		//查询当前院系申报了那些竞赛
+		List<Competition> competitons =adminService.findDeCompe(department);
+		List<Compe> compe = new ArrayList<Compe>();
+		for(Competition obj:competitons){
+			Date time = obj.getCompe_requestDate();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy年");
+			String stime=sdf.format(time);
+			String name = stime + obj.getCompe_compeName().getCompeName_name();
+			Compe linshi = new Compe();
+			linshi.setId(obj.getCompe_id());
+			linshi.setName(name);
+			compe.add(linshi);
+		}		
+		ActionContext.getContext().put("competitons", compe);
+		
+		//学院负责人查看本院申请项目获奖情况
+		PageBean pageBean = awardRecordService.getPageBeanfindAllDeCoAcCond(pageNum,pageSize,model,department);
+		ActionContext.getContext().getValueStack().push(pageBean);
+		
+		
+		return "findAllDeCoAcCond";
+	}
+	
+	//分页查询当前院系申报项目的所有获奖记录  
+	public String findAllDeCoAwardRecord(){
+		//从当前session得到登陆id
+		DepManager de= (DepManager) ActionContext.getContext().getSession().get("depManager");		//年度
+		department = de.getDepM_department().getDe_id();
+		PageBean pageBean = awardRecordService.getPageBeanFindAllDeCoAwardRecord(pageNum,pageSize,department);
+		ActionContext.getContext().getValueStack().push(pageBean);
+		
+		
+		//准备数据，年度   年度  往前推5年
+		Date currentDate = new Date();
+		SimpleDateFormat currentFormat = new SimpleDateFormat("yyyy");
+		String currentTime=currentFormat.format(currentDate);
+		Integer intTime = Integer.parseInt(currentTime);
+		List<Compe> first = new ArrayList<Compe>();
+		for(int i=intTime;i>intTime-5;i--){
+			Compe co = new Compe();
+			co.setId(i);
+			co.setName(String.valueOf(i));
+			first.add(co);
+		}
+		ActionContext.getContext().put("years", first);
+		
+		//准备数据，查询所有奖项
+		List<AwardHierarchy> awardHieraychys = awardHierarchyService.findAllAwardHierarchy();
+		ActionContext.getContext().put("awardHieraychys", awardHieraychys);
+		
+		//查询当前院系申报了那些竞赛
+		System.out.println("+++++" + department);
+		List<Competition> competitons =adminService.findDeCompe(department);
+		List<Compe> compe = new ArrayList<Compe>();
+		for(Competition obj:competitons){
+			Date time = obj.getCompe_requestDate();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy年");
+			String stime=sdf.format(time);
+			String name = stime + obj.getCompe_compeName().getCompeName_name();
+			Compe linshi = new Compe();
+			linshi.setId(obj.getCompe_id());
+			linshi.setName(name);
+			compe.add(linshi);
+		}		
+		ActionContext.getContext().put("competitons", compe);
+		
+		return "findAllDeCoAwardRecord";
+	}
+		
 	//条件分页查询
 	public String conditionQuery(){
 		//从当前session得到登陆id

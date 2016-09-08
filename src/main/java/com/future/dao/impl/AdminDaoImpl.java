@@ -129,4 +129,11 @@ public class AdminDaoImpl extends BaseDao implements AdminDao
 		String hql="from Competition c where c.compe_status = 3";
 		return getsession().createQuery(hql).list();
 	}
+
+	//查询当前院系申报了那些竞赛
+	@Override
+	public List<Competition> findDeCompe(Integer department) {
+		String hql = "from Competition c where c.compe_department.de_id = :department";
+		return getsession().createQuery(hql).setParameter("department", department).list();
+	}
 }

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>查询所有获奖记录</title>
+<title>查询本院所有获奖记录</title>
 
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/jiao10.css">
@@ -14,11 +14,11 @@
 <body>
 <div class="container">
   <div class="row">
-        <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
+        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
             <p>当前位置：学院负责人服务>>查看学生获奖情况</p>
         </div>
-        <div class="col-lg-2 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
-            <p>欢迎 	${sessionScope.admin.ad_name}  登录本系统</p>
+        <div class="col-lg-3 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
+            <p>欢迎 	${sessionScope.depManager.depM_name }  登录本系统</p>
         </div>
   </div>
 </div>
@@ -31,19 +31,19 @@
   <div class="row">
     
     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">年度：</label>
-    <div class="col-lg-1 col-md-1 col-sm-1">
-         <s:select cssClass="form-control" label="按年度查询" name="year" list="years" listKey="id" listValue="name"  headerKey="0" headerValue="请选择" />
+    <div class="col-lg-1 col-md-1 col-sm-1" style="width:130px;">
+         <s:select cssClass="form-control" label="按年度查询" name="year" list="years" listKey="id" listValue="name"  headerKey="0" headerValue="请选择年度" />
      </div>
      <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">奖项：</label>
-     <div class="col-lg-1 col-md-1 col-sm-1">
-          <s:select cssClass="form-control" label="按奖项查询" name="award" list="awardHieraychys" listKey="awardHie_id" listValue="awardHie_name" headerKey="0" headerValue="请选择" />
+     <div class="col-lg-1 col-md-1 col-sm-1" style="width:175px;">
+          <s:select cssClass="form-control" label="按奖项查询" name="award" list="awardHieraychys" listKey="awardHie_id" listValue="awardHie_name" headerKey="0" headerValue="请选择奖项" />
      </div>
      <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">项目：</label>
-     <div class="col-lg-1 col-md-1 col-sm-1">
-          <s:select cssClass="form-control" label="按竞赛项目查询" name="competiton" list="competitons" listKey="id" listValue="name"  headerKey="0" headerValue="请选择" />
+     <div class="col-lg-1 col-md-1 col-sm-1" style="width:130px;">
+          <s:select cssClass="form-control" label="按竞赛项目查询" name="competiton" list="competitons" listKey="id" listValue="name"  headerKey="0" headerValue="请选择项目" />
      </div>
      <div class="col-lg-1 col-lg-offset-1 col-md-1 col-md-offset-1 col-sm-1 col-sm-offset-1">
-     	<input class="btn" type="submit" value="提交" />
+     	<input class="btn" type="submit" value="提交" style="width:130px;"/>
      </div>
      <div class="col-lg-2 col-md-2 col-sm-2">
      </div>
@@ -62,17 +62,16 @@
          <th>学号</th>
          <th>姓名</th>
          <th>性别</th>
-         <th>院系</th>
          <th>班级</th>
-         <th>获奖比赛</th>
-         <th>指导老师</th>
-         <!-- <th>团队名称</th>
-         <th>是否为负责人</th> -->
+         <th>院系</th>
+         <th>比赛</th>
+         <th>老师</th>
          <th>获奖等级</th>
-         <th>所加学分</th>
-         <th>所获奖金</th>
-         <th>指导老师所获奖金</th>
-         <th>获奖证书</th>
+         <th>获奖日期</th>
+         <th>学分</th>
+         <th>奖金</th>
+         <th>老师奖金</th>
+         <th>证书</th>
        </tr>
       </thead>
       <tbody>
@@ -83,8 +82,8 @@
 				<td>${awardRecor_student.stu_num }</td>
 				<td>${awardRecor_student.stu_name }</td>
 				<td>${awardRecor_student.stu_sex }</td>
-				<td>${awardRecor_student.stu_department.de_name }</td>
 				<td>${awardRecor_student.stu_class }</td>
+				<td>${awardRecor_student.stu_department.de_name }</td>
 				<td>
 					<s:date name="awardRecor_time" format="yyyy" />
 					${awardRecor_competition.compe_compeName.compeName_name }
@@ -105,7 +104,7 @@
 					</s:else>
 				</s:else> --%>
 				<td>${awardRecor_awadHie.awardHie_name }</td>
-				<%-- <td><s:date name="awardRecor_time" format="yyyy-MM-dd" /></td> --%>
+				<td><s:date name="awardRecor_time" format="yyyy-MM-dd" /></td>
 				<td>${awardRecor_score }</td>
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>

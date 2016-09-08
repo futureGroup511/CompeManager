@@ -136,6 +136,18 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 	public void beCalled(){
 		awardRecordDao.beCalled();
 	}
+
+	//分页查询当前院系申报项目的所有获奖记录  
+	@Override
+	public PageBean getPageBeanFindAllDeCoAwardRecord(int pageNum, int pageSize, Integer department) {
+		return awardRecordDao.getPageBeanFindAllDeCoAwardRecord(pageNum, pageSize,department);
+	}
+
+	//学院负责人查看本院申请项目获奖情况
+	@Override
+	public PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department) {
+		return awardRecordDao.getPageBeanfindAllDeCoAcCond(pageNum, pageSize,model,department);
+	}
 	
 	
 }

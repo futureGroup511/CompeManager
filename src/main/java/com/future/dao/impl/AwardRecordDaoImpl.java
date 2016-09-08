@@ -738,6 +738,171 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			}
 		}
 
-	
+		//分页查询当前院系申报项目的所有获奖记录  
+		@Override
+		public PageBean getPageBeanFindAllDeCoAwardRecord(int pageNum, int pageSize, Integer department) {
+			//拿到当前部门id申请的竞赛项目id
+			List compeId = findByDeCompetition(department);
+			//查询所有记录时家条件竞赛项目属于第一步拿到的竞赛项目id
+			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in ("
+					+ "select c.compe_id from Competition c where c.compe_department.de_id = :department"
+					+ ")";
+			List<AwardRecord> awardRecord = getsession().createQuery(hql)
+					.setFirstResult((pageNum - 1 ) * pageSize)
+					.setMaxResults(pageSize)
+					.setParameter("department", department).list();
+			
+			Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a where a.awardRecor_competition.compe_id in ("
+					+ "select c.compe_id from Competition c where c.compe_department.de_id = :department)")
+					.setParameter("department", department)
+					.uniqueResult();
+		
+			
+			return new PageBean(pageNum,pageSize,count.intValue(),awardRecord);
+		}
+		
+		//拿到当前部门id申请的竞赛项目id
+		private List findByDeCompetition(Integer department) {
+			String hql = "select c.compe_id from Competition c where c.compe_department.de_id = :department";
+			return getsession().createQuery(hql).setParameter("department", department).list();
+		}
+
+		//学院负责人查看本院申请项目获奖情况
+		@Override
+		public PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department) {
+			Criteria criteria = getsession().createCriteria(AwardRecord.class);
+			//首先添加第一个默认条件，所有记录都是本院系申请项目的
+			List list = findAllDeCom(department);
+			criteria.add(Restrictions.in("awardRecor_competition.compe_id", list));
+			
+			//添加第一个条件  竞赛项目
+			if(model.getCompetiton() != 0){
+				criteria.add(Restrictions.eq("awardRecor_competition.compe_id", model.getCompetiton()));
+			}
+			
+			//添加第二个条件 奖项
+			//查询国际奖id
+			Integer guojiId = findguojiId();
+			System.out.println("国际奖励id：" + guojiId);
+			//查询全国奖id
+			Integer quanguoId = findquanguoId();
+			System.out.println("全国奖：" + quanguoId);
+			//查询校级奖id
+			Integer xiaojiId = findxiaojiId();
+			System.out.println("校级奖：" + xiaojiId);
+			//查询省级奖id
+			Integer shengjiId = findshengjiId();
+			System.out.println("省级奖：" + shengjiId);
+			
+			//如果选择了奖项  默认请选择=0，所以要！=0
+			if(model.getAward() != 0){
+				//国际奖
+				if(model.getAward() == guojiId){
+					List list1 = findAllCountry(23);  
+					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list1));			
+				} else if(model.getAward() == quanguoId){
+					List list1 = findAllCountry(24);  
+					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list1));
+				} else if(model.getAward() == shengjiId){
+					List list1 = findAllCountry(26);  
+					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list1));
+				} else if(model.getAward() == xiaojiId){
+					List list1 = findAllCountry(25);  
+					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list1));
+				} else {
+					//根据id拿到名称，名且根据名称拿到id
+					List list1 = findByIdTwoId(model.getAward());
+					//criteria.add(Restrictions.eq("awardRecor_awadHie.awardHie_id", model.getAwardRecor_awadHie().getAwardHie_id()));
+					criteria.add(Restrictions.in("awardRecor_awadHie.awardHie_id", list1));
+				}
+			}
+			
+			//添加第三个条件 年度
+			//年度
+			if(Integer.parseInt(model.getYear()) != 0){
+				try {
+					//System.out.println("ZZZZZZZZZ" + model.getYear());
+					Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(model.getYear() + "-01-01");
+					//System.out.println("11111111" + date1);
+					Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(model.getYear() + "-12-31");
+					System.out.println(date2);
+					criteria.add(Restrictions.between("awardRecor_time", date1, date2));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			//添加分页条件，执行查询
+			criteria.setFirstResult((pageNum - 1) * pageSize); 
+			criteria.setMaxResults(pageSize);
+			List<AwardRecord> awardRecord=criteria.list();
+			criteria.setProjection(Projections.rowCount());
+			Long count1 = (Long)criteria.uniqueResult();
+			
+			//此方法是临时解决办法，条件第二次分页查询出现count1为null的错误
+			if(count1==null){
+				Criteria criteria1 = getsession().createCriteria(AwardRecord.class);
+				//首先添加第一个默认条件，所有记录都是本院系申请项目的
+				List list1 = findAllDeCom(department);
+				criteria1.add(Restrictions.in("awardRecor_competition.compe_id", list1));
+				
+				//添加第一个条件  竞赛项目
+				if(model.getCompetiton() != 0){
+					criteria1.add(Restrictions.eq("awardRecor_competition.compe_id", model.getCompetiton()));
+				}
+				
+				//如果选择了奖项  默认请选择=0，所以要！=0
+				if(model.getAward() != 0){
+					//国际奖
+					if(model.getAward() == guojiId){
+						List list111 = findAllCountry(23);  
+						criteria1.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list111));			
+					} else if(model.getAward() == quanguoId){
+						List list11 = findAllCountry(24);  
+						criteria1.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list11));
+					} else if(model.getAward() == shengjiId){
+						List list11 = findAllCountry(26);  
+						criteria1.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list11));
+					} else if(model.getAward() == xiaojiId){
+						List list11 = findAllCountry(25);  
+						criteria1.add(Restrictions.in("awardRecor_awadHie.awardHie_id",list11));
+					} else {
+						//根据id拿到名称，名且根据名称拿到id
+						List list11 = findByIdTwoId(model.getAward());
+						//criteria.add(Restrictions.eq("awardRecor_awadHie.awardHie_id", model.getAwardRecor_awadHie().getAwardHie_id()));
+						criteria1.add(Restrictions.in("awardRecor_awadHie.awardHie_id", list11));
+					}
+				}
+				
+				//添加第三个条件 年度
+				//年度
+				if(Integer.parseInt(model.getYear()) != 0){
+					try {
+						//System.out.println("ZZZZZZZZZ" + model.getYear());
+						Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(model.getYear() + "-01-01");
+						//System.out.println("11111111" + date1);
+						Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(model.getYear() + "-12-31");
+						System.out.println(date2);
+						criteria1.add(Restrictions.between("awardRecor_time", date1, date2));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+				}
+				
+				criteria1.setProjection(Projections.rowCount());
+				count1 = (Long)criteria1.uniqueResult();
+				System.out.println("++++++++++++++++++++" + count1);
+			
+			}
+			
+			
+			return new PageBean(pageNum, pageSize, count1.intValue(),awardRecord);
+		}
+
+		//首先添加第一个条件，所有记录都是本院系申请项目的
+		private List findAllDeCom(Integer department) {
+			String hql ="select c.compe_id from Competition c where c.compe_department.de_id = :department";
+			return (List) getsession().createQuery(hql).setParameter("department", department).list();
+		}
 	
 }

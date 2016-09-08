@@ -64,4 +64,10 @@ public interface AwardRecordDao {
 
 	//默认提交最高的奖金
 	public void beCalled();
+
+	//分页查询当前院系申报项目的所有获奖记录  
+	PageBean getPageBeanFindAllDeCoAwardRecord(int pageNum, int pageSize, Integer department);
+
+	//学院负责人查看本院申请项目获奖情况
+	PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department);
 }

@@ -41,4 +41,7 @@ public interface AdminDao {
 	//准备数据，查询状态=3（结果录入完毕）所有竞赛项目
 	List<Competition> findAllHaveResultProject();
 
+	//查询当前院系申报了那些竞赛
+	public List<Competition> findDeCompe(Integer department);
+
 }
