@@ -23,7 +23,8 @@ public class CheckLoginInterceptor extends AbstractInterceptor {
 		//User user = (User) ActionContext.getContext().getSession().get("user"); // 当前登录用户
 		DepManager deManager = (DepManager) ActionContext.getContext().getSession().get("depManager");
 		Admin admin = (Admin) ActionContext.getContext().getSession().get("admin");
-		Student student = (Student) ActionContext.getContext().getSession().get("student");
+		Student student = (Student) ActionContext.getContext().getSession().get("stu");
+		System.out.println("学生" + student);
 		String namespace = invocation.getProxy().getNamespace();
 		String actionName = invocation.getProxy().getActionName();
 		String privUrl = namespace + actionName; // 对应的权限URL
