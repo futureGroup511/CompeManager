@@ -128,11 +128,15 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	
 	
 	public String registerScoreToDb(){
-		
+		Integer depId = ((DepManager)sessionMap.get("depManager")).getDepM_department().getDe_id();
 		/**
 		 * 竞赛已经完成的 可以填写竞赛结果的竞赛 当年申请的竞赛
 		 */
-		List<Competition> compeList = competitionService.getAvaliableCopetion();
+		//List<Competition> compeList = competitionService.getAvaliableCopetion();
+		/**
+		 * 竞赛已经完成的 可以填写竞赛结果的竞赛 当年申请的竞赛并且是本院系的
+		 */
+		List<Competition> compeList = competitionService.getAvaliableCopetionByDep(depId);
 		requestMap.put("compeList", compeList);
 		System.out.println(compeList.size()+"hhhhhhhhhhhhhhhhhhh");
 		return "RegisterScoreToDb";
@@ -233,14 +237,17 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 *查看申请竞赛的审核状态  分页查询
 	 */
 	public String seeAllApplyCompetition(){
-		Integer recordCount = competitionService.getCompetitionCount();
+		Integer depId = ((DepManager)sessionMap.get("depManager")).getDepM_department().getDe_id().intValue();
+		//Integer recordCount = competitionService.getCompetitionCount();
+		Integer recordCount = competitionService.getCompetitionCountByDep(depId);
 		List<Competition> recordList = new ArrayList<Competition>();
 		Integer pageSize = 10;//每页显示的数量
 		if(currentPage == null || (currentPage+"").trim() == ""){
 			currentPage = 0;
 		}
 		PageBean pageBean = new PageBean(currentPage, pageSize, recordCount, null);
-		recordList = competitionService.getCompetitionByPage(pageBean);
+		//recordList = competitionService.getCompetitionByPage(pageBean);
+		recordList = competitionService.getCompetitionByPageAndDep(pageBean,depId);
 		System.out.println(recordList.size());
 		pageBean.setRecordList(recordList);
 		requestMap.put("pageBean", pageBean);
@@ -306,13 +313,17 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	
 	 */
 	public String inspectStudentApplyPage(){
-		Integer count = signUpService.getCount();
+		
+		Integer depId = ((DepManager)sessionMap.get("depManager")).getDepM_department().getDe_id();
+		//Integer count = signUpService.getCount();
+		Integer count = signUpService.getCountByDep(depId);
 		Integer pageSize = 10;//每页显示的数量
 		if(currentPage == null || (currentPage+"").trim() == ""){
 			currentPage = 0;
 		}
 		PageBean pb = new PageBean(currentPage, pageSize, count, null);
-		List<SignUp> signUpList = signUpService.getAllSignUp(pb);
+		//List<SignUp> signUpList = signUpService.getAllSignUp(pb);
+		List<SignUp> signUpList = signUpService.getAllSignUpByDep(pb,depId);
 		pb.setRecordList(signUpList);
 		requestMap.put("pb", pb);
 		return "InspectStudentSignUp";
@@ -355,6 +366,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	}
 	private Integer signType;// 1：团队 2： 个人
 	public String registerScore(){
+		Integer depId = ((DepManager)sessionMap.get("depManager")).getDepM_department().getDe_id();
 		if(signType != null){
 			
 		}else{
@@ -373,16 +385,19 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		
 		//得到指定竞赛的 还没有录入成绩的 团队报名和个人报名信息
 		Integer pageSize = 10;//每页显示的数量
-		Integer count = signUpService.getCount();
+		//Integer count = signUpService.getCount();
+		Integer count = signUpService.getCountByDep(depId);
 		if(currentPage == null || (currentPage+"").trim() == ""){
 			currentPage = 0;
 		}
 		PageBean pageBean = new PageBean(currentPage, pageSize, count, null);
 		List<SignUp> signUpList = null;
 		if(signType == 1){
-			signUpList = signUpService.getAvaliableGroupSignUp(compeId, pageBean);
+			//signUpList = signUpService.getAvaliableGroupSignUp(compeId, pageBean);
+			signUpList = signUpService.getAvaliableGroupSignUpByDep(compeId, pageBean,depId);
 		}else if(signType == 2){
-			signUpList = signUpService.getAvaliablePersonalSignUp(compeId, pageBean);
+			//signUpList = signUpService.getAvaliablePersonalSignUp(compeId, pageBean);
+			signUpList = signUpService.getAvaliablePersonalSignUpByDep(compeId, pageBean,depId);
 		}
 		requestMap.put("signUpList", signUpList);
 		requestMap.put("isGroup",signType==1?true:false);
@@ -476,8 +491,11 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 *查看进行中项目的报名情况，总人数，以及可以进行人数的详细查询 
 	 */
 	public String lookProcessingCompetitionStatus(){
-		//得到正在进行中的竞赛项目
-		List<Competition> compeList = competitionService.getProcessingCompetition();
+		Integer depId = ((DepManager)sessionMap.get("depManager")).getDepM_department().getDe_id();
+		//得到正在进行中的该学院的竞赛
+		//List<Competition> compeList = competitionService.getProcessingCompetition();
+		//得到正在进行中的该学院的竞赛 指定学院的
+		List<Competition> compeList = competitionService.getProcessingCompetitionByDep(depId);
 		// 竞赛 id 为键 报名人数为值
 		Map<Integer,Integer> compeSignUpsMap = new HashMap<Integer,Integer>();
 		for(Competition compe:compeList){

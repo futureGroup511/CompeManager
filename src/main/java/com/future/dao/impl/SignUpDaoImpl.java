@@ -217,4 +217,45 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 							.list();
 	}
 
+	@Override
+	public Integer getCountByDep(Integer depId) {
+		String sql = "select count(*) from SignUp signUp where signUp.signUp_student.stu_department.de_id = :depId";
+		Integer count = ((Long)getsession().createQuery(sql).setParameter("depId", depId).iterate().next()).intValue();
+		return count;
+	}
+
+	@Override
+	public List<SignUp> getAllSignUpByDep(PageBean pageBean, Integer depId) {
+		String sql = "from SignUp signUp where signUp.signUp_student.stu_department.de_id = :depId order by signUP_team asc, signUP_time desc";
+		List<SignUp> signUpList = getsession().createQuery(sql)
+												.setParameter("depId", depId)
+												.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
+												.setMaxResults(pageBean.getPageSize()).list();
+		return signUpList;
+	}
+
+	@Override
+	public List<SignUp> getAvaliableGroupSignUpByDep(Integer compeId, PageBean pageBean, Integer depId) {
+		//String sql = "from SignUp signUp where signUp.signUp_student.stu_department.de_id = :depId and signUp.signUp_competition.compe_id = :compeId and signUp.singnup_type = 1 and signUp.signUp_registerRecord = 0 and signUp.signUp_status = 2 order by signUp.signUp_team desc";
+		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id = :compeId and signUp.singnup_type = 1 and signUp.signUp_registerRecord = 0 and signUp.signUp_status = 2 order by signUp.signUp_team desc";
+		List<SignUp> signUpList = getsession().createQuery(sql)
+											.setParameter("compeId", compeId)
+											.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
+											.setMaxResults(pageBean.getPageSize())
+											.list();
+		return signUpList;
+	}
+
+	@Override
+	public List<SignUp> getAvaliablePersonalSignUpByDep(Integer compeId, PageBean pageBean, Integer depId) {
+		//String sql = "from SignUp signUp where signUp.signUp_student.stu_department.de_id = :depId and signUp.signUp_competition.compe_id = :compeId and signUp.singnup_type = 2 and signUp.signUp_registerRecord = 0 and signUp.signUp_status = 2 ";
+		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id = :compeId and signUp.singnup_type = 2 and signUp.signUp_registerRecord = 0 and signUp.signUp_status = 2 ";
+		List<SignUp> signUpList = getsession().createQuery(sql)
+											.setParameter("compeId", compeId)
+											.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
+											.setMaxResults(pageBean.getPageSize())
+											.list();
+		return signUpList;
+	}
+
 }

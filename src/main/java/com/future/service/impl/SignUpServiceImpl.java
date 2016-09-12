@@ -2,7 +2,6 @@ package com.future.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -124,5 +123,24 @@ public class SignUpServiceImpl implements SignUpService{
 	@Override
 	public List<SignUp> getSpecialCompeSignUpsByPage(PageBean pageBean, Integer compeId) {
 		return signUpDao.getSpecialCompeSignUpsByPage(pageBean, compeId);
+	}
+
+	@Override
+	public Integer getCountByDep(Integer depId) {
+		return signUpDao.getCountByDep(depId);
+	}
+
+	@Override
+	public List<SignUp> getAllSignUpByDep(PageBean pb, Integer depId) {
+		return signUpDao.getAllSignUpByDep(pb, depId);
+	}
+
+	@Override
+	public List<SignUp> getAvaliableGroupSignUpByDep(Integer compeId, PageBean pageBean, Integer depId) {
+		return signUpDao.getAvaliableGroupSignUpByDep(compeId, pageBean, depId);
+	}
+	@Override
+	public List<SignUp> getAvaliablePersonalSignUpByDep(Integer compeId, PageBean pageBean, Integer depId) {
+		return signUpDao.getAvaliablePersonalSignUpByDep(compeId, pageBean, depId);
 	}
 }

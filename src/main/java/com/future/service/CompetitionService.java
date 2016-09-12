@@ -61,6 +61,13 @@ public interface CompetitionService {
 	
 	//传过路径和id，让service去处理
 	void updateCompetitionPro(Integer compe_id, String realPath);
+	//得到制定学院的竞赛数量
+	Integer getCompetitionCountByDep(Integer depId);
+	//得到指定学院的竞赛分页
+	List<Competition> getCompetitionByPageAndDep(PageBean pageBean, Integer depId);
+	//得到指定学院的正在进行中的竞赛
+	List<Competition> getProcessingCompetitionByDep(Integer depId);
+	List<Competition> getAvaliableCopetionByDep(Integer depId);
 }
 /*package com.future.service;
 

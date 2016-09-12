@@ -96,5 +96,14 @@ public interface SignUpDao {
 	 * @param id
 	 */
 	public void updateSignUpByAwardRecord(AwardRecord aw);
+	//得到指定学院的报名数量
+	public Integer getCountByDep(Integer depId);
+	//分页查询得到制定学院的报名
+	public List<SignUp> getAllSignUpByDep(PageBean pb, Integer depId);
+	//得到制定学院的指定类型的报名
+	public List<SignUp> getAvaliableGroupSignUpByDep(Integer compeId, PageBean pageBean, Integer depId);
+	public List<SignUp> getAvaliablePersonalSignUpByDep(Integer compeId, PageBean pageBean, Integer depId);
+
+/*	public Integer getCountByDep(String depId);*/
 
 }

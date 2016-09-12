@@ -59,4 +59,12 @@ public interface CompetitionDao {
 	public Competition findCompetitionById(Integer id);
 	
 	public void updateCompetition(Competition comp);
+
+	public Integer getCompetitionCountByDep(Integer depId);
+
+	public List<Competition> getCompetitionByPageAndDep(PageBean pageBean, Integer depId);
+
+	public List<Competition> getProcessingCompetitionByDep(Integer depId);
+
+	public List<Competition> getAvaliableCopetionByDep(Integer depId);
 }

@@ -88,5 +88,12 @@ public interface SignUpService {
 	 * 分页查询 得到指定竞赛的报名信息
 	 */
 	public List<SignUp> getSpecialCompeSignUpsByPage(PageBean pageBean, Integer compeId);
+	//得到指定学院的报名总人数
+	public Integer getCountByDep(Integer depId);
+	
+	public List<SignUp> getAllSignUpByDep(PageBean pb, Integer depId);
+	//得到制定学院的类型报名
+	public List<SignUp> getAvaliableGroupSignUpByDep(Integer compeId, PageBean pageBean, Integer depId);
+	public List<SignUp> getAvaliablePersonalSignUpByDep(Integer compeId, PageBean pageBean, Integer depId);
 	
 }

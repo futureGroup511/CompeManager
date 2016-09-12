@@ -112,6 +112,27 @@ public class CompetitionServiceImpl  implements CompetitionService{
 			//System.out.println(compe_id + realPath);
 		}
 
+		@Override
+		public Integer getCompetitionCountByDep(Integer depId) {
+			return competitionDao.getCompetitionCountByDep(depId);
+		}
+
+		@Override
+		public List<Competition> getCompetitionByPageAndDep(PageBean pageBean, Integer depId) {
+			return competitionDao.getCompetitionByPageAndDep(pageBean, depId);
+		}
+
+		@Override
+		public List<Competition> getProcessingCompetitionByDep(Integer depId) {
+			return competitionDao.getProcessingCompetitionByDep(depId);
+		}
+
+		@Override
+		public List<Competition> getAvaliableCopetionByDep(Integer depId) {
+			return competitionDao.getAvaliableCopetionByDep(depId);
+		}
+
+		
 
 
 }
