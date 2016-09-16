@@ -137,6 +137,7 @@
     		<result name="addAwardStandView">WEB-INF/jsp/Admin/addAwardStandView.jsp</result>
     		<result name="addManagerSuccess" type="redirect">admin_findAll</result>
     		<result name="addDepartmentSuccess" type="redirect">admin_allDepartment</result>
+    		<result name="importStudentUI">WEB-INF/jsp/Admin/importStudentUI.jsp</result>
     		
     		<result name="loginLy" type="redirect">loginControll_firstLogin</result>
     	</action>	

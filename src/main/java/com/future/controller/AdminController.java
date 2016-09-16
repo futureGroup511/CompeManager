@@ -1,11 +1,15 @@
 package com.future.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
-import javax.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Map;
-import org.apache.struts2.interceptor.RequestAware;
 
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.RequestAware;
 /**
  * 注释
  * 注释
@@ -14,21 +18,70 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.future.base.BaseAction;
+import com.future.dao.AdminDao;
 import com.future.domain.Admin;
 import com.future.domain.AwardHierarchy;
 import com.future.domain.AwardStandard;
+import com.future.domain.Competition;
 import com.future.domain.CompetitionHierarchy;
 import com.future.domain.DepManager;
 import com.future.domain.Department;
 import com.future.domain.Student;
+import com.future.utils.ImportDate;
+import com.future.utils.PageBean;
 import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ActionContext;
-import com.future.domain.Competition;
-import com.future.utils.PageBean;
 
 @Controller
 @Scope("prototype")
 public class AdminController extends BaseAction<Admin> implements RequestAware {
+	
+	private File upload;  //包含文件内容
+	private String uploadFileName;//上传文件的名称；
+	private String uploadContentType; //上传文件的MIME类型；
+	//这些属性都会随着文件的上传自动赋值；
+	
+	
+	//导入数据页面
+	public String importStudentUI(){
+		
+		return "importStudentUI";
+	}
+	
+	//导入数据
+	public String importStudent() throws IOException{
+		
+		//上传文件并记住路径
+		String path = ServletActionContext.getServletContext().getRealPath("/importDate");  
+        String filename = path+File.separator+uploadFileName;  
+        FileInputStream in = new FileInputStream(upload);  
+        FileOutputStream out = new FileOutputStream(filename);  
+        byte[]b = new byte[1024];  
+        int len = 0;  
+        while((len=in.read(b))>0){  
+            out.write(b,0,len);  
+        }  
+        out.close(); 
+		
+        //System.out.println("path:" + path);
+        //System.out.println("filename:" + filename);
+        //System.out.println(upload+"----" + uploadFileName+"----" +uploadContentType);
+        //接着把文件路径传入导入类~
+        
+        ImportDate importDate = new ImportDate();
+        importDate.prepare(filename);
+        
+        //获取所有院系信息
+        List<Department> de = departmentService.findAllDepartment();
+        //findBynameDepartment();
+        for(Department obj:de){
+        	System.out.println(obj.getDe_name());
+        }
+        
+		return "importStudentUI";
+	}
+
+	
 
 	// =======================================================================================
 	// 显示主页面
@@ -365,5 +418,29 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 
 	public void setAwardStandard(AwardStandard awardStandard) {
 		this.awardStandard = awardStandard;
+	}
+	//文件上传
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
 	}
 }

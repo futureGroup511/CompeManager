@@ -8,6 +8,7 @@ import com.future.base.BaseDao;
 import com.future.dao.AdminDao;
 import com.future.domain.Admin;
 import com.future.domain.Competition;
+import com.future.domain.Department;
 import com.future.utils.PageBean;
 
 @Repository
@@ -136,4 +137,10 @@ public class AdminDaoImpl extends BaseDao implements AdminDao
 		String hql = "from Competition c where c.compe_department.de_id = :department";
 		return getsession().createQuery(hql).setParameter("department", department).list();
 	}
+	
+	//根据学院名字查询到对象
+	public Department findBynameDepartment(String name){
+    	String hql ="from Department where de_name = ?";
+    	return (Department) getsession().createQuery(hql).setParameter(0, name).uniqueResult();
+    }
 }

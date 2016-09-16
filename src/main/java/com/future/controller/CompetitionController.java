@@ -29,7 +29,7 @@ public class CompetitionController extends BaseAction<Competition> {
 	private String name;
 	
 	//文件上传   竞赛方案
-		//=============================
+	//=============================
 		
 	private File compeProgramFile;//文件
 	private String compeProgramFileFileName;//文件名

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.future.dao.AdminDao;
 import com.future.domain.Admin;
 import com.future.domain.Competition;
+import com.future.domain.Department;
 import com.future.service.AdminService;
 import com.future.utils.PageBean;
 
@@ -91,6 +92,13 @@ public class AdminServiceImpl implements AdminService {
 	//查询当前院系申报了那些竞赛
 	public List<Competition> findDeCompe(Integer department) {
 		return adminDao.findDeCompe(department);
+	}
+
+	//查询所有院系
+	@Override
+	public List<Department> findBynameDepartment() {
+		
+		return null;
 	}
 
 	

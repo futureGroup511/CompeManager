@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.future.domain.Admin;
 import com.future.domain.Competition;
+import com.future.domain.Department;
 import com.future.utils.PageBean;
 
 public interface AdminDao {
@@ -43,5 +44,8 @@ public interface AdminDao {
 
 	//查询当前院系申报了那些竞赛
 	public List<Competition> findDeCompe(Integer department);
+
+	
+	public Department findBynameDepartment(String value);
 
 }
