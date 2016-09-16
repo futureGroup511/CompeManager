@@ -79,7 +79,8 @@
                 </div>
             </div>
             <div class="from group">
-				<input  type="checkbox" name="useCookie" value="true" >自动登陆
+				<input  type="checkbox" name="useCookie" value="true" >自动登陆#
+				<a href="">导出数据</a>
 			</div>
          	<p class="text-center text-danger" id="prompt">账号密码错误</p>
             <button onclick="login();" class="btn btn-large btn-block btn-primary" type="button">立即登陆</button>
