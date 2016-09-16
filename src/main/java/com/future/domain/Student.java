@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,19 +21,25 @@ public class Student {
 
 	//学生id
 	private Integer stu_id;
-	//学生姓名
-	private String stu_name;
-	//学生密码
-	private String stu_password;
 	//学生学号   充当学号
 	private String stu_num;
-	//学生所属班级
-	private String stu_class;
+	//学生姓名
+	private String stu_name;
 	//学生性别
 	private String stu_sex;
-	
 	//所属院系
 	private Department stu_department;
+	//专业 新增
+	private String stu_major;
+	//学生所属班级
+	private String stu_class;
+	//身份证号
+	private String stu_idCard;
+	//年级
+	private String stu_grade;
+	//学生密码
+	private String stu_password;
+	
 	//学生获奖记录
 	private Set<AwardRecord> stu_awardRecord = new HashSet<AwardRecord>();
 	//学生对应的报名记录
@@ -49,29 +54,17 @@ public class Student {
 	public void setStu_id(Integer stu_id) {
 		this.stu_id = stu_id;
 	}
-	public String getStu_name() {
-		return stu_name;
-	}
-	public void setStu_name(String stu_name) {
-		this.stu_name = stu_name;
-	}
-	public String getStu_password() {
-		return stu_password;
-	}
-	public void setStu_password(String stu_password) {
-		this.stu_password = stu_password;
-	}
 	public String getStu_num() {
 		return stu_num;
 	}
 	public void setStu_num(String stu_num) {
 		this.stu_num = stu_num;
 	}
-	public String getStu_class() {
-		return stu_class;
+	public String getStu_name() {
+		return stu_name;
 	}
-	public void setStu_class(String stu_class) {
-		this.stu_class = stu_class;
+	public void setStu_name(String stu_name) {
+		this.stu_name = stu_name;
 	}
 	public String getStu_sex() {
 		return stu_sex;
@@ -85,6 +78,37 @@ public class Student {
 	}
 	public void setStu_department(Department stu_department) {
 		this.stu_department = stu_department;
+	}
+	public String getStu_major() {
+		return stu_major;
+	}
+	public void setStu_major(String stu_major) {
+		this.stu_major = stu_major;
+	}
+	public String getStu_class() {
+		return stu_class;
+	}
+	public void setStu_class(String stu_class) {
+		this.stu_class = stu_class;
+	}
+	
+	public String getStu_idCard() {
+		return stu_idCard;
+	}
+	public void setStu_idCard(String stu_idCard) {
+		this.stu_idCard = stu_idCard;
+	}
+	public String getStu_grade() {
+		return stu_grade;
+	}
+	public void setStu_grade(String stu_grade) {
+		this.stu_grade = stu_grade;
+	}
+	public String getStu_password() {
+		return stu_password;
+	}
+	public void setStu_password(String stu_password) {
+		this.stu_password = stu_password;
 	}
 	
 	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY,mappedBy="signUp_student")
