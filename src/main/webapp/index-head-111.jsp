@@ -33,7 +33,7 @@ body {
   display: inline-block;
   text-align: center;
   font-family: 'Francois One', Helvetica, Arial, sans-serif;
-  font-size:55px;
+  font-size:45px;
   color: #e7e7e7;
   text-decoration: none;
   text-shadow: 1.5px 1.5px 0 #cac6c5, -1.5px -1.5px 0 #cac6c5, -1.5px -1.5px 0 #cac6c5, -1.5px 1.5px 0 #cac6c5, 1.5px -1.5px 0 #cac6c5;

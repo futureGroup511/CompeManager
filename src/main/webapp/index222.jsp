@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>首页</title>
+<title>欢迎登陆大学生竞赛管理系统</title>
 <script type="text/javascript">
 
 //在被嵌套时就刷新上级窗口

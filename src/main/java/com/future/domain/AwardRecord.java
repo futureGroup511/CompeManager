@@ -40,6 +40,8 @@ public class AwardRecord {
 	private Integer awardRecor_status = 0;
 	//获奖证书
 	private String awardRecor_picturePath;
+	//发奖单位
+	private String awardRecor_unit;
 	
 	
 	//参加的竞赛项目
@@ -109,6 +111,12 @@ public class AwardRecord {
 	}
 	public String getAwardRecor_picturePath() {
 		return awardRecor_picturePath;
+	}
+	public String getAwardRecor_unit() {
+		return awardRecor_unit;
+	}
+	public void setAwardRecor_unit(String awardRecor_unit) {
+		this.awardRecor_unit = awardRecor_unit;
 	}
 	public void setAwardRecor_picturePath(String awardRecor_picturePath) {
 		this.awardRecor_picturePath = awardRecor_picturePath;

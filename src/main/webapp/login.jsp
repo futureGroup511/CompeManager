@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登陆界面</title>
+<title>大学生竞赛管理系统</title>
   
 </head>
 <body>
