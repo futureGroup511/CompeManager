@@ -3,8 +3,11 @@ package com.future.utils;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -16,18 +19,12 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.future.dao.AdminDao;
-import com.future.dao.impl.AdminDaoImpl;
 import com.future.domain.Department;
 import com.future.domain.Student;
-import com.mysql.jdbc.Util;
 
 @Service
 @Transactional
@@ -37,13 +34,23 @@ public class ImportDate {
 	private AdminDao adminDao;
 	
 	//接受传过来的路径，开始读取
-	public void prepare(String path) throws IOException{
+	public List prepare(String path,Map<String,Department> deMap) throws IOException{
 		 String excel2003_2007 = STUDENT_INFO_XLS_PATH;
 	     String excel2010 = STUDENT_INFO_XLSX_PATH;
 	     EXCEL_PATH = path;
-	     List<Student> list1 = readExcel(excel2010);
+	     LIB_PATH = path;
+	     
+	     List<Student> list1 = readExcel(path,deMap);
+	     //存放不符合学生以及错误信息
+	     Map<Student,List> errStumap = new HashMap<Student,List>();
+	     
+	     //符合要求学生数量
+	     List<Object> returnList = new ArrayList();
+	     int num = 0;
+	     
         if (list1 != null) {
             for (Student student : list1) {
+            	List<String> error = new ArrayList<String>();
                 System.out.print(student.getStu_num()+ "|");
                 System.out.print(student.getStu_name() + "|");
                 System.out.print(student.getStu_sex()+ "|");
@@ -54,11 +61,75 @@ public class ImportDate {
                 System.out.print(student.getStu_grade()+ "|");
                 System.out.print(student.getStu_password()+ "|");
                 System.out.println();
+                
+                if(student.getStu_num().isEmpty() || student.getStu_name().isEmpty() || student.getStu_sex().isEmpty()|| student.getStu_department()==null ||student.getStu_major().isEmpty() ||student.getStu_class().isEmpty() ||student.getStu_idCard().isEmpty() ||student.getStu_grade().isEmpty() ||student.getStu_password().isEmpty()    ){
+                	if(student.getStu_num().isEmpty() ){
+                		//System.out.println("aaaa" + student.getStu_num());
+                		error.add("学号不能为空");
+                	} 
+                	
+                	if (student.getStu_name().isEmpty()) {
+                		error.add("姓名不能为空");
+                	} 
+                	
+                	if(student.getStu_sex().isEmpty()){
+                		error.add("性别不能为空");
+                	}
+                	
+                	if(student.getStu_department()==null){
+                		error.add("院系不能为空");
+                	}
+                	
+                	if(student.getStu_major().isEmpty()){
+                		error.add("专业不能为空");
+                	}
+                	
+                	if(student.getStu_class().isEmpty()){
+                		error.add("班级不能为空");
+                	}
+                	
+                	if(student.getStu_idCard().isEmpty()){
+                		error.add("身份证号不能为空");
+                	}
+                	
+                	if(student.getStu_grade().isEmpty()){
+                		error.add("年级不能为空");
+                	}
+                	
+                	if(student.getStu_password().isEmpty()){
+                		error.add("密码不能为空");
+                	} 
+                	
+                	errStumap.put(student, error);
+                	
+                } else {
+					num++;
+				}
+                
             }
+            returnList.add(errStumap);
+            returnList.add(num);         
+           
         }
+        
+        
+        if(errStumap.isEmpty()){
+	        try {
+				save(list1);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	        
+	        return returnList;
+        } else {
+        	return returnList;
+        }
+        
+        //保存
+        //return errStumap;
 	}
 	
-	public List<Student> readExcel(String path) throws IOException {
+	public List<Student> readExcel(String path,Map<String,Department> deMap) throws IOException {
         if (path == null || EMPTY.equals(path)) {
             return null;
         } else {
@@ -67,7 +138,7 @@ public class ImportDate {
                 if (OFFICE_EXCEL_2003_POSTFIX.equals(postfix)) {
                     return readXls(path);
                 } else if (OFFICE_EXCEL_2010_POSTFIX.equals(postfix)) {
-                    return readXlsx(path);
+                    return readXlsx(path,deMap);
                 }
             } else {
                 System.out.println(path + NOT_EXCEL_FILE);
@@ -112,7 +183,8 @@ public class ImportDate {
                     student.setStu_name(getValue(stu_name));
                     student.setStu_sex(getValue(stu_sex));
                     
-                    //Department de = findBynameDepartment(getValue(stu_department_de_id));
+                    String a = getValue(stu_department_de_id);
+                    //Department de = deMap.get(a);
                     //student.setStu_department(de);
                     
                     student.setStu_major(getValue(stu_major));
@@ -132,7 +204,7 @@ public class ImportDate {
      * @return
      * @throws IOException
      */
-    public List<Student> readXlsx(String path) throws IOException {
+    public List<Student> readXlsx(String path,Map<String,Department> deMap) throws IOException {
         System.out.println(PROCESSING + path);
         InputStream is = new FileInputStream(path);
         XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
@@ -163,12 +235,8 @@ public class ImportDate {
                     student.setStu_sex(getValue(stu_sex));
                     
                     String a = getValue(stu_department_de_id);
-                    //System.out.println("asdfsfd" + a);
-                    //Department de = adminDao.findBynameDepartment(a);
-                    //System.out.println(adminDao);
-                    //student.setStu_department(de);
-                    
-                    //student.setStu_department(de);
+                    Department de = deMap.get(a);
+                    student.setStu_department(de);
                     student.setStu_major(getValue(stu_major));
                     student.setStu_class(getValue(stu_class));
                     student.setStu_idCard(getValue(stu_idCard));
@@ -195,6 +263,27 @@ public class ImportDate {
         }
         return list;
     }
+    
+    @SuppressWarnings({ "rawtypes" })
+	public void save(List<Student> lists) throws IOException, SQLException {
+		//ReadExcel xlsMain = new ReadExcel();
+		Student student = null;
+		List<Student> list = lists;
+		//通过工具类获取所有院系id
+		Map<String,String> deMap = DbUtil.getDeMap();
+		for (int i = 0; i < list.size(); i++) {
+			student = list.get(i);
+			//根据身份证号检测本条数据是否存在，如果不存在就插入，存在就不插入
+			List l = DbUtil.selectOne(SELECT_STUDENT_SQL + "'%" + student.getStu_idCard() + "%'", student);
+			if (!l.contains(1)) {
+				//插入之前修改学院
+				DbUtil.insert(INSERT_STUDENT_SQL, student);
+			} else {
+				//System.out.println("The Record was Exist : No. = " + student.getNo() + " , Name = " + student.getName() + ", Age = " + student.getAge() + ", and has been throw away!");
+				System.out.println("The Record was Exist : idcard. = " + student.getStu_idCard());
+			}
+		}
+	}
 	
 	
 	
@@ -213,7 +302,7 @@ public class ImportDate {
 
     public static final String EMPTY = "";
     public static final String POINT = ".";
-    public static final String LIB_PATH = "C:\\Users\\Administrator\\Desktop";
+    public static String LIB_PATH = "C:\\Users\\Administrator\\Desktop";
     public static final String STUDENT_INFO_XLS_PATH = LIB_PATH + "/student_info" + POINT + OFFICE_EXCEL_2003_POSTFIX;
     public static final String STUDENT_INFO_XLSX_PATH = LIB_PATH + "/students" + POINT + OFFICE_EXCEL_2010_POSTFIX;
     public static final String NOT_EXCEL_FILE = "没有找到指定文件";

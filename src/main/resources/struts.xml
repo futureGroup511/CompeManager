@@ -138,6 +138,8 @@
     		<result name="addManagerSuccess" type="redirect">admin_findAll</result>
     		<result name="addDepartmentSuccess" type="redirect">admin_allDepartment</result>
     		<result name="importStudentUI">WEB-INF/jsp/Admin/importStudentUI.jsp</result>
+    		<result name="importStudentUI2">WEB-INF/jsp/Admin/importStudentUI2.jsp</result>
+    		<result name="importStudentUISuccess">WEB-INF/jsp/Admin/importStudentUISuccess.jsp</result>
     		
     		<result name="loginLy" type="redirect">loginControll_firstLogin</result>
     	</action>	
