@@ -341,13 +341,19 @@ public class ImportDate {
  	
  	@SuppressWarnings("static-access")
     private String getValue(XSSFCell xssfRow) {
-        if (xssfRow.getCellType() == xssfRow.CELL_TYPE_BOOLEAN) {
-            return String.valueOf(xssfRow.getBooleanCellValue());
-        } else if (xssfRow.getCellType() == xssfRow.CELL_TYPE_NUMERIC) {
-            return String.valueOf(xssfRow.getNumericCellValue());
-        } else {
-            return String.valueOf(xssfRow.getStringCellValue());
-        }
+ 		try{
+ 			if (xssfRow.getCellType() == xssfRow.CELL_TYPE_BOOLEAN) {
+ 	            return String.valueOf(xssfRow.getBooleanCellValue());
+ 	        } else if (xssfRow.getCellType() == xssfRow.CELL_TYPE_NUMERIC) {
+ 	            return String.valueOf(xssfRow.getNumericCellValue());
+ 	        } else {
+ 	            return String.valueOf(xssfRow.getStringCellValue());
+ 	        }
+ 			
+ 		} catch (Exception e) {
+ 			return "";
+		}
+        
     }
 
     @SuppressWarnings("static-access")

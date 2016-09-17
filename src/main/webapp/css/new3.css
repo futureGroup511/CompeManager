@@ -1,0 +1,74 @@
+@charset "utf-8";
+*{
+  padding:0;
+  margin:0;
+}
+.row{
+  width:100%;
+}
+.step{
+  margin-top:3%;
+}
+.step p{
+  margin-top:-60px;
+  margin-left:85px;
+  font-size:20px;
+}
+.step h1{
+  margin-left:35px;
+ margin-bottom:30px;
+}
+.step .one{
+  background:#FF7700;
+  margin-left:9.5%;
+}
+.step .one h1{
+  color:white;
+}
+.step .one p{
+  color:white;
+}
+.step .two{
+  background:#FF7700;
+   margin-left:7%;
+}
+.step .two h1{
+  color:white;
+}
+.step .two p{
+  color:white;
+}
+.step .three{
+  background:#FF7700;
+  margin-left:7%;
+}
+.step .three h1{
+  color:white;
+}
+.step .three p{
+  color:white;
+}
+.zero{
+  margin-top:3%;
+  width:80%;
+  margin-left:8.5%;
+  background:#FFFBF7;
+  height:60px;
+}
+.zero img{
+  margin-top:15px;
+  margin-left:20px;
+}
+.zero p{
+  margin-left:30%;
+  margin-top:-25px;
+  font-size:16px;
+}
+.next{
+  margin-top:3%;
+}
+.next button{
+  width:60%;
+}
+/* CSS Document */
+
