@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.future.dao.AwardRecordDao;
 import com.future.domain.AwardRecord;
-
+import com.future.domain.ProjectAwardNum;
 import com.future.service.AwardRecordService;
 import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
@@ -147,6 +147,11 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 	@Override
 	public PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department) {
 		return awardRecordDao.getPageBeanfindAllDeCoAcCond(pageNum, pageSize,model,department);
+	}
+
+	@Override
+	public List<ProjectAwardNum> getProjectAwardNum() {
+		return awardRecordDao.getProjectAwardNum();
 	}
 	
 	

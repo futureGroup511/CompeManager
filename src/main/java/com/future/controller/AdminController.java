@@ -1,10 +1,13 @@
 package com.future.controller;
 
+
+
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -27,8 +30,10 @@ import com.future.domain.Competition;
 import com.future.domain.CompetitionHierarchy;
 import com.future.domain.DepManager;
 import com.future.domain.Department;
+import com.future.domain.ProjectAwardNum;
 import com.future.domain.Student;
 import com.future.utils.ImportDate;
+import com.future.utils.POIUtils;
 import com.future.utils.PageBean;
 import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ActionContext;
@@ -379,6 +384,49 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 		awardstandser.addOrupdate(awardStandard);
 		return "addSuccess";
 	}
+	
+	
+	
+	
+	/**
+	 *@zhaoshuo
+	 *统计各个项目的获奖情况，转为excel 文件输出流
+	 */
+	public String doCounterJob(){
+		List<ProjectAwardNum> awardNumList = awardRecordService.getProjectAwardNum();
+		try {
+			POIUtils.getWellDoneWb(awardNumList);
+		} catch (IOException e) {
+			//出错
+		}
+		return "compeAwardReport";
+	}
+	
+	private String filename = "AwardReport.xls";
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	private InputStream reportFileStream;
+	public InputStream getReportFileStream(){
+		List<ProjectAwardNum> awardNumList = awardRecordService.getProjectAwardNum();
+		try {
+			POIUtils.getWellDoneWb(awardNumList);
+		} catch (IOException e1) {
+			System.out.println("得到流的时候出现了问题");
+		}
+		try {
+			reportFileStream = new FileInputStream(POIUtils.reportFilePath);
+			return reportFileStream;
+		} catch (FileNotFoundException e) {
+			//异常
+			System.out.println("出现了异常现象》》》》》》》》》》》》》》》》》");
+			return null;
+		}
+	}
 
 	public Integer getCurrentPage() {
 		return currentPage;
@@ -390,6 +438,10 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 
 	public DepManager getDm() {
 		return dm;
+	}
+	
+	public void setReportFileStream(InputStream reportFileStream) {
+		this.reportFileStream = reportFileStream;
 	}
 
 	public void setDm(DepManager dm) {

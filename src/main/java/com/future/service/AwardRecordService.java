@@ -4,6 +4,7 @@ package com.future.service;
 import java.util.List;
 
 import com.future.domain.AwardRecord;
+import com.future.domain.ProjectAwardNum;
 import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
 import com.future.domain.Student;
@@ -71,5 +72,8 @@ public interface AwardRecordService {
 
 	//学院负责人查看本院申请项目获奖情况
 	PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department);
+	
+	//统计全校指定项目的获奖情况汇总
+	public List<ProjectAwardNum> getProjectAwardNum();
 	
 }

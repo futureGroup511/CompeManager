@@ -148,7 +148,6 @@ body {
             </div>
             <div class="from group">
 				<input  form="form" type="checkbox" name="useCookie" value="true" >自动登陆
-				<a href="#">导出数据</a>
 			</div>
          	<p class="text-center text-danger" id="prompt">账号密码错误</p>
             <button class="btn btn-large btn-block btn-primary" type="submit" onclick="login();">登录</button>
