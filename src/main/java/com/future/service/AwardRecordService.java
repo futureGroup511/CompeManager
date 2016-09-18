@@ -4,6 +4,7 @@ package com.future.service;
 import java.util.List;
 
 import com.future.domain.AwardRecord;
+import com.future.domain.ProjectAwardNum;
 import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
 import com.future.domain.Student;
@@ -83,5 +84,8 @@ public interface AwardRecordService {
 
 	//调用方法，保存  liuyang
 	void saveAwardRecordLY(AwardRecord model);
+	
+	//统计全校指定项目的获奖情况汇总
+	public List<ProjectAwardNum> getProjectAwardNum();
 	
 }

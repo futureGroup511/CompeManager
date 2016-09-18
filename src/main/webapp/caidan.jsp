@@ -139,6 +139,12 @@
 	            	<dd><a href="awardstand_findAll" target="right">查看所有奖励标准</a></dd>
 	                <dd><a href="admin_importStudentUI" target="right">导入学生数据</a> </dd>
 	            </dl>
+	            <dl class="channel">
+	                <dt>信息导出<img src="images/select_xl01.png"></dt>
+	                <dd><a href="admin_doCounterJob" target="right">导出数据</a></dd>
+	            </dl>
+	            
+	            
         	</c:if>
 				
 				

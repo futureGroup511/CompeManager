@@ -3,6 +3,7 @@ package com.future.dao;
 import java.util.List;
 
 import com.future.domain.AwardRecord;
+import com.future.domain.ProjectAwardNum;
 import com.future.domain.Student;
 import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
@@ -70,7 +71,7 @@ public interface AwardRecordDao {
 
 	//学院负责人查看本院申请项目获奖情况
 	PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department);
-
+	
 	//拿到所有记录当前登陆学院负责人session 的院系 的所有竞赛项目 的获奖记录
 	List<AwardRecord> getAllAlert(Integer depId);
 
@@ -82,4 +83,12 @@ public interface AwardRecordDao {
 
 	//调用方法，保存  liuyang
 	void saveAwardRecordLY(AwardRecord model);
+	//学院负责人查看本院申请项目获奖情况nm, int pageSize, DeQuery model, Integer department);
+	
+	//统计全校指定项目的获奖情况汇总
+	public List<ProjectAwardNum> getProjectAwardNum();
+	
+	
+	
+	
 }

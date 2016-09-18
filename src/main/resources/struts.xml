@@ -142,6 +142,16 @@
     		<result name="importStudentUISuccess">WEB-INF/jsp/Admin/importStudentUISuccess.jsp</result>
     		
     		<result name="loginLy" type="redirect">loginControll_firstLogin</result>
+    		
+    		<!-- 汇总竞赛获奖情况 -->
+    		<result name="compeAwardReport" type="stream">
+	           <!-- 设置下载文件的输入流属性名 -->  
+	           <param name="inputName">reportFileStream</param>
+	           <!-- 设置下载文件的文件名 -->  
+	           <param name="contentDisposition">attachment;filename="${filename}"</param>  
+	           <!-- 设置下载文件的缓冲 -->  
+	           <param name="bufferSize">2048</param>  
+    		</result>
     	</action>	
     	
     	<!-- 竞赛项目 -->

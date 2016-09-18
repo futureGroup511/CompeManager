@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.future.dao.AwardRecordDao;
 import com.future.domain.AwardRecord;
-
+import com.future.domain.ProjectAwardNum;
 import com.future.service.AwardRecordService;
 import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
@@ -171,6 +171,10 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 	@Override
 	public void saveAwardRecordLY(AwardRecord model) {
 		awardRecordDao.saveAwardRecordLY(model);
+	}
+	@Override
+	public List<ProjectAwardNum> getProjectAwardNum() {
+		return awardRecordDao.getProjectAwardNum();
 	}
 	
 	
