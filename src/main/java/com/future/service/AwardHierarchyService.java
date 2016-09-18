@@ -23,4 +23,7 @@ public interface AwardHierarchyService {
 	public AwardHierarchy fomdByID(Integer id) ;
 
 	public void addOrupdate(AwardHierarchy awardHierarchy) ;
+	
+	//查询所有奖项
+	List<AwardHierarchy> findAllAwardHierarchyTG();
 }

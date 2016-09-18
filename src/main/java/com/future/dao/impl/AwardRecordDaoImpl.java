@@ -904,5 +904,39 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			String hql ="select c.compe_id from Competition c where c.compe_department.de_id = :department";
 			return (List) getsession().createQuery(hql).setParameter("department", department).list();
 		}
+
+		//拿到所有记录当前登陆学院负责人session 的院系 的所有竞赛项目 的获奖记录
+		@Override
+		public List<AwardRecord> getAllAlert(Integer depId) {
+			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?)";
+			//String hql = "from AwardRecord a where a.awardRecor_competition.compe_id = 1";
+			
+			return (List<AwardRecord>)getsession().createQuery(hql).setParameter(0, depId).list();
+		}
+
+		//拿到所有记录当前登陆学院负责人session 的院系 的所有竞赛项目 的获奖记录
+		@Override
+		public PageBean getPageBeanAllAlert(int pageNum, int pageSize, Integer depId) {
+			
+			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) order by awardRecor_picturePath";
+			
+			List<AwardRecord> awardRecord = getsession().createQuery(hql).setFirstResult((pageNum - 1 ) * pageSize).setMaxResults(pageSize).setParameter(0, depId).list();
+
+			
+			Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a "
+					+ "where a.awardRecor_competition.compe_id in(select c.compe_id from Competition "
+					+ "c where c.compe_department.de_id = ?)")
+					.setParameter(0, depId).uniqueResult();
+		
+			return new PageBean(pageNum,pageSize,count.intValue(),awardRecord);
+		}
+
+		//根据id得到某条获奖记录
+		@Override
+		public AwardRecord getById(Integer id) {
+			String hql = "from AwardRecord a where a.awardRecor_id = ?";
+			AwardRecord awardRecord = (AwardRecord) getsession().createQuery(hql).setParameter(0, id).uniqueResult();
+			return awardRecord;
+		}
 	
 }

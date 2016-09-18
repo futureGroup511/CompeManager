@@ -181,6 +181,8 @@
     		<result name="noPass" type="redirectAction">awardRecord_checkNoAwardRecord</result>
     		<result name="findAllAwardRecord">WEB-INF/jsp/AwardRecord/findAllAwardRecord.jsp</result>
     		<result name="conditionQuery">WEB-INF/jsp/AwardRecord/conditionQuery.jsp</result>
+    		<result name="alertAwardRecordUI">WEB-INF/jsp/AwardRecord/alertAwardRecordUI.jsp</result>
+    		<result name="alertAwardUD">WEB-INF/jsp/AwardRecord/alertAwardUD.jsp</result>
     		
     		<result name="loginLy" type="redirect">loginControll_firstLogin</result>
     	</action>

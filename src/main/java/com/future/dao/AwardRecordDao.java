@@ -70,4 +70,13 @@ public interface AwardRecordDao {
 
 	//学院负责人查看本院申请项目获奖情况
 	PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department);
+
+	//拿到所有记录当前登陆学院负责人session 的院系 的所有竞赛项目 的获奖记录
+	List<AwardRecord> getAllAlert(Integer depId);
+
+	//拿到所有记录当前登陆学院负责人session 的院系 的所有竞赛项目 的获奖记录
+	PageBean getPageBeanAllAlert(int pageNum, int pageSize, Integer depId);
+
+	//根据id得到某条获奖记录
+	AwardRecord getById(Integer id);
 }
