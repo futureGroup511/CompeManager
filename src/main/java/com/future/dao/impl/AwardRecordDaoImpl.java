@@ -16,7 +16,9 @@ import org.springframework.stereotype.Repository;
 
 import com.future.base.BaseDao;
 import com.future.dao.AwardRecordDao;
+import com.future.domain.AwardHierarchy;
 import com.future.domain.AwardRecord;
+import com.future.domain.AwardStandard;
 import com.future.domain.Competition;
 import com.future.domain.Student;
 import com.future.utils.DeQuery;
@@ -937,6 +939,46 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			String hql = "from AwardRecord a where a.awardRecor_id = ?";
 			AwardRecord awardRecord = (AwardRecord) getsession().createQuery(hql).setParameter(0, id).uniqueResult();
 			return awardRecord;
+		}
+
+		//调用方法，保存  liuyang
+		@Override
+		public  void saveAwardRecordLY(AwardRecord model) {
+			System.out.println("获奖等级:"+ model.getAwardRecor_awadHie().getAwardHie_id());
+			System.out.println("获奖时间:"+model.getAwardRecor_time());
+			System.out.println("获奖单位:"+model.getAwardRecor_unit());
+			
+			//得到获奖等级id
+			Integer huojiangdengji = model.getAwardRecor_awadHie().getAwardHie_id();
+			//查询id获奖等级
+			AwardHierarchy awardHierarchy = findByIdAwardHie(huojiangdengji);
+			
+			AwardStandard awardStandard = findByIdAwardStan(awardHierarchy.getAwardHie_standard().getAward_id());
+			System.out.println("调用方法查询:" + awardStandard.getAward_stuMoney());
+			System.out.println("调用方法查询:" + awardStandard.getAward_teaMoney());
+			
+			System.out.println("===================");
+			AwardRecord awardRecord = findById(model.getAwardRecor_id());
+			awardRecord.setAwardRecor_awadHie(awardHierarchy);
+			awardRecord.setAwardRecor_stuMoney(awardStandard.getAward_stuMoney());
+			awardRecord.setAwardRecor_teaMoney(awardStandard.getAward_teaMoney());
+			awardRecord.setAwardRecor_score(model.getAwardRecor_score());
+			awardRecord.setAwardRecor_time(model.getAwardRecor_time());
+			awardRecord.setAwardRecor_unit(model.getAwardRecor_unit());
+			
+			getsession().save(awardRecord);
+			
+		}
+		
+		//获取奖励等级
+		public AwardHierarchy findByIdAwardHie(Integer huojiangdengji){
+			String hql = "from AwardHierarchy where awardHie_id = ?";
+			return (AwardHierarchy) getsession().createQuery(hql).setParameter(0, huojiangdengji).uniqueResult();
+		}
+		//获取奖励标准
+		public AwardStandard findByIdAwardStan(Integer id){
+			String hql="from AwardStandard where award_id = ?";
+			return (AwardStandard) getsession().createQuery(hql).setParameter(0, id).uniqueResult();
 		}
 	
 }

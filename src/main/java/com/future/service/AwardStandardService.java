@@ -35,4 +35,7 @@ public interface AwardStandardService {
 	 * @return
 	 */
 	public List<AwardStandard> getAll();
+
+	//根据获奖等级id，找到奖励标准
+	public AwardStandard findById(Integer id);
 }

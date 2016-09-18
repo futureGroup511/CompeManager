@@ -38,28 +38,54 @@ id:<s:textfield name="awardRecor_student.stu_id" disabled="true" /><br>
 <br>
 <br>
 <br>
-id:<s:textfield name="awardRecor_id" disabled="true" /><br>
+
+
+<form action="awardRecord_updateAwardRecord" method="post">
+
+<s:hidden name="awardRecor_id"></s:hidden>
 获奖等级：
-<%-- <s:textfield name="awardRecor_awadHie.awardHie_id" />此处为一个对象<br> --%> 
-<s:select cssClass="form-control" label="按奖项查询" name="awardRecor_awadHie.awardHie_id" list="awardHieraychys" listKey="awardHie_id" listValue="'(' + awardHie_descr+ ')' + awardHie_name" headerKey="%{awardRecor_awadHie.awardHie_id }" headerValue="%{awardRecor_awadHie.awardHie_name }" /><br>
-
-
-
-学分：<s:textfield name="awardRecor_score" disabled="true"/><br>
-奖金：<s:textfield name="awardRecor_stuMoney" disabled="true"/><br>
-老师奖金：<s:textfield name="awardRecor_teaMoney" disabled="true"/><br>
+<s:select id="awardHieSelect" cssClass="form-control" label="按奖项查询" name="awardRecor_awadHie.awardHie_id" list="awardHieraychys" listKey="awardHie_id" listValue="'(' + awardHie_descr+ ')' + awardHie_name" headerKey="%{awardRecor_awadHie.awardHie_id }" headerValue="%{awardRecor_awadHie.awardHie_name }" /><br>
+奖金：<s:textfield id="awardRecor_stuMoney" name="awardRecor_stuMoney" disabled="true"/><br>
+老师奖金：<s:textfield id="awardRecor_teaMoney" name="awardRecor_teaMoney" disabled="true"/><br>
+学分：<s:textfield name="awardRecor_score"/><br>
 获奖日期：<%-- <s:textfield name="<s:date name='awardRecor_time' format='yyyy-MM-dd' />" /> --%>
 <input class="form-control" type="text" name=awardRecor_time onclick="laydate()" value="<s:date name='awardRecor_time' format='yyyy-MM-dd' />">
 <br>
 发奖单位：<s:textfield name="awardRecor_unit" /><br>
+<s:submit></s:submit>
+</form>
 
 
 
 
 </body>
 <script type="text/javascript">
-	$(function(){
-		alert("12313");
-	})
+
+	$("#awardHieSelect").change(function(){
+		
+			var id = $("#awardHieSelect").val();
+			var date = {
+					"id" : id
+			}
+			
+			$.ajax({
+				//先走校验的action  
+				url : 'awardstand_ajxa',
+				type : 'post',
+				data : date,
+				dataType : 'text',
+				success : function(data) {
+					//alert(data);
+					var json = eval('(' + data + ')');
+					//alert(json.award_stuMoney);
+					//alert(json.award_teaMoney);
+					$("#awardRecor_stuMoney").val(json.award_stuMoney);
+					$("#awardRecor_teaMoney").val(json.award_teaMoney);
+				}
+
+			});
+			
+			
+		})
 </script>
 </html>

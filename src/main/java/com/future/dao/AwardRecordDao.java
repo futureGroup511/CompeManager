@@ -79,4 +79,7 @@ public interface AwardRecordDao {
 
 	//根据id得到某条获奖记录
 	AwardRecord getById(Integer id);
+
+	//调用方法，保存  liuyang
+	void saveAwardRecordLY(AwardRecord model);
 }

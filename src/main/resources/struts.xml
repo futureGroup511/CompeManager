@@ -207,6 +207,7 @@
     	  	<result name="all">WEB-INF/jsp/AwardStand/all.jsp</result>  
     	    <result name="modifyView">WEB-INF/jsp/AwardStand/modifyView.jsp</result>
     	    <result name="modifysuccess" type="redirect">awardstand_findAll</result>
+    	    <result name="ajax" type="json"></result>
     	    
     	    <result name="loginLy" type="redirect">loginControll_firstLogin</result>
     	</action> 

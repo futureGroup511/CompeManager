@@ -21,6 +21,16 @@ import com.opensymphony.xwork2.ActionContext;
 @Scope("prototype")
 public class AwardRecordController extends BaseAction<AwardRecord>{
 	
+	public String updateAwardRecord(){
+		
+
+		
+		
+		//调用方法，保存  liuyang
+		awardRecordService.saveAwardRecordLY(model);
+		return "updateAwardRecord";
+	}
+	
 	public String alertAwardRecordUI(){
 		System.out.println("修改获奖信息");
 		//拿到所有获奖信息 

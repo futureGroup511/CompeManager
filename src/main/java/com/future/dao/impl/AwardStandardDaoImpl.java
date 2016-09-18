@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.future.base.BaseDao;
 import com.future.dao.AwardStandardDao;
+import com.future.domain.AwardHierarchy;
 import com.future.domain.AwardStandard;
 import com.future.domain.CompetitionHierarchy;
 import com.future.utils.Page_S;
@@ -44,6 +45,20 @@ public class AwardStandardDaoImpl extends BaseDao implements AwardStandardDao {
 		String hql="From AwardStandard";
 		List<AwardStandard> awardStandards=getsession().createQuery(hql).list();
 		return awardStandards;
+	}
+
+	//根据获奖等级id，找到奖励标准
+	@Override
+	public AwardStandard findById(Integer id) {
+		//首先根据id得到获奖等级
+		String hql1 = "from AwardHierarchy where awardHie_id = ?";
+		AwardHierarchy awardHierarchy = (AwardHierarchy) getsession().createQuery(hql1).setParameter(0, id).uniqueResult();
+		
+		//System.out.println(awardHierarchy.getAwardHie_standard().getAward_stuMoney());
+		//拿到获奖等级的，奖励标准的id
+		//根据id得到奖励标准
+		
+		return awardHierarchy.getAwardHie_standard();
 	}
 
 }

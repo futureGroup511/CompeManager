@@ -166,6 +166,12 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 	public AwardRecord getById(Integer id) {
 		return awardRecordDao.getById(id);
 	}
+
+	//调用方法，保存  liuyang
+	@Override
+	public void saveAwardRecordLY(AwardRecord model) {
+		awardRecordDao.saveAwardRecordLY(model);
+	}
 	
 	
 }
