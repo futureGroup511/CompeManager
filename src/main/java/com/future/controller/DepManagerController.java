@@ -269,7 +269,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	
 	//文件下载
 	// 隐含属性 targetFile ,用于封装下载文件  
-    public InputStream getInputStream(){  
+	public InputStream getInputStream(){  
     	System.out.println(filename);
     	 try {
 			filename = new String(filename.getBytes("iso-8859-1"), "utf8");

@@ -1,8 +1,10 @@
 package com.future.dao.impl;
 
 
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -18,6 +20,7 @@ import com.future.base.BaseDao;
 import com.future.dao.AwardRecordDao;
 import com.future.domain.AwardRecord;
 import com.future.domain.Competition;
+import com.future.domain.ProjectAwardNum;
 import com.future.domain.Student;
 import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
@@ -766,7 +769,6 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			String hql = "select c.compe_id from Competition c where c.compe_department.de_id = :department";
 			return getsession().createQuery(hql).setParameter("department", department).list();
 		}
-
 		//学院负责人查看本院申请项目获奖情况
 		@Override
 		public PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department) {
@@ -903,6 +905,106 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		private List findAllDeCom(Integer department) {
 			String hql ="select c.compe_id from Competition c where c.compe_department.de_id = :department";
 			return (List) getsession().createQuery(hql).setParameter("department", department).list();
+		}
+		
+		
+		//得到项目总 各级奖励获取的人数，返回各个项目的汇总报告 excel
+		@Override
+		public List<ProjectAwardNum> getProjectAwardNum() {
+			List<ProjectAwardNum> awardNumList = new ArrayList<ProjectAwardNum>();
+			List<Integer> compeIds = getAllAwardCompeIds();
+			ProjectAwardNum projectAwardNum = null;
+			//国际
+			 Integer internationFirstPrizeNum;
+			 Integer internationSecondPrizeNum;
+			 Integer internationThirdPrizeNum;
+			//国家
+			 Integer countryFirstPrizeNum;
+			 Integer countrySecondPrizeNum;
+			 Integer countryThirdPrizeNum;
+			//省级
+			 Integer provinceFirstPrizeNum;
+			 Integer provinceSecondPrizeNum;
+			 Integer provinceThirdPrizeNum;
+			//校级
+			 Integer schoolFirstPrizeNum;
+			 Integer schoolSecondPrizeNum;
+			 Integer schoolThirdPrizeNum;
+			
+			for(int i=0;i<compeIds.size();i++){
+				
+				projectAwardNum = new ProjectAwardNum();
+				Integer compeId = compeIds.get(i);
+				String compeDescr = getCompeNameAndDate(compeId);
+				projectAwardNum.setProjectName(compeDescr);
+				
+				//国际一等奖 1 2
+				internationFirstPrizeNum = getSpecialHieAndCompeProjectNum(compeId, 1, 2);
+				//国际二等奖3 4
+				internationSecondPrizeNum  = getSpecialHieAndCompeProjectNum(compeId, 3, 4);
+				//国际三等奖7 8
+				internationThirdPrizeNum  = getSpecialHieAndCompeProjectNum(compeId, 7, 8);
+				
+				projectAwardNum.setInternationFirstPrizeNum(internationFirstPrizeNum);
+				projectAwardNum.setInternationSecondPrizeNum(internationSecondPrizeNum);
+				projectAwardNum.setInternationThirdPrizeNum(internationThirdPrizeNum);
+				
+				
+				
+				//国家一等奖5 6
+				countryFirstPrizeNum = getSpecialHieAndCompeProjectNum(compeId, 5, 6);
+				//国家二等奖9 10
+				countrySecondPrizeNum  = getSpecialHieAndCompeProjectNum(compeId, 9, 10);
+				//国家三等奖11 12
+				countryThirdPrizeNum  = getSpecialHieAndCompeProjectNum(compeId, 11, 12);
+				
+				
+				projectAwardNum.setCountryFirstPrizeNum(countryFirstPrizeNum);
+				projectAwardNum.setCountrySecondPrizeNum(countrySecondPrizeNum);
+				projectAwardNum.setCountryThirdPrizeNum(countryThirdPrizeNum);
+				//省级一等奖13 14
+				provinceFirstPrizeNum  = getSpecialHieAndCompeProjectNum(compeId, 13, 14);
+				//省级二等奖 15 16
+				provinceSecondPrizeNum = getSpecialHieAndCompeProjectNum(compeId, 15, 16);
+				//省级三等奖19 20
+				provinceThirdPrizeNum = getSpecialHieAndCompeProjectNum(compeId, 19, 20);
+				
+				projectAwardNum.setProvinceFirstPrizeNum(provinceFirstPrizeNum);
+				projectAwardNum.setProvinceSecondPrizeNum(provinceSecondPrizeNum);
+				projectAwardNum.setProvinceThirdPrizeNum(provinceThirdPrizeNum);
+				
+				//校级一等奖17 18
+				schoolFirstPrizeNum = getSpecialHieAndCompeProjectNum(compeId, 17, 18);
+				//校级二等奖21 22
+				schoolSecondPrizeNum = getSpecialHieAndCompeProjectNum(compeId, 21, 22);
+				//校级三等奖 暂无
+				//schoolThirdPrizeNum = getSpecialHieAndCompeProjectNum(compeId, hieId1, hieId2);
+				
+				projectAwardNum.setSchoolFirstPrizeNum(schoolFirstPrizeNum);
+				projectAwardNum.setSchoolSecondPrizeNum(schoolSecondPrizeNum);
+				//默认为0 处理
+				projectAwardNum.setSchoolThirdPrizeNum(0);
+				awardNumList.add(projectAwardNum);
+			}
+			return awardNumList;
+		}
+		//得到指定竞赛的名字和申请日期  的简要描述
+		private String getCompeNameAndDate(Integer compeId){
+			String sql = "select CONCAT(DATE_FORMAT(compe.compe_requestDate,'%Y年%m月%d号'),'申请的',compename.compeName_name) competitionDescr from cm_competitions compe inner join cm_competitionnames compename ON compe.compe_compeName_compeName_id = compename.compeName_id where compe.compe_id=:compeId";
+			String compeDescr = getsession().createSQLQuery(sql).setParameter("compeId", compeId).uniqueResult().toString();
+			return compeDescr;
+		}
+		
+		
+		private Integer getSpecialHieAndCompeProjectNum(Integer compeId, Integer hieId1, Integer hieId2){
+			String sql = "select count(*) from cm_awardrecords where awardRecor_competition_compe_id = :compeId and awardRecor_awadHie_awardHie_id = :hieId1 or awardRecor_awadHie_awardHie_id = :hieId2";
+			return ((Number)getsession().createSQLQuery(sql).setParameter("compeId", compeId).setParameter("hieId1", hieId1).setParameter("hieId2", hieId2).uniqueResult()).intValue();
+		}
+
+		private List<Integer> getAllAwardCompeIds() {
+			String sql = "select distinct awardRecor_competition_compe_id from cm_awardrecords";
+			getsession().createSQLQuery(sql).list();
+			return getsession().createSQLQuery(sql).list();
 		}
 	
 }

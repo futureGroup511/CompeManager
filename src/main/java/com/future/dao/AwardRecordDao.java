@@ -3,6 +3,7 @@ package com.future.dao;
 import java.util.List;
 
 import com.future.domain.AwardRecord;
+import com.future.domain.ProjectAwardNum;
 import com.future.domain.Student;
 import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
@@ -68,6 +69,12 @@ public interface AwardRecordDao {
 	//分页查询当前院系申报项目的所有获奖记录  
 	PageBean getPageBeanFindAllDeCoAwardRecord(int pageNum, int pageSize, Integer department);
 
-	//学院负责人查看本院申请项目获奖情况
-	PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department);
+	//学院负责人查看本院申请项目获奖情况nm, int pageSize, DeQuery model, Integer department);
+	
+	//统计全校指定项目的获奖情况汇总
+	public List<ProjectAwardNum> getProjectAwardNum();
+	
+	public PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department);
+	
+	
 }
