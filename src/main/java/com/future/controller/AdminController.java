@@ -4,10 +4,13 @@ package com.future.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.io.InputStream;
+=======
+import java.util.HashMap;
+>>>>>>> 72bb3f4b04691da90c4810a7157202faf2d7d1eb
 import java.util.List;
 import java.util.Map;
 
@@ -71,18 +74,30 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
         //System.out.println("filename:" + filename);
         //System.out.println(upload+"----" + uploadFileName+"----" +uploadContentType);
         //接着把文件路径传入导入类~
-        
-        ImportDate importDate = new ImportDate();
-        importDate.prepare(filename);
-        
         //获取所有院系信息
         List<Department> de = departmentService.findAllDepartment();
-        //findBynameDepartment();
+        Map<String,Department> deMap = new HashMap<String,Department>();
         for(Department obj:de){
-        	System.out.println(obj.getDe_name());
+        	//System.out.println(obj.getDe_name());
+        	deMap.put(obj.getDe_name(), obj);
         }
         
-		return "importStudentUI";
+        ImportDate importDate = new ImportDate();
+        List<Object> message =  importDate.prepare(filename,deMap);
+        Map<Student,List> errStuMap= (Map<Student, List>) message.get(0);
+        int a = (int) message.get(1);
+        
+        System.out.println(errStuMap);
+        System.out.println("sdf符合数量:" + a);
+        
+        if(errStuMap.isEmpty()){
+        	ActionContext.getContext().put("num", a);
+        	return "importStudentUISuccess";
+        } else {
+        	ActionContext.getContext().put("errStuMap", errStuMap);
+        	ActionContext.getContext().put("num", a);
+        	return "importStudentUI2";
+        }
 	}
 
 	

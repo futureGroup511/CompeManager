@@ -34,8 +34,8 @@
 	            
 	            <dl class="custom">
                 <dt>查询<img src="images/select_xl01.png"></dt>
-                <dd><a target="right" href="depManager_seeAllApplyCompNames">查看申报项目名称审核状态</a></dd>
-                <dd><a target="right" href="depManager_seeAllApplyCompetition">查看申报项目审核状态</a></dd>
+                <dd><a target="right" href="depManager_seeAllApplyCompNames">查看项目名称审核状态</a></dd>
+                <dd><a target="right" href="depManager_seeAllApplyCompetition">查看项目审核状态</a></dd>
 	            </dl>
 	            
 	            <dl class="custom">

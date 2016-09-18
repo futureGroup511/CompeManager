@@ -39,6 +39,9 @@ public class Student {
 	private String stu_grade;
 	//学生密码
 	private String stu_password;
+	//联系方式
+	private String stu_phone;
+	
 	
 	//学生获奖记录
 	private Set<AwardRecord> stu_awardRecord = new HashSet<AwardRecord>();
@@ -110,7 +113,12 @@ public class Student {
 	public void setStu_password(String stu_password) {
 		this.stu_password = stu_password;
 	}
-	
+	public String getStu_phone() {
+		return stu_phone;
+	}
+	public void setStu_phone(String stu_phone) {
+		this.stu_phone = stu_phone;
+	}
 	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY,mappedBy="signUp_student")
 	public Set<SignUp> getStu_signUps() {
 		return stu_signUps;
