@@ -72,8 +72,8 @@
  			<result name="CompeSignUpAllStudentsInfo">/WEB-INF/jsp/Competitions/CompetitionAllSignUpInfo.jsp</result>
  			<result name="RegisterScoreToDb">/WEB-INF/jsp/DepManagerView/RegisterScoreToDb.jsp</result>
  			<result name="ToSuccessPage">/WEB-INF/jsp/DepManagerView/RegisterProjectSuccess.jsp</result>
- 			
- 			
+ 			<result name="modifySignUpView">/WEB-INF/jsp/SignUpView/modifySignUpView.jsp</result>
+ 			<result name="modifySignUp" type="redirect">depManager_lookProcessingCompetitionStatus</result>
  			<result name="loginLy" type="redirect">loginControll_firstLogin</result>
  		
  		</action> 

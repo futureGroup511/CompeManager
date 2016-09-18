@@ -37,6 +37,11 @@
 								<td class="col-md-4"><h4 class=" text-lg">指导老师:</h4></td>
 								<td class="col-md-8 "><input  form="form" required="true"  type="text" class="from-control "  placeholder="指导老师"  name="sup.signUp_teacher" ></td>
 							</tr>
+							
+							<tr>
+								<td class="col-md-4"><h4 class=" text-lg">联系方式:</h4></td>
+								<td class="col-md-8 "><input  form="form" required="true"  type="text" class="from-control  s_phone"  placeholder="联系方式"  name="students[0].stu_phone" ></td>
+							</tr>
 							<tr>
 								<td class="col-md-4"><h4 class=" text-lg">竞赛名称:</h4></td>
 								<td class="col-md-8 "><h4 class="text-lg">${comp.compe_compeName.compeName_name}</h4>
@@ -129,7 +134,9 @@
 var index=1;
 var s_name="";
 var s_num="";
+var s_phone="";
 var status=1; //1 能提交 不能提交
+
 var num=0;
 $(function(){
 	
@@ -200,6 +207,22 @@ $(document).on("change",".s_num",function(){
 
 	
 });
+$(document).on("change",".s_phone",function(){
+	
+	s_phone=$(this).val();
+	
+	//var patrn=/^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/;
+	var patrn=/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/;
+	if (!patrn.exec(s_phone)) {
+		$("#prompt").text("");
+		$("#prompt").text("联系方式无效");
+		$("#addteam").hide();
+		s_phone="";
+	}else{
+		$("#prompt").text("");
+		$("#addteam").show();
+	}
+});
 
 function jugeCompType(type,async){
 	$("#teamnum").hide();
@@ -214,6 +237,7 @@ function jugeCompType(type,async){
 	var comp_type=$(".compe_type").attr("value");
 	//学生的ID
 	var stu_id=$("#stu_id").attr("value");
+
 	
 	var data={
 			"stu_id":stu_id,
@@ -278,13 +302,15 @@ function addTeamMember(){
 	        +"<td class='col-md-4'><h4 class=' text-lg'>团队成员:</h4></td>"
 			+"<td class='col-md-8'>"
 			+"<label class='control-lable '>姓名:</label>"
-			+"<input form='form' required='required' class='from-control s_name' placeholder='姓名' name='students["+index+"].stu_name' value>"
+			+"<input form='form' required='required' class='from-control s_name' placeholder='姓名' name='students["+index+"].stu_name' value> <br>"
 			+"<label class='control-lable '>学号:</label>"
-			+"<input form='form' required='required' type='text' class='from-control s_num'  placeholder='学号'  name='students["+index+"].stu_num' value>"
+			+"<input form='form' required='required' type='text' class='from-control s_num'  placeholder='学号'  name='students["+index+"].stu_num' value> <br>"
+			+"<label class='control-lable '>手机:</label>"
+			+"<input form='form' required='required' type='text' class='from-control s_phone'  placeholder='联系方式'  name='students["+index+"].stu_phone' value>"
 			+"</td>	" 
 			+"</td>	"
 			; 
-		s_name="",s_num="";	
+		s_name="",s_num="",s_phone="";	
 		$("#content").append(s);
 		$(".teamscope").show();
 		index++;
@@ -378,8 +404,8 @@ function addTeamMember(){
 		var comp_type=$(".compe_type").attr("value");
 		
 		if(comp_type==1){
-			if(s_name===""&&s_num===""){
-				$("#prompt").text("请填写完整内容");
+			if(s_name===""||s_num===""||s_phone===""){
+				$("#prompt").text("请填写正确内容");
 				return false;
 			}
 		}
@@ -389,7 +415,6 @@ function addTeamMember(){
 			$("#teamnum").show();
 			return false;
 		}
-		
 		if(status==1){
 			if(Boolean(JqValidate())&&Boolean(jugeCompType(0,false))){ 
 				   

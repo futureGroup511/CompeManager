@@ -41,6 +41,7 @@
               <td align="center"><h4>竞赛申报学院</h4></td>
               <td align="center"><h4>竞赛已报名人数</h4></td>
               <td align="center"><h4>查看报名详细情况</h4></td>
+              
           </tr>
       </thead>
       <tbody>
@@ -60,6 +61,7 @@
       				<td>${sessionScope.depManager.depM_department.de_name}</td>	
       				<td><s:property value="#request.compeSignUpsMap[#competition.compe_id]"/></td>
       				<td><a href="depManager_seeSignUpsDetails?compeId=${competition.compe_id }">查看详细情况</a></td>	
+      				<td></td>
       			</tr>
       		</s:iterator>
       	</s:else>

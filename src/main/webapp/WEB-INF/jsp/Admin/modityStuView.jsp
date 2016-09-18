@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -52,11 +53,52 @@
 	            </div> 
 	        </div>
 	    </div>
+	    <div class="two">
+	    	<div class="row">
+	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>年级：</p></div>
+	            <div class="col-lg-3 col-md-3 col-xs-3">
+	            	<input  type="text" class="form-control" name="stu.stu_grade" value="${stu.stu_grade }" >
+	            </div>
+	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>专业：</p></div>
+	            <div class="col-lg-3 col-md-3 col-xs-3">
+	            	<input  type="text" class="form-control" name="stu.stu_major" value="${stu.stu_major }" >
+	            </div> 
+	        </div>
+	    </div>
+	    <div class="two">
+	    	<div class="row">
+	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>联系方式：</p></div>
+	            <div class="col-lg-3 col-md-3 col-xs-3">
+	            	<input  type="text" class="form-control" name="stu.stu_grade" value="${stu.stu_phone}" >
+	            </div>
+	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>性别：</p></div>
+	            <div class="col-lg-3 col-md-3 col-xs-3">
+	            	<c:if test="${stu.stu_sex eq '男' }" >
+		            	<input  type="radio"  name="stu.stu_sex" value="男" checked="checked" style="margin-left: 35%;">男
+		            	<input  type="radio"  name="stu.stu_sex" value="女" style="">女
+	            	</c:if>
+	            	<c:if test="${stu.stu_sex eq '女' }" >
+		            	<input  type="radio" name="stu.stu_sex" value="男" >男
+		            	<input  type="radio"  name="stu.stu_sex" value="女" checked="checked" >女
+	            	</c:if>
+	            </div> 
+	        </div>
+	    </div>
 	    <div class="three">
 	    	<div class="row">
+	    		<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>身份证：</p></div>
+	            <div class="col-lg-3 col-md-3 col-xs-3">
+	            	<input  type="text" class="form-control" name="stu.stu_idCard" value="${stu.stu_idCard}" >
+	            </div>
 	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>院系</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<input  type="text" class="form-control" readonly ="readonly"  value="${stu.stu_department.de_name }" >
+	            	<select name="de_id" class="form-control input-lg">
+	            		<c:forEach items="${departments}" var="department">
+	            			<option value="${department.de_id}">${department.de_name }</option>
+	            		</c:forEach>
+	            		
+	            	</select>
+	            	<%-- <input  type="text" class="form-control" readonly ="readonly"  value="${stu.stu_department.de_name }" > --%>
 	            </div>
 	        </div>
 	     </div>

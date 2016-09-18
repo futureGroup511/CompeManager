@@ -44,7 +44,9 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 
 	@Override
 	public List<SignUp> getSpecialGroupMember(String groupName) {
-		return null;
+		String hql="FROM SignUp s where s.signUp_team=?";
+		List<SignUp> signUps= getsession().createQuery(hql).setString(0, groupName).list();
+		return signUps;
 	}
 
 	@Override
@@ -258,6 +260,11 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 											.setMaxResults(pageBean.getPageSize())
 											.list();
 		return signUpList;
+	}
+
+	@Override
+	public void updateSignUp(SignUp signUp) {
+		getsession().update(signUp);
 	}
 
 }

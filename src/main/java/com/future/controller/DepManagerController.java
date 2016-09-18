@@ -8,6 +8,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -65,7 +66,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	private Map<String, Object> sessionMap;
 	private Map<String, String[]> paramMap;
 	private Map<String, Object> requestMap;
-	
+	private SignUp signup;
 	private List<CompetitionHierarchy> competitionHierarchies;
 	//查看所有的竞赛名称，准备数据的
 	private List<CompetitionName> competitionNames;
@@ -647,7 +648,36 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		return "lookinfo";
 	}
 	
+	//修改报名表
+	public String modifySignUpView(){
+		SignUp signUp=signUpService.getById(signup.getSignUp_id());
+		requestMap.put("signUp", signUp);
+		return "modifySignUpView";
+	}
 	
+	public String modifySignUp(){
+		SignUp s=signUpService.getById(signup.getSignUp_id());
+		s.setSignUP_time(signup.getSignUP_time());
+		s.setSignUp_teacher(signup.getSignUp_teacher());
+		s.setSingnup_type(signup.getSingnup_type());
+		if(signup.getSignUp_team()!=null){
+			List<SignUp> signUps=signUpService.getSpecialGroupMember(s.getSignUp_team());
+			s.setSignUp_team(signup.getSignUp_team());
+			signUpService.updateSignUp(s);
+			Iterator<SignUp> iterator=signUps.iterator();
+			while(iterator.hasNext()){
+				SignUp result=iterator.next();
+				result.setSignUp_team(signup.getSignUp_team());
+				signUpService.updateSignUp(result);
+			}
+		}
+		if(signup.getSignUp_team()==null){
+			signUpService.updateSignUp(s);
+		}
+		
+		
+		return "modifySignUp";
+	}
 
 	
 	public Integer getSignId() {
@@ -718,6 +748,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		}
 		return model;
 	}
+
 	@Override
 	public void setSession(Map<String, Object> sessionMap) {
 		this.sessionMap = sessionMap;
@@ -765,6 +796,16 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 
 	public void setSignType(Integer signType) {
 		this.signType = signType;
+	}
+
+
+	public SignUp getSignup() {
+		return signup;
+	}
+
+
+	public void setSignup(SignUp signup) {
+		this.signup = signup;
 	}
 
 }

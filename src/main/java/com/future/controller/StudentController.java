@@ -41,8 +41,6 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	private Integer award_id; 
 	private Integer depatrment_id;
 	private List<Student> students=new ArrayList<Student>();
-	
-	
 	private File file;
 	private String fileFileName;//  
 	private String fileContentType;//
@@ -145,7 +143,10 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 			sgp.setSignUp_team(sup.getSignUp_team());
 			sgp.setSingnup_type(sup.getSingnup_type());
 			Student s=iterator2.next();
+			String phone=s.getStu_phone();
 			s=stuser.findStudentByNameAndNum(s);
+			s.setStu_phone(phone);
+			stuser.updateStudent(s);
 			if(index==1&&students.size()!=1){
 				sgp.setSingUp_manager(1);
 			}else{
@@ -353,4 +354,3 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	
 	
 }
-
