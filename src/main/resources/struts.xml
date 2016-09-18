@@ -193,8 +193,9 @@
     		<result name="conditionQuery">WEB-INF/jsp/AwardRecord/conditionQuery.jsp</result>
     		<result name="alertAwardRecordUI">WEB-INF/jsp/AwardRecord/alertAwardRecordUI.jsp</result>
     		<result name="alertAwardUD">WEB-INF/jsp/AwardRecord/alertAwardUD.jsp</result>
+    		<result name="updateAwardRecord" type="redirectAction">awardRecord_alertAwardRecordUI</result>
     		
-    		<result name="loginLy" type="redirect">loginControll_firstLogin</result>
+    		<result name="loginLy" type="redirectAction">loginControll_firstLogin</result>
     	</action>
 
     	<action name="comphier_*" method="{1}" class="com.future.controller.CompetitionHierarchyController">

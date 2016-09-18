@@ -21,7 +21,7 @@ import com.future.domain.ProjectAwardNum;
  */
 public class POIUtils {
 		
-	public static final String reportFilePath = "f:AwardReport.xls";
+	public static final String reportFilePath = "d:AwardReport.xls";
 	
 		
 		public static HSSFWorkbook getWellDoneWb(List<ProjectAwardNum> awardNumList) throws IOException{
