@@ -39,7 +39,7 @@ public class SignUpServiceImpl implements SignUpService{
 
 	@Override
 	public List<SignUp> getSpecialGroupMember(String groupName) {
-		return null;
+		return signUpDao.getSpecialGroupMember(groupName);
 	}
 
 	@Override
@@ -142,5 +142,10 @@ public class SignUpServiceImpl implements SignUpService{
 	@Override
 	public List<SignUp> getAvaliablePersonalSignUpByDep(Integer compeId, PageBean pageBean, Integer depId) {
 		return signUpDao.getAvaliablePersonalSignUpByDep(compeId, pageBean, depId);
+	}
+
+	@Override
+	public void updateSignUp(SignUp signUp) {
+		signUpDao.updateSignUp(signUp);
 	}
 }

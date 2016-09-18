@@ -41,6 +41,7 @@
               <th>学生姓名</th>
               <th>指导老师</th>
               <th>竞赛名称</th>
+              <th>修改</th>
           </tr>
 		</thead>
 		<s:if test="#request.pageBean.recordList != null && #request.pageBean.recordList.size() >0">
@@ -52,6 +53,7 @@
 					<td><s:property value="#signUp.signUp_student.stu_name"/></td>
 					<td><s:property value="#signUp.signUp_teacher"/></td>
 					<td><s:property value="#signUp.signUp_competition.compe_compeName.compeName_name"/></td>
+					<td><a href="depManager_modifySignUpView?signup.signUp_id=${signUp.signUp_id}" class="btn btn-primary">修改报名表</a></td>
 				</tr>
 			</s:iterator>
 			

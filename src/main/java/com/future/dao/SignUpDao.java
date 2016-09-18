@@ -103,7 +103,8 @@ public interface SignUpDao {
 	//得到制定学院的指定类型的报名
 	public List<SignUp> getAvaliableGroupSignUpByDep(Integer compeId, PageBean pageBean, Integer depId);
 	public List<SignUp> getAvaliablePersonalSignUpByDep(Integer compeId, PageBean pageBean, Integer depId);
-
+	//更新报名表
+	public void updateSignUp(SignUp signUp);
 /*	public Integer getCountByDep(String depId);*/
 
 }

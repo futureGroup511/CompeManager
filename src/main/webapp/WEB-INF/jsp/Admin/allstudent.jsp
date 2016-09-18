@@ -52,7 +52,7 @@
 						<th>${stu.stu_name }</th>
 						<th>${stu.stu_class }</th>
 						<th>${stu.stu_department.de_name }</th>
-						<th><a href="admin_modifyStuView?stu.stu_id=${stu.stu_id}">修改</a></th>
+						<th><a href="admin_modifyStuView?stu.stu_id=${stu.stu_id}&&de_id=${stu.stu_department.de_id}">修改</a></th>
 					</tr>
 				</c:forEach>
        </tbody>
