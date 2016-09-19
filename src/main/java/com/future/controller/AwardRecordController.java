@@ -14,7 +14,6 @@ import com.future.domain.AwardRecord;
 import com.future.domain.Competition;
 import com.future.domain.DepManager;
 import com.future.domain.Department;
-import com.future.service.AwardRecordService;
 import com.future.utils.PageBean;
 import com.opensymphony.xwork2.ActionContext;
 @Controller
