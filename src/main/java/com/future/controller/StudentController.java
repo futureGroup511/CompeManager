@@ -215,6 +215,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	public String uploadFile(){
 		String root = ServletActionContext.getServletContext().getRealPath(
 		               "/UploadFile");// 上传路径
+		
 	    InputStream inputStream;
 	    File destFile;
 	    OutputStream os;
