@@ -1,0 +1,102 @@
+@charset "utf-8";
+*{
+  padding:0;
+  margin:0;
+}
+.row{
+  width:100%;
+}
+.back{
+  margin-top:2%;
+  border-bottom:#EBEBEB solid 1px;
+}
+.back button{
+  margin-bottom:18%;
+  border-radius: 0px;
+}
+.step{
+  margin-top:3%;
+}
+.step p{
+  margin-top:-60px;
+  margin-left:85px;
+  font-size:20px;
+}
+.step h1{
+  margin-left:35px;
+ margin-bottom:30px;
+}
+.step .one{
+  background:#FF7700;
+  margin-left:9.5%;
+}
+.step .one h1{
+  color:white;
+}
+.step .one p{
+  color:white;
+}
+.step .two{
+  background:#E8E8E8;
+   margin-left:7%;
+}
+.step .two h1{
+  color:#999999;
+}
+.step .two p{
+  color:#999999;
+}
+.step .three{
+  background:#E8E8E8;
+  margin-left:7%;
+}
+.step .three h1{
+  color:#999999;
+}
+.step .three p{
+  color:#999999;
+}
+.download{
+  margin-top:5%;
+}
+.download p{
+  font-size:12px;
+}
+.download a{
+  font-size:12px;
+  text-decoration: none;
+}
+.upload p{
+  font-size:12px;
+}
+.upload{
+  margin-top:5.5%;
+}
+.upload a{
+  font-size:12px;
+  text-decoration: none;
+}
+.key p{
+  font-size:12px;
+}
+.key{
+  margin-top:5.5%;
+}
+.key input{
+  width:60%;
+  border-radius: 0px;
+}
+.key .four{
+  margin-top:-25px;
+  margin-left:80%;
+  color:red;
+}
+.next{
+  margin-top:2%;
+  margin-left:-2%;
+}
+.next button{
+  width:100%;
+}
+/* CSS Document */
+

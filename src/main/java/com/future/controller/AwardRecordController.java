@@ -12,12 +12,54 @@ import com.future.base.BaseAction;
 import com.future.domain.AwardHierarchy;
 import com.future.domain.AwardRecord;
 import com.future.domain.Competition;
+import com.future.domain.DepManager;
 import com.future.domain.Department;
 import com.future.utils.PageBean;
 import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
 public class AwardRecordController extends BaseAction<AwardRecord>{
+	
+	public String updateAwardRecord(){
+		
+
+		
+		
+		//调用方法，保存  liuyang
+		awardRecordService.saveAwardRecordLY(model);
+		return "updateAwardRecord";
+	}
+	
+	public String alertAwardRecordUI(){
+		System.out.println("修改获奖信息");
+		//拿到所有获奖信息 
+		//当前登陆学院负责人session 的院系 的所有竞赛项目 的获奖记录
+		//Integer depId = ((DepManager)sessionMap.get("depManager")).getDepM_department().getDe_id();
+		
+		DepManager depM = (DepManager) ActionContext.getContext().getSession().get("depManager");
+		Integer depId = depM.getDepM_department().getDe_id();
+		
+
+		//拿到所有记录当前登陆学院负责人session 的院系 的所有竞赛项目 的获奖记录
+		PageBean pageBean = awardRecordService.getPageBeanAllAlert(pageNum,pageSize,depId);
+		ActionContext.getContext().getValueStack().push(pageBean);
+		
+		
+		return "alertAwardRecordUI";
+	}
+	
+	public String alertAwardUD(){
+		
+		//准备获奖等级
+		List<AwardHierarchy> awardHieraychys = awardHierarchyService.findAllAwardHierarchyTG();
+		ActionContext.getContext().put("awardHieraychys", awardHieraychys);
+		
+		//根据id得到某条获奖记录
+		AwardRecord awardRecord = awardRecordService.getById(id);
+		ActionContext.getContext().getValueStack().push(awardRecord);
+		
+		return "alertAwardUD";
+	}
 
 	//条件查询查询
 	public String conditionQuery() throws ParseException{

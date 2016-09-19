@@ -69,12 +69,26 @@ public interface AwardRecordDao {
 	//分页查询当前院系申报项目的所有获奖记录  
 	PageBean getPageBeanFindAllDeCoAwardRecord(int pageNum, int pageSize, Integer department);
 
+	//学院负责人查看本院申请项目获奖情况
+	PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department);
+	
+	//拿到所有记录当前登陆学院负责人session 的院系 的所有竞赛项目 的获奖记录
+	List<AwardRecord> getAllAlert(Integer depId);
+
+	//拿到所有记录当前登陆学院负责人session 的院系 的所有竞赛项目 的获奖记录
+	PageBean getPageBeanAllAlert(int pageNum, int pageSize, Integer depId);
+
+	//根据id得到某条获奖记录
+	AwardRecord getById(Integer id);
+
+	//调用方法，保存  liuyang
+	void saveAwardRecordLY(AwardRecord model);
 	//学院负责人查看本院申请项目获奖情况nm, int pageSize, DeQuery model, Integer department);
 	
 	//统计全校指定项目的获奖情况汇总
 	public List<ProjectAwardNum> getProjectAwardNum();
 	
-	public PageBean getPageBeanfindAllDeCoAcCond(int pageNum, int pageSize, DeQuery model, Integer department);
+	
 	
 	
 }

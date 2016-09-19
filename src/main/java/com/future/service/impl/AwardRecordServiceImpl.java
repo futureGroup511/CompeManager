@@ -149,6 +149,29 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 		return awardRecordDao.getPageBeanfindAllDeCoAcCond(pageNum, pageSize,model,department);
 	}
 
+	//拿到所有记录当前登陆学院负责人session 的院系 的所有竞赛项目 的获奖记录
+	@Override
+	public List<AwardRecord> getAllAlert(Integer depId) {
+		return awardRecordDao.getAllAlert(depId);
+	}
+
+	//拿到所有记录当前登陆学院负责人session 的院系 的所有竞赛项目 的获奖记录
+	@Override
+	public PageBean getPageBeanAllAlert(int pageNum, int pageSize, Integer depId) {
+		return awardRecordDao.getPageBeanAllAlert(pageNum, pageSize,depId);
+	}
+
+	//根据id得到某条获奖记录
+	@Override
+	public AwardRecord getById(Integer id) {
+		return awardRecordDao.getById(id);
+	}
+
+	//调用方法，保存  liuyang
+	@Override
+	public void saveAwardRecordLY(AwardRecord model) {
+		awardRecordDao.saveAwardRecordLY(model);
+	}
 	@Override
 	public List<ProjectAwardNum> getProjectAwardNum() {
 		return awardRecordDao.getProjectAwardNum();

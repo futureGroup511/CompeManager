@@ -6,10 +6,6 @@ import org.springframework.stereotype.Controller;
 
 import com.future.base.BaseAction;
 import org.apache.struts2.interceptor.RequestAware;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import com.future.base.BaseAction;
 import com.future.domain.CompetitionHierarchy;
 import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ModelDriven;

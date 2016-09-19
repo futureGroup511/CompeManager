@@ -1,0 +1,128 @@
+@charset "utf-8";
+*{
+  padding:0;
+  margin:0;
+}
+.row{
+  width:100%;
+}
+.step{
+  margin-top:3%;
+}
+.step p{
+  margin-top:-60px;
+  margin-left:85px;
+  font-size:20px;
+}
+.step h1{
+  margin-left:35px;
+ margin-bottom:30px;
+}
+.step .one{
+  background:#FF7700;
+  margin-left:9.5%;
+}
+.step .one h1{
+  color:white;
+}
+.step .one p{
+  color:white;
+}
+.step .two{
+  background:#FF7700;
+   margin-left:7%;
+}
+.step .two h1{
+  color:white;
+}
+.step .two p{
+  color:white;
+}
+.step .three{
+  background:#E8E8E8;
+  margin-left:7%;
+}
+.step .three h1{
+  color:#999999;
+}
+.step .three p{
+  color:#999999;
+}
+.zero{
+  margin-top:3%;
+  width:80%;
+  margin-left:8.5%;
+  background:#FFFBF7;
+  height:60px;
+}
+.zero img{
+  margin-top:15px;
+  margin-left:20px;
+}
+.zero p{
+  margin-left:25%;
+  margin-top:-25px;
+  font-size:16px;
+}
+.single{
+  margin-top:3%;
+  width:80%;
+  margin-left:8.5%;
+  background:#FFFBF7;
+  height:60px;
+}
+.single img{
+  margin-top:15px;
+  margin-left:20px;
+}
+.single p{
+  margin-left:25%;
+  margin-top:-25px;
+  font-size:16px;
+}
+.next{
+  margin-top:3%;
+}
+.next button{
+  width:60%;
+}
+.next a{
+  margin-left:8%;
+}
+.title{
+  margin-top:3%;
+}
+.table .one p{
+  margin-left:70%;
+  width:80px;
+} 
+.table .two p{
+  margin-left:40%;
+   width:80px;
+}
+.table .three p{
+  margin-left:50%;
+  width:80px;
+}
+.table .four p{
+  margin-left:40%;
+}
+.table .five p{
+  margin-left: 20%;
+}
+.table .six p{
+  margin-left:45%;
+}
+.table .seven p{
+  margin-left:-2%;
+}
+.table ul{
+  margin-left:20%;
+}
+.table li{
+  list-style: none;
+  color:red;
+}
+
+/* CSS Document */
+

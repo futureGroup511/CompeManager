@@ -95,6 +95,8 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
         	return "importStudentUISuccess";
         } else {
         	ActionContext.getContext().put("errStuMap", errStuMap);
+        	
+        	ActionContext.getContext().put("errorNum", errStuMap.size());
         	ActionContext.getContext().put("num", a);
         	return "importStudentUI2";
         }
