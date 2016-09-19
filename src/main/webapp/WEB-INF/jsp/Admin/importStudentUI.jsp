@@ -14,6 +14,7 @@
 <title>导入学生信息</title>
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="css/new.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 
 
@@ -50,8 +51,8 @@
         <div class="col-lg-4 col-md-4  col-xs-6 ">
         	<p>上传填好的员工信息表 ( 仅支持.xls/.xlsx格式,且文件大小不能超过2M )</p><!-- <a>上传文件</a> -->
         	<s:form  action="admin_importStudent" method="post" enctype="multipart/form-data">
-		    	<s:file name="upload" label="" value="" ></s:file><br>
-				<s:submit value="上传文件"></s:submit>    
+		    	<s:file style="border:1px;background-color:white;font-size:12px;text-decoration: none;" name="upload" label="" value="" ></s:file><br>
+				<s:submit style="border:1px;background-color:white;font-size:12px;text-decoration: none;" value="上传文件"></s:submit>    
 			</s:form>
         </div>
     </div>
