@@ -62,7 +62,7 @@ body {
 <script src="js/bootstrap.js"></script>
 </head>
 
-<body>
+<body onkeydown="keyLogin();">
 
 
 <div class="headingWrapper color-bright">
@@ -168,12 +168,16 @@ body {
 	$(function(){
 		$("#prompt").hide();
 		//监听键盘enter键的按下
-		 $(document).keydown(function(e) {
+		/*  $(document).keydown(function(e) {
 			    if (e.keyCode == 13) {
 			    	login();
 			    }
-			  });
+			  }); */
 		});
+	function keyLogin(){
+		 if (event.keyCode==13)  //回车键的键值为13
+			 login(); //调用登录按钮的登录事件
+		}
 	
 	function login(){
         var num=$("input[name='number']").val(); 
@@ -189,6 +193,7 @@ body {
 			type:"post",
 			data:datas,
 			dataType:'json',
+			async:false,
 			success:function(msg){
 				if(msg==="erro"){
 					$("#prompt").show();
