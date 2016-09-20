@@ -87,9 +87,15 @@
 			<c:if test="${sessionScope.admin != null}">
 				<dl class="channel">
 	                <dt>审核<img src="images/select_xl01.png"></dt>
-	                <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
 	                <dd><a href="competitionName_checkNoName.action" target="right">待审核竞赛名称</a></dd>
+	                <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
 	                <dd><a href="awardRecord_checkNoAwardRecord.action" target="right">待审核竞赛结果</a></dd>
+	            </dl>
+	            
+	            <dl class="channel">
+	                <dt>查询竞赛名称<img src="images/select_xl01.png"></dt>
+	                <dd><a href="competitionName_checkSuccessName.action" target="right">审核通过竞赛名称</a></dd>
+	                <dd><a href="competitionName_noPassCheck.action" target="right">未通过审核竞赛名称</a></dd>
 	            </dl>
 	            
 	        	<dl class="channel">
@@ -98,11 +104,6 @@
 	                <dd><a href="admin_noPassCheck.action" target="right">未通过审核竞赛项目</a></dd>
 	            </dl>
 	            
-	            <dl class="channel">
-	                <dt>查询竞赛名称<img src="images/select_xl01.png"></dt>
-	                <dd><a href="competitionName_checkSuccessName.action" target="right">审核通过竞赛名称</a></dd>
-	                <dd><a href="competitionName_noPassCheck.action" target="right">未通过审核竞赛名称</a></dd>
-	            </dl>
 	            
 	            <dl class="channel">
 	                <dt>查询竞赛审核结果<img src="images/select_xl01.png"></dt>

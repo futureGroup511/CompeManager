@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -64,7 +65,7 @@
 				<td><s:date name="compe_requestDate" format="yyyy-MM-dd" /></td>
 				<td><s:date name="compe_startTime" format="yyyy-MM-dd" /></td>
 				<td><s:date name="compe_endTime" format="yyyy-MM-dd" /></td>
-				<td>${compe_digest }</td>
+				<td title="${compe_digest }">${fn:substring(compe_digest,0,20) }……</td>
 				<td>
 					<s:if test="compe_program == null ">
 						无 

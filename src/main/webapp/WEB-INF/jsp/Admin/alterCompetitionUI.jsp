@@ -58,22 +58,7 @@
             </div>
         </div>
     </div>
-    <div class="three">
-    	<div class="row">
-        	<div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>摘要:</p></div>
-            <div class="col-lg-3 col-md-3 col-xs-3">
-            	<s:textfield cssClass="form-control" name="compe_digest" maxlength="200" width="300px"/>
-            </div>
-            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>申报时间:</p></div>
-            <div class="col-lg-3 col-md-3 col-xs-3">
-            	<%-- <s:textfield cssClass="form-control" name="compe_requestDate"/> --%>
-            	<%-- <s:textfield name="compe_requestDate" placeholder="请输入日期" cssClass="form-control compe_requestDate" onclick="laydate()"></s:textfield> --%>
-            	<%-- <s:textfield cssClass="form-control" name="compe_requestDate" onclick="laydate()"/> --%>
-            	<input class="form-control" type="text" name="compe_requestDate" onclick="laydate()" value="<s:date name='compe_requestDate' format='yyyy-MM-dd' />">
-            	<%-- <s:date name='compe_requestDate' format='yyyy-MM-dd' /> --%>
-            </div>
-        </div>
-    </div>
+    
     <div class="four">
     	<div class="row">
         	<div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>开始时间:</p></div>
@@ -88,6 +73,38 @@
             </div>
         </div>
      </div>
+     
+     <div class="three">
+    	<div class="row">
+        	
+            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>申报时间:</p></div>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+            	<%-- <s:textfield cssClass="form-control" name="compe_requestDate"/> --%>
+            	<%-- <s:textfield name="compe_requestDate" placeholder="请输入日期" cssClass="form-control compe_requestDate" onclick="laydate()"></s:textfield> --%>
+            	<%-- <s:textfield cssClass="form-control" name="compe_requestDate" onclick="laydate()"/> --%>
+            	<input class="form-control" type="text" name="compe_requestDate" onclick="laydate()" value="<s:date name='compe_requestDate' format='yyyy-MM-dd' />">
+            	<%-- <s:date name='compe_requestDate' format='yyyy-MM-dd' /> --%>
+            </div>
+            
+            <%-- <div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>描述:</p></div>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+            	<s:textfield cssClass="form-control" name="compe_digest" maxlength="200" width="300px"/>
+            </div> --%>
+        </div>
+    </div>
+    
+    <div class="three">
+    	<div class="row">
+            
+            <div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>描述:</p></div>
+            <div class="col-lg-8 col-md-3 col-xs-3">
+            	<%-- <s:textfield cssClass="form-control" name="compe_digest" maxlength="200" width="300px"/> --%>
+            	<s:textarea cssClass="form-control" name="compe_digest" rows="5"></s:textarea>
+            </div>
+        </div>
+    </div>
+    
+    
      <div class="last">
      	<s:submit cssClass="btn btn-default  active" value="提交"></s:submit>
      </div>
