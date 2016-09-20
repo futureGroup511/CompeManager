@@ -159,12 +159,7 @@
         </div>
     </div>
     
-    <div class="form-group">
-        <label for="inputEmail3" class="col-lg-1 col-lg-offset-5 col-md-1 col-md-offset-5 col-sm-1 col-sm-offset-5 control-label">班级：</label>
-        <div class="col-lg-5 col-md-5 col-xs-5">
-            <input placeholder="班级"  type="text" class="form-control input-lg" id="inputEmail2" >
-        </div>
-    </div>
+    
     
     <!--缺少一个学院的for循环  -->
 
@@ -178,7 +173,26 @@
 	          </select>
 		 </div>
 	</div>
-
+	<div class="form-group">
+        <label for="inputEmail3" class="col-lg-1 col-lg-offset-5 col-md-1 col-md-offset-5 col-sm-1 col-sm-offset-5 control-label">年级：</label>
+        <div class="col-lg-5 col-md-5 col-xs-5">
+            <input placeholder="年级"  name= "stu_grade" type="text" class="form-control input-lg" id="inputEmail2" >
+        </div>
+    </div>
+	<div class="form-group">
+        <label for="inputEmail3" class="col-lg-1 col-lg-offset-5 col-md-1 col-md-offset-5 col-sm-1 col-sm-offset-5 control-label">专业：</label>
+        <div class="col-lg-5 col-md-5 col-xs-5">
+            <input placeholder="专业"  name= "stu_major" type="text" class="form-control input-lg" id="inputEmail2" >
+        </div>
+    </div>
+    
+	<div class="form-group">
+        <label for="inputEmail3" class="col-lg-1 col-lg-offset-5 col-md-1 col-md-offset-5 col-sm-1 col-sm-offset-5 control-label">班级：</label>
+        <div class="col-lg-5 col-md-5 col-xs-5">
+            <input placeholder="班级"  name="stu_class" type="text" class="form-control input-lg" id="inputEmail2" >
+        </div>
+    </div>
+    
 	<div class="form-group">
        <label for="inputEmail3" class="col-lg-1 col-lg-offset-5 col-md-1 col-md-offset-5 col-sm-1 col-sm-offset-5 control-label"><span><strong>性别：</strong>       </span></label> 
        <label class="redio-inline col-lg-1">
@@ -188,7 +202,12 @@
             <input type="radio" name="stu_sex" id="inlineRadio2" value="女">女
        </label>
    </div>
-	
+	<div class="form-group">
+        <label for="inputEmail3" class="col-lg-1 col-lg-offset-5 col-md-1 col-md-offset-5 col-sm-1 col-sm-offset-5 control-label">身份证号：</label>
+        <div class="col-lg-5 col-md-5 col-xs-5">
+            <input placeholder="身份证"  name="stu_idCard" type="text" class="form-control input-lg" id="inputEmail2" >
+        </div>
+    </div>
     <div class="form-group">
 	     <div class="col-lg-4 col-lg-offset-5 col-md-4 col-md-offset-5 col-xs-4 col-xs-offset-5">
 		   <button class="btn btn-primary " >确认添加</button>

@@ -68,7 +68,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		Department department=departservice.findDepartById(depatrment_id);
 		stu.setStu_department(department);
 		stuser.addOrUpdateStudent(stu);
-		return "success";
+		return "addStudentFinish";
 	}
 	
 	//报名

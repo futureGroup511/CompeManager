@@ -102,7 +102,7 @@
     		<result name="promotion" type="redirect">student_lookAward</result>
     		<result name="uploadFile" type="redirect">student_lookAward</result>
     		<result name="finishApply" type="redirect">student_apply</result>
-    		
+    		<result name="addStudentFinish" type="redirect">admin_findAllStudent</result>
     		<result name="loginLy" type="redirect">loginControll_firstLogin</result>
     	</action>	
     	
