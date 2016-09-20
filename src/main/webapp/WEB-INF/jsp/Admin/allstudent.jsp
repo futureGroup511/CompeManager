@@ -17,10 +17,10 @@
 <body>
 <div class="container">
   <div class="row">
-        <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
+        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
             <p>当前位置：教务处服务>>查看所有学生</p>
         </div>
-        <div class="col-lg-2 col-lg-offset-4 col-md-3 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
+        <div class="col-lg-3 col-lg-offset-4 col-md-3 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
             <p>欢迎 	${sessionScope.admin.ad_name}  登录本系统</p>
         </div>
   </div>
@@ -35,13 +35,19 @@
 </div>
 
 <div class="table-responsive">
-    <table class="table table-bordered table-hover table-striped">
+    <table class="table table-bordered table-hover table-striped" style="width:1000px;">
     <thead>
       <tr class="two">
          <th>序号</th>
-         <th>学生姓名</th>
-         <th>所属班级</th>
-         <th>所属院系</th>
+         <th>学号</th>
+         <th>姓名</th>
+         <th>性别</th>
+         <th>院系</th>
+         <th>专业</th>
+         <th>班级</th>
+         <th>身份证号</th>
+         <th>年级</th>
+         <th>联系方式</th>
          <th>修改</th>
        </tr>
       </thead>
@@ -49,9 +55,15 @@
         <c:forEach items="${ps.recordlist}" varStatus="status" var="stu">
 					<tr>
 					   	<th>${status.index+1}</th>
+						<th>${stu.stu_num }</th>
 						<th>${stu.stu_name }</th>
-						<th>${stu.stu_class }</th>
+						<th>${stu.stu_sex }</th>
 						<th>${stu.stu_department.de_name }</th>
+						<th>${stu.stu_major }</th>
+						<th>${stu.stu_class }</th>
+						<th>${stu.stu_idCard }</th>
+						<th>${stu.stu_grade }</th>
+						<th>${stu.stu_phone }</th>
 						<th><a href="admin_modifyStuView?stu.stu_id=${stu.stu_id}&&de_id=${stu.stu_department.de_id}">修改</a></th>
 					</tr>
 				</c:forEach>
@@ -71,17 +83,35 @@
            <nav>
           <ul class="pagination">
             </li>
-            <li><a href="${pageContext.request.contextPath}/admin_findAllStudent?currentPage=1">首页</a></li>
+            <li><a href="javascript:gotoPage(1)">首页</a></li>
+            <li><a href="javascript:gotoPage(${ps.currentPage }-1)">上一页</a></li>
+            <li><a href="#">${ps.currentPage }/${ps.pageCount }</a></li>
+            <li><a href="javascript:gotoPage(${ps.currentPage }+1)">下一页</a></li>
+            <li><a href="javascript:gotoPage(${ps.pageCount })">尾页</a></li>
+            
+<%--             <li><a href="${pageContext.request.contextPath}/admin_findAllStudent?currentPage=1">首页</a></li>
             <li><a href="${pageContext.request.contextPath}/admin_findAllStudent?currentPage=${ps.currentPage-1}">上一页</a></li>
             <li><a href="#">${ps.currentPage }/${ps.pageCount }</a></li>
             <li><a href="${pageContext.request.contextPath}/admin_findAllStudent?currentPage=${ps.currentPage+1}">下一页</a></li>
-            <li><a href="${pageContext.request.contextPath}/admin_findAllStudent?currentPage=${ps.pageCount}">尾页</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin_findAllStudent?currentPage=${ps.pageCount}">尾页</a></li> --%>
             </li>
           </ul>
         </nav>
         </div>
       </div>
 </div>
+
+<script type="text/javascript">
+	function gotoPage(pageNum){
+		if(pageNum > "${ps.pageCount}"){
+			pageNum = "${ps.pageCount}"
+		}
+		if(pageNum < 1){
+			pageNum = 1;
+		}	
+		window.location.href="admin_findAllStudent?currentPage.action?&currentPage=" + pageNum;
+}					
+</script>
 </body>
 </html>
 
