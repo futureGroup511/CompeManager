@@ -51,7 +51,7 @@
                 <dt>查询获奖情况<img src="images/select_xl01.png"></dt>
 	            <dd><a target="right" href="department_findAllAwardRecord.action">查看本院学生获奖情况</a></dd>
 	            <dd><a target="right" href="department_findAllDeCoAwardRecord.action">查看项目获奖情况</a></dd>
-	           	<dd><a href="depManager_lookInformView" target="right">查看通知</a></dd>
+	           	
 	            </dl>
 	            
 	            <dl class="custom">
