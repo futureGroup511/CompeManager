@@ -6,14 +6,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-<<<<<<< HEAD
 import java.io.InputStream;
-=======
 import java.util.HashMap;
->>>>>>> 72bb3f4b04691da90c4810a7157202faf2d7d1eb
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileExistsException;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 /**
@@ -412,7 +410,7 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 		try {
 			reportFileStream = new FileInputStream(POIUtils.reportFilePath);
 			return reportFileStream;
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			//异常
 			System.out.println("出现了异常现象》》》》》》》》》》》》》》》》》");
 			return null;
