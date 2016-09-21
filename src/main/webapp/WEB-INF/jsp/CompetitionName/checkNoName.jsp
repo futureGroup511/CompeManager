@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>待审核竞赛名称</title>
 <link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/jiao4.css">
+<link rel="stylesheet" href="css/jiao4.css">  
+<script type="text/javascript" src="JQueryResources/jquery-2.1.4.js"></script>
 </head>
 
 <body>
@@ -24,7 +26,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-4">
-       <p>待审核项目名称</p>
+       <p></p>
     </div>
   </div>
 </div>
@@ -45,13 +47,17 @@
 				<td>${id.index+1 }</td>
 				<td>${compeName_name }</td>
 				<td>${compeName_compeHierarchy.compeHie_name }</td>
-				<td>${compeName_descr }</td>
+				<td title="${compeName_descr }"  >
+					${fn:substring(compeName_descr,0,30)}……
+				</td>
+				
 				<td>
 					<a href="competitionName_pass?id=${compeName_id }">通过</a>
 					<a href="competitionName_noPass?id=${compeName_id }">未通过</a>
 					<a href="competitionName_alterCompetitionNameUI?id=${compeName_id }">修改</a>
 				</td>
 			</tr>
+
 	</s:iterator>
         
       </tbody>
@@ -94,7 +100,9 @@
 }					
 </script>
 </body>
+
 </html>
+
 
 
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +10,7 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/jiao5.css">
 </head>
+
 
 <body>
 <div class="container">
@@ -24,7 +26,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-4">
-       <p>待审核项目名称</p>
+       <p></p>
     </div>
   </div>
 </div>
@@ -44,8 +46,10 @@
 				<td>${id.index+1 }</td>
 				<td>${compeName_name }</td>
 				<td>${compeName_compeHierarchy.compeHie_name }</td>
-				<td>${compeName_descr }</td>
-			</tr>
+				<td title="${compeName_descr}">
+				${fn:substring(compeName_descr,0,30) }……
+				</td>
+			</tr>   
 	</s:iterator>
          
       </tbody>

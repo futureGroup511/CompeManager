@@ -27,22 +27,34 @@
 <div class="container">
 	<div class="one">
     	<div class="row">
-        	<div class="col-lg-1 col-md-1 col-xs-1"><p>竞赛名称：</p></div>
-            <div class="col-lg-2 col-md-2 col-xs-2">
+        	<div class="col-lg-2 col-md-2 col-xs-2"><p style="margin-top:5px;">竞赛名称：</p></div>
+            <div class="col-lg-2 col-md-2 col-xs-2" style="margin-left:-10%;">
            		<s:textfield id="disabledTextInput" cssClass="form-control" name="compeName_name" /><br>	
             </div>
-            <div class="col-lg-1 col-md-1 col-xs-1"><p>负责人:</p></div>
-            <div class="col-lg-2 col-md-2 col-xs-2">
-            	<s:textfield cssClass="form-control" name="compeName_descr"/><br>
-            </div>
-            <div class="col-lg-1 col-md-1 col-xs-1"><p>级别:</p></div>
-            <div class="col-lg-2 col-md-2 col-xs-2">
-				<s:textfield id="disabledTextInput" cssClass="form-control" name="compeName_compeHierarchy.compeHie_name" disabled="true"/><br>           
-            </div> 
-            <div class="col-lg-3  col-md-3 col-xs-3 ">
-                 <s:submit cssClass="btn btn-primary" value="提交"></s:submit>
-            </div>
-        </div>
+         </div>
+           
+         <div class="row">
+		     <div class="col-lg-2 col-md-2 col-xs-2" ><p style="margin-top:5px;">级别:</p></div>
+		     <div class="col-lg-2 col-md-2 col-xs-2" style="margin-left:-10%;">
+			 	<s:textfield id="disabledTextInput" cssClass="form-control" name="compeName_compeHierarchy.compeHie_name" disabled="true"/><br>           
+		     </div> 
+         </div>
+           
+         <div class="row">
+	         <div class="col-lg-2 col-md-2 col-xs-2" ><p style="margin-top:5px;">描述:</p></div>
+	          <div class="col-lg-10 col-md-2 col-xs-2" style="margin-left:-10%;">
+				<%-- <s:textfield cssClass="form-control" name="compeName_descr"/><br> --%>
+				<s:textarea rows="5" cssClass="form-control" name="compeName_descr"></s:textarea>
+				<!-- <textarea class="form-control" rows="3" name="compeName_descr"></textarea> -->           
+	          </div> 
+         </div>
+           
+           <div class="row">
+	           <div class="col-lg-3  col-md-3 col-xs-3 ">
+	                 <s:submit cssClass="btn btn-primary" value="提交"></s:submit>
+	           </div>
+           </div>
+       
     </div>
 </div>
 </s:form>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,6 +9,7 @@
 <title>审核成功竞赛名称</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/jiao5.css">
+<script type="text/javascript" src="JQueryResources/jquery-2.1.4.js"></script>
 </head>
 
 <body>
@@ -25,7 +27,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-4">
-       <p>待审核项目名称</p>
+       <p></p>
     </div>
   </div>
 </div>
@@ -45,7 +47,7 @@
 				<td>${id.index+1 }</td>
 				<td>${compeName_name }</td>
 				<td>${compeName_compeHierarchy.compeHie_name }</td>
-				<td>${compeName_descr }</td>
+				<td title="${compeName_descr }">${fn:substring(compeName_descr,0,30) }……</td>
 			</tr>
 	</s:iterator>
          
@@ -63,13 +65,11 @@
         <div class="col-lg-5 col-lg-offset-5 col-md-6 col-md-offset-4 col-xs-6 col-xs-offset-4">
            <nav>
           <ul class="pagination">
-            </li>
             <li><a href="javascript:gotoPage(1)">首页</a></li>
             <li><a href="javascript:gotoPage(${pageNum }-1)">上一页</a></li>
             <li><a href="#">${currentPage }/${pageCount }</a></li>
             <li><a href="javascript:gotoPage(${pageNum }+1)">下一页</a></li>
             <li><a href="javascript:gotoPage(${pageCount })">尾页</a></li>
-            </li>
           </ul>
         </nav>
         </div>
@@ -84,7 +84,15 @@
 			pageNum = 1;
 		}	
 		window.location.href="competitionName_checkSuccessName.action?&pageNum=" + pageNum;
-}					
+	}					
+</script>
+<script type="text/javascript">
+	$(function(){
+		var td = $(".td").text();
+		var td1 = td.substring(0,25)+"……";
+		//alert(td1);
+		$(".td").text(td1);
+	})
 </script>
 </body>
 </html>
