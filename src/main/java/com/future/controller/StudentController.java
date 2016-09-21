@@ -221,7 +221,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	    OutputStream os;
         String pre= getFileFileName().substring(0,getFileFileName().indexOf("."));  
 	    String sfx=getFileFileName().substring(getFileFileName().indexOf("."));
-	    root=root+"\\"+pre+UUID.randomUUID()+sfx;
+	    root=root+"\\"+UUID.randomUUID()+sfx;
              try {
 				inputStream = new FileInputStream(file);
 				destFile = new File(root);
@@ -231,7 +231,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		             while ((length = inputStream.read(buffer)) > 0) {
 		                  os.write(buffer, 0, length);
 		            }
-		      
+		             os.flush();
 		     inputStream.close();
 		     os.close();
              } catch (FileNotFoundException e) {

@@ -143,12 +143,12 @@ body {
             <div class="input-three">
             	<div class="input-group">
                     <div class="input-group-addon"><a><img src="images/password.png"/></a></div>
-                    <input form="form" type="password" class="form-control" name="password"  placeholder="请输入用户名">
+                    <input form="form" type="password" class="form-control" name="password"  placeholder="密码">
                 </div>
             </div>
-            <div class="from group">
+            <!-- <div class="from group">
 				<input  form="form" type="checkbox" name="useCookie" value="true" >自动登陆
-			</div>
+			</div> -->
          	<p class="text-center text-danger" id="prompt">账号密码错误</p>
             <button class="btn btn-large btn-block btn-primary" type="submit" onclick="login();">登录</button>
          </div>

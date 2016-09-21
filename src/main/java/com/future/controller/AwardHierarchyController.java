@@ -42,6 +42,19 @@ public class AwardHierarchyController extends BaseAction<AwardHierarchy> impleme
 	
 	
 	
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+
+
+
+
+
 	private Map<String, Object> request ;
 	@Override
 	public void setRequest(Map<String, Object> arg0) {
