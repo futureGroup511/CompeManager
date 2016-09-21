@@ -52,8 +52,14 @@
 			<s:elseif test="#request.p.currentPage-1 >= 1">
 				<li><a href="${pageContext.request.contextPath}/depManager_lookInformView?currentPage=${request.p.currentPage-1}"><span>&laquo;</span></a></li>				
 			</s:elseif>
-			<c:forEach begin="1" end="${request.p.pageCount}" varStatus="sta">
-				<li><a href="${pageContext.request.contextPath}/depManager_lookInformView?currentPage=${request.p.beginPageIndex+sta.index-1}">${request.p.beginPageIndex+sta.index-1}</a></li>	
+			<c:forEach begin="${request.p.beginPageIndex}" end="${request.p.pageCount}" varStatus="sta">
+				<c:if test="${request.p.currentPage eq sta.index}">
+					<li><a style="background-color: #EA7B0B;" href="${pageContext.request.contextPath}/depManager_lookInformView?currentPage=${sta.index}">${sta.index}</a></li>
+				</c:if>
+				<c:if test="${request.p.currentPage ne sta.index}">
+					<li><a #EA7B0B;" href="${pageContext.request.contextPath}/depManager_lookInformView?currentPage=${sta.index}">${sta.index}</a></li>
+				</c:if>
+					
 			</c:forEach>
 			
 			<s:if test="#request.p.currentPage+1 > #request.p.pageCount">

@@ -52,4 +52,13 @@ public class CompetitionHierarchyController extends BaseAction<CompetitionHierar
 		request=arg0;
 	}
 
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+	
+
 }
