@@ -59,7 +59,9 @@ public class CompetitionNameController extends BaseAction<CompetitionName>{
 
 	//未通过
 	public String noPass(){
-		competitionNameService.noPass(id);
+		System.out.println(id);
+		System.out.println(reason);
+		//competitionNameService.noPass(id);
 		return "noPass";
 	}
 	
@@ -86,6 +88,16 @@ public class CompetitionNameController extends BaseAction<CompetitionName>{
 	
 	//===================================
 	private Integer id;
+	private String reason;
+	
+	
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 
 	public Integer getId() {
 		return id;

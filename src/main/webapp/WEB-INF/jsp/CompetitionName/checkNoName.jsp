@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	//得到url的根路径
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,7 +59,9 @@
 				
 				<td>
 					<a href="competitionName_pass?id=${compeName_id }">通过</a>
-					<a href="competitionName_noPass?id=${compeName_id }">未通过</a>
+					<%-- <a href="competitionName_noPass?id=${compeName_id }">未通过</a> --%>
+					<a href="javascript:compeNameReanon(${compeName_id })">未通过</a>
+					<%-- <input type="button" name="" onclick="openwin2('${compeName_id ')" value="修改" /> --%>
 					<a href="competitionName_alterCompetitionNameUI?id=${compeName_id }">修改</a>
 				</td>
 			</tr>
@@ -97,7 +105,16 @@
 			pageNum = 1;
 		}	
 		window.location.href="competitionName_checkNoName.action?&pageNum=" + pageNum;
-}					
+}			
+	
+	function compeNameReanon(compeName_id){
+		//alert(compeName_id)
+		var a = compeName_id;
+		window.open ('<%=basePath %>/ly/CompeNameReason.jsp?compeName_id='+a, "", 
+		"height=400,width=500,top=200,left=400,menubar=no,scrollbars=no")
+	  
+	}
+	
 </script>
 </body>
 
