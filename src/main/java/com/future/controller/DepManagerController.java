@@ -329,7 +329,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		Integer depId = ((DepManager)sessionMap.get("depManager")).getDepM_department().getDe_id();
 		//Integer count = signUpService.getCount();
 		Integer count = signUpService.getCountByDep(depId);
-		Integer pageSize = 3;//每页显示的数量
+		Integer pageSize = 10;//每页显示的数量
 		if(currentPage == null || (currentPage+"").trim() == ""){
 			currentPage = 0;
 		}
@@ -396,7 +396,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		System.out.println("竞赛id为============》"+compeId+"类型"+signType);
 		
 		//得到指定竞赛的 还没有录入成绩的 团队报名和个人报名信息
-		Integer pageSize = 1;//每页显示的数量
+		Integer pageSize = 10;//每页显示的数量
 		//Integer count = signUpService.getCount();
 		
 		List signUpListGroup = signUpService.getAvaliableGroupSignUpByDep(compeId, null, depId);
