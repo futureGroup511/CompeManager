@@ -51,4 +51,6 @@ public interface CompetitionNameDao {
 	 * @return
 	 */
 	public List<CompetitionName> getAvailableCompeNames();
+
+	List<CompetitionName> getCompeNamesByPageBean(PageBean pageBean);
 }

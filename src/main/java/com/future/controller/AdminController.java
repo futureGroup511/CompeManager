@@ -4,7 +4,6 @@ package com.future.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -423,7 +422,7 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 		try {
 			reportFileStream = new FileInputStream(POIUtils.reportFilePath);
 			return reportFileStream;
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			//异常
 			System.out.println("出现了异常现象》》》》》》》》》》》》》》》》》");
 			return null;

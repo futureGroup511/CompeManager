@@ -128,4 +128,14 @@ public class CompetitionNameDaoImpl extends BaseDao implements CompetitionNameDa
 		
 		return new PageBean(pageNum, pageSize, count.intValue(), list);
 	}
+
+	@Override
+	public List<CompetitionName> getCompeNamesByPageBean(PageBean pageBean) {
+		String sql = "from CompetitionName compeName order by compeName.compeName_status desc";
+		List<CompetitionName> compeNameList = getsession().createQuery(sql)
+				.setFirstResult((pageBean.getCurrentPage() - 1 ) * pageBean.getPageSize())
+				.setMaxResults(pageBean.getPageSize())
+				.list();
+		return compeNameList;
+	}
 }

@@ -61,7 +61,6 @@
       				<td>${sessionScope.depManager.depM_department.de_name}</td>	
       				<td><s:property value="#request.compeSignUpsMap[#competition.compe_id]"/></td>
       				<td><a href="depManager_seeSignUpsDetails?compeId=${competition.compe_id }">查看详细情况</a></td>	
-      				<td></td>
       			</tr>
       		</s:iterator>
       	</s:else>
