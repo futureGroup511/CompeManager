@@ -532,7 +532,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 */
 	public String seeSignUpsDetails(){
 		System.out.println("《》《》《》《》《》zhaoshuo"+compeId);
-		Integer pageSize =1;//TODO每页显示的数量
+		Integer pageSize =10;//TODO每页显示的数量
 		Integer count = signUpService.getSpecialCompetitionSignUps(compeId).size();
 		if(currentPage == null || (currentPage+"").trim() == ""){
 			currentPage = 1;
