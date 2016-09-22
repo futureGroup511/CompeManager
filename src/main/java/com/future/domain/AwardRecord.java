@@ -42,6 +42,8 @@ public class AwardRecord {
 	private String awardRecor_picturePath;
 	//发奖单位
 	private String awardRecor_unit;
+	//获奖记录未通过原因
+	private String awardRecor_reason;
 	
 	
 	//参加的竞赛项目
@@ -117,6 +119,13 @@ public class AwardRecord {
 	}
 	public void setAwardRecor_unit(String awardRecor_unit) {
 		this.awardRecor_unit = awardRecor_unit;
+	}
+	
+	public String getAwardRecor_reason() {
+		return awardRecor_reason;
+	}
+	public void setAwardRecor_reason(String awardRecor_reason) {
+		this.awardRecor_reason = awardRecor_reason;
 	}
 	public void setAwardRecor_picturePath(String awardRecor_picturePath) {
 		this.awardRecor_picturePath = awardRecor_picturePath;
