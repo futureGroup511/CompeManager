@@ -55,7 +55,7 @@
 			
 			
 		<div class="row">
-			<div class="col-lg-5 col-lg-offset-5 col-md-5 col-md-offset-5 col-sm-5 col-sm-offset-5">
+			<div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
 				<ul class="pagination">
 				<s:if test="#request.ps.currentPage-1 <= 0">
 					<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=1"><span>&laquo;</span></a></li>	
@@ -63,8 +63,14 @@
 				<s:elseif test="#request.ps.currentPage-1 >= 1">
 					<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=${request.ps.currentPage-1}"><span>&laquo;</span></a></li>				
 				</s:elseif>
-				<c:forEach begin="1" end="${request.ps.pageCount}" varStatus="sta">
-					<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=${request.ps.beginPageIndex+sta.index-1}">${request.ps.beginPageIndex+sta.index-1}</a></li>	
+				<c:forEach begin="${request.ps.beginPageIndex}" end="${request.ps.endPageIndex}" varStatus="sta">
+					
+					<c:if test="${sta.index eq request.ps.currentPage }">
+						<li><a style="background-color: #EA7B0B;" href="${pageContext.request.contextPath}/student_apply?currentPage=${sta.index}">${sta.index}</a></li>	
+					</c:if>
+					<c:if test="${sta.index ne request.ps.currentPage }">
+						<li><a href="${pageContext.request.contextPath}/student_apply?currentPage=${sta.index}">${sta.index}</a></li>	
+					</c:if>
 				</c:forEach>
 				
 				<s:if test="#request.ps.currentPage+1 > #request.ps.pageCount">

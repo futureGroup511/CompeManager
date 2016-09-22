@@ -14,20 +14,18 @@
 <body>
 	<div class="add">
 		<div class="row">
-	        <div class="col-lg-2 col-md-3  col-xs-4 col-xs-offset-1">
-	           <p>修改信息</p>
-	        </div>
-	         <div class="col-lg-3 col-lg-offset-4 col-md-3 scol-md-offset-3 col-xs-5  col-xs-offset-1">
+
+	        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
 	            <p>当前位置：查看详细情况》修改报名表</p>
 	        </div>
-	        <div class="col-lg-2 col-md-3 col-xs-3">
+	        <div class="col-lg-3 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
 	            <p>欢迎${depManager.depM_name}登录本系统</p>
 	        </div>
 	    </div>
 	</div>
 	
 	
-	<form action="depManager_modifySignUp">
+	<form action="depManager_modifySignUp" method="post">
 		<input type="hidden" value="${signUp.signUp_id}" name="signup.signUp_id">
 		<div class="container">
 		<div class="one">

@@ -79,8 +79,15 @@
 			<s:elseif test="#request.ps.currentPage-1 >= 1">
 				<li><a href="${pageContext.request.contextPath}/awardstand_findAll?currentPage=${ps.currentPage-1}"><span>&laquo;</span></a></li>				
 			</s:elseif>
-			<c:forEach begin="1" end="${request.ps.pageCount}" varStatus="sta">
-				<li><a href="${pageContext.request.contextPath}/awardstand_findAll?currentPage=${ps.beginPageIndex+sta.index-1}">${ps.beginPageIndex+sta.index-1}</a></li>	
+			
+			<c:forEach begin="${request.ps.beginPageIndex}" end="${request.ps.endPageIndex}" varStatus="sta">
+				<c:if test="${request.ps.currentPage eq sta.index }">
+					<li><a style="background-color: #EA7B0B; " href="${pageContext.request.contextPath}/awardstand_findAll?currentPage=${sta.index}">${sta.index}</a></li>	
+				</c:if>
+				<c:if test="${request.ps.currentPage ne sta.index }">
+					<li><a  href="${pageContext.request.contextPath}/awardstand_findAll?currentPage=${sta.index}">${sta.index}</a></li>	
+				</c:if>
+				
 			</c:forEach>
 			
 			<s:if test="#request.ps.currentPage+1 > #request.ps.pageCount">

@@ -9,6 +9,17 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <title>上传附件页面</title>
+<script type="text/javascript">
+	$(function(){
+			$("button[class='btn btn-info']").click(function(){
+				if($.trim($("input[name='file']").val())==''){
+					$("form").append("<p class='text text-danger'>未上传文件请重新选择</p>");
+					return false;
+				}
+			});	
+	})
+	
+</script>
 </head>
 <body>
 <div class="container">
@@ -29,10 +40,10 @@
 	<form action="student_uploadFile" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 	     <div class="col-lg-2 col-lg-offset-4 col-md-2 scol-md-offset-4 col-xs-2  col-xs-offset-4">
-	       <input type="file" name="file" >  
+	       <input type="file" name="file" id="file">  
 	     </div>
 	      <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1">
-	       <button class="btn btn-info">上传</button>
+	       <button class="btn btn-info" >上传</button>
 	       <input hidden type="text" name="award_id" value="${award_id}">
 	     </div>
 	  </div>

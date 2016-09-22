@@ -70,19 +70,28 @@
         <div class="col-lg-5 col-lg-offset-5 col-md-6 col-md-offset-4 col-xs-6 col-xs-offset-4">
            <nav>
           <ul class="pagination">
-            </li>
-            <li><a href="${pageContext.request.contextPath}/comphier_findAllcomphier?currentPage=1">首页</a></li>
-            <li><a href="${pageContext.request.contextPath}/comphier_findAllcomphier?currentPage=${ps.currentPage-1}">上一页</a></li>
+            <li><a href="javascript:gotoPage(1)">首页</a></li>
+            <li><a href="javascript:gotoPage(${ps.currentPage }-1)">上一页</a></li>
             <li><a href="#">${ps.currentPage }/${ps.pageCount }</a></li>
-            <li><a href="${pageContext.request.contextPath}/comphier_findAllcomphier?currentPage=${ps.currentPage+1}">下一页</a></li>
-            <li><a href="${pageContext.request.contextPath}/comphier_findAllcomphier?currentPage=${ps.pageCount}">尾页</a></li>
-            </li>
+            <li><a href="javascript:gotoPage(${ps.currentPage }+1)">下一页</a></li>
+            <li><a href="javascript:gotoPage(${ps.pageCount })">尾页</a></li>
           </ul>
         </nav>
         </div>
       </div>
 </div>
 </body>
+<script type="text/javascript">
+	function gotoPage(pageNum){
+		if(pageNum > "${ps.pageCount}"){
+			pageNum = "${ps.pageCount}"
+		}
+		if(pageNum < 1){
+			pageNum = 1;
+		}	
+		window.location.href="comphier_findAllcomphier?currentPage=" + pageNum;
+}					
+</script>
 </html>
 
 

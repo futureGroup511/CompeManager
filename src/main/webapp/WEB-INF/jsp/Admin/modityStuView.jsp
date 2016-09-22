@@ -26,7 +26,6 @@
 <form action="admin_modifyStu" method="post">
 	<input hidden type="text" name="stu.stu_id" value="${stu.stu_id }">
 	<input hidden type="text" name="stu.stu_department.de_id" value="${stu.stu_department.de_id}">
-	<input hidden type="text" name="stu.stu_sex" value="${stu.stu_sex }">	
 	<div class="container">
 		<div class="one">
 	    	<div class="row">
@@ -57,11 +56,11 @@
 	    	<div class="row">
 	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>年级：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<input  type="text" class="form-control" name="stu.stu_grade" value="${stu.stu_grade }" >
+	            	<input  type="text" class="form-control" name="stu.stu_grade" value="${stu.stu_grade}" >
 	            </div>
 	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>专业：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<input  type="text" class="form-control" name="stu.stu_major" value="${stu.stu_major }" >
+	            	<input  type="text" class="form-control" name="stu.stu_major" value="${stu.stu_major}" >
 	            </div> 
 	        </div>
 	    </div>
@@ -69,7 +68,7 @@
 	    	<div class="row">
 	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>联系方式：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<input  type="text" class="form-control" name="stu.stu_grade" value="${stu.stu_phone}" >
+	            	<input  type="text" class="form-control" name="stu.stu_phone" value="${stu.stu_phone}" >
 	            </div>
 	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>性别：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">

@@ -90,8 +90,14 @@
 			<s:elseif test="#request.page.currentPage-1 >= 1">
 				<li><a href="${pageContext.request.contextPath}/student_lookAward?currentPage=${request.page.currentPage-1}"><span>&laquo;</span></a></li>				
 			</s:elseif>
-			<c:forEach begin="1" end="${request.page.pageCount}" varStatus="sta">
-				<li><a href="${pageContext.request.contextPath}/student_lookAward?currentPage=${request.page.beginPageIndex+sta.index-1}">${request.page.beginPageIndex+sta.index-1}</a></li>	
+			<c:forEach begin="${request.page.beginPageIndex}" end="${request.page.endPageIndex}" varStatus="sta">
+				<c:if test="${sta.index eq request.page.currentPage }">
+					<li><a style="background-color: #EA7B0B;" href="${pageContext.request.contextPath}/student_lookAward?currentPage=${request.page.beginPageIndex+sta.index-1}">${request.page.beginPageIndex+sta.index-1}</a></li>	
+				</c:if>
+				<c:if test="${sta.index ne request.page.currentPage }">
+					<li><a href="${pageContext.request.contextPath}/student_lookAward?currentPage=${request.page.beginPageIndex+sta.index-1}">${request.page.beginPageIndex+sta.index-1}</a></li>	
+				</c:if>
+			
 			</c:forEach>
 			
 			<s:if test="#request.page.currentPage+1 > #request.page.pageCount">
