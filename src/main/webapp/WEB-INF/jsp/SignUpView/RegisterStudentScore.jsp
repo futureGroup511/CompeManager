@@ -30,7 +30,7 @@
 			$(".scoreAddedSpan").css("display", 'none');
 			$(".zsCompeHieClass").css("display", 'none');
 			var ScoreAdded = $(".ScoreAdded").val();
-			if(ScoreAdded == null || ScoreAdded.trim()==""){
+			if(ScoreAdded == null || ScoreAdded.trim()=="" || !/^\+?[1-9][0-9]*$/.test(ScoreAdded)){
 				$(".scoreAddedSpan").css("display", 'inline');
 				return false;
 			}
@@ -95,7 +95,7 @@
 					<s:form action="depManager_registerScoreToRecord" method="post">
 						<td>
 						<s:textfield  class="ScoreAdded form-control" name="ScoreAdded"></s:textfield>
-						<span class="scoreAddedSpan" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
+						<span class="scoreAddedSpan" style="display:none;color:red;font-size:20px;">请填写正整数，符合规范</span>
 						</td>
 						
 						<td>

@@ -1,8 +1,5 @@
 package com.future.controller;
 
-import java.util.List;
-
-import org.apache.struts2.components.ActionComponent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 

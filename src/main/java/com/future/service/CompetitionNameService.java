@@ -56,4 +56,11 @@ public interface CompetitionNameService {
 	 * @return
 	 */
 	public List<CompetitionName> getAvailableCompeNames();
+	/**
+	 * 赵硕
+	 * 分页查询竞赛名称
+	 * @param pageBean
+	 * @return
+	 */
+	List<CompetitionName> getCompeNamesByPageBean(PageBean pageBean);
 }

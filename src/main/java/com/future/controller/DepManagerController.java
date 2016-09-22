@@ -8,6 +8,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -65,7 +66,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	private Map<String, Object> sessionMap;
 	private Map<String, String[]> paramMap;
 	private Map<String, Object> requestMap;
-	
+	private SignUp signup;
 	private List<CompetitionHierarchy> competitionHierarchies;
 	//查看所有的竞赛名称，准备数据的
 	private List<CompetitionName> competitionNames;
@@ -177,8 +178,19 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 * 查看所有已申请的竞赛名称的申请状态信息
 	 * @return
 	 */
+	//添加分页
 	public String seeAllApplyCompNames(){
 		competitionNames = competitionNameService.getAllCompeNames();
+		Integer pageSize = 10;//每页显示的数量
+		Integer recordCount = competitionNames.size();
+		List<CompetitionName> recordList = new ArrayList<CompetitionName>();
+		if(currentPage == null || (currentPage+"").trim() == ""){
+			currentPage = 0;
+		}
+		PageBean pageBean = new PageBean(currentPage, pageSize, recordCount, null);
+		recordList = competitionNameService.getCompeNamesByPageBean(pageBean);
+		pageBean.setRecordList(recordList);
+		requestMap.put("pageBean", pageBean);
 		return "ToSeeAllApplyCompeNamePage";
 	}
 	
@@ -317,15 +329,15 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		Integer depId = ((DepManager)sessionMap.get("depManager")).getDepM_department().getDe_id();
 		//Integer count = signUpService.getCount();
 		Integer count = signUpService.getCountByDep(depId);
-		Integer pageSize = 10;//每页显示的数量
+		Integer pageSize = 3;//每页显示的数量
 		if(currentPage == null || (currentPage+"").trim() == ""){
 			currentPage = 0;
 		}
-		PageBean pb = new PageBean(currentPage, pageSize, count, null);
-		//List<SignUp> signUpList = signUpService.getAllSignUp(pb);
-		List<SignUp> signUpList = signUpService.getAllSignUpByDep(pb,depId);
-		pb.setRecordList(signUpList);
-		requestMap.put("pb", pb);
+		PageBean pageBean = new PageBean(currentPage, pageSize, count, null);
+		//List<SignUp> signUpList = signUpService.getAllSignUp(pageBean);
+		List<SignUp> signUpList = signUpService.getAllSignUpByDep(pageBean,depId);
+		pageBean.setRecordList(signUpList);
+		requestMap.put("pageBean", pageBean);
 		return "InspectStudentSignUp";
 	}
 	
@@ -378,19 +390,19 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 			
 			compeId = (Integer)sessionMap.get("compeId");
 		}
-		if(sessionMap.get("currentPage") != null){
+		if(currentPage == null && sessionMap.get("currentPage") != null){
 			currentPage = (Integer)sessionMap.get("currentPage");
 		}
 		System.out.println("竞赛id为============》"+compeId+"类型"+signType);
 		
 		//得到指定竞赛的 还没有录入成绩的 团队报名和个人报名信息
-		Integer pageSize = 10;//每页显示的数量
+		Integer pageSize = 1;//每页显示的数量
 		//Integer count = signUpService.getCount();
-		Integer count = signUpService.getCountByDep(depId);
-		if(currentPage == null || (currentPage+"").trim() == ""){
-			currentPage = 0;
-		}
-		PageBean pageBean = new PageBean(currentPage, pageSize, count, null);
+		
+		List signUpListGroup = signUpService.getAvaliableGroupSignUpByDep(compeId, null, depId);
+		List signUpListPersonal = signUpService.getAvaliablePersonalSignUpByDep(compeId, null, depId);
+		//Integer count = signUpService.getCountByDep(depId);
+		PageBean pageBean = new PageBean(currentPage, pageSize, signType==1?signUpListGroup.size():signUpListPersonal.size(), null);
 		List<SignUp> signUpList = null;
 		if(signType == 1){
 			//signUpList = signUpService.getAvaliableGroupSignUp(compeId, pageBean);
@@ -407,13 +419,19 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		sessionMap.put("compeId", compeId);
 		sessionMap.put("currentPage", currentPage);
 		System.out.println(signUpList.size()+"=============zhaoshuo");
-		
-		List signUpListGroup = signUpService.getAvaliableGroupSignUp(compeId, pageBean);
-		List signUpListPersonal = signUpService.getAvaliablePersonalSignUp(compeId, pageBean);
 		if(signUpListGroup.size()==0 && signUpListPersonal.size() ==0){
 			//更新竞赛的状态为录入成绩完成
 			competitionService.changeCompetitionStatus(compeId, 3);
 		}
+		pageBean.setRecordList(signUpList);
+		if(signType==1){//团队
+			//pageBean.setRecordCount(signUpListGroup.size());
+			pageBean = new PageBean(currentPage, pageSize, signUpListGroup.size(), signUpList);
+		}else{
+			//pageBean.setRecordCount(signUpListPersonal.size());
+			pageBean = new PageBean(currentPage, pageSize, signUpListPersonal.size(), signUpList);
+		}
+		requestMap.put("pageBean", pageBean);
 		return "RegisterCompetitionScore";
 	}
 	/**
@@ -514,14 +532,15 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	 */
 	public String seeSignUpsDetails(){
 		System.out.println("《》《》《》《》《》zhaoshuo"+compeId);
-		Integer pageSize =10;//每页显示的数量
+		Integer pageSize =1;//TODO每页显示的数量
 		Integer count = signUpService.getSpecialCompetitionSignUps(compeId).size();
 		if(currentPage == null || (currentPage+"").trim() == ""){
-			currentPage = 0;
+			currentPage = 1;
 		}
 		PageBean pageBean = new PageBean(currentPage, pageSize, count, null);
 		List<SignUp> signUpList = signUpService.getSpecialCompeSignUpsByPage(pageBean, compeId);
 		pageBean.setRecordList(signUpList);
+		requestMap.put("compeId", compeId);
 		requestMap.put("pageBean", pageBean);
 		return "CompeSignUpAllStudentsInfo";
 	}
@@ -647,7 +666,36 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		return "lookinfo";
 	}
 	
+	//修改报名表
+	public String modifySignUpView(){
+		SignUp signUp=signUpService.getById(signup.getSignUp_id());
+		requestMap.put("signUp", signUp);
+		return "modifySignUpView";
+	}
 	
+	public String modifySignUp(){
+		SignUp s=signUpService.getById(signup.getSignUp_id());
+		s.setSignUP_time(signup.getSignUP_time());
+		s.setSignUp_teacher(signup.getSignUp_teacher());
+		s.setSingnup_type(signup.getSingnup_type());
+		if(signup.getSignUp_team()!=null){
+			List<SignUp> signUps=signUpService.getSpecialGroupMember(s.getSignUp_team());
+			s.setSignUp_team(signup.getSignUp_team());
+			signUpService.updateSignUp(s);
+			Iterator<SignUp> iterator=signUps.iterator();
+			while(iterator.hasNext()){
+				SignUp result=iterator.next();
+				result.setSignUp_team(signup.getSignUp_team());
+				signUpService.updateSignUp(result);
+			}
+		}
+		if(signup.getSignUp_team()==null){
+			signUpService.updateSignUp(s);
+		}
+		
+		
+		return "modifySignUp";
+	}
 
 	
 	public Integer getSignId() {
@@ -718,6 +766,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		}
 		return model;
 	}
+
 	@Override
 	public void setSession(Map<String, Object> sessionMap) {
 		this.sessionMap = sessionMap;
@@ -765,6 +814,16 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 
 	public void setSignType(Integer signType) {
 		this.signType = signType;
+	}
+
+
+	public SignUp getSignup() {
+		return signup;
+	}
+
+
+	public void setSignup(SignUp signup) {
+		this.signup = signup;
 	}
 
 }

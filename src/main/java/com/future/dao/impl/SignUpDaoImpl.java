@@ -44,7 +44,9 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 
 	@Override
 	public List<SignUp> getSpecialGroupMember(String groupName) {
-		return null;
+		String hql="FROM SignUp s where s.signUp_team=?";
+		List<SignUp> signUps= getsession().createQuery(hql).setString(0, groupName).list();
+		return signUps;
 	}
 
 	@Override
@@ -229,7 +231,7 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	public List<SignUp> getAllSignUpByDep(PageBean pageBean, Integer depId) {
 		//String sql = "from SignUp signUp where signUp.signUp_student.stu_department.de_id = :depId order by signUP_team asc, signUP_time desc";
 		//String sql = "from SignUp signUp where signUp.signUp_competition.compe_department.de_id in (select cmp.compe_id from cm_competitions cmp where cmp.compe_department_de_id = "+depId+")  order by signUP_team asc, signUP_time desc";
-		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id in (select distinct cmp.compe_id from Competition cmp where cmp.compe_department.de_id = "+depId+")  order by signUP_team asc, signUP_time desc";
+		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id in (select distinct cmp.compe_id from Competition cmp where cmp.compe_department.de_id = "+depId+")  order by signUp_status desc, signUP_team asc, signUP_time desc";
 		List<SignUp> signUpList = getsession().createQuery(sql)
 												.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
 												.setMaxResults(pageBean.getPageSize()).list();
@@ -240,11 +242,19 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	public List<SignUp> getAvaliableGroupSignUpByDep(Integer compeId, PageBean pageBean, Integer depId) {
 		//String sql = "from SignUp signUp where signUp.signUp_student.stu_department.de_id = :depId and signUp.signUp_competition.compe_id = :compeId and signUp.singnup_type = 1 and signUp.signUp_registerRecord = 0 and signUp.signUp_status = 2 order by signUp.signUp_team desc";
 		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id = :compeId and signUp.singnup_type = 1 and signUp.signUp_registerRecord = 0 and signUp.signUp_status = 2 order by signUp.signUp_team desc";
-		List<SignUp> signUpList = getsession().createQuery(sql)
-											.setParameter("compeId", compeId)
-											.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
-											.setMaxResults(pageBean.getPageSize())
-											.list();
+		List<SignUp> signUpList = null;
+		if(pageBean==null){
+			signUpList = getsession().createQuery(sql)
+					.setParameter("compeId", compeId)
+					.list();
+
+		}else{
+			signUpList = getsession().createQuery(sql)
+					.setParameter("compeId", compeId)
+					.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
+					.setMaxResults(pageBean.getPageSize())
+					.list();
+		}
 		return signUpList;
 	}
 
@@ -252,12 +262,24 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	public List<SignUp> getAvaliablePersonalSignUpByDep(Integer compeId, PageBean pageBean, Integer depId) {
 		//String sql = "from SignUp signUp where signUp.signUp_student.stu_department.de_id = :depId and signUp.signUp_competition.compe_id = :compeId and signUp.singnup_type = 2 and signUp.signUp_registerRecord = 0 and signUp.signUp_status = 2 ";
 		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id = :compeId and signUp.singnup_type = 2 and signUp.signUp_registerRecord = 0 and signUp.signUp_status = 2 ";
-		List<SignUp> signUpList = getsession().createQuery(sql)
-											.setParameter("compeId", compeId)
-											.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
-											.setMaxResults(pageBean.getPageSize())
-											.list();
+		List<SignUp> signUpList = null;
+		if(pageBean ==null){
+			signUpList = getsession().createQuery(sql)
+					.setParameter("compeId", compeId)
+					.list();
+		}else{
+			signUpList = getsession().createQuery(sql)
+					.setParameter("compeId", compeId)
+					.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
+					.setMaxResults(pageBean.getPageSize())
+					.list();
+		}
 		return signUpList;
+	}
+
+	@Override
+	public void updateSignUp(SignUp signUp) {
+		getsession().update(signUp);
 	}
 
 }

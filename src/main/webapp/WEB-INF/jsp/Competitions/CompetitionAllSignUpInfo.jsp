@@ -20,13 +20,10 @@
 <body>
 <div class="dangqian">
     <div class="row">
-       <!--  <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
-            <a><p></p></a>
-        </div> -->
-        <div class="col-lg-2 col-lg-offset-6 col-md-4 col-md-offset-3 col-xs-5  col-xs-offset-1">
+        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
             <p>当前位置：学院负责人>>报名信息</p>
         </div>
-        <div class="col-lg-2 col-md-3 col-xs-3">
+        <div class="col-lg-3 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
             <p>欢迎  ${sessionScope.depManager.depM_name } 登录本系统</p>
         </div>
     </div>
@@ -41,6 +38,7 @@
               <th>学生姓名</th>
               <th>指导老师</th>
               <th>竞赛名称</th>
+              <th>修改</th>
           </tr>
 		</thead>
 		<s:if test="#request.pageBean.recordList != null && #request.pageBean.recordList.size() >0">
@@ -52,6 +50,7 @@
 					<td><s:property value="#signUp.signUp_student.stu_name"/></td>
 					<td><s:property value="#signUp.signUp_teacher"/></td>
 					<td><s:property value="#signUp.signUp_competition.compe_compeName.compeName_name"/></td>
+					<td><a href="depManager_modifySignUpView?signup.signUp_id=${signUp.signUp_id}" class="btn btn-primary">修改报名表</a></td>
 				</tr>
 			</s:iterator>
 			
@@ -65,7 +64,43 @@
 		</s:else>
 	</table>
 </div>
-<div class="footer">
+
+	<div class="container">
+  <div class="row">
+   <div class="col-lg-5 col-lg-offset-5 col-md-5 col-md-offset-4 col-xs-5 col-xs-offset-4">
+           <p class="xixnxi">每页显示${requestScope.pageBean.pageSize }条，总记录数${requestScope.pageBean.recordCount }条</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-5 col-lg-offset-5 col-md-6 col-md-offset-4 col-xs-6 col-xs-offset-4">
+           <nav>
+          <ul class="pagination">
+            </li>
+            <li><a href="javascript:gotoPage(1)">首页</a></li>
+            <li><a href="javascript:gotoPage(${requestScope.pageBean.currentPage-1 })">上一页</a></li>
+            <li><a href="#">${requestScope.pageBean.currentPage<1?1:requestScope.pageBean.currentPage }/${requestScope.pageBean.pageCount }</a></li>
+            <li><a href="javascript:gotoPage(${requestScope.pageBean.currentPage+1 })">下一页</a></li>
+            <li><a href="javascript:gotoPage(${requestScope.pageBean.pageCount })">尾页</a></li>
+            </li>
+          </ul>
+        </nav>
+        </div>
+      </div>
+</div>
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/bootstrap.js"></script>
+<script type="text/javascript">
+	function gotoPage(pageNum){
+		if(pageNum > "${requestScope.pageBean.pageCount}"){
+			pageNum = "${requestScope.pageBean.pageCount}"
+		}
+		if(pageNum < 1){
+			pageNum = 1;
+		}	
+		window.location.href="depManager_seeSignUpsDetails?currentPage="+pageNum +"&compeId="+${requestScope.compeId };
+}					
+</script>
+<%-- <div class="footer">
 	<nav>
       <ul class="pagination">
 		 </li>
@@ -76,6 +111,6 @@
         </li>
       </ul>
 	</nav>
-</div>
+</div> --%>
 </body>
 </html>

@@ -8,6 +8,7 @@ import com.future.utils.Page_S;
 public interface AwardHierarchyDao {
 	// 查询所有奖项
 	List<AwardHierarchy> findAllAwardHierarchy();
+	List<AwardHierarchy> findAllAwardHierarchyTG();
 
 	/**
 	 * @author 牛洧鹏

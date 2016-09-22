@@ -14,7 +14,14 @@
     <style>
 @charset "UTF-8";
 
-
+img{
+	margin-top:5px;
+	margin-left:-60%;
+}
+.header span{
+ position:absolute;
+  margin-top:-30px;
+}
 * {
   box-sizing: border-box;
 }
@@ -28,7 +35,6 @@ body {
   background-color: #fff;
   
 }
-
 .header {
   display: inline-block;
   text-align: center;
@@ -38,8 +44,7 @@ body {
   text-decoration: none;
   text-shadow: 1.5px 1.5px 0 #cac6c5, -1.5px -1.5px 0 #cac6c5, -1.5px -1.5px 0 #cac6c5, -1.5px 1.5px 0 #cac6c5, 1.5px -1.5px 0 #cac6c5;
   transition: all 400ms ease-in-out;
-  margin-left:-45%;
-  margin-top:20px;
+   margin-left:20%;
 }
 
 .header--pushDown {
@@ -143,21 +148,9 @@ The final pattern effect works perfectly in Chrome, Firefox and IE seems to lose
 
 
 <div class="headingWrapper color-bright">
-  <p class="header header--pushDown header--shadow" title="HOVER ME">大学生竞赛管理系统</p>
-   <%-- <s:if test="#session.stu!=null">
-		你好,${sessionScope.stu.stu_name} <a href="loginControll_loginOut">退出</a>
-	</s:if>
-	<s:elseif test="#session.depManager!=null">
-		你好,${sessionScope.depManager.depM_name} <a href="loginControll_loginOut">退出</a>
-	</s:elseif>
-	<s:elseif test="#session.admin!=null">
-		你好,${sessionScope.admin.ad_name} <a href="loginControll_loginOut">退出</a>
-	</s:elseif>
-	<s:else>
-		<a href="loginControll_loginView" target="_top">登陆</a>
-	</s:else> 
-		<a href="loginControll_loginView">登陆</a>
-	</s:else>  --%>
+   <img src="images/header-logo.png" width="100" height="95">
+ 　<span style="font-size:34px;position:absolute; margin-top:35px;color:white;margin-left:-1%; font-family: 'Francois One', Helvetica, Arial, sans-serif;">河南科技学院</span>
+   <p class="header header--pushDown header--shadow" title="HOVER ME"><span>大学生竞赛管理系统</span></p>
 </div>
 
 </body>

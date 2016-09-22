@@ -20,10 +20,10 @@
 	<body>
 	<div class="dangqian">
     <div class="row">
-        <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
+        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
             <p>当前位置：学院负责人>>竞赛详细信息</p>
         </div>
-        <div class="col-lg-2 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
+        <div class="col-lg-3 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
             <p>欢迎  ${sessionScope.depManager.depM_name } 登录本系统</p>
         </div>
     </div>
@@ -41,6 +41,7 @@
               <th>竞赛类型</th>
               <th>竞赛信息摘要</th>
               <th>下载竞赛方案</th>
+              
           </tr>
 		</thead>
 		<tr>
@@ -53,6 +54,7 @@
 			<td>${requestScope.compe.compe_type==1?"团体":requestScope.compe.compe_type==2?"个人":"团体/个人" }</td>
 			<td>摘要</td>
 			<td><a href="depManager_downloadCompeProgram?filename=${requestScope.compe.compe_program}">下载</a></td>
+			
 		</tr>
 		</table>
 </div>

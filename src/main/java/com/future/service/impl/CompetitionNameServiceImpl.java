@@ -100,4 +100,9 @@ public class CompetitionNameServiceImpl implements CompetitionNameService{
 	public PageBean getPageBeanNoPassCheck(int pageNum, int pageSize) {
 		return competitionNameDao.getPageBeanNoPassCheck(pageNum,pageSize);
 	}
+
+	@Override
+	public List<CompetitionName> getCompeNamesByPageBean(PageBean pageBean) {
+		return competitionNameDao.getCompeNamesByPageBean(pageBean);
+	}
 }

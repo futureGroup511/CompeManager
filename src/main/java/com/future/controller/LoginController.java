@@ -2,19 +2,14 @@ package com.future.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
-
-import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.future.base.BaseAction;
 import com.future.domain.Admin;
 import com.future.domain.DepManager;

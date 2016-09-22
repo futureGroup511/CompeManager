@@ -64,4 +64,11 @@ public class AwardHierarchyDaoImpl  extends BaseDao implements AwardHierarchyDao
 												.uniqueResult();
 	}
 
+	//查询所有获奖等级 团队个人
+	@Override
+	public List<AwardHierarchy> findAllAwardHierarchyTG() {
+		String hql = "from AwardHierarchy";
+		return getsession().createQuery(hql).list();
+	}
+
 }

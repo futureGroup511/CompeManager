@@ -39,18 +39,19 @@
 	            </dl>
 	            
 	            <dl class="custom">
-                <dt>核心功能<img src="images/select_xl01.png"></dt>
+                <dt>主要功能<img src="images/select_xl01.png"></dt>
                	<dd><a target="right" href="depManager_lookProcessingCompetitionStatus">查看项目的报名情况</a></dd>
                 <dd><a target="right" href="depManager_inspectStudentApplyPage">审核报名</a></dd>
                 <dd><a target="right" href="depManager_nextClassCompetition">继续下级比赛</a></dd>
                 <dd><a target="right" href="depManager_registerScoreToDb">录入竞赛成绩</a></dd>
+                <dd><a target="right" href="awardRecord_alertAwardRecordUI.action">修改获奖信息</a></dd>
 	            </dl>
 	            
 	            <dl class="custom">
                 <dt>查询获奖情况<img src="images/select_xl01.png"></dt>
 	            <dd><a target="right" href="department_findAllAwardRecord.action">查看本院学生获奖情况</a></dd>
 	            <dd><a target="right" href="department_findAllDeCoAwardRecord.action">查看项目获奖情况</a></dd>
-	           	<dd><a href="depManager_lookInformView" target="right">查看通知</a></dd>
+	           	
 	            </dl>
 	            
 	            <dl class="custom">
@@ -86,9 +87,15 @@
 			<c:if test="${sessionScope.admin != null}">
 				<dl class="channel">
 	                <dt>审核<img src="images/select_xl01.png"></dt>
-	                <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
 	                <dd><a href="competitionName_checkNoName.action" target="right">待审核竞赛名称</a></dd>
+	                <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
 	                <dd><a href="awardRecord_checkNoAwardRecord.action" target="right">待审核竞赛结果</a></dd>
+	            </dl>
+	            
+	            <dl class="channel">
+	                <dt>查询竞赛名称<img src="images/select_xl01.png"></dt>
+	                <dd><a href="competitionName_checkSuccessName.action" target="right">审核通过竞赛名称</a></dd>
+	                <dd><a href="competitionName_noPassCheck.action" target="right">未通过审核竞赛名称</a></dd>
 	            </dl>
 	            
 	        	<dl class="channel">
@@ -97,11 +104,6 @@
 	                <dd><a href="admin_noPassCheck.action" target="right">未通过审核竞赛项目</a></dd>
 	            </dl>
 	            
-	            <dl class="channel">
-	                <dt>查询竞赛名称<img src="images/select_xl01.png"></dt>
-	                <dd><a href="competitionName_checkSuccessName.action" target="right">审核通过竞赛名称</a></dd>
-	                <dd><a href="competitionName_noPassCheck.action" target="right">未通过审核竞赛名称</a></dd>
-	            </dl>
 	            
 	            <dl class="channel">
 	                <dt>查询竞赛审核结果<img src="images/select_xl01.png"></dt>

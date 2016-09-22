@@ -38,4 +38,10 @@ public class AwardStandardServiceImpl implements AwardStandardService{
 	public List<AwardStandard> getAll() {
 		return awardStandardDao.getAll();
 	}
+
+	//根据获奖等级id，找到奖励标准
+	@Override
+	public AwardStandard findById(Integer id) {
+		return awardStandardDao.findById(id);
+	}
 }

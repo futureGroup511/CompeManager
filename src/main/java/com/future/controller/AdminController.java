@@ -8,10 +8,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileExistsException;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 /**
@@ -44,6 +44,7 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 	private File upload;  //包含文件内容
 	private String uploadFileName;//上传文件的名称；
 	private String uploadContentType; //上传文件的MIME类型；
+	private Integer de_id;
 	//这些属性都会随着文件的上传自动赋值；
 	
 	
@@ -93,6 +94,8 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
         	return "importStudentUISuccess";
         } else {
         	ActionContext.getContext().put("errStuMap", errStuMap);
+        	
+        	ActionContext.getContext().put("errorNum", errStuMap.size());
         	ActionContext.getContext().put("num", a);
         	return "importStudentUI2";
         }
@@ -258,13 +261,22 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 
 	// 修改学生
 	public String modifyStuView() {
+		Department de=departmentService.findDepartById(de_id);
+		List<Department> departments=departmentService.getAllDepartMent();
+		Iterator<Department> iterator=departments.iterator();
+		while(iterator.hasNext()){
+			if(iterator.next().getDe_id()==de.getDe_id()){
+				iterator.remove();
+			}
+		}
+		departments.add(0, de);
 		Student student = stuser.findStudentById(stu.getStu_id());
 		request.put("stu", student);
+		request.put("departments", departments);
 		return "modityStuView";
 	}
 
 	public String modifyStu() {
-		System.out.println();
 		stuser.updateStudent(stu);
 		return "modifyStuSuccess";
 	}
@@ -507,4 +519,13 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 	public void setUploadContentType(String uploadContentType) {
 		this.uploadContentType = uploadContentType;
 	}
+
+	public Integer getDe_id() {
+		return de_id;
+	}
+
+	public void setDe_id(Integer de_id) {
+		this.de_id = de_id;
+	}
+	
 }

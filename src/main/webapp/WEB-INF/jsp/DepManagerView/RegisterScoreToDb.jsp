@@ -27,13 +27,10 @@
 <body>
 <div class="dangqian">
    <div class="row">
-       <!--  <div class="col-lg-1 col-lg-offset-1 col-md-2  col-xs-2 col-xs-offset-1">
-            <a><p>  </p></a>
-        </div> -->
-        <div class="col-lg-3 col-lg-offset-5 col-md-4 col-md-offset-2 col-xs-6">
+        <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
             <p>当前位置：学院负责人>>录入成绩</p>
         </div>
-        <div class="col-lg-2 col-md-3 col-xs-3">
+        <div class="col-lg-2 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
             <p>欢迎 	${sessionScope.depManager.depM_name }  登录本系统</p>
         </div>
     </div>
@@ -72,7 +69,11 @@
       </s:form>
     </s:if>
     <s:else>
-		暂无竞赛结果需要填写
+		<div class="row">
+        <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
+            <p>暂无竞赛结果需要录入</p>
+        </div>
+    </div>
 	</s:else>
 	</div>
 </div>                         

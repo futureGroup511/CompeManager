@@ -95,5 +95,6 @@ public interface SignUpService {
 	//得到制定学院的类型报名
 	public List<SignUp> getAvaliableGroupSignUpByDep(Integer compeId, PageBean pageBean, Integer depId);
 	public List<SignUp> getAvaliablePersonalSignUpByDep(Integer compeId, PageBean pageBean, Integer depId);
-	
+	//更新报名表
+	public void updateSignUp(SignUp signUp);
 }

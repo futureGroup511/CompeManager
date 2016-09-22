@@ -48,4 +48,10 @@ public class AwardHierarchyServiceImpl implements AwardHierarchyService{
 	public AwardHierarchy getSpecialAwardHie(Integer awardHieId) {
 		return awardHierarchyDao.getSpecialAwardHie(awardHieId);
 	}
+
+	//查询所有奖项
+	@Override
+	public List<AwardHierarchy> findAllAwardHierarchyTG() {
+		return awardHierarchyDao.findAllAwardHierarchyTG();
+	}
 }
