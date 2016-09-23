@@ -38,6 +38,7 @@
          <th>结束时间</th>
          <th>摘要</th>
          <th>竞赛方案</th>
+         <th>未通过原因</th>
        </tr>
       </thead>
       <tbody>
@@ -62,6 +63,7 @@
 				<td><s:date name="compe_endTime" format="yyyy-MM-dd" /></td>
 				<td title="${compe_digest }">${fn:substring(compe_digest,0,20) }……</td>
 				<td><a href="competition_upload?inputPath=${compe_program }">单击下载</a></td>
+				<td>${compe_reason }</td>
 			</tr>
 	</s:iterator>
         

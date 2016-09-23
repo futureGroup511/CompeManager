@@ -60,8 +60,10 @@
 				<td>
 					<a href="competitionName_pass?id=${compeName_id }">通过</a>
 					<%-- <a href="competitionName_noPass?id=${compeName_id }">未通过</a> --%>
-					<a href="javascript:compeNameReanon(${compeName_id })">未通过</a>
-					<%-- <input type="button" name="" onclick="openwin2('${compeName_id ')" value="修改" /> --%>
+					
+					<%-- <a href="javascript:compeNameReanon(${compeName_id })">未通过</a> --%>
+					
+					<a href="#" onclick="disp_prompt(${compeName_id })">未通过</a>
 					<a href="competitionName_alterCompetitionNameUI?id=${compeName_id }">修改</a>
 				</td>
 			</tr>
@@ -106,13 +108,15 @@
 		}	
 		window.location.href="competitionName_checkNoName.action?&pageNum=" + pageNum;
 }			
+
 	
-	function compeNameReanon(compeName_id){
-		//alert(compeName_id)
-		var a = compeName_id;
-		window.open ('<%=basePath %>/ly/CompeNameReason.jsp?compeName_id='+a, "", 
-		"height=400,width=500,top=200,left=400,menubar=no,scrollbars=no")
-	  
+	function disp_prompt(compeName_id){
+		var id = compeName_id;
+		var name = prompt("请输入未通过原因")
+		var name1 = window.encodeURI(window.encodeURI(name)); 
+		if (name!=null && name!=""){
+			window.location.href="competitionName_noPass.action?id=" + id + "&reason="+name1;
+		}
 	}
 	
 </script>

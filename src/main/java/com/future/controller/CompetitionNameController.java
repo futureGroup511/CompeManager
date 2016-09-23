@@ -1,5 +1,7 @@
 package com.future.controller;
 
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -61,7 +63,14 @@ public class CompetitionNameController extends BaseAction<CompetitionName>{
 	public String noPass(){
 		System.out.println(id);
 		System.out.println(reason);
-		//competitionNameService.noPass(id);
+		String reasona = null;
+		try {
+			reasona = java.net.URLDecoder.decode(reason,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		competitionNameService.noPass(id,reasona);
 		return "noPass";
 	}
 	

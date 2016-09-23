@@ -17,9 +17,7 @@
 <link rel="stylesheet" href="../css/jiao4.css">
 </head>
 <body>
-<%=basePath %>
-
-<s:form onsubmit="alert('录入成功');window.close()" action="http://localhost:8080/CompetitionManager/competitionName_noPass.action" method="post">
+<s:form id="form1" onsubmit="alert('录入成功');window.close();" action="http://localhost:8080/CompetitionManager/competitionName_noPass.action" method="post">
 	<s:hidden id="compeName_id"name="id"></s:hidden>
 	<s:textarea id="compeName_reason" cssClass="form-control" name="reason" rows="3" ></s:textarea>
 	<s:submit></s:submit>
@@ -30,14 +28,11 @@
 <script type="text/javascript">
    $(function(){
 	   var s = window.location.href.split('?')[1];
-       var st = s.split('=');
+       var st = s.split(s'=');
        var id =st[1].split('&')[0]; 
    		$("#compeName_id").val(id);
    })
    
-   function click(){
-	   alert(123)
-   }
    
    
 </script>

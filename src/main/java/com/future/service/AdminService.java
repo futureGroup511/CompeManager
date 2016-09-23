@@ -19,7 +19,7 @@ public interface AdminService {
 	public void pass(Integer id);
 
 	//审核未通过
-	public void noPass(Integer id);
+	public void noPass(Integer id, String reasona);
 
 	////查看未通过审核项目
 	public List<Competition> findNoPassCheck();

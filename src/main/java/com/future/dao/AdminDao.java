@@ -22,7 +22,7 @@ public interface AdminDao {
 	void pass(Integer id);
 
 	//审核不通过
-	void noPass(Integer id);
+	void noPass(Integer id, String reason);
 
 	//查看未通过审核项目
 	List<Competition> findNoPassCheck();

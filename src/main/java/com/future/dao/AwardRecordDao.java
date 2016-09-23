@@ -32,7 +32,7 @@ public interface AwardRecordDao {
 	void pass(Integer id);
 
 	//未通过
-	void noPass(Integer id);
+	void noPass(Integer id, String reason);
 
 	//查询所有获奖记录
 	List<AwardRecord> findAllAwardRecord();

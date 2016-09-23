@@ -1,5 +1,6 @@
 package com.future.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -166,10 +167,27 @@ public class AwardRecordController extends BaseAction<AwardRecord>{
 		awardRecordService.pass(id);
 		return "pass";
 	}
+	private String reason;
 	
+	
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
 	//未通过
 	public String noPass(){
-		awardRecordService.noPass(id);
+		String reasona = null;
+		try {
+			reasona = java.net.URLDecoder.decode(reason,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}	
+		System.out.println(reason);
+		awardRecordService.noPass(id,reasona);
 		return "noPass";
 	}
 	
