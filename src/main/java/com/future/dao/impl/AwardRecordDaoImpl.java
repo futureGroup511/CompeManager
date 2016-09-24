@@ -730,7 +730,7 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 							}
 						}
 						//更新该项目该学生中获奖记录的获奖级别最高的提交给教务处负责人 奖励级别 的id 最小的那个奖励记录
-						String sqlStr05 = "update AwardRecord awardRecord set awardRecord.awardRecor_status = 3 where awardRecord.awardRecor_awadHie.awardHie_id = :minHieId and awardRecord.awardRecor_competition.compe_id = :compeId and awardRecord.awardRecor_student.stu_id = :stuId";
+						String sqlStr05 = "update AwardRecord awardRecord set awardRecord.awardRecor_status = 1 where awardRecord.awardRecor_awadHie.awardHie_id = :minHieId and awardRecord.awardRecor_competition.compe_id = :compeId and awardRecord.awardRecor_student.stu_id = :stuId";
 						getsession().createQuery(sqlStr05)
 										.setParameter("minHieId", minHieId)
 										.setParameter("compeId", compeId)

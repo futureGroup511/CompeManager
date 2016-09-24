@@ -231,7 +231,7 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	public List<SignUp> getAllSignUpByDep(PageBean pageBean, Integer depId) {
 		//String sql = "from SignUp signUp where signUp.signUp_student.stu_department.de_id = :depId order by signUP_team asc, signUP_time desc";
 		//String sql = "from SignUp signUp where signUp.signUp_competition.compe_department.de_id in (select cmp.compe_id from cm_competitions cmp where cmp.compe_department_de_id = "+depId+")  order by signUP_team asc, signUP_time desc";
-		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id in (select distinct cmp.compe_id from Competition cmp where cmp.compe_department.de_id = "+depId+")  order by signUp_status desc, signUP_team asc, signUP_time desc";
+		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id in (select distinct cmp.compe_id from Competition cmp where cmp.compe_department.de_id = "+depId+" and cmp.compe_status= 2)  order by signUp_status desc, signUP_team asc, signUP_time desc";
 		List<SignUp> signUpList = getsession().createQuery(sql)
 												.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
 												.setMaxResults(pageBean.getPageSize()).list();
