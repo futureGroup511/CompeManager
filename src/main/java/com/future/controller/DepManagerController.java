@@ -503,6 +503,8 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	public String startNextClassCompetition(){
 		System.out.println(compeId+"==============zhaohsuo ===>>>");
 		competitionService.changeCompetitionStatus(compeId, 2);
+		//更改报名表中 进入下一级别竞赛的状态
+		signUpService.changeSignUpStatusByDep(compeId, 1);
 		return "RedirectToNextClassCompetitionPage";
 	}
 	/**

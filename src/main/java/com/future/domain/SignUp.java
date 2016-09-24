@@ -41,6 +41,9 @@ public class SignUp {
 	private Integer signUP_type;
 	//是否已经录入获奖  0 未录 1 已录入
 	private Integer signUp_registerRecord = 0;
+	
+	//是否已经进入下一级别竞赛    0:未进入       1:进入
+	private Integer nextClass;
 	@Id
 	@GeneratedValue
 	@Column(unique=true)
@@ -119,7 +122,12 @@ public class SignUp {
 	public SignUp() {
 		super();
 	}
-	
+	public Integer getNextClass() {
+		return nextClass;
+	}
+	public void setNextClass(Integer nextClass) {
+		this.nextClass = nextClass;
+	}
 	
 	
 }
