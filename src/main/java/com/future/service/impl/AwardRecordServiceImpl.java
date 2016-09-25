@@ -90,8 +90,8 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 
 	//未通过
 	@Override
-	public void noPass(Integer id) {
-		awardRecordDao.noPass(id);
+	public void noPass(Integer id,String reason) {
+		awardRecordDao.noPass(id,reason);
 	}
 
 	//查询所有获奖记录

@@ -107,4 +107,6 @@ public interface SignUpDao {
 	public void updateSignUp(SignUp signUp);
 /*	public Integer getCountByDep(String depId);*/
 
+	public void changeSignUpStatusByDep(Integer compeId, int i);
+
 }

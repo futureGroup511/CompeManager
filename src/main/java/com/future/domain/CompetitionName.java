@@ -30,6 +30,8 @@ public class CompetitionName {
 	private String compeName_name;
 	//竞赛名称 描述
 	private String compeName_descr;
+	//竞赛名称未通过原因
+	private String compeName_reason;
 	//竞赛项目 的状态  1提交申请 正在审核 ,2 审核通过,  0 审核失败
 	private String compeName_status;
 	//竞赛名称 对应的竞赛项目
@@ -59,7 +61,12 @@ public class CompetitionName {
 	public void setCompeName_descr(String compeName_descr) {
 		this.compeName_descr = compeName_descr;
 	}
-	
+	public String getCompeName_reason() {
+		return compeName_reason;
+	}
+	public void setCompeName_reason(String compeName_reason) {
+		this.compeName_reason = compeName_reason;
+	}
 	public String getCompeName_status() {
 		return compeName_status;
 	}

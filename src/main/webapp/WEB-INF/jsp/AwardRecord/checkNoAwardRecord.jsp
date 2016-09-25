@@ -91,7 +91,8 @@
 				</td>
 				<td>
 					<a href="awardRecord_pass?id=${awardRecor_id }">通过</a>
-					<a href="awardRecord_noPass?id=${awardRecor_id }">未通过</a>
+					<a href="#" onclick="disp_prompt(${awardRecor_id })">未通过</a>
+					<%-- <a href="awardRecord_noPass?id=${awardRecor_id }">未通过</a> --%>
 				</td>
 			</tr>
 	</s:iterator>
@@ -131,7 +132,15 @@
 			pageNum = 1;
 		}	
 		window.location.href="awardRecord_checkNoAwardRecord.action?&pageNum=" + pageNum;
-}					
+}			
+	function disp_prompt(awardRecor_id){
+		var id = awardRecor_id;
+		var name = prompt("请输入未通过原因")
+		var name1 = window.encodeURI(window.encodeURI(name)); 
+		if (name!=null && name!=""){
+			window.location.href="awardRecord_noPass?id=" + id + "&reason="+name1;
+		}
+	}
 </script>
 </body>
 </html>

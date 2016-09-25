@@ -78,7 +78,8 @@
 				<td>
 					
 					<a href="admin_pass?id=${compe_id }">通过</a>
-					<a href="admin_noPass?id=${compe_id }">未通过</a>
+					<%-- <a href="admin_noPass?id=${compe_id }">未通过</a> --%>
+					<a href="#" onclick="disp_prompt(${compe_id })">未通过</a>
 					<a href="admin_alterCompetitionUI?id=${compe_id }">修改</a>
 				</td>
 			</tr>
@@ -123,6 +124,14 @@
 		}	
 		window.location.href="admin_checkNoProject.action?&pageNum=" + pageNum;
 }
+	function disp_prompt(compe_id){
+		var id = compe_id;
+		var name = prompt("请输入未通过原因")
+		var name1 = window.encodeURI(window.encodeURI(name)); 
+		if (name!=null && name!=""){
+			window.location.href="admin_noPass?id=" + id + "&reason="+name1;
+		}
+	}
 </script>
 
 

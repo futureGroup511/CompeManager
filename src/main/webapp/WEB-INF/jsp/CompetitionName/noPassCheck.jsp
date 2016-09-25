@@ -38,6 +38,7 @@
          <th>竞赛名称</th>
          <th>级别</th>
          <th>描述</th>
+         <th>未通过原因</th>
        </tr>
       </thead>
       <tbody>
@@ -47,8 +48,9 @@
 				<td>${compeName_name }</td>
 				<td>${compeName_compeHierarchy.compeHie_name }</td>
 				<td title="${compeName_descr}">
-				${fn:substring(compeName_descr,0,30) }……
+				${fn:substring(compeName_descr,0,20) }……
 				</td>
+				<td title="${compeName_reason }">${fn:substring(compeName_reason,0,10) }</td>
 			</tr>   
 	</s:iterator>
          

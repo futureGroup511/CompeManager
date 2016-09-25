@@ -62,8 +62,8 @@ public class CompetitionNameServiceImpl implements CompetitionNameService{
 
 	//未通过
 	@Override
-	public void noPass(Integer id) {
-		competitionNameDao.noPass(id);
+	public void noPass(Integer id,String reason) {
+		competitionNameDao.noPass(id,reason);
 	}
 
 	//通过id获得具体数据
@@ -104,5 +104,10 @@ public class CompetitionNameServiceImpl implements CompetitionNameService{
 	@Override
 	public List<CompetitionName> getCompeNamesByPageBean(PageBean pageBean) {
 		return competitionNameDao.getCompeNamesByPageBean(pageBean);
+	}
+
+	@Override
+	public boolean queryCompeName(String compeNameVal) {
+		return competitionNameDao.queryCompeName(compeNameVal);
 	}
 }

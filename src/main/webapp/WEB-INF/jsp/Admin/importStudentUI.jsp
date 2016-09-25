@@ -51,7 +51,7 @@
         </div>
         <div class="col-lg-4 col-md-4  col-xs-6 ">
         	<!-- <p>上传填好的员工信息表 ( 仅支持.xls/.xlsx格式,且文件大小不能超过2M )</p> --><!-- <a>上传文件</a> -->
-        	<p>上传填好的员工信息表 ( 仅支持.xlsx格式,且文件大小不能超过2M )</p>
+        	<p>上传填好的员工信息表 ( 仅支持.xls/.xlsx格式,且文件大小不能超过2M )</p>
         	<s:form  action="admin_importStudent" method="post" enctype="multipart/form-data">
 		    	<s:file id="file" style="border:1px;background-color:white;font-size:12px;text-decoration: none;" name="upload" label="" value="" ></s:file><br>
 				<%-- <s:submit id="submit" style="border:1px;background-color:white;font-size:12px;text-decoration: none;" value="上传文件"> --%>
@@ -73,12 +73,13 @@
 <script type="text/javascript">
 	$("#submit").click(function(){
 		var file = $("#file").val()
-		var file1 =file.substr(file.length-5);
+		var file1 =file.substr(file.length-3);
 		if(file1 == ""){
 			alert("请选择文件！");
 			return false;
 		} else {
-			if(file1 != ".xlsx"){
+			if(file1 == "lsx" | file1 == "xls"){
+			}  else {
 				alert("请选择正确的文件！");
 				return false;
 			}

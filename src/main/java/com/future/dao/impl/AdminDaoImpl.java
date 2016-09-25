@@ -46,12 +46,13 @@ public class AdminDaoImpl extends BaseDao implements AdminDao
 
 	//审核不通过
 	@Override
-	public void noPass(Integer id) {
+	public void noPass(Integer id,String reason) {
 		//先根据当前id拿到对象
 		Competition competition = findById(id);
 		//System.out.println(competition);
 		//设置对象的状态为0
 		competition.setCompe_status(0);
+		competition.setCompe_reason(reason);
 		//保存
 		getsession().save(competition);	
 	}

@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -149,9 +150,30 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 		return "checkSuccess";
 	}
 
+	private String reason;
+	
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
 	// 教务处审核：不让通过审核
 	public String noPass() {
-		adminService.noPass(id);
+		String reasona = null;
+		try {
+			reasona = java.net.URLDecoder.decode(reason,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(id);
+		System.out.println(reason);
+		
+		adminService.noPass(id,reasona);
+		
 		return "checkNo";
 	}
 

@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	//得到url的根路径
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,7 +59,11 @@
 				
 				<td>
 					<a href="competitionName_pass?id=${compeName_id }">通过</a>
-					<a href="competitionName_noPass?id=${compeName_id }">未通过</a>
+					<%-- <a href="competitionName_noPass?id=${compeName_id }">未通过</a> --%>
+					
+					<%-- <a href="javascript:compeNameReanon(${compeName_id })">未通过</a> --%>
+					
+					<a href="#" onclick="disp_prompt(${compeName_id })">未通过</a>
 					<a href="competitionName_alterCompetitionNameUI?id=${compeName_id }">修改</a>
 				</td>
 			</tr>
@@ -97,7 +107,18 @@
 			pageNum = 1;
 		}	
 		window.location.href="competitionName_checkNoName.action?&pageNum=" + pageNum;
-}					
+}			
+
+	
+	function disp_prompt(compeName_id){
+		var id = compeName_id;
+		var name = prompt("请输入未通过原因")
+		var name1 = window.encodeURI(window.encodeURI(name)); 
+		if (name!=null && name!=""){
+			window.location.href="competitionName_noPass.action?id=" + id + "&reason="+name1;
+		}
+	}
+	
 </script>
 </body>
 

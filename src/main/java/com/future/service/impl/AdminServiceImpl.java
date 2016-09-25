@@ -43,8 +43,8 @@ public class AdminServiceImpl implements AdminService {
 
 	//审核未通过
 	@Override
-	public void noPass(Integer id) {
-		adminDao.noPass(id);
+	public void noPass(Integer id,String reason) {
+		adminDao.noPass(id,reason);
 	}
 
 	//查看未通过审核项目

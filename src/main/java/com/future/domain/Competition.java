@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -42,6 +41,8 @@ public class Competition {
 	private String compe_program;
 	// 竞赛摘要 (<200)
 	private String compe_digest;
+	//竞赛未通过原因
+	private String compe_reason;
 	//竞赛项目名称
 	private CompetitionName compe_compeName;
 	// 所申请竞赛的院系
@@ -131,6 +132,13 @@ public class Competition {
 
 	public void setCompe_digest(String compe_digest) {
 		this.compe_digest = compe_digest;
+	}
+	public String getCompe_reason() {
+		return compe_reason;
+	}
+
+	public void setCompe_reason(String compe_reason) {
+		this.compe_reason = compe_reason;
 	}
 
 	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)

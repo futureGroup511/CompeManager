@@ -136,7 +136,7 @@ public class ImportDate {
             String postfix = getPostfix(path);
             if (!EMPTY.equals(postfix)) {
                 if (OFFICE_EXCEL_2003_POSTFIX.equals(postfix)) {
-                    return readXls(path);
+                    return readXls(path,deMap);
                 } else if (OFFICE_EXCEL_2010_POSTFIX.equals(postfix)) {
                     return readXlsx(path,deMap);
                 }
@@ -153,7 +153,7 @@ public class ImportDate {
      * @return
      * @throws IOException
      */
-    public List<Student> readXls(String path) throws IOException {
+    public List<Student> readXls(String path,Map<String,Department> deMap) throws IOException {
         System.out.println(PROCESSING + path);
         InputStream is = new FileInputStream(path);
         HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
@@ -179,14 +179,14 @@ public class ImportDate {
                     HSSFCell stu_idCard = hssfRow.getCell(6);
                     HSSFCell stu_grade = hssfRow.getCell(7);
                     HSSFCell stu_password = hssfRow.getCell(8);
+                    
                     student.setStu_num(getValue(stu_num));
                     student.setStu_name(getValue(stu_name));
                     student.setStu_sex(getValue(stu_sex));
                     
                     String a = getValue(stu_department_de_id);
-                    //Department de = deMap.get(a);
-                    //student.setStu_department(de);
-                    
+                    Department de = deMap.get(a);
+                    student.setStu_department(de);
                     student.setStu_major(getValue(stu_major));
                     student.setStu_class(getValue(stu_class));
                     student.setStu_idCard(getValue(stu_idCard));

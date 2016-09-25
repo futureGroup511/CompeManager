@@ -97,4 +97,6 @@ public interface SignUpService {
 	public List<SignUp> getAvaliablePersonalSignUpByDep(Integer compeId, PageBean pageBean, Integer depId);
 	//更新报名表
 	public void updateSignUp(SignUp signUp);
+	//更新 制定竞赛的报名的  进入下一级别竞赛
+	public void changeSignUpStatusByDep(Integer compeId, int i);
 }

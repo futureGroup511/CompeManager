@@ -18,29 +18,56 @@
 <%-- <script type="text/javascript" src="<%=basePath %>JQueryResources/fixError.js"></script> --%>
 <script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery.validate.min.js"></script>
 <script type="text/javascript">
-$(function() {
-	$(".btn").click(function(){
-		$(".compeNameError").css("display", "none");
-		$(".compeHieError").css("display", "none");
-		$(".compeDescError").css("display", "none");
-		var compeName = $(".compName").val();
-		var compeHie = $(".compHie").val();
-		var compeDesc = $(".compDesc").val();
-		if(compeName == null || compeName.trim() == ""){
-			$(".compeNameError").css("display", "inline");
-			return false;
-		}
-		if(compeHie==0 || compeHie ==null){
-			$(".compeHieError").css("display", "inline");
-			return false;
-		}
-		if(compeDesc == null || compeDesc.trim() == ""){
-			$(".compeDescError").css("display", "inline");
-			return false;
-		}
-		return true;
+	$(function() {
+		$(".btn").click(function(){
+			$(".compeNameError").css("display", "none");
+			$(".compeHieError").css("display", "none");
+			$(".compeDescError").css("display", "none");
+			var compeName = $(".compName").val();
+			var compeHie = $(".compHie").val();
+			var compeDesc = $(".compDesc").val();
+			if(compeName == null || compeName.trim() == ""){
+				$(".compeNameError").css("display", "inline");
+				return false;
+			}
+			if(compeHie==0 || compeHie ==null){
+				$(".compeHieError").css("display", "inline");
+				return false;
+			}
+			if(compeDesc == null || compeDesc.trim() == ""){
+				$(".compeDescError").css("display", "inline");
+				return false;
+			}
+			return true;
+		});
 	});
-});
+	
+	function queryCompeName(obj){
+		var compeNameVal = obj.value;
+		if(compeNameVal==null || compeNameVal.trim()==""){
+			return;
+		}
+		var userParam = {"compeNameVal":compeNameVal};
+		$.ajax({
+			url:'depManager_queryCompeName',
+			type:'post',
+			data:userParam,
+			dataType:'json',
+			success:function(data){
+				if(data){//已经存在了改竞赛名称
+					alert("此名称已经存在了,不需要申请");
+					$("#compeName").val("");
+				}
+			}
+		});
+	}
+	
+	function checkMaxLen(obj,maxlength){
+		 if(obj.value.length > maxlength){
+			 obj.value = obj.value.slice(0,maxlength);
+			 alert("描述字数最多不能超过"+maxlength+"字符");
+		 }
+	}
 </script>
 </head>
 <body>
@@ -61,7 +88,7 @@ $(function() {
 	<div class="row">
         	<div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛名称</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
-            <s:textfield class="form-control compName" name="competitionName.compeName_name"></s:textfield>
+            <s:textfield onblur="queryCompeName(this)"  id="compeName" class="form-control compName" name="competitionName.compeName_name"></s:textfield>
             <span class="compeNameError" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
             </div>
             <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛等级</p></div>
@@ -74,7 +101,7 @@ $(function() {
         <div class="row">
             <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-3 col-xs-offset-1"><p>竞赛相关描述</p></div>
             <div class="col-lg-9 col-md-9 col-xs-7">
-             	 <s:textarea  class="compDesc form-control" rows="5" name="competitionName.compeName_descr">
+             	 <s:textarea rows="5"  onkeydown="checkMaxLen(this,120)"  class="compDesc form-control"  name="competitionName.compeName_descr">
 				</s:textarea>
 				<span class="compeDescError" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
             </div>

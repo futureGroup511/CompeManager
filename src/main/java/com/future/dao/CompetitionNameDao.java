@@ -20,7 +20,7 @@ public interface CompetitionNameDao {
 	void pass(Integer id);
 
 	//未通过
-	void noPass(Integer id);
+	void noPass(Integer id,String reason);
 
 	//通过id获得具体数据
 	CompetitionName findById(Integer id);
@@ -53,4 +53,6 @@ public interface CompetitionNameDao {
 	public List<CompetitionName> getAvailableCompeNames();
 
 	List<CompetitionName> getCompeNamesByPageBean(PageBean pageBean);
+	
+	public boolean queryCompeName(String compeNameVal);
 }

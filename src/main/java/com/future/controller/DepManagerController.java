@@ -21,6 +21,8 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.future.base.BaseAction;
 import com.future.domain.AwardHierarchy;
 import com.future.domain.AwardRecord;
@@ -503,6 +505,8 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	public String startNextClassCompetition(){
 		System.out.println(compeId+"==============zhaohsuo ===>>>");
 		competitionService.changeCompetitionStatus(compeId, 2);
+		//更改报名表中 进入下一级别竞赛的状态
+		signUpService.changeSignUpStatusByDep(compeId, 1);
 		return "RedirectToNextClassCompetitionPage";
 	}
 	/**
@@ -697,7 +701,41 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		return "modifySignUp";
 	}
 
+	private String compeNameVal;
+	private boolean compeNameExists= false;
+	public String queryCompeName(){
+		compeNameExists = competitionNameService.queryCompeName(compeNameVal);
+		System.out.println(compeNameVal+"======"+compeNameExists);
+		try {
+			ServletActionContext.getResponse().getWriter().print(compeNameExists);
+			System.out.println("照说"+compeNameExists);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
+	
+	public boolean isCompeNameExists() {
+		return compeNameExists;
+	}
+
+
+	public void setCompeNameExists(boolean compeNameExists) {
+		this.compeNameExists = compeNameExists;
+	}
+
+
+	public String getCompeNameVal() {
+		return compeNameVal;
+	}
+
+
+	public void setCompeNameVal(String compeNameVal) {
+		this.compeNameVal = compeNameVal;
+	}
+
+
 	public Integer getSignId() {
 		return signId;
 	}

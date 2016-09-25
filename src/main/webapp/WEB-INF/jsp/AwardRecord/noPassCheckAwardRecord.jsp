@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,6 +39,7 @@
          <th>所加学分</th>
          <th>所获奖金</th>
          <th>指导老师所获奖金</th>
+         <th>未通过审核原因</th>
          <!-- <th>获奖证书</th> -->
        </tr>
       </thead>
@@ -70,6 +72,7 @@
 				<td>${awardRecor_score }</td>
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>
+				<td title="${awardRecor_reason }" >${fn:substring(awardRecor_reason,0,5) }……</td>
 				<%-- <td>${awardRecor_picturePath }</td> --%>
 			</tr>
 	</s:iterator>

@@ -197,7 +197,7 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 		}
 		String hql="select signUp_id from cm_signups cs where cs.signUp_student_stu_id = :stu_id and cs.signUp_competition_compe_id =:comp_id and cs.singnup_type=:singnup_type";
 		List result=getsession().createSQLQuery(hql).setParameter("stu_id", aw.getAwardRecor_student().getStu_id()).setParameter("comp_id", aw.getAwardRecor_competition().getCompe_id()).setParameter("singnup_type",type).list();
-		String hq="update SignUp s set s.signUp_registerRecord=0 where s.signUp_id ="+(Integer)result.get(0);
+		String hq="update SignUp s set s.signUp_registerRecord=0 s.nextClass=0 where s.signUp_id ="+(Integer)result.get(0);
 		getsession().createQuery(hq).executeUpdate();
 	}
 
@@ -222,7 +222,7 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	@Override
 	public Integer getCountByDep(Integer depId) {
 		//String sql = "select count(*) from SignUp signUp where signUp.signUp_student.stu_department.de_id = :depId";
-		String sql = "select count(*) from SignUp signUp where signUp.signUp_competition.compe_id in (select distinct cmp.compe_id from Competition cmp where cmp.compe_department.de_id = "+depId+")";
+		String sql = "select count(*) from SignUp signUp where signUp.signUp_competition.compe_id in (select distinct cmp.compe_id from Competition cmp where cmp.compe_department.de_id = "+depId+" and cmp.compe_status = 2)";
 		Integer count = ((Long)getsession().createQuery(sql).iterate().next()).intValue();
 		return count;
 	}
@@ -231,7 +231,8 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	public List<SignUp> getAllSignUpByDep(PageBean pageBean, Integer depId) {
 		//String sql = "from SignUp signUp where signUp.signUp_student.stu_department.de_id = :depId order by signUP_team asc, signUP_time desc";
 		//String sql = "from SignUp signUp where signUp.signUp_competition.compe_department.de_id in (select cmp.compe_id from cm_competitions cmp where cmp.compe_department_de_id = "+depId+")  order by signUP_team asc, signUP_time desc";
-		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id in (select distinct cmp.compe_id from Competition cmp where cmp.compe_department.de_id = "+depId+" and cmp.compe_status= 2)  order by signUp_status desc, signUP_team asc, signUP_time desc";
+		//String sql = "from SignUp signUp where signUp.signUp_competition.compe_id in (select distinct cmp.compe_id from Competition cmp where cmp.compe_department.de_id = "+depId+" and cmp.compe_status= 2)  order by signUp_status desc, signUP_team asc, signUP_time desc";
+		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id in (select distinct cmp.compe_id from Competition cmp where cmp.compe_department.de_id = "+depId+" and cmp.compe_status = 2)  order by signUp_status desc, signUP_team asc, signUP_time desc";
 		List<SignUp> signUpList = getsession().createQuery(sql)
 												.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
 												.setMaxResults(pageBean.getPageSize()).list();
@@ -280,6 +281,14 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	@Override
 	public void updateSignUp(SignUp signUp) {
 		getsession().update(signUp);
+	}
+
+	@Override
+	public void changeSignUpStatusByDep(Integer compeId, int i) {
+		String sql = "update SignUp signUp set signUp.nextClass = :nextClass where signUp.signUp_competition.compe_id = :compeId and signUp.signUp_status = 2";
+		getsession().createQuery(sql).setParameter("nextClass", i)
+						.setParameter("compeId", compeId)
+						.executeUpdate();
 	}
 
 }

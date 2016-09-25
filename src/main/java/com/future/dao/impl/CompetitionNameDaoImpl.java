@@ -6,11 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import com.future.base.BaseDao;
 import com.future.dao.CompetitionNameDao;
-import com.future.domain.Competition;
 import com.future.domain.CompetitionName;
 import com.future.utils.PageBean;
-import java.util.List;
-import org.springframework.stereotype.Repository;
 
 
 @Repository
@@ -58,11 +55,12 @@ public class CompetitionNameDaoImpl extends BaseDao implements CompetitionNameDa
 
 	//未通过
 	@Override
-	public void noPass(Integer id) {
+	public void noPass(Integer id,String reason) {
 		//先根据当前id拿到对象
 		CompetitionName competitionName = findById(id);
 		//设置对象的状态为2
 		competitionName.setCompeName_status("0");
+		competitionName.setCompeName_reason(reason);
 		//保存
 		getsession().save(competitionName);	
 	}
@@ -137,5 +135,13 @@ public class CompetitionNameDaoImpl extends BaseDao implements CompetitionNameDa
 				.setMaxResults(pageBean.getPageSize())
 				.list();
 		return compeNameList;
+	}
+
+	@Override
+	public boolean queryCompeName(String compeNameVal) {
+		String sql = "from CompetitionName compeName where compeName.compeName_name = :compeNameVal";
+		Object obj = getsession().createQuery(sql).setParameter("compeNameVal", compeNameVal)
+										.uniqueResult();
+		return obj==null?false:true;
 	}
 }

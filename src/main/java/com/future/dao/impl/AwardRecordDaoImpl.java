@@ -46,6 +46,7 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		return p;
 	}
 
+	
 	/**
 	 * 保存获奖记录
 	 */
@@ -80,12 +81,12 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 	//分页查看待审核竞赛结果
 	@Override
 	public PageBean getPageBeanCheckNoAwardRecord(int pageNum, int pageSize) {
-		List list = getsession().createQuery("from AwardRecord a where a.awardRecor_status = 3 and awardRecor_picturePath !=''")
+		List list = getsession().createQuery("from AwardRecord a where a.awardRecor_status = 1 and awardRecor_picturePath !=''")
 				.setFirstResult((pageNum - 1 ) * pageSize)
 				.setMaxResults(pageSize)
 				.list();
 		
-		Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a  where a.awardRecor_status = 3 and awardRecor_picturePath !=''")
+		Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a  where a.awardRecor_status = 1 and awardRecor_picturePath !=''")
 				.uniqueResult();
 		
 		return new PageBean(pageNum, pageSize, count.intValue(), list);
@@ -147,11 +148,12 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 
 	//未通过
 	@Override
-	public void noPass(Integer id) {
+	public void noPass(Integer id,String reason) {
 		//先根据当前id拿到对象
 		AwardRecord awardRecord = findById(id);
 		//设置对象的状态为3
 		awardRecord.setAwardRecor_status(3);
+		awardRecord.setAwardRecor_reason(reason);
 		//保存
 		getsession().save(awardRecord);
 	}
