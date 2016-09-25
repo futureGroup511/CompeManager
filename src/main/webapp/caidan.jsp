@@ -136,8 +136,8 @@
 	           		<dd><a href="admin_findAllStudent" target="right">查看所有学生</a></dd>
 	            	<dd><a href="admin_finAllDepartment" target="right">查看所有学院</a></dd>
 	            	<dd><a href="comphier_findAllcomphier" target="right">查看所有竞赛等级</a></dd>
-	            	<dd><a href="awardhierar_findAll" target="right">查看所有获奖等级</a></dd>
 	            	<dd><a href="awardstand_findAll" target="right">查看所有奖励标准</a></dd>
+	            	<dd><a href="awardhierar_findAll" target="right">查看所有获奖等级</a></dd>
 	                <dd><a href="admin_importStudentUI" target="right">导入学生数据</a> </dd>
 	            </dl>
 	            <dl class="channel">

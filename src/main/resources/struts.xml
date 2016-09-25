@@ -131,6 +131,9 @@
     		<result name="modifyDepartsuccess" type="redirect">admin_finAllDepartment</result>
     		<result name="addDeparmentManegerView">WEB-INF/jsp/Admin/addDeparmentManagerView.jsp</result>
     		<result name="addSuccess" type="redirect">comphier_findAllcomphier</result>
+    		<!-- liuyang -->
+    		<result name="addSuccessHie" type="redirect">awardhierar_findAll</result>
+    		<result name="addSuccessStand" type="redirect">awardstand_findAll</result>
     		<result name="addDepartmentView">WEB-INF/jsp/Admin/addDepartment.jsp</result>
     		<result name="addCompetitionHierarchyView">WEB-INF/jsp/Admin/addCompetitionHierarchyView.jsp</result>
     		<result name="addAwardHierarchyView">WEB-INF/jsp/Admin/addAwardHierarchyView.jsp</result>

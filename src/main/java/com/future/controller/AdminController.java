@@ -425,7 +425,7 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 
 	public String addAwardHierarchy() {
 		ahserv.addOrupdate(awardhi);
-		return "addSuccess";
+		return "addSuccessHie";
 	}
 
 	public String addAwardStandView() {
@@ -435,7 +435,7 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 
 	public String addAwardStand() {
 		awardstandser.addOrupdate(awardStandard);
-		return "addSuccess";
+		return "addSuccessStand";
 	}
 	
 	
