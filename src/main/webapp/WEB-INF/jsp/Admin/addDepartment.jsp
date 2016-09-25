@@ -19,10 +19,10 @@
 
 <div class="container">
   <div class="row">
-        <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
+        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
             <p>当前位置：教务处服务>>添加学院</p>
         </div>
-        <div class="col-lg-2 col-lg-offset-4 col-md-3 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
+        <div class="col-lg-3 col-lg-offset-4 col-md-3 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
             <p>欢迎 	${sessionScope.admin.ad_name}  登录本系统</p>
         </div>
   </div>
@@ -44,11 +44,11 @@
         	<input type="text" class="form-control" name="department.de_name" placeholder="学院名称" required="required">
         </div>
         <div class="col-lg-3  col-md-3   col-xs-3  ">
-           	<select class="form-control" name="department.de_depM.depM_id">
+           	<%-- <select class="form-control" name="department.de_depM.depM_id">
 			<c:forEach items="${depManagers}" var="depManager">
 				<option value="${depManager.depM_id}">${depManager.depM_name }</option>			
 			</c:forEach>
-		</select>
+		</select> --%>
         </div>
         <div class="col-lg-1 col-md-1 col-xs-2">
         	<input type="submit" class="btn btn-default  active">

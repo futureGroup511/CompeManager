@@ -40,18 +40,7 @@
 	            
 	        </div>
 	    </div>
-	    <div class="two">
-	    	<div class="row">
-	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>密码：</p></div>
-	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<input  type="text" class="form-control" name="stu.stu_password" value="${stu.stu_password }" >
-	            </div>
-	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>班级：</p></div>
-	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<input  type="text" class="form-control" name="stu.stu_class" value="${stu.stu_class }" >
-	            </div> 
-	        </div>
-	    </div>
+	    
 	    <div class="two">
 	    	<div class="row">
 	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>年级：</p></div>
@@ -101,10 +90,24 @@
 	            </div>
 	        </div>
 	     </div>
+	     <div class="two">
+	    	<div class="row">
+	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>班级：</p></div>
+	            <div class="col-lg-3 col-md-3 col-xs-3">
+	            	<input  type="text" class="form-control" name="stu.stu_class" value="${stu.stu_class }" >
+	            </div> 
+	        </div>
+	        
+	    </div>
 	</div>
-	<div class="last">
-	        <input type="submit" class="btn btn-default  active" value="提交">
-	 </div>
+	   <div class="row">
+	       <div class="col-lg-1 col-lg-offset-9 col-md-3 col-xs-3">
+            	<input type="submit" class="btn btn-default  active" value="提交">
+            </div> 
+	      <div class="col-lg-1  col-md-3  col-xs-3" >
+		    <a href="admin_modifyStuPassword?id=${stu.stu_id }" onclick="javascript:if (confirm('确定重置密码吗？')) { return true;}else{return false;};" class="btn btn-default  active">重置密码</a>
+		  </div>
+	   </div>
  </form>
 </body>
 </html>

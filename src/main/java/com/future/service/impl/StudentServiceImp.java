@@ -52,4 +52,11 @@ public class StudentServiceImp implements StudentService {
 	public void updateStudent(Student stu) {
 		studao.updateStudent(stu);
 	}
+
+	//一键重置学生密码
+	@Override
+	public void modifyStuPassword(Integer id) {
+		studao.modifyStuPassword(id);
+		
+	}
 }

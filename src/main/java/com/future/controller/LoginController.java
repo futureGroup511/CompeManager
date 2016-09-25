@@ -5,6 +5,8 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -47,11 +49,12 @@ public class LoginController extends BaseAction<Object> implements SessionAware,
 	public String juge(){
 		//清空session防止菜单出现多功能
 		session.clear();
+		
 		if(role.equals(STUDENT)){
 			//查看学生是否有此人
 			Student stu=new Student();
 			stu.setStu_num(number);
-			stu.setStu_password(password);
+			stu.setStu_password(DigestUtils.md5Hex(password));
 			stu=stuser.login(stu);
 			if(stu!=null){
 				session.put("stu", stu);
@@ -59,14 +62,14 @@ public class LoginController extends BaseAction<Object> implements SessionAware,
 			}  
 		}else if(role.equals(DEPARTMENT)){
 			//查看学院负责人中是否有此人
-			DepManager dep=depManagerService.getByNumAndPassword(number, password);
+			DepManager dep=depManagerService.getByNumAndPassword(number, DigestUtils.md5Hex(password));
 			if(dep!=null){
 				session.put("depManager", dep);
 				JUGE=true;
 			}
 		}else if(role.equals(DEAN)){
 			//查看教务处是否有此人
-			Admin admin=adminService.jugeByNumAndPassword(number, password);
+			Admin admin=adminService.jugeByNumAndPassword(number, DigestUtils.md5Hex(password));
 			if(admin!=null){
 				session.put("admin", admin);
 				JUGE=true;

@@ -24,4 +24,10 @@ public interface DepManagerDao {
 	
 	//得到所有学院负责人
 	public List<DepManager> getAllDepManager();
+
+	//重置密码
+	public void resetPassWord(Integer id);
+
+	//添加学院负责人
+	public void addDepartmentManager(DepManager dm);
 }

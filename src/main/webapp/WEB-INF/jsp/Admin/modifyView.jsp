@@ -41,10 +41,7 @@
 	    </div>
 	    <div class="two">
 	    	<div class="row">
-	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>密码：</p></div>
-	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<input type="text" class="form-control" name="dm.depM_password" value="${dem.depM_password }">
-	            </div>
+	            
 	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>帐号：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            	<input type="text" class="form-control" name="dm.depM_num" readonly="readonly" value="${dem.depM_num }">
@@ -55,7 +52,11 @@
 	<div class="last">
         	<input class="btn btn-default  active" type="submit" value="提交">
 	 </div>
+	
 </form>
+<div class="last">
+    <a href="admin_resetPassWord?id=${dem.depM_id }" onclick="javascript:if (confirm('确定重置密码吗？')) { return true;}else{return false;};" class="btn btn-default  active">重置密码</a>
+</div>
 </body>
 </html>
 
