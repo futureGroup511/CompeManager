@@ -289,5 +289,36 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 						.setParameter("compeId", compeId)
 						.executeUpdate();
 	}
+	//查询竞赛状态为2 已经录入过成绩 1 按钮可按下的singup
+
+	@Override
+	public List<SignUp> getSignUpByNextClassAndStudent(Integer stuid) {
+		String hql="from SignUp s where s.signUp_competition.compe_status=2 and s.signUp_registerRecord=1  and YEAR(s.signUP_time)=YEAR(now()) and s.signUp_status = 2 and  (select  ca.awardRecor_picturePath from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" and ca.awardRecor_time=(select MAX(awardRecor_time) from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" )) IS NOT NULL  and s.signUp_student="+stuid;
+		List<SignUp> signUps=getsession().createQuery(hql).list();
+		return signUps;
+	}
+
+	//通过队名来修改报名表是否录入记录
+	@Override
+	public void updateSignUpRecordsByname(String name) {
+		String hql="update SignUp s set s.signUp_registerRecord=0 where s.signUp_team=?";
+		getsession().createQuery(hql).setParameter(0, name).executeUpdate();
+	}
+
+	//查询一个团队的报名人数
+	@Override
+	public Integer getNumByname(String name) {
+		String hql="select count(*) from SignUp s where s.signUp_team=?";
+		Integer number=((Long)getsession().createQuery(hql).setParameter(0, name).iterate().next()).intValue();
+		return number;
+	}
+	
+	
+	
+	
+	
+
+	
+	
 
 }

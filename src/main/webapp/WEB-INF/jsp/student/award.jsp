@@ -36,7 +36,7 @@
 						<th>获奖等级</th>
 						<th>获得奖金</th>
 						<th>上传附件</th>
-					    <th>是否进入下一阶段</th>
+					   
 					</tr>
 				</thead>
 				<tbody>
@@ -62,7 +62,7 @@
 										(<span class="text-danger">已上传过</span>)
 								</c:if>
 							</td>
-							<td>
+							<%-- <td>
 								<c:if test="${jugePromotion ge award.awardRecor_competition.compe_endTime and  award.awardRecor_competition.compe_status eq 2  }">.
 										<c:if test="${!empty award.awardRecor_picturePath}">
 											<a href="${pageContext.request.contextPath}/student_promotion?award_id=${award.awardRecor_id }" class="btn btn-primary" onclick="return jugeNext();">进入下一阶段</a>
@@ -72,7 +72,7 @@
 										</c:if>
 								</c:if>
 							
-							</td>
+							</td> --%>
 						</tr>
 					
 					</c:forEach>
@@ -111,14 +111,5 @@
 		</div>
 		
 </body>
-<script type="text/javascript">
- function jugeNext(){
-	var juge=confirm("是否进入下一阶段");
-	if(juge===false){
-		return false;
-	}
- }
- 
 
-</script>
 </html>

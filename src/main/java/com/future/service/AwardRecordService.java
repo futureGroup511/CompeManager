@@ -88,4 +88,7 @@ public interface AwardRecordService {
 	//统计全校指定项目的获奖情况汇总
 	public List<ProjectAwardNum> getProjectAwardNum();
 	
+	//通过队名得到图片路径的个数
+	public Integer getNumByname(String name);
+	
 }

@@ -99,4 +99,11 @@ public interface SignUpService {
 	public void updateSignUp(SignUp signUp);
 	//更新 制定竞赛的报名的  进入下一级别竞赛
 	public void changeSignUpStatusByDep(Integer compeId, int i);
+	//查找可以进入下一级的signup
+	public List<SignUp> getSignUpByNextClassAndStudent(Integer stuid);
+	
+	public void updateSignUpRecordsByname(String name);
+	
+	//查询团队人数
+	public Integer getNumByname(String name);
 }

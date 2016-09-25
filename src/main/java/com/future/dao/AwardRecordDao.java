@@ -88,6 +88,8 @@ public interface AwardRecordDao {
 	//统计全校指定项目的获奖情况汇总
 	public List<ProjectAwardNum> getProjectAwardNum();
 	
+	//根据队名来查询上传路径的条数
+	public Integer getNumByname(String name);
 	
 	
 	

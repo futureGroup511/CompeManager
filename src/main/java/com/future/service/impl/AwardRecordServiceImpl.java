@@ -176,6 +176,11 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 	public List<ProjectAwardNum> getProjectAwardNum() {
 		return awardRecordDao.getProjectAwardNum();
 	}
+
+	@Override
+	public Integer getNumByname(String name) {
+		return awardRecordDao.getNumByname(name);
+	}
 	
 	
 }

@@ -248,10 +248,42 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	
 	//学生进入下一阶段
 	public String promotion(){
-		AwardRecord ar=awardRecordService.findAwardRecordById(award_id);
-		sups.updateSignUpByAwardRecord(ar);
+		/*AwardRecord ar=awardRecordService.findAwardRecordById(award_id);
+		sups.updateSignUpByAwardRecord(ar);*/
+		sups.makeSignUpScored(sup.getSignUp_id(), 0);
 		return "promotion";
 	}
+	
+	/**
+	 * 修改过后学生进入下一阶段
+	 */
+	public String nextStageView(){
+		Student stu=(Student) session.get("stu");
+		List<SignUp> signUps=sups.getSignUpByNextClassAndStudent(stu.getStu_id());
+		
+		request.put("signUps", signUps);
+		return "nextStageView";
+		
+	}
+	
+	//判断团队所有人是否都上传了附件
+	public String jugeTeamPcturePath(){
+		int teamnum=sups.getNumByname(sup.getSignUp_team());
+		int picturenum=awardRecordService.getNumByname(sup.getSignUp_team());
+		if(picturenum%teamnum==0){
+			ActionContext.getContext().getValueStack().push("true");
+		}else{
+			ActionContext.getContext().getValueStack().push("false");
+		}
+		return "jugeTeamPcturePath";
+		
+	}
+	
+	public String nextStage(){
+		sups.updateSignUpRecordsByname(sup.getSignUp_team());
+		return "promotion";
+	}
+	
 	private Student stu;
 	@Override
 	public Student getModel() {
