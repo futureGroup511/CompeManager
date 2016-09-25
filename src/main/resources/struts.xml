@@ -136,7 +136,7 @@
     		<result name="addAwardHierarchyView">WEB-INF/jsp/Admin/addAwardHierarchyView.jsp</result>
     		<result name="addAwardStandView">WEB-INF/jsp/Admin/addAwardStandView.jsp</result>
     		<result name="addManagerSuccess" type="redirect">admin_findAll</result>
-    		<result name="addDepartmentSuccess" type="redirect">admin_allDepartment</result>
+    		<result name="addDepartmentSuccess" type="redirect">admin_finAllDepartment</result>
     		<result name="importStudentUI">WEB-INF/jsp/Admin/importStudentUI.jsp</result>
     		<result name="importStudentUI2">WEB-INF/jsp/Admin/importStudentUI2.jsp</result>
     		<result name="importStudentUISuccess">WEB-INF/jsp/Admin/importStudentUISuccess.jsp</result>

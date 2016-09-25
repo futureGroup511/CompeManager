@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -59,10 +60,9 @@ public class ImportDate {
                 System.out.print(student.getStu_class()+ "|");
                 System.out.print(student.getStu_idCard()+ "|");
                 System.out.print(student.getStu_grade()+ "|");
-                System.out.print(student.getStu_password()+ "|");
                 System.out.println();
                 
-                if(student.getStu_num().isEmpty() || student.getStu_name().isEmpty() || student.getStu_sex().isEmpty()|| student.getStu_department()==null ||student.getStu_major().isEmpty() ||student.getStu_class().isEmpty() ||student.getStu_idCard().isEmpty() ||student.getStu_grade().isEmpty() ||student.getStu_password().isEmpty()    ){
+                if(student.getStu_num().isEmpty() || student.getStu_name().isEmpty() || student.getStu_sex().isEmpty()|| student.getStu_department()==null ||student.getStu_major().isEmpty() ||student.getStu_class().isEmpty() ||student.getStu_idCard().isEmpty() ||student.getStu_grade().isEmpty()  ){
                 	if(student.getStu_num().isEmpty() ){
                 		//System.out.println("aaaa" + student.getStu_num());
                 		error.add("学号不能为空");
@@ -96,9 +96,6 @@ public class ImportDate {
                 		error.add("年级不能为空");
                 	}
                 	
-                	if(student.getStu_password().isEmpty()){
-                		error.add("密码不能为空");
-                	} 
                 	
                 	errStumap.put(student, error);
                 	
@@ -178,7 +175,7 @@ public class ImportDate {
                     HSSFCell stu_class = hssfRow.getCell(5);
                     HSSFCell stu_idCard = hssfRow.getCell(6);
                     HSSFCell stu_grade = hssfRow.getCell(7);
-                    HSSFCell stu_password = hssfRow.getCell(8);
+                    //HSSFCell stu_password = hssfRow.getCell(8);
                     
                     student.setStu_num(getValue(stu_num));
                     student.setStu_name(getValue(stu_name));
@@ -191,7 +188,7 @@ public class ImportDate {
                     student.setStu_class(getValue(stu_class));
                     student.setStu_idCard(getValue(stu_idCard));
                     student.setStu_grade(getValue(stu_grade));
-                    student.setStu_password(getValue(stu_password));
+                    //student.setStu_password(getValue(stu_password));
                     list.add(student);
                 }
             }
@@ -229,7 +226,7 @@ public class ImportDate {
                     XSSFCell stu_class = xssfRow.getCell(5);
                     XSSFCell stu_idCard = xssfRow.getCell(6);
                     XSSFCell stu_grade = xssfRow.getCell(7);
-                    XSSFCell stu_password = xssfRow.getCell(8);
+                    //XSSFCell stu_password = xssfRow.getCell(8);
                     student.setStu_num(getValue(stu_num));
                     student.setStu_name(getValue(stu_name));
                     student.setStu_sex(getValue(stu_sex));
@@ -241,7 +238,7 @@ public class ImportDate {
                     student.setStu_class(getValue(stu_class));
                     student.setStu_idCard(getValue(stu_idCard));
                     student.setStu_grade(getValue(stu_grade));
-                    student.setStu_password(getValue(stu_password));
+                    //student.setStu_password(getValue(stu_password));
                     list.add(student);
                 }
             }
@@ -257,7 +254,6 @@ public class ImportDate {
                 System.out.print(student2.getStu_class()+ "|");
                 System.out.print(student2.getStu_idCard()+ "|");
                 System.out.print(student2.getStu_grade()+ "|");
-                System.out.print(student2.getStu_password()+ "|");
                 System.out.println();
             }
         }
@@ -277,6 +273,10 @@ public class ImportDate {
 			List l = DbUtil.selectOne(SELECT_STUDENT_SQL + "'%" + student.getStu_idCard() + "%'", student);
 			if (!l.contains(1)) {
 				//插入之前修改学院
+				//密码加密
+				//String md5Digest = DigestUtils.md5Hex(user.getPassword());
+				String md5Digest = DigestUtils.md5Hex(student.getStu_num());
+				student.setStu_password(md5Digest);
 				DbUtil.insert(INSERT_STUDENT_SQL, student);
 			} else {
 				//System.out.println("The Record was Exist : No. = " + student.getNo() + " , Name = " + student.getName() + ", Age = " + student.getAge() + ", and has been throw away!");

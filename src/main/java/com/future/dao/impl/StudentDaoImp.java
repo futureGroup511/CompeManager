@@ -2,6 +2,7 @@ package com.future.dao.impl;
 
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -25,14 +26,35 @@ public class StudentDaoImp extends BaseDao implements StudentDao{
 
 	@Override
 	public void addOrUpdateStudent(Student stu) {
+			String md5Digest = DigestUtils.md5Hex(stu.getStu_password());
+			stu.setStu_password(md5Digest);
 			getsession().saveOrUpdate(stu);
 	}
 	/**
 	 * 因为事务问题造成hibernate缓存不能清楚,尝试写了一个flush
 	 */
 	public void updateStudent(Student stu){
-		getsession().update(stu);
+		Student student = findById(stu.getStu_id());
+		//String md5Digest = DigestUtils.md5Hex(stu.getStu_password());
+		//stu.setStu_password(md5Digest);
+		//stu.setStu_password(student.getStu_password());
+		student.setStu_name(stu.getStu_name());
+		student.setStu_grade(stu.getStu_grade());
+		student.setStu_major(stu.getStu_major());
+		student.setStu_phone(stu.getStu_phone());
+		student.setStu_sex(stu.getStu_sex());
+		student.setStu_idCard(stu.getStu_idCard());
+		System.out.println(stu.getStu_department());
+		student.setStu_department(stu.getStu_department());
+		student.setStu_class(stu.getStu_class());
+		getsession().save(student);
 	}
+	
+	private Student findById(Integer stu_id) {
+		String hql = "from Student s where s.stu_id = ? ";
+		return (Student) getsession().createQuery(hql).setParameter(0, stu_id).uniqueResult();
+	}
+
 	@Override
 	public Student findStudentById(Integer id) {
 		String hql="from Student s where s.stu_id=?";
@@ -80,5 +102,14 @@ public class StudentDaoImp extends BaseDao implements StudentDao{
 			Integer num=Integer.valueOf(totalNum.toString());
 			Page_S p=new Page_S(ps.getCurrentPage(), ps.getPageSize(),num , sup);
 			return p;
+	}
+
+	//一键重置学生密码
+	@Override
+	public void modifyStuPassword(Integer id) {
+		Student student = findById(id);
+		String mdDigest = DigestUtils.md5Hex(student.getStu_num());
+		student.setStu_password(mdDigest);
+		getsession().save(student);
 	}
 }

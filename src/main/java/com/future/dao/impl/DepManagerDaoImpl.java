@@ -2,6 +2,7 @@ package com.future.dao.impl;
 
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Projections;
@@ -58,7 +59,18 @@ public class DepManagerDaoImpl extends BaseDao implements DepManagerDao {
 
 	@Override
 	public void addOrUpdate(DepManager dm) {
-		getsession().saveOrUpdate(dm);
+		//String md5Digest = DigestUtils.md5Hex(dm.getDepM_password());
+		//dm.setDepM_password(md5Digest);
+		DepManager dep = findById(dm.getDepM_id());
+		dep.setDepM_name(dm.getDepM_name());
+		dep.setDepM_phoneNum(dm.getDepM_phoneNum());
+		getsession().saveOrUpdate(dep);
+	}
+
+	
+	private DepManager findById(Integer depM_id) {
+		String hql = "from DepManager d where d.depM_id = ?";
+		return (DepManager) getsession().createQuery(hql).setParameter(0, depM_id).uniqueResult();
 	}
 
 	@Override
@@ -66,6 +78,20 @@ public class DepManagerDaoImpl extends BaseDao implements DepManagerDao {
 		String hql="From DepManager dm ";
 		List<DepManager> depManagers=getsession().createQuery(hql).list();
 		return depManagers;
+	}
+
+	//重置密码
+	@Override
+	public void resetPassWord(Integer id) {
+		DepManager dep = findById(id);
+		String md5Digest = DigestUtils.md5Hex(dep.getDepM_num());
+		dep.setDepM_password(md5Digest);
+	}
+
+	//添加学院负责人
+	@Override
+	public void addDepartmentManager(DepManager dm) {
+		getsession().save(dm);
 	}
 
 }

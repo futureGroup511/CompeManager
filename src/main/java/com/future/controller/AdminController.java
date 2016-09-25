@@ -13,6 +13,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 /**
@@ -267,6 +269,9 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 	}
 
 	public String modifyDepartsuccess() {
+		System.out.println("==============================");
+		System.out.println(department.getDe_descr());
+		System.out.println(department.getDe_name());
 		departservice.addOrupdate(department);
 		return "modifyDepartsuccess";
 	}
@@ -299,7 +304,22 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 	}
 
 	public String modifyStu() {
+		//Student student = stuser.findStudentById(stu.getStu_id());
+		//stu.setStu_password(student.getStu_password());
+		System.out.println("====================>>>>>");
+		System.out.println(stu.getStu_class());
+		System.out.println(stu.getStu_name());
+		System.out.println(de_id);
+		Department de = departmentService.findDepartById(de_id);
+		stu.setStu_department(de);
+		System.out.println("====================>>>>>");
 		stuser.updateStudent(stu);
+		return "modifyStuSuccess";
+	}
+	
+	//一键重置学生密码
+	public String modifyStuPassword(){
+		stuser.modifyStuPassword(id);
 		return "modifyStuSuccess";
 	}
 
@@ -369,7 +389,17 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 	 * @return
 	 */
 	public String addDepartmentManager() {
-		depManagerService.addOrUpdate(dm);
+		System.out.println("===============>>>>" + dm.getDepM_id());
+		Department de = departmentService.findDepartById(dm.getDepM_department().getDe_id());
+		dm.setDepM_department(de);
+		depManagerService.addDepartmentManager(dm);
+		//depManagerService.addOrUpdate(dm);
+		return "addManagerSuccess";
+	}
+	
+	//重置密码
+	public String resetPassWord(){
+		depManagerService.resetPassWord(id);
 		return "addManagerSuccess";
 	}
 

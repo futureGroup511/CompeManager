@@ -45,6 +45,7 @@ public class DepartmentDaoImpl extends BaseDao implements DepartmentDao {
 
 	@Override
 	public void addOrupdate(Department dt) {
+			dt.setDe_depM(null);
 			getsession().saveOrUpdate(dt);
 	}
 

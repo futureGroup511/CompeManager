@@ -24,5 +24,8 @@ public interface StudentDao {
 	public Page_S findAllStudenyByPage(Page_S ps);
 	
 	public void updateStudent(Student stu);
+
+	//一键重置学生密码
+	public void modifyStuPassword(Integer id);
 }
 

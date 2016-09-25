@@ -179,6 +179,15 @@ One or more constraints have not been satisfied.	CompeManager		line 1	Maven Java
 		    <artifactId>poi-ooxml-schemas</artifactId>
 		    <version>3.8</version>
 		</dependency>
+		
+		<!-- ********************** md5加密 ********************** -->
+		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.10</version>
+		</dependency>
+		
 
 
 		

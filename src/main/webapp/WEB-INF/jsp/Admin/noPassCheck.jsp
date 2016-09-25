@@ -62,7 +62,14 @@
 				<td><s:date name="compe_startTime" format="yyyy-MM-dd" /></td>
 				<td><s:date name="compe_endTime" format="yyyy-MM-dd" /></td>
 				<td title="${compe_digest }">${fn:substring(compe_digest,0,20) }……</td>
-				<td><a href="competition_upload?inputPath=${compe_program }">单击下载</a></td>
+				<td>
+				<s:if test="compe_program == null | compe_program ==''">
+					无
+				</s:if>
+				<s:else>
+					<a href="competition_upload?inputPath=${compe_program }">单击下载</a>
+				</s:else>
+				</td>
 				<td>${compe_reason }</td>
 			</tr>
 	</s:iterator>
