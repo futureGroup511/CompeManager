@@ -260,6 +260,12 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		return stu;
 	}
 	
+	public String lookPersonInfo(){
+		Student student = (Student) ActionContext.getContext().getSession().get("stu");
+		ActionContext.getContext().put("student", student);
+		return "lookPersonInfo";
+	}
+	
 	
 	
 	

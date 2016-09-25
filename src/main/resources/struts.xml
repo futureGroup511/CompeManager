@@ -104,6 +104,7 @@
     		<result name="finishApply" type="redirect">student_apply</result>
     		<result name="addStudentFinish" type="redirect">admin_findAllStudent</result>
     		<result name="loginLy" type="redirect">loginControll_firstLogin</result>
+    		<result name="lookPersonInfo">WEB-INF/jsp/student/lookPersonInfo.jsp</result>
     	</action>	
     	
     	<!-- 教务处 -->	
