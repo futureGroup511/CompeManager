@@ -25,5 +25,8 @@ public interface StudentService {
 
 	//一键重置学生密码
 	public void modifyStuPassword(Integer id);
+
+	//学生修改密码
+	public void updatePassword(Student stu);
 }
 

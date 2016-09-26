@@ -107,6 +107,9 @@
     		<result name="nextStageView">WEB-INF/jsp/student/nextStage.jsp</result>
     		<result name="jugeTeamPcturePath" type="json"></result>
     		<result name="lookPersonInfo">WEB-INF/jsp/student/lookPersonInfo.jsp</result>
+    		<result name="updatePasswordUI">WEB-INF/jsp/student/updatePasswordUI.jsp</result>
+    		<result name="updatePassword" type="redirect">student_apply</result>
+    	
     	</action>	
     	
     	<!-- 教务处 -->	
