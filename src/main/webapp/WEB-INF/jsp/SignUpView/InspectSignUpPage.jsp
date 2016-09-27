@@ -77,7 +77,7 @@
       				<td>${signUp.signUp_competition.compe_compeName.compeName_name}</td>
       				<td>
       					<s:if test="#signUp.signUp_status==1">
-	      					<a href="depManager_inspectSuccess?signId=${signUp.signUp_id }&currentPage=${requestScope.pb.currentPage}">我要审核</a>
+	      					<a href="depManager_inspectSuccess?signId=${signUp.signUp_id }&currentPage=${requestScope.pageBean.currentPage}">我要审核</a>
       					</s:if>
       					<s:else>
       						${signUp.signUp_status==2?"已审核通过":"审核未通过"}
@@ -85,7 +85,7 @@
       				</td>
       				<td>
       					<s:if test="#signUp.signUp_status==2">
-	      					<a href="depManager_inspectFailure?signId=${signUp.signUp_id }&currentPage=${requestScope.pb.currentPage}">禁止通过</a>
+	      					<a href="depManager_inspectFailure?signId=${signUp.signUp_id }&currentPage=${requestScope.pageBean.currentPage}">禁止通过</a>
       					</s:if>
       					<s:elseif test="#signUp.signUp_status==1">
 	      					待审核状态
@@ -105,7 +105,7 @@
       						个人赛无需指定负责人
       					</s:elseif>
       					<s:elseif test="#signUp.singUp_manager==0">
-      						<a href="depManager_inspectToTeamLeader?signId=${signUp.signUp_id }&teamName=${signUp.signUp_team }&currentPage=${requestScope.pb.currentPage}">指定为负责人</a>
+      						<a href="depManager_inspectToTeamLeader?signId=${signUp.signUp_id }&teamName=${signUp.signUp_team }&currentPage=${requestScope.pageBean.currentPage}">指定为负责人</a>
       					</s:elseif>
       				</td>	
       			</tr>

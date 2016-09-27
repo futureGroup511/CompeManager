@@ -21,6 +21,8 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.future.base.BaseAction;
 import com.future.domain.AwardHierarchy;
 import com.future.domain.AwardRecord;
@@ -500,11 +502,57 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		requestMap.put("compeList", compeList);
 		return "ToNextClassCompetition";
 	}
+	
+	private Integer nextClassStatus ;
+	
 	public String startNextClassCompetition(){
 		System.out.println(compeId+"==============zhaohsuo ===>>>");
 		competitionService.changeCompetitionStatus(compeId, 2);
 		//更改报名表中 进入下一级别竞赛的状态
 		signUpService.changeSignUpStatusByDep(compeId, 1);
+		//设置可以进入下一级别竞赛的获奖id
+		
+		/**  	团体         个人
+		 * 国际 : 1      2
+		 * 国家 ：  5      6
+		 * 省级 ：   13     14
+		 * 校级：   17      18
+		 */
+		System.out.println(nextClassStatus+"=========<><><><>=============="+compeId);
+		Competition compe = competitionService.getCompetitionById(compeId);
+		Integer compeType = compe.getCompe_type();// 1:团体，2：个人， 3：其他S
+		Integer personId = -1;
+		Integer groupId = -1;
+		if(compeType == 1){
+			if(nextClassStatus == 1){
+				groupId = 17;
+			}else if(nextClassStatus == 2){
+				groupId = 13;
+			}else{
+				groupId = 5;
+			}
+		}else if(compeType == 2){
+			if(nextClassStatus == 1){
+				personId = 18;
+			}else if(nextClassStatus == 2){
+				personId = 14;
+			}else{
+				personId = 6;
+			}
+		}else{
+			if(nextClassStatus == 1){
+				groupId = 17;
+				personId = 18;
+			}else if(nextClassStatus == 2){
+				groupId = 13;
+				personId = 14;
+			}else{
+				groupId = 5;
+				personId = 6;
+			}
+		}
+		competitionService.updateCompetitionNextClassAwardHie(personId, groupId, compeId);
+		
 		return "RedirectToNextClassCompetitionPage";
 	}
 	/**
@@ -699,7 +747,41 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		return "modifySignUp";
 	}
 
+	private String compeNameVal;
+	private boolean compeNameExists= false;
+	public String queryCompeName(){
+		compeNameExists = competitionNameService.queryCompeName(compeNameVal);
+		System.out.println(compeNameVal+"======"+compeNameExists);
+		try {
+			ServletActionContext.getResponse().getWriter().print(compeNameExists);
+			System.out.println("照说"+compeNameExists);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
+	
+	public boolean isCompeNameExists() {
+		return compeNameExists;
+	}
+
+
+	public void setCompeNameExists(boolean compeNameExists) {
+		this.compeNameExists = compeNameExists;
+	}
+
+
+	public String getCompeNameVal() {
+		return compeNameVal;
+	}
+
+
+	public void setCompeNameVal(String compeNameVal) {
+		this.compeNameVal = compeNameVal;
+	}
+
+
 	public Integer getSignId() {
 		return signId;
 	}
@@ -827,5 +909,17 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	public void setSignup(SignUp signup) {
 		this.signup = signup;
 	}
+
+
+	public Integer getNextClassStatus() {
+		return nextClassStatus;
+	}
+
+
+	public void setNextClassStatus(Integer nextClassStatus) {
+		this.nextClassStatus = nextClassStatus;
+	}
+	
+	
 
 }

@@ -105,4 +105,9 @@ public class CompetitionNameServiceImpl implements CompetitionNameService{
 	public List<CompetitionName> getCompeNamesByPageBean(PageBean pageBean) {
 		return competitionNameDao.getCompeNamesByPageBean(pageBean);
 	}
+
+	@Override
+	public boolean queryCompeName(String compeNameVal) {
+		return competitionNameDao.queryCompeName(compeNameVal);
+	}
 }

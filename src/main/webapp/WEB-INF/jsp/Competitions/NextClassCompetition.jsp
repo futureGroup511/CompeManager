@@ -35,6 +35,7 @@
 			  <th>竞赛名称</th>
 			  <th>竞赛申报学院</th>
               <th>竞赛负责人</th>
+              <th>下级竞赛的级别</th>
               <th>开始下级比赛</th>
           </tr>
 		</thead>
@@ -44,14 +45,18 @@
 					<td><s:property value="#competition.compe_compeName.compeName_name"/></td>
 					<td><s:property value="#competition.compe_department.de_name"/></td>
 					<td><s:property value="#competition.compe_manager"/></td>
-					<td>
-						<s:if test="#competition.compe_status == 3">
-							<a href="depManager_startNextClassCompetition?compeId=${competition.compe_id }">开始下级比赛</a>
-						</s:if>
-						<s:else>
-							正在录入成绩/比赛进行中
-						</s:else>
-					</td>
+					<s:form action="depManager_startNextClassCompetition" method="post">
+						<td><s:select list="#{'1':'省级', '2':'国家级','3':'国际级' }" name="nextClassStatus"></s:select></td>
+						<td>
+							<s:if test="#competition.compe_status == 3">
+								<input type="hidden" name="compeId" value="${competition.compe_id }"/>
+								<s:submit value="进行下级竞赛"></s:submit>
+							</s:if>
+							<s:else>
+								正在录入成绩/比赛进行中
+							</s:else>
+						</td>
+					</s:form>
 				</tr>
 			</s:iterator>
 		</s:if>

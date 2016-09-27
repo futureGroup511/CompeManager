@@ -32,8 +32,9 @@
      <table class=" table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
-			  <th>学生所在院系</th>
-			  <th>学生所在班级</th>
+			  <th>学生院系</th>
+			  <th>学生班级</th>
+			  <th>团队名称</th>
               <th>学生学号</th>
               <th>学生姓名</th>
               <th>指导老师</th>
@@ -45,6 +46,7 @@
 			<s:iterator value="#request.pageBean.recordList" var="signUp">
 				<tr>
 					<td><s:property value="#signUp.signUp_student.stu_department.de_name"/></td>
+					<td><s:property value="#signUp.signUp_team==null?'无':#signUp.signUp_team"/></td>
 					<td><s:property value="#signUp.signUp_student.stu_class"/></td>
 					<td><s:property value="#signUp.signUp_student.stu_num"/></td>
 					<td><s:property value="#signUp.signUp_student.stu_name"/></td>
