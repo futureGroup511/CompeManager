@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
@@ -18,6 +19,11 @@
 </head>
 
 <body>
+
+<%-- <s:select name="user.sex" list="awardRecords" label="dd" listKey="awardRecor_competition.compe_compeName.compeName_id" listValue='awardRecor_competition.compe_compeName.compeName_name' headerKey="" headerValue=""></s:select>  
+ --%>
+
+
 <div class="container">
   <div class="row">
         <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
@@ -46,6 +52,7 @@
          <th>学分</th>
          <th>奖金</th>
          <th>老师奖金</th>
+         <th>发奖单位</th>
          <th>证书</th>
          <th>编辑</th>
        </tr>
@@ -79,6 +86,7 @@
 				<td>${awardRecor_score }</td>
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>
+				<td>${awardRecor_unit }</td>
 				<td>
 					<s:if test="awardRecor_picturePath == ''">
 				未上传
