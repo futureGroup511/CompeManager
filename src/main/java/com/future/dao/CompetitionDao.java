@@ -67,4 +67,7 @@ public interface CompetitionDao {
 	public List<Competition> getProcessingCompetitionByDep(Integer depId);
 
 	public List<Competition> getAvaliableCopetionByDep(Integer depId);
+	
+	//改变竞赛的 可以进入下级的获奖id
+	public void updateCompetitionNextClassAwardHie(Integer personId, Integer groupId, Integer compeId);
 }

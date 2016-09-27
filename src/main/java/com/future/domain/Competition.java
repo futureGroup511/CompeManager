@@ -47,6 +47,12 @@ public class Competition {
 	private CompetitionName compe_compeName;
 	// 所申请竞赛的院系
 	private Department compe_department;
+	
+	//可以进入下一级别竞赛的获奖级别
+	private Integer compe_nextClassPerson = -1;
+	
+	private Integer compe_nextClassGroup = -1;
+	
 
 	@Id
 	@GeneratedValue
@@ -158,6 +164,24 @@ public class Competition {
 	public void setCompe_department(Department compe_department) {
 		this.compe_department = compe_department;
 	}
+
+	public Integer getCompe_nextClassPerson() {
+		return compe_nextClassPerson;
+	}
+
+	public void setCompe_nextClassPerson(Integer compe_nextClassPerson) {
+		this.compe_nextClassPerson = compe_nextClassPerson;
+	}
+
+	public Integer getCompe_nextClassGroup() {
+		return compe_nextClassGroup;
+	}
+
+	public void setCompe_nextClassGroup(Integer compe_nextClassGroup) {
+		this.compe_nextClassGroup = compe_nextClassGroup;
+	}
+	
+	
 	// 竞赛对应的 获奖记录
 	// private Set<AwardRecord> compe_awardRecord = new HashSet<AwardRecord>();
 	

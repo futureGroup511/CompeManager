@@ -41,7 +41,6 @@
          <th>序号</th>
          <th>学院名称</th>
          <th>学院描述</th>
-         <th>学院负责人</th>
          <th>修改</th>
        </tr>
       </thead>
@@ -51,7 +50,6 @@
 					   	<th>${status.index+1}</th>
 						<th>${depart.de_name}</th>
 						<th>${depart.de_descr}</th>
-						<th>${depart.de_depM.depM_name}</th>
 						<th><a href="admin_modifyDepartView?department.de_id=${depart.de_id}">修改</a></th>
 					</tr>
 				</c:forEach>

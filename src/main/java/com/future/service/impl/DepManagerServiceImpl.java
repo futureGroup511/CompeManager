@@ -49,4 +49,16 @@ public class DepManagerServiceImpl implements DepManagerService{
 	public List<DepManager> getAllDepManager() {
 		return depManagerDao.getAllDepManager();
 	}
+
+	//重置密码
+	@Override
+	public void resetPassWord(Integer id) {
+		depManagerDao.resetPassWord(id);
+	}
+
+	//添加学院负责人
+	@Override
+	public void addDepartmentManager(DepManager dm) {
+		depManagerDao.addDepartmentManager(dm);
+	}
 }

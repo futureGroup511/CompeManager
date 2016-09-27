@@ -51,12 +51,7 @@
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            	<input class="form-control" name="award_teaMoney" value="${awardstand.award_teaMoney}">
 	            </div>
-	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1">
-	            <p>获奖奖励等级：</p>
-	            </div>
-	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<input class="form-control" value="${awardstand.award_awardHierarchy.awardHie_name}" readonly="readonly">
-	            </div> 
+	            
 	        </div>
 	    </div>
 	

@@ -37,6 +37,7 @@ public class AwardStandardDaoImpl extends BaseDao implements AwardStandardDao {
 
 	@Override
 	public void addOrupdate(AwardStandard as) {
+		as.setAward_awardHierarchy(null);
 		getsession().saveOrUpdate(as);
 	}
 

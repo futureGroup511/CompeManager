@@ -305,6 +305,12 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 		}
 		return compeList;
 	}
+
+	@Override
+	public void updateCompetitionNextClassAwardHie(Integer personId, Integer groupId, Integer compeId) {
+		
+		String sql = "update Competition compe set compe.compe_nextClassPerson = :personId, compe.compe_nextClassGroup = :groupId where compe.compe_id = :compeId";
+	}
  
 
 }

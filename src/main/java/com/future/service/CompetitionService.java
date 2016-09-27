@@ -61,6 +61,11 @@ public interface CompetitionService {
 	
 	//传过路径和id，让service去处理
 	void updateCompetitionPro(Integer compe_id, String realPath);
+	
+	
+
+	//改变竞赛的 可以进入下级的获奖id
+	public void updateCompetitionNextClassAwardHie(Integer personId, Integer groupId, Integer compeId);
 	//得到制定学院的竞赛数量
 	Integer getCompetitionCountByDep(Integer depId);
 	//得到指定学院的竞赛分页

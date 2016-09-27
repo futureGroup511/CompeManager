@@ -132,6 +132,11 @@ public class CompetitionServiceImpl  implements CompetitionService{
 			return competitionDao.getAvaliableCopetionByDep(depId);
 		}
 
+		@Override
+		public void updateCompetitionNextClassAwardHie(Integer personId, Integer groupId, Integer compeId) {
+				competitionDao.updateCompetitionNextClassAwardHie(personId, groupId, compeId);
+		}
+
 		
 
 
