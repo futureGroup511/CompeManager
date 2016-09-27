@@ -109,4 +109,9 @@ public interface SignUpDao {
 
 	public void changeSignUpStatusByDep(Integer compeId, int i);
 
+	public List<SignUp> getSignUpByNextClassAndStudent(Integer stuid);
+	
+	public void updateSignUpRecordsByname(String name);
+	
+	public Integer getNumByname(String name);
 }

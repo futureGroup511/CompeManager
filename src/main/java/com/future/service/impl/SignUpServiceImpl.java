@@ -153,4 +153,22 @@ public class SignUpServiceImpl implements SignUpService{
 	public void changeSignUpStatusByDep(Integer compeId, int i) {
 		signUpDao.changeSignUpStatusByDep(compeId, i);
 	}
+
+	@Override
+	public List<SignUp> getSignUpByNextClassAndStudent(Integer stuid) {
+		
+		return signUpDao.getSignUpByNextClassAndStudent(stuid);
+	}
+
+	@Override
+	public void updateSignUpRecordsByname(String name) {
+		signUpDao.updateSignUpRecordsByname(name);
+	}
+
+	@Override
+	public Integer getNumByname(String name) {
+		return signUpDao.getNumByname(name);
+	}
+
+	
 }

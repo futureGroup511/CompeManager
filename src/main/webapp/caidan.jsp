@@ -20,6 +20,8 @@
                 <dd class="first_dd"><a href="student_apply" target="right">报名</a></dd>
                 <dd><a href="student_lookApplyStatus" target="right">报名状态</a></dd>
                 <dd><a href="student_lookAward" target="right">获奖记录</a></dd>
+                <dd><a href="student_nextStageView" target="right">进入下一阶段比赛</a></dd>
+                <dd><a href="student_lookPersonInfo" target="right">查看个人信息</a></dd>
             </dl>
 
         	</c:if>

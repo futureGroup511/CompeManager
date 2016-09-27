@@ -59,4 +59,10 @@ public class StudentServiceImp implements StudentService {
 		studao.modifyStuPassword(id);
 		
 	}
+
+	//学生修改密码
+	@Override
+	public void updatePassword(Student stu) {
+		studao.updatePassword(stu);
+	}
 }
