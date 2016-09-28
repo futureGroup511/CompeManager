@@ -26,6 +26,7 @@ import com.future.domain.Competition;
 import com.future.domain.Department;
 import com.future.domain.SignUp;
 import com.future.domain.Student;
+import com.future.service.StudentService;
 import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
@@ -250,7 +251,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	public String promotion(){
 		/*AwardRecord ar=awardRecordService.findAwardRecordById(award_id);
 		sups.updateSignUpByAwardRecord(ar);*/
-		sups.makeSignUpScored(sup.getSignUp_id(), 0);
+		sups.updateNextClassAndRecordById(sup.getSignUp_id());
 		return "promotion";
 	}
 	
@@ -292,10 +293,25 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		return stu;
 	}
 	
+	//查看个人信息
 	public String lookPersonInfo(){
 		Student student = (Student) ActionContext.getContext().getSession().get("stu");
 		ActionContext.getContext().put("student", student);
 		return "lookPersonInfo";
+	}
+	
+	//修改密码页面
+	public String updatePasswordUI(){
+		System.out.println(stu.getStu_id()+"====================");
+		ActionContext.getContext().getValueStack().push(stu);
+		return "updatePasswordUI";
+	}
+	//修改密码
+	public String updatePassword(){
+		//System.out.println("id： " + stu.getStu_id());
+		//System.out.println("系密码： " + stu.getStu_password());
+		stuser.updatePassword(stu);
+		return "updatePassword";
 	}
 	
 	

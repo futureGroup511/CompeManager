@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.StandardBasicTypes;
 import org.springframework.stereotype.Repository;
@@ -190,6 +191,8 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	}
 
 	
+	
+	
 	public void updateSignUpByAwardRecord(AwardRecord aw) {
 		String team=aw.getAwardRecor_team();
 		Integer type;
@@ -234,6 +237,7 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	public List<SignUp> getAllSignUpByDep(PageBean pageBean, Integer depId) {
 		//String sql = "from SignUp signUp where signUp.signUp_student.stu_department.de_id = :depId order by signUP_team asc, signUP_time desc";
 		//String sql = "from SignUp signUp where signUp.signUp_competition.compe_department.de_id in (select cmp.compe_id from cm_competitions cmp where cmp.compe_department_de_id = "+depId+")  order by signUP_team asc, signUP_time desc";
+		//String sql = "from SignUp signUp where signUp.signUp_competition.compe_id in (select distinct cmp.compe_id from Competition cmp where cmp.compe_department.de_id = "+depId+" and cmp.compe_status= 2)  order by signUp_status desc, signUP_team asc, signUP_time desc";
 		String sql = "from SignUp signUp where signUp.signUp_competition.compe_id in (select distinct cmp.compe_id from Competition cmp where cmp.compe_department.de_id = "+depId+" and cmp.compe_status = 2)  order by signUp_status desc, signUP_team asc, signUP_time desc";
 		List<SignUp> signUpList = getsession().createQuery(sql)
 												.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageSize())
@@ -297,15 +301,22 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	@Override 
 	public List<SignUp> getSignUpByNextClassAndStudent(Integer stuid) {
 		String hql="from SignUp s where s.signUp_competition.compe_status=2 and s.signUp_registerRecord=1  and YEAR(s.signUP_time)=YEAR(now()) and s.signUp_status = 2 and  (select  ca.awardRecor_picturePath from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" and ca.awardRecor_time=(select MAX(awardRecor_time) from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" )) IS NOT NULL  and s.signUp_student.stu_id="+stuid;
-		List<SignUp> signUps=getsession().createQuery(hql).list();
+
 		
-		return signUps;
+
+		Session session=getsession();
+		List<SignUp> signUps=session.createQuery(hql).list();
+		String hql2="from SignUp s where s.signUp_competition.compe_status=2 and s.signUp_registerRecord=1  and YEAR(s.signUP_time)=YEAR(now()) and s.signUp_status = 2 and  (select  ca.awardRecor_picturePath from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team is null and s.signUp_team is null and ca.awardRecor_student.stu_id="+stuid+" and ca.awardRecor_time=(select MAX(awardRecor_time) from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team is null and  s.signUp_team is null and ca.awardRecor_student.stu_id="+stuid+" )) IS NOT NULL  and s.signUp_student.stu_id="+stuid;
+		List<SignUp> result=session.createQuery(hql2).list();
+		result.addAll(signUps);
+		return result;
+
 	}
 
 	//通过队名来修改报名表是否录入记录
 	@Override
 	public void updateSignUpRecordsByname(String name) {
-		String hql="update SignUp s set s.signUp_registerRecord=0 where s.signUp_team=?";
+		String hql="update SignUp s set s.signUp_registerRecord=0,s.nextClass=0 where s.signUp_team=?";
 		getsession().createQuery(hql).setParameter(0, name).executeUpdate();
 	}
 
@@ -315,6 +326,12 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 		String hql="select count(*) from SignUp s where s.signUp_team=?";
 		Integer number=((Long)getsession().createQuery(hql).setParameter(0, name).iterate().next()).intValue();
 		return number;
+	}
+
+	@Override
+	public void updateNextClassAndRecordById(Integer id) {
+			String hql="update SignUp set nextClass=0,signUp_registerRecord =0 where signUp_id=? ";
+			getsession().createQuery(hql).setParameter(0, id).executeUpdate();
 	}
 	
 	

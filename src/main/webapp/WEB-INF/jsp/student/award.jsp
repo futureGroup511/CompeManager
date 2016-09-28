@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/xue2.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 		<jsp:include page="operation.jsp"></jsp:include>
@@ -36,7 +37,7 @@
 						<th>获奖等级</th>
 						<th>获得奖金</th>
 						<th>上传附件</th>
-					   
+					    <th>进入下一阶段</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -62,17 +63,43 @@
 										(<span class="text-danger">已上传过</span>)
 								</c:if>
 							</td>
-							<%-- <td>
-								<c:if test="${jugePromotion ge award.awardRecor_competition.compe_endTime and  award.awardRecor_competition.compe_status eq 2  }">.
-										<c:if test="${!empty award.awardRecor_picturePath}">
-											<a href="${pageContext.request.contextPath}/student_promotion?award_id=${award.awardRecor_id }" class="btn btn-primary" onclick="return jugeNext();">进入下一阶段</a>
-										</c:if>
-										<c:if test="${empty award.awardRecor_picturePath}">
-											(<span class="text-danger">请先上传附件</span>)
-										</c:if>
+							 <td>
+							 	<c:if test="${empty award.awardRecor_picturePath}">
+									(<span class="text-danger">请先上传附件</span>)
 								</c:if>
+								<c:if test="${!empty award.awardRecor_picturePath}">
+									
+									
+									<c:choose>
+										<c:when test="${jugePromotion ge award.awardRecor_competition.compe_endTime and  award.awardRecor_competition.compe_status eq 2  and award.awardRecor_signUp.nextClass eq 1 and (award.awardRecor_competition.compe_nextClassPerson eq award.awardRecor_awadHie.awardHie_id or award.awardRecor_competition.compe_nextClassGroup eq award.awardRecor_awadHie.awardHie_id)}">.
+											
+											<c:if test="${award.awardRecor_signUp.singUp_manager ne 1 and award.awardRecor_signUp.singUp_manager ne 0}">
+												<a href="${pageContext.request.contextPath}/student_promotion?sup.signUp_id=${award.awardRecor_signUp.signUp_id}" class="btn btn-primary" onclick="return jugeNext();">进入下一阶段</a>
+											</c:if>
+											<c:if test="${award.awardRecor_signUp.singUp_manager eq 1 }">
+												<a href="${pageContext.request.contextPath}/student_nextStage?sup.signUp_team=${award.awardRecor_signUp.signUp_team}" class="btn btn-primary" onclick="return jugeNextTeam(this);">进入下一阶段</a>
+											</c:if>
+											<c:if test="${award.awardRecor_signUp.singUp_manager eq 0 }">
+												<p class="text text-danger">请联系团队负责人</p>	
+											</c:if>
+										</c:when>
+										<c:when test="${award.awardRecor_competition.compe_status eq 3 }">
+												<p class="text text-danger">竞赛已经结束</p>	
+										</c:when>
+										<c:when test="${ award.awardRecor_signUp.nextClass ne 1 }">
+												<p class="text text-danger">等待</p>	
+										</c:when>
+										<c:when test="${award.awardRecor_signUp.nextClass eq 1 and (award.awardRecor_competition.compe_nextClassPerson ne award.awardRecor_awadHie.awardHie_id and award.awardRecor_competition.compe_nextClassGroup ne award.awardRecor_awadHie.awardHie_id) }">
+												<p class="text text-danger">您没有进入下一级竞赛的资格</p>	
+										</c:when>
+										<c:otherwise>
+											
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+								
 							
-							</td> --%>
+							</td>
 						</tr>
 					
 					</c:forEach>
@@ -92,10 +119,10 @@
 			</s:elseif>
 			<c:forEach begin="${request.page.beginPageIndex}" end="${request.page.endPageIndex}" varStatus="sta">
 				<c:if test="${sta.index eq request.page.currentPage }">
-					<li><a style="background-color: #EA7B0B;" href="${pageContext.request.contextPath}/student_lookAward?currentPage=${request.page.beginPageIndex+sta.index-1}">${request.page.beginPageIndex+sta.index-1}</a></li>	
+					<li><a style="background-color: #EA7B0B;" href="${pageContext.request.contextPath}/student_lookAward?currentPage=${sta.index}">${sta.index}</a></li>	
 				</c:if>
 				<c:if test="${sta.index ne request.page.currentPage }">
-					<li><a href="${pageContext.request.contextPath}/student_lookAward?currentPage=${request.page.beginPageIndex+sta.index-1}">${request.page.beginPageIndex+sta.index-1}</a></li>	
+					<li><a href="${pageContext.request.contextPath}/student_lookAward?currentPage=${sta.index}">${sta.index}</a></li>	
 				</c:if>
 			
 			</c:forEach>
@@ -111,5 +138,47 @@
 		</div>
 		
 </body>
-
+<script type="text/javascript">
+ function jugeNext(){
+	var juge=confirm("是否进入下一阶段");
+	if(juge===false){
+		return false;
+	}
+ }
+ 
+ function jugeNextTeam(arr){
+	 var status=1;
+	 var juge=confirm("是否进入下一阶段");
+		if(juge===false){
+			return false;
+		}else{
+			var value=$(arr).attr("href");
+			var datas=value.split('=');
+			var data={"sup.signUp_team":datas[1]};
+			$.ajax({
+				url:"student_jugeTeamPcturePath",
+				type:'post',
+				data:data,
+				dataType:'json',
+				async:false,
+				success:function(data){
+					if(data==="true"){
+						
+						status=1;
+					}else{
+						alert("团队成员上传附件不完整！");
+						status=2;
+					}
+					
+				}
+			});
+			if(status==1){
+				return true;
+			}
+			if(status==2){
+				return false;
+			}
+		}
+ }
+</script>
 </html>

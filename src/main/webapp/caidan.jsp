@@ -20,7 +20,7 @@
                 <dd class="first_dd"><a href="student_apply" target="right">报名</a></dd>
                 <dd><a href="student_lookApplyStatus" target="right">报名状态</a></dd>
                 <dd><a href="student_lookAward" target="right">获奖记录</a></dd>
-                <dd><a href="student_nextStageView" target="right">进入下一阶段比赛</a></dd>
+                <!-- <dd><a href="student_nextStageView" target="right">进入下一阶段比赛</a></dd> -->
                 <dd><a href="student_lookPersonInfo" target="right">查看个人信息</a></dd>
             </dl>
 
@@ -29,9 +29,9 @@
         	
         	<c:if test="${sessionScope.depManager != null}">
         		<dl class="custom">
-                <dt>申报项目<img src="images/select_xl01.png"></dt>
-                <dd><a target="right" href="depManager_applyCompeName">申报项目名称</a></dd>
-                <dd><a target="right" href="depManager_applyCompetitionPage">申报项目</a></dd>
+                <dt>申报竞赛<img src="images/select_xl01.png"></dt>
+                <dd><a target="right" href="depManager_applyCompeName">申报竞赛名称</a></dd>
+                <dd><a target="right" href="depManager_applyCompetitionPage">申报竞赛</a></dd>
 	            </dl>
 	            
 	            <dl class="custom">
@@ -91,6 +91,7 @@
 	                <dt>审核<img src="images/select_xl01.png"></dt>
 	                <dd><a href="competitionName_checkNoName.action" target="right">待审核竞赛名称</a></dd>
 	                <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
+	                <dd><a href="awardRecord_checkNoCompetition.action" target="right">待审核竞赛</a></dd>
 	                <dd><a href="awardRecord_checkNoAwardRecord.action" target="right">待审核竞赛结果</a></dd>
 	            </dl>
 	            

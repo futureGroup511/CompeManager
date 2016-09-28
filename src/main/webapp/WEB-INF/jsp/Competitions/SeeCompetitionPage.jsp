@@ -32,13 +32,13 @@
  <table class="table table-striped table-bordered table-hover">
       <thead>
           <tr>
-             <td align="center"><h4>竞赛负责人</h4></td>
-             <td align="center"><h4>竞赛申报时间</h4></td>
-             <td align="center"><h4>竞赛开始时间</h4></td>
-             <td align="center"><h4>竞赛结束时间</h4></td>
-             <td align="center"><h4>竞赛经费</h4></td>
-             <td align="center"><h4>竞赛申报学院</h4></td>
-             <td align="center"><h4>竞赛审核状态</h4></td>
+             <td align="center"><h4>负责人</h4></td>
+             <td align="center"><h4>申报时间</h4></td>
+             <td align="center"><h4>开始时间</h4></td>
+             <td align="center"><h4>结束时间</h4></td>
+             <td align="center"><h4>经费</h4></td>
+             <td align="center"><h4>申报学院</h4></td>
+             <td align="center"><h4>审核状态</h4></td>
              <td align="center"><h4>查看详细</h4></td>
           </tr>
       </thead>

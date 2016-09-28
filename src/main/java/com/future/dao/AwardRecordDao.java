@@ -90,6 +90,13 @@ public interface AwardRecordDao {
 	
 	//根据队名来查询上传路径的条数
 	public Integer getNumByname(String name);
+
+	//查询所有待审核竞赛
+	//首先拿到待审核竞赛所有竞赛，         竞赛里的值然后再去拿获奖记录，获奖记录等于1代表未审核
+	List<AwardRecord> findAllNoCheckoutCompe();
+
+	//根据竞赛id查到所有得比赛记录，并且遍历，如果软布都有获奖单位就返回，如果没有就舍弃
+	PageBean byCompeFindAward(Integer pageNum, int pageSize, Integer id);
 	
 	
 	

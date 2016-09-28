@@ -21,11 +21,36 @@ import com.opensymphony.xwork2.ActionContext;
 @Scope("prototype")
 public class AwardRecordController extends BaseAction<AwardRecord>{
 	
+	//===============================
+	private Integer compeId;
+	public Integer getCompeId() {
+		return compeId;
+	}
+	public void setCompeId(Integer compeId) {
+		this.compeId = compeId;
+	}
+	//查询待审核竞赛的记录
+	//传过来竞赛的id
+	public String byCompeFindAward(){
+		//System.out.println(id);
+		//System.out.println(compeId);
+		Integer sessCompeId = (Integer) ActionContext.getContext().getSession().get("compeId");
+		//System.out.println("sessCompeId" + sessCompeId);
+		if(sessCompeId !=null){
+			id = sessCompeId;
+		}
+		ActionContext.getContext().getSession().remove("compeId");
+		
+		ActionContext.getContext().put("compeId", compeId);
+		//根据竞赛id查到所有得比赛记录，并且遍历，如果软布都有获奖单位就返回，如果没有就舍弃		
+		PageBean pageBean = awardRecordService.byCompeFindAward(pageNum,pageSize,id);
+		ActionContext.getContext().getValueStack().push(pageBean);
+		
+		return "byCompeFindAward";
+	}
+	//=======================================
+	
 	public String updateAwardRecord(){
-		
-
-		
-		
 		//调用方法，保存  liuyang
 		awardRecordService.saveAwardRecordLY(model);
 		return "updateAwardRecord";
@@ -121,12 +146,28 @@ public class AwardRecordController extends BaseAction<AwardRecord>{
 		return "conditionQuery";
 	}
 
+	//查询待审竞赛
+	public String checkNoCompetition(){
+		//查询所有待审核竞赛
+		//首先拿到待审核竞赛所有竞赛，         竞赛里的值然后再去拿获奖记录，获奖记录等于1代表未审核
+		List<AwardRecord> awardRecords = awardRecordService.findAllNoCheckoutCompe();
+		for(AwardRecord obj:awardRecords){
+			System.out.println(obj.getAwardRecor_id()+ "***");
+		}
+		ActionContext.getContext().put("awardRecords", awardRecords);
+		
+		return "checkNoCompetition";
+	}
+	
+	
 	//查看待审核竞赛结果
 	public String checkNoAwardRecord(){
 		//1、调用service查询待审核竞赛结果
 		//List<AwardRecord> awardRecords = awardRecordService.findCheckNoAwardRecord();
 		//2、放入map
 		//ActionContext.getContext().put("awardRecords", awardRecords);
+		
+		//
 		
 		//分页查看待审核竞赛结果
 		PageBean pageBean = awardRecordService.getPageBeanCheckNoAwardRecord(pageNum,pageSize);
@@ -164,9 +205,14 @@ public class AwardRecordController extends BaseAction<AwardRecord>{
 	
 	//通过
 	public String pass(){
+		//System.out.println("id:" + id);
+		//System.out.println("compeId:" + compeId);
+		//System.out.println("pageNum:" + pageNum);
 		awardRecordService.pass(id);
+		ActionContext.getContext().getSession().put("compeId", compeId);
 		return "pass";
 	}
+	
 	private String reason;
 	
 	

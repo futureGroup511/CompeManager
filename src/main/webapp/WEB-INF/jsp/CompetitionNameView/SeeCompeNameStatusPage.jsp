@@ -38,6 +38,7 @@
 			<th align="center">竞赛项目名称</th>
 			<th align="center">竞赛项目级别</th> 
 			<th align="center">竞赛项目审核状态</th>
+			<th align="center">未通过原因</th>
 		</tr>
 		<s:iterator value="#request.pageBean.recordList" var="compeName">
 			<tr>
@@ -49,6 +50,7 @@
 				<s:else>
 					<td>${compeName.compeName_status==1?"正在审核":compeName.compeName_status ==2?"审核成功":"审核失败"}</td>
 				</s:else>
+					<td>${compeName.compeName_reason==null?"无":compeName.compeName_reason}</td>
 			</tr>
 		</s:iterator>
 	</table>

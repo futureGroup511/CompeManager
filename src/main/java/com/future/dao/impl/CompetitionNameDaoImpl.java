@@ -136,4 +136,12 @@ public class CompetitionNameDaoImpl extends BaseDao implements CompetitionNameDa
 				.list();
 		return compeNameList;
 	}
+
+	@Override
+	public boolean queryCompeName(String compeNameVal) {
+		String sql = "from CompetitionName compeName where compeName.compeName_name = :compeNameVal";
+		Object obj = getsession().createQuery(sql).setParameter("compeNameVal", compeNameVal)
+										.uniqueResult();
+		return obj==null?false:true;
+	}
 }

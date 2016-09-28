@@ -1091,5 +1091,54 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			Integer number=((Long) getsession().createQuery(hql).setParameter(0, name).iterate().next()).intValue();
 			return number;
 		}
+
+
+		//查询所有待审核竞赛
+		//首先拿到待审核竞赛所有竞赛，         竞赛里的值然后再去拿获奖记录，获奖记录等于1代表未审核
+		@Override
+		public List<AwardRecord> findAllNoCheckoutCompe() {
+			// TODO Auto-generated method stub
+			String hql = "from AwardRecord a where a.awardRecor_status = 1 group by awardRecor_competition.compe_id ";
+			List<AwardRecord> a = getsession().createQuery(hql).list();
+			
+			
+			for(AwardRecord obj:a){
+				System.out.println(obj.getAwardRecor_id());
+			}
+			return a;
+		}
+
+
+		//根据竞赛id查到所有得比赛记录，并且遍历，如果软布都有获奖单位就返回，如果没有就舍弃
+		@Override
+		public PageBean byCompeFindAward(Integer pageNum, int pageSize, Integer id) {
+			
+		
+			
+			
+			
+			
+			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id = ? and a.awardRecor_status = 1";
+			List<AwardRecord> awardRecord = getsession().createQuery(hql).setParameter(0, id)
+					.setFirstResult((pageNum - 1 ) * pageSize)
+					.setMaxResults(pageSize)
+					.list(); 
+			
+			Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a where a.awardRecor_competition.compe_id = ? and a.awardRecor_status = 1")
+					.setParameter(0, id).uniqueResult();
+			
+			for(AwardRecord obj:awardRecord){
+				System.out.println(obj.getAwardRecor_coachTeacher() + obj.getAwardRecor_unit());;
+				if(obj.getAwardRecor_unit()==null){
+					awardRecord.clear();
+					count = (long) 0;
+					break;
+				}
+			}
+			
+			System.out.println(awardRecord.size());
+			System.out.println("count:" + count);
+			return new PageBean(pageNum,pageSize,count.intValue(),awardRecord);
+		}
 	
 }

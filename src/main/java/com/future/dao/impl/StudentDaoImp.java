@@ -112,4 +112,13 @@ public class StudentDaoImp extends BaseDao implements StudentDao{
 		student.setStu_password(mdDigest);
 		getsession().save(student);
 	}
+
+	//学生修改密码
+	@Override
+	public void updatePassword(Student stu) {
+		Student student = findById(stu.getStu_id());
+		String md5 = DigestUtils.md5Hex(stu.getStu_password());
+		student.setStu_password(md5);
+		getsession().save(student);
+	}
 }

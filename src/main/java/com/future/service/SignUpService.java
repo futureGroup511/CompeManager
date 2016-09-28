@@ -106,4 +106,7 @@ public interface SignUpService {
 	
 	//查询团队人数
 	public Integer getNumByname(String name);
+	
+	//根据id更新报名报的nextcless和是否录入记录
+	public void updateNextClassAndRecordById(Integer id);
 }
