@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.StandardBasicTypes;
 import org.springframework.stereotype.Repository;
@@ -294,9 +295,13 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 
 	@Override
 	public List<SignUp> getSignUpByNextClassAndStudent(Integer stuid) {
-		String hql="from SignUp s where s.signUp_competition.compe_status=2 and s.signUp_registerRecord=1  and YEAR(s.signUP_time)=YEAR(now()) and s.signUp_status = 2 and  (select  ca.awardRecor_picturePath from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" and ca.awardRecor_time=(select MAX(awardRecor_time) from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" )) IS NOT NULL  and s.signUp_student="+stuid;
-		List<SignUp> signUps=getsession().createQuery(hql).list();
-		return signUps;
+		String hql="from SignUp s where s.signUp_competition.compe_status=2 and s.signUp_registerRecord=1  and YEAR(s.signUP_time)=YEAR(now()) and s.signUp_status = 2 and  (select  ca.awardRecor_picturePath from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" and ca.awardRecor_time=(select MAX(awardRecor_time) from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" )) IS NOT NULL  and s.signUp_student.stu_id="+stuid;
+		Session session=getsession();
+		List<SignUp> signUps=session.createQuery(hql).list();
+		String hql2="from SignUp s where s.signUp_competition.compe_status=2 and s.signUp_registerRecord=1  and YEAR(s.signUP_time)=YEAR(now()) and s.signUp_status = 2 and  (select  ca.awardRecor_picturePath from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team is null and s.signUp_team is null and ca.awardRecor_student.stu_id="+stuid+" and ca.awardRecor_time=(select MAX(awardRecor_time) from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team is null and  s.signUp_team is null and ca.awardRecor_student.stu_id="+stuid+" )) IS NOT NULL  and s.signUp_student.stu_id="+stuid;
+		List<SignUp> result=session.createQuery(hql2).list();
+		result.addAll(signUps);
+		return result;
 	}
 
 	//通过队名来修改报名表是否录入记录

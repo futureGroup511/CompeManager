@@ -181,6 +181,21 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 	public Integer getNumByname(String name) {
 		return awardRecordDao.getNumByname(name);
 	}
+
+	//查询所有待审核竞赛
+	//首先拿到待审核竞赛所有竞赛，         竞赛里的值然后再去拿获奖记录，获奖记录等于1代表未审核
+	@Override
+	public List<AwardRecord> findAllNoCheckoutCompe() {
+		return awardRecordDao.findAllNoCheckoutCompe();
+	}
+
+	//根据竞赛id查到所有得比赛记录，并且遍历，如果软布都有获奖单位就返回，如果没有就舍弃
+	@Override
+	public PageBean byCompeFindAward(Integer pageNum, int pageSize, Integer id) {
+		return awardRecordDao.byCompeFindAward(pageNum, pageSize,id);
+	}
+
+	
 	
 	
 }
