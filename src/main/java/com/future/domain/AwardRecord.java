@@ -45,7 +45,15 @@ public class AwardRecord {
 	//获奖记录未通过原因
 	private String awardRecor_reason;
 	
+	private SignUp awardRecor_signUp ;
 	
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=true,fetch=FetchType.EAGER)
+	public SignUp getAwardRecor_signUp() {
+		return awardRecor_signUp;
+	}
+	public void setAwardRecor_signUp(SignUp awardRecor_signUp) {
+		this.awardRecor_signUp = awardRecor_signUp;
+	}
 	//参加的竞赛项目
 	private Competition awardRecor_competition;
 	//获奖等级

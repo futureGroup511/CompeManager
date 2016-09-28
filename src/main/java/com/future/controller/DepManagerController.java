@@ -487,7 +487,7 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 		awardRecord.setAwardRecor_student(signUp.getSignUp_student());
 		awardRecord.setAwardRecor_competition(signUp.getSignUp_competition());
 		awardRecord.setAwardRecor_awadHie(awardHierarchy);
-		
+		awardRecord.setAwardRecor_signUp(signUp);
 		awardRecordService.saveAwardRecord(awardRecord);
 		awardRecordService.beCalled();
 		return "RedirectToRegisterStudentPage";//重定向至报名表列表 
