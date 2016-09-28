@@ -87,8 +87,8 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 		java.sql.Date comparetime=new java.sql.Date(date.getTime());
 		Criteria criteria=getsession().createCriteria(Competition.class);
 		criteria.add(Restrictions.eq("compe_status", 2));
-		criteria.add(Restrictions.lt("compe_requestDate",comparetime));
-		criteria.add(Restrictions.gt("compe_startTime",comparetime));
+		criteria.add(Restrictions.le("compe_requestDate",comparetime));
+		criteria.add(Restrictions.ge("compe_startTime",comparetime));
 		Long  tatolnum=(Long) criteria.setProjection(Projections.rowCount()).uniqueResult();
 		criteria.setProjection(null);
 		criteria.setFirstResult((ps.getCurrentPage()-1)*ps.getPageSize());

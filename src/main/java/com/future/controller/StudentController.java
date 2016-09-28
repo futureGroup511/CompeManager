@@ -259,8 +259,8 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	 */
 	public String nextStageView(){
 		Student stu=(Student) session.get("stu");
-		List<SignUp> signUps=sups.getSignUpByNextClassAndStudent(stu.getStu_id());
 		
+		List<SignUp> signUps=sups.getSignUpByNextClassAndStudent(stu.getStu_id());
 		request.put("signUps", signUps);
 		return "nextStageView";
 		

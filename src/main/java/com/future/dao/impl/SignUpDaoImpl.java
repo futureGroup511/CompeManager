@@ -16,6 +16,9 @@ import com.future.domain.SignUp;
 import com.future.domain.Student;
 import com.future.utils.PageBean;
 
+
+
+
 @Repository
 public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	@SuppressWarnings("unchecked")
@@ -291,10 +294,11 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	}
 	//查询竞赛状态为2 已经录入过成绩 1 按钮可按下的singup
 
-	@Override
+	@Override 
 	public List<SignUp> getSignUpByNextClassAndStudent(Integer stuid) {
-		String hql="from SignUp s where s.signUp_competition.compe_status=2 and s.signUp_registerRecord=1  and YEAR(s.signUP_time)=YEAR(now()) and s.signUp_status = 2 and  (select  ca.awardRecor_picturePath from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" and ca.awardRecor_time=(select MAX(awardRecor_time) from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" )) IS NOT NULL  and s.signUp_student="+stuid;
+		String hql="from SignUp s where s.signUp_competition.compe_status=2 and s.signUp_registerRecord=1  and YEAR(s.signUP_time)=YEAR(now()) and s.signUp_status = 2 and  (select  ca.awardRecor_picturePath from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" and ca.awardRecor_time=(select MAX(awardRecor_time) from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" )) IS NOT NULL  and s.signUp_student.stu_id="+stuid;
 		List<SignUp> signUps=getsession().createQuery(hql).list();
+		
 		return signUps;
 	}
 
