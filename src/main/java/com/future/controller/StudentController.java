@@ -251,7 +251,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	public String promotion(){
 		/*AwardRecord ar=awardRecordService.findAwardRecordById(award_id);
 		sups.updateSignUpByAwardRecord(ar);*/
-		sups.makeSignUpScored(sup.getSignUp_id(), 0);
+		sups.updateNextClassAndRecordById(sup.getSignUp_id());
 		return "promotion";
 	}
 	
@@ -260,8 +260,8 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	 */
 	public String nextStageView(){
 		Student stu=(Student) session.get("stu");
-		List<SignUp> signUps=sups.getSignUpByNextClassAndStudent(stu.getStu_id());
 		
+		List<SignUp> signUps=sups.getSignUpByNextClassAndStudent(stu.getStu_id());
 		request.put("signUps", signUps);
 		return "nextStageView";
 		

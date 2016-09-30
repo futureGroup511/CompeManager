@@ -17,6 +17,9 @@ import com.future.domain.SignUp;
 import com.future.domain.Student;
 import com.future.utils.PageBean;
 
+
+
+
 @Repository
 public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	@SuppressWarnings("unchecked")
@@ -188,6 +191,8 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	}
 
 	
+	
+	
 	public void updateSignUpByAwardRecord(AwardRecord aw) {
 		String team=aw.getAwardRecor_team();
 		Integer type;
@@ -293,21 +298,25 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	}
 	//查询竞赛状态为2 已经录入过成绩 1 按钮可按下的singup
 
-	@Override
+	@Override 
 	public List<SignUp> getSignUpByNextClassAndStudent(Integer stuid) {
 		String hql="from SignUp s where s.signUp_competition.compe_status=2 and s.signUp_registerRecord=1  and YEAR(s.signUP_time)=YEAR(now()) and s.signUp_status = 2 and  (select  ca.awardRecor_picturePath from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" and ca.awardRecor_time=(select MAX(awardRecor_time) from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team=s.signUp_team and ca.awardRecor_student.stu_id="+stuid+" )) IS NOT NULL  and s.signUp_student.stu_id="+stuid;
+
+		
+
 		Session session=getsession();
 		List<SignUp> signUps=session.createQuery(hql).list();
 		String hql2="from SignUp s where s.signUp_competition.compe_status=2 and s.signUp_registerRecord=1  and YEAR(s.signUP_time)=YEAR(now()) and s.signUp_status = 2 and  (select  ca.awardRecor_picturePath from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team is null and s.signUp_team is null and ca.awardRecor_student.stu_id="+stuid+" and ca.awardRecor_time=(select MAX(awardRecor_time) from AwardRecord ca where ca.awardRecor_competition.compe_id=s.signUp_competition.compe_id and ca.awardRecor_team is null and  s.signUp_team is null and ca.awardRecor_student.stu_id="+stuid+" )) IS NOT NULL  and s.signUp_student.stu_id="+stuid;
 		List<SignUp> result=session.createQuery(hql2).list();
 		result.addAll(signUps);
 		return result;
+
 	}
 
 	//通过队名来修改报名表是否录入记录
 	@Override
 	public void updateSignUpRecordsByname(String name) {
-		String hql="update SignUp s set s.signUp_registerRecord=0 where s.signUp_team=?";
+		String hql="update SignUp s set s.signUp_registerRecord=0,s.nextClass=0 where s.signUp_team=?";
 		getsession().createQuery(hql).setParameter(0, name).executeUpdate();
 	}
 
@@ -317,6 +326,12 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 		String hql="select count(*) from SignUp s where s.signUp_team=?";
 		Integer number=((Long)getsession().createQuery(hql).setParameter(0, name).iterate().next()).intValue();
 		return number;
+	}
+
+	@Override
+	public void updateNextClassAndRecordById(Integer id) {
+			String hql="update SignUp set nextClass=0,signUp_registerRecord =0 where signUp_id=? ";
+			getsession().createQuery(hql).setParameter(0, id).executeUpdate();
 	}
 	
 	

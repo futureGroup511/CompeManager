@@ -98,7 +98,7 @@
     		<result name="jugeapply" type="json"></result>
     		<result name="lookapplystatus">WEB-INF/jsp/student/lookapplystatus.jsp</result>
     		<result name="lookAward">WEB-INF/jsp/student/award.jsp</result>
-    		<result name="promotion" type="redirect">student_nextStageView</result>
+    		<result name="promotion" type="redirect">student_lookAward</result>
     		<result name="uploadFile" type="redirect">student_lookAward</result>
     		<result name="finishApply" type="redirect">student_apply</result>
     		<result name="addStudentFinish" type="redirect">admin_findAllStudent</result>

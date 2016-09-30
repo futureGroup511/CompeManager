@@ -170,5 +170,10 @@ public class SignUpServiceImpl implements SignUpService{
 		return signUpDao.getNumByname(name);
 	}
 
+	@Override
+	public void updateNextClassAndRecordById(Integer id) {
+		signUpDao.updateNextClassAndRecordById(id);
+	}
+
 	
 }

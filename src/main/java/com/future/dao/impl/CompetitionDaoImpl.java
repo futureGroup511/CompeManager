@@ -310,6 +310,10 @@ public class CompetitionDaoImpl extends BaseDao implements CompetitionDao {
 	public void updateCompetitionNextClassAwardHie(Integer personId, Integer groupId, Integer compeId) {
 		
 		String sql = "update Competition compe set compe.compe_nextClassPerson = :personId, compe.compe_nextClassGroup = :groupId where compe.compe_id = :compeId";
+		getsession().createQuery(sql).setParameter("personId", personId)
+			.setParameter("groupId", groupId)
+			.setParameter("compeId", compeId)
+			.executeUpdate();
 	}
  
 
