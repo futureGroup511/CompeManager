@@ -92,7 +92,7 @@
 	                <dd><a href="competitionName_checkNoName.action" target="right">待审核竞赛名称</a></dd>
 	                <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
 	                <dd><a href="awardRecord_checkNoCompetition.action" target="right">待审核竞赛</a></dd>
-	                <dd><a href="awardRecord_checkNoAwardRecord.action" target="right">待审核竞赛结果</a></dd>
+	                <!-- <dd><a href="awardRecord_checkNoAwardRecord.action" target="right">待审核竞赛结果</a></dd> -->
 	            </dl>
 	            
 	            <dl class="channel">

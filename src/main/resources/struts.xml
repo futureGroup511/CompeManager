@@ -197,7 +197,8 @@
     		<result name="noPassCheckAwardRecord">WEB-INF/jsp/AwardRecord/noPassCheckAwardRecord.jsp</result>
     		<!-- <result name="pass" type="redirectAction">awardRecord_checkNoAwardRecord</result> -->
     		<result name="pass" type="redirect">awardRecord_byCompeFindAward</result>
-    		<result name="noPass" type="redirectAction">awardRecord_checkNoAwardRecord</result>
+    		<!-- <result name="noPass" type="redirectAction">awardRecord_checkNoAwardRecord</result> -->
+    		<result name="noPass" type="redirectAction">awardRecord_byCompeFindAward</result>
     		<result name="findAllAwardRecord">WEB-INF/jsp/AwardRecord/findAllAwardRecord.jsp</result>
     		<result name="conditionQuery">WEB-INF/jsp/AwardRecord/conditionQuery.jsp</result>
     		<result name="alertAwardRecordUI">WEB-INF/jsp/AwardRecord/alertAwardRecordUI.jsp</result>

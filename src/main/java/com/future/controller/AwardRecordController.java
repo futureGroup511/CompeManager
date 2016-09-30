@@ -234,6 +234,8 @@ public class AwardRecordController extends BaseAction<AwardRecord>{
 		}	
 		System.out.println(reason);
 		awardRecordService.noPass(id,reasona);
+		ActionContext.getContext().getSession().put("compeId", compeId);
+		
 		return "noPass";
 	}
 	
