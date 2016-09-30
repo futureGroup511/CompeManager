@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -123,12 +124,12 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 	//分页查询所有获奖记录
 	@Override
 	public PageBean getPageBeanFindAllAwardRecord(int pageNum, int pageSize) {
-		List list = getsession().createQuery("from AwardRecord")
+		List list = getsession().createQuery("from AwardRecord a where  a.awardRecor_awadHie.awardHie_name not like '%未获奖%'")
 				.setFirstResult((pageNum - 1 ) * pageSize)
 				.setMaxResults(pageSize)
 				.list();
 		
-		Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord")
+		Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a where a.awardRecor_awadHie.awardHie_name not like '%未获奖%'")
 				.uniqueResult();
 		
 		return new PageBean(pageNum, pageSize, count.intValue(), list);
@@ -294,6 +295,14 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			criteria.add(Restrictions.eq("awardRecor_competition.compe_id", model.getAwardRecor_competition().getCompe_id()));
 		}
 		
+		//criteria.add(Restrictions.not(Exprission.eq(Restrictions.like("awardRecor_awadHie.awardHie_name", "未获奖"))));
+		//此处应该写活  得到所有获奖的获奖等级
+		List<AwardHierarchy> li = findAwardHie();
+/*		for(AwardHierarchy obj:li){
+			System.out.println(obj.getAwardHie_id());
+		}*/
+		criteria.add(Restrictions.in("awardRecor_awadHie", li));
+		
 		
 		//查询国际奖id
 		Integer guojiId = findguojiId();
@@ -402,6 +411,9 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 				criteria.add(Restrictions.eq("awardRecor_competition.compe_id", model.getAwardRecor_competition().getCompe_id()));
 			}
 			
+			List<AwardHierarchy> li1 = findAwardHie();
+			criteria.add(Restrictions.in("awardRecor_awadHie", li1));
+					
 			//如果选择了奖项  默认请选择=0，所以要！=0
 			if(model.getAwardRecor_awadHie().getAwardHie_id() != 0){
 				if(model.getAwardRecor_awadHie().getAwardHie_id() == guojiId){
@@ -458,6 +470,15 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		return new PageBean(pageNum, pageSize, count1.intValue(),awardRecord);
 	}
 	
+	//此处应该写活  得到所有获奖的获奖等级
+	private List<AwardHierarchy> findAwardHie() {
+		String hql = "from AwardHierarchy a where a.awardHie_name not like '%未获奖%'" ;
+		//System.out.println("我要输出~~~~");
+		List<AwardHierarchy> list = getsession().createQuery(hql).list();
+		return list;
+	}
+
+
 	//查询省级奖id
 	private Integer findshengjiId() {
 		String hql = "select a.awardHie_id from AwardHierarchy a where a.awardHie_name like :name";
@@ -517,13 +538,13 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 	//分页查询当前院系所有获奖记录
 	@Override
 	public PageBean getPageBeanDefindAllAwardRecord(int pageNum, int pageSize, Integer department) {
-		List list = (List) getsession().createQuery("from AwardRecord a where a.awardRecor_student.stu_department.de_id = ?")
+		List list = (List) getsession().createQuery("from AwardRecord a where a.awardRecor_student.stu_department.de_id = ? and a.awardRecor_awadHie.awardHie_name not like '%未获奖%'")
 				.setFirstResult((pageNum - 1 ) * pageSize)
 				.setMaxResults(pageSize)
 				.setParameter(0, department)
 				.list();
 		
-		Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a where a.awardRecor_student.stu_department.de_id = ?")
+		Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a where a.awardRecor_student.stu_department.de_id = ? and a.awardRecor_awadHie.awardHie_name not like '%未获奖%'")
 				.setParameter(0, department)
 				.uniqueResult();
 		
@@ -547,6 +568,10 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		if(model.getCompetiton() != 0){
 			criteria.add(Restrictions.eq("awardRecor_competition.compe_id", model.getCompetiton()));
 		}
+		
+		//去除未获奖学生名单
+		List<AwardHierarchy> li = findAwardHie();
+		criteria.add(Restrictions.in("awardRecor_awadHie", li));
 		
 		//查询国际奖id
 		Integer guojiId = findguojiId();
@@ -617,6 +642,10 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			if(model.getCompetiton() != 0){
 				criteria.add(Restrictions.eq("awardRecor_competition.compe_id", model.getCompetiton()));
 			}
+			
+			//去除未获奖学生名单
+			List<AwardHierarchy> li1 = findAwardHie();
+			criteria.add(Restrictions.in("awardRecor_awadHie", li1));
 			
 			//如果选择了奖项  默认请选择=0，所以要！=0
 			if(model.getAward() != 0){
@@ -753,14 +782,14 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			//查询所有记录时家条件竞赛项目属于第一步拿到的竞赛项目id
 			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in ("
 					+ "select c.compe_id from Competition c where c.compe_department.de_id = :department"
-					+ ")";
+					+ ") and a.awardRecor_awadHie.awardHie_name not like '%未获奖%'";
 			List<AwardRecord> awardRecord = getsession().createQuery(hql)
 					.setFirstResult((pageNum - 1 ) * pageSize)
 					.setMaxResults(pageSize)
 					.setParameter("department", department).list();
 			
 			Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a where a.awardRecor_competition.compe_id in ("
-					+ "select c.compe_id from Competition c where c.compe_department.de_id = :department)")
+					+ "select c.compe_id from Competition c where c.compe_department.de_id = :department) and a.awardRecor_awadHie.awardHie_name not like '%未获奖%'")
 					.setParameter("department", department)
 					.uniqueResult();
 		
@@ -780,6 +809,9 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			//首先添加第一个默认条件，所有记录都是本院系申请项目的
 			List list = findAllDeCom(department);
 			criteria.add(Restrictions.in("awardRecor_competition.compe_id", list));
+			
+			List<AwardHierarchy> li = findAwardHie();
+			criteria.add(Restrictions.in("awardRecor_awadHie", li));
 			
 			//添加第一个条件  竞赛项目
 			if(model.getCompetiton() != 0){
@@ -851,6 +883,9 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 				//首先添加第一个默认条件，所有记录都是本院系申请项目的
 				List list1 = findAllDeCom(department);
 				criteria1.add(Restrictions.in("awardRecor_competition.compe_id", list1));
+				//添加未获奖  把未获奖名单弄掉
+				List<AwardHierarchy> li1 = findAwardHie();
+				criteria.add(Restrictions.in("awardRecor_awadHie", li1));
 				
 				//添加第一个条件  竞赛项目
 				if(model.getCompetiton() != 0){
@@ -924,7 +959,8 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		@Override
 		public PageBean getPageBeanAllAlert(int pageNum, int pageSize, Integer depId) {
 			
-			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) order by awardRecor_picturePath";
+			//String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) order by awardRecor_picturePath";
+			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) order by awardRecor_competition_compe_id";
 			
 			List<AwardRecord> awardRecord = getsession().createQuery(hql).setFirstResult((pageNum - 1 ) * pageSize).setMaxResults(pageSize).setParameter(0, depId).list();
 
@@ -1118,13 +1154,14 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			
 			
 			
-			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id = ? and a.awardRecor_status = 1";
+			//String hql = "from AwardRecord a where a.awardRecor_competition.compe_id = ? and a.awardRecor_status = 1";
+			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id = ? and a.awardRecor_status = 1 and a.awardRecor_awadHie.awardHie_name not like '%未获奖%'";
 			List<AwardRecord> awardRecord = getsession().createQuery(hql).setParameter(0, id)
 					.setFirstResult((pageNum - 1 ) * pageSize)
 					.setMaxResults(pageSize)
 					.list(); 
 			
-			Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a where a.awardRecor_competition.compe_id = ? and a.awardRecor_status = 1")
+			Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a where a.awardRecor_competition.compe_id = ? and a.awardRecor_status = 1 and a.awardRecor_awadHie.awardHie_name not like '%未获奖%'")
 					.setParameter(0, id).uniqueResult();
 			
 			for(AwardRecord obj:awardRecord){
