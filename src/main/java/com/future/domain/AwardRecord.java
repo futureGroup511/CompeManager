@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
  * 比赛记录
  */
 @Entity
-@Table(name="cm_awardRecords")
+@Table(name="cm_awardrecords")
 public class AwardRecord {
 
 	//比赛记录的 id

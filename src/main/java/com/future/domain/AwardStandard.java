@@ -10,7 +10,7 @@ import javax.persistence.Table;
  * 获奖标准
  */
 @Entity
-@Table(name="cm_awardStandards")
+@Table(name="cm_awardstandards")
 public class AwardStandard {
 	//奖励id
 	private Integer award_id;
