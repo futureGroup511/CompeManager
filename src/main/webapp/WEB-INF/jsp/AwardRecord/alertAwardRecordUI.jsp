@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -69,7 +70,13 @@
 					
 				</s:else>
 				</td>
-				<td>${awardRecor_unit }</td>
+				<td title="${awardRecor_unit }">
+					<s:if test="awardRecor_unit == '' | awardRecor_unit ==null">
+					</s:if>
+					<s:else>
+					${fn:substring(awardRecor_unit,0,5)}……
+					</s:else>
+				</td>
 				<td><s:date name="awardRecor_time" format="yyyy-MM-dd" /></td>
 				<td>
 					<a href="awardRecord_alertAwardUD?id=${awardRecor_id }">修改</a>

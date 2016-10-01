@@ -63,8 +63,6 @@
          <th>院系</th>
          <th>比赛</th>
          <th>老师</th>
-        <!--  <th>团队名称</th>
-         <th>是否为负责人</th> -->
          <th>获奖等级</th>
          <th>学分</th>
          <th>奖金</th>
@@ -74,7 +72,12 @@
       </thead>
       <tbody>
         <s:iterator value="recordList" status="id">
-			<tr>
+        	<s:if test="awardRecor_status ==2">
+        		<tr style="color:green">
+        	</s:if>
+        	<s:else>
+				<tr>
+        	</s:else>
 				<s:hidden name="awardRecor_id"></s:hidden>
 				<td>${id.index+1 }</td>
 				<td>${awardRecor_student.stu_num }</td>
@@ -84,22 +87,7 @@
 				<td>${awardRecor_student.stu_department.de_name }</td>
 				<td><s:date name="awardRecor_time" format="yyyy年" />${awardRecor_competition.compe_compeName.compeName_name }</td>
 				<td>${awardRecor_coachTeacher }</td>
-				<%-- <s:if test="awardRecor_team ==null ">
-					<td>----------</td>
-					<td>----------</td>
-				</s:if>
-				<s:else>
-					<td>${awardRecor_team }</td>
-					
-					<s:if test="awardRecor_manager == 1">
-						<td>是</td>
-					</s:if>
-					<s:else>
-						<td>否</td>
-					</s:else>
-				</s:else> --%>
 				<td>${awardRecor_awadHie.awardHie_name }</td>
-				<%-- <td><s:date name="awardRecor_time" format="yyyy-MM-dd" /></td> --%>
 				<td>${awardRecor_score }</td>
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>
@@ -110,7 +98,6 @@
 				<s:else>
 					<a class="image-icon" rel="gallery[modal]" href="${awardRecor_picturePath }">
 					<img height="20" width="100" src="${awardRecor_picturePath }"></a>
-					<%-- <img alt="" src="${awardRecor_picturePath }"> --%>
 				</s:else>
 				</td>
 			</tr>
@@ -186,3 +173,23 @@
 <!-- 去掉这3行，则点击直接显示原图，如果移动至下面则IE浏览器报错 end -->
 <link rel="stylesheet" type="text/css" media="all" href="ly/css/style.min.css" />
 </head>
+
+
+
+
+        <!--  <th>团队名称</th>
+         <th>是否为负责人</th> -->
+<%-- <s:if test="awardRecor_team ==null ">
+	<td>----------</td>
+	<td>----------</td>
+</s:if>
+<s:else>
+	<td>${awardRecor_team }</td>
+	
+	<s:if test="awardRecor_manager == 1">
+		<td>是</td>
+	</s:if>
+	<s:else>
+		<td>否</td>
+	</s:else>
+</s:else> --%>

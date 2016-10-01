@@ -42,7 +42,9 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${page.recordlist}" varStatus="status" var="award">
-						<tr>
+			        	<c:if test="${ award.awardRecor_status eq 2}">
+								<tr style="color:green">
+						</c:if>
 							<td>${statu.index+1}</td>
 							<td>${award.awardRecor_competition.compe_compeName.compeName_name}</td>
 							
@@ -71,7 +73,7 @@
 									
 									
 									<c:choose>
-										<c:when test="${jugePromotion ge award.awardRecor_competition.compe_endTime and  award.awardRecor_competition.compe_status eq 2  and award.awardRecor_signUp.nextClass eq 1 and (award.awardRecor_competition.compe_nextClassPerson eq award.awardRecor_awadHie.awardHie_id or award.awardRecor_competition.compe_nextClassGroup eq award.awardRecor_awadHie.awardHie_id)}">.
+										<c:when test="${jugePromotion ge award.awardRecor_competition.compe_endTime and  award.awardRecor_competition.compe_status eq 2  and award.awardRecor_signUp.nextClass eq 1 and (award.awardRecor_competition.compe_nextClassPerson eq award.awardRecor_awadHie.awardHie_id or award.awardRecor_competition.compe_nextClassGroup eq award.awardRecor_awadHie.awardHie_id)}">
 											
 											<c:if test="${award.awardRecor_signUp.singUp_manager ne 1 and award.awardRecor_signUp.singUp_manager ne 0}">
 												<a href="${pageContext.request.contextPath}/student_promotion?sup.signUp_id=${award.awardRecor_signUp.signUp_id}" class="btn btn-primary" onclick="return jugeNext();">进入下一阶段</a>

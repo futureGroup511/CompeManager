@@ -1,7 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -89,7 +89,9 @@
 				<td>${awardRecor_score }</td>
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>
-				<td>${awardRecor_unit }</td>
+				<td title="${awardRecor_unit }">
+					${fn:substring(awardRecor_unit,0,5)}……
+				</td>
 				<td>
 					<s:if test="awardRecor_picturePath == ''">
 				未上传
