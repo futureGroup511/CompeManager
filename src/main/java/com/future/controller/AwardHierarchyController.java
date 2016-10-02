@@ -33,6 +33,7 @@ public class AwardHierarchyController extends BaseAction<AwardHierarchy> impleme
 	}
 	
 	public String modify(){
+		System.out.println("====================" + model.getAwardHie_id());
 		ahserv.addOrupdate(model);
 		return "modifysuccess";
 	}
