@@ -1,12 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<title>欢迎登录</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/tishi.css">
+
 </head>
 <body>
-	请上传符合规范的文件
+ <div id="beijing">
+    <div class="row">
+       <div class="col-lg-8 col-lg-offset-4 col-md-10 col-md-offset-2 col-xs-10 col-xs-offset-2">
+         <p class="one"><strong>请上传符合规范的文件&nbsp; &nbsp;</strong></p><br>
+        
+       </div>
+    </div>
+ </div>
 </body>
 </html>
+

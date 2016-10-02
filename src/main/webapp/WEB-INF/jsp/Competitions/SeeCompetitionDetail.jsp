@@ -50,14 +50,14 @@
 			<td><s:date name="#request.compe.compe_startTime" format="yyyy-MM-dd"/></td>
 			<td><s:date name="#request.compe.compe_endTime" format="yyyy-MM-dd"/></td>
 			<td>${requestScope.compe.compe_money}</td>	
-			<td>${requestScope.compe.compe_status==1?"已申请，正在审核":requestScope.compe.compe_status==2?"审核通过":requestScope.compe.compe_status==3?"竞赛正在进行中":requestScope.compe.compe_status==4?"竞赛已经结束":"审核未通过"}</td>	
+			<td>${requestScope.compe.compe_status==1?"已申请，正在审核":requestScope.compe.compe_status==2?"审核通过":requestScope.compe.compe_status==3?"竞赛已结束":requestScope.compe.compe_status==4?"竞赛已经结束":"审核未通过"}</td>	
 			<td>${requestScope.compe.compe_type==1?"团体":requestScope.compe.compe_type==2?"个人":"团体/个人" }</td>
 			<td>摘要</td>
 			<s:if test="#request.compe.compe_program==null || #request.compe.compe_program.trim() == ''">
-				<td><a href="depManager_downloadCompeProgram?filename=${requestScope.compe.compe_program}">下载</a></td>
+				<td>未上传</td>
 			</s:if>
 			<s:else>
-				<td>未上传</td>
+				<td><a href="depManager_downloadCompeProgram?filename=${requestScope.compe.compe_program}">下载</a></td>
 			</s:else>
 			
 		</tr>

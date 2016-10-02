@@ -30,7 +30,7 @@
 			$(".scoreAddedSpan").css("display", 'none');
 			$(".zsCompeHieClass").css("display", 'none');
 			var ScoreAdded = $(".ScoreAdded").val();
-			if(ScoreAdded == null || ScoreAdded.trim()=="" || !/^\+?[1-9][0-9]*$/.test(ScoreAdded)){
+			if(ScoreAdded == null || ScoreAdded.trim()=="" || !/^\+?[0-9][0-9]*$/.test(ScoreAdded)){
 				$(".scoreAddedSpan").css("display", 'inline');
 				return false;
 			}

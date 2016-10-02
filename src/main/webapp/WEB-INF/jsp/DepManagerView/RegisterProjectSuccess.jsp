@@ -1,48 +1,21 @@
-<%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-     <%
-	//得到url的根路径
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>æ æ é¢ææ¡£</title>
-<link rel="stylesheet" href="<%=basePath %>css/bootstrap.css" />
-<style>
-	*{
-		margin:0;
-		padding:0;
-	}
-	body{
-		width:1140px;
-		height:550px;
-	}
-	.container{
-		width:100%;
-		height:100%;
-		margin:0 auto;
-	}
-	.article{
-		margin:300px auto;
-		width:400px;
-		height:300px;
-		font-size:35px;
-		color:#cccccc;
-		text-align:center;
-	}
-</style>
-</head>
+<meta charset="utf-8">
+<title>欢迎登录</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/tishi.css">
 
-<body style="background-image:url(<%=basePath %>images/background.jpg);">
-<div class="container">
-	<div class="article">
-		申请成功<br/>待审核
-	</div>
-</div>
+</head>
+<body>
+ <div id="beijing">
+    <div class="row">
+       <div class="col-lg-8 col-lg-offset-4 col-md-10 col-md-offset-2 col-xs-10 col-xs-offset-2">
+         <p class="one"><strong>已申请&nbsp; &nbsp;待审核</strong></p><br>
+        
+       </div>
+    </div>
+ </div>
 </body>
 </html>
+
