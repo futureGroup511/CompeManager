@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<div class="add">
+<div class="container">
 	<div class="row">
          <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
             <p>当前位置：学生服务>>修改学生信息</p>

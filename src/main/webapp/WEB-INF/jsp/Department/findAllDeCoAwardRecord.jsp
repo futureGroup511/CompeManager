@@ -14,7 +14,7 @@
 <div class="container">
   <div class="row">
         <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
-            <p>当前位置：学院负责人服务>>查看项目获奖情况</p>
+            <p>当前位置：学院负责人服务>>查看本院负责竞赛获奖情况</p>
         </div>
         <div class="col-lg-3 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
             <p>欢迎 	${sessionScope.depManager.depM_name }  登录本系统</p>
@@ -70,7 +70,12 @@
       </thead>
       <tbody>
         <s:iterator value="recordList" status="id">
-			<tr>
+			<s:if test="awardRecor_status ==2">
+        		<tr style="color:green">
+        	</s:if>
+        	<s:else>
+				<tr>
+        	</s:else>
 				<s:hidden name="awardRecor_id"></s:hidden>
 				<td>${id.index+1 }</td>
 				<td>${awardRecor_student.stu_num }</td>

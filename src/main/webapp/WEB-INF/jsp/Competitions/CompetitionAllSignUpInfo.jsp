@@ -46,8 +46,8 @@
 			<s:iterator value="#request.pageBean.recordList" var="signUp">
 				<tr>
 					<td><s:property value="#signUp.signUp_student.stu_department.de_name"/></td>
-					<td><s:property value="#signUp.signUp_team==null?'无':#signUp.signUp_team"/></td>
 					<td><s:property value="#signUp.signUp_student.stu_class"/></td>
+					<td><s:property value="#signUp.signUp_team==null?'无':#signUp.signUp_team"/></td>
 					<td><s:property value="#signUp.signUp_student.stu_num"/></td>
 					<td><s:property value="#signUp.signUp_student.stu_name"/></td>
 					<td><s:property value="#signUp.signUp_teacher"/></td>

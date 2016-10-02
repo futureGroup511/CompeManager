@@ -114,4 +114,6 @@ public interface SignUpDao {
 	public void updateSignUpRecordsByname(String name);
 	
 	public Integer getNumByname(String name);
+	
+	public void updateNextClassAndRecordById(Integer id);
 }

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<div class="add">
+<div class="container">
 	<div class="row">
         <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
             <p>当前位置：学院负责人服务>>添加学院负责人</p>

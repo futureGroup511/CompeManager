@@ -32,6 +32,7 @@
  <table class="table table-striped table-bordered table-hover">
       <thead>
           <tr>
+             <td align="center"><h4>竞赛名称</h4></td>
              <td align="center"><h4>负责人</h4></td>
              <td align="center"><h4>申报时间</h4></td>
              <td align="center"><h4>开始时间</h4></td>
@@ -51,6 +52,7 @@
       	<s:else>
       		<s:iterator value="#request.pageBean.recordList" var="competition">
       			<tr>
+      				<td>${competition.compe_compeName.compeName_name}</td>
       				<td>${competition.compe_manager}</td>
       				<td><s:date name="#competition.compe_requestDate" format="yyyy-MM-dd"/></td>
       				<td><s:date name="#competition.compe_startTime" format="yyyy-MM-dd"/></td>

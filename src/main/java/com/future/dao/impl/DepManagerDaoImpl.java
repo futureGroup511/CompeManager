@@ -91,6 +91,8 @@ public class DepManagerDaoImpl extends BaseDao implements DepManagerDao {
 	//添加学院负责人
 	@Override
 	public void addDepartmentManager(DepManager dm) {
+		String md5Digest = DigestUtils.md5Hex(dm.getDepM_password());
+		dm.setDepM_password(md5Digest);
 		getsession().save(dm);
 	}
 

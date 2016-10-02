@@ -21,8 +21,6 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.future.base.BaseAction;
 import com.future.domain.AwardHierarchy;
 import com.future.domain.AwardRecord;

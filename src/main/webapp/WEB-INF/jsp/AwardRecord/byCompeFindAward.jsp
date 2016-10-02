@@ -1,7 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -89,7 +89,9 @@
 				<td>${awardRecor_score }</td>
 				<td>${awardRecor_stuMoney }</td>
 				<td>${awardRecor_teaMoney }</td>
-				<td>${awardRecor_unit }</td>
+				<td title="${awardRecor_unit }">
+					${fn:substring(awardRecor_unit,0,5)}……
+				</td>
 				<td>
 					<s:if test="awardRecor_picturePath == ''">
 				未上传
@@ -101,7 +103,7 @@
 				</td>
 				<td>
 					<a href="awardRecord_pass?id=${awardRecor_id }&compeId=${awardRecor_competition.compe_id}&pageNum=${pageNum }">通过</a>
-					<a href="#" onclick="disp_prompt(${awardRecor_id })">未通过</a>
+					<a href="#" onclick="disp_prompt(${awardRecor_id },${awardRecor_competition.compe_id})">未通过</a>
 				</td>
 			</tr>
 	</s:iterator>
@@ -142,12 +144,14 @@
 		}	
 		window.location.href="awardRecord_byCompeFindAward?id="+ compeId + "&pageNum=" + pageNum;
 }			
-	function disp_prompt(awardRecor_id){
+	
+	//<a href="awardRecord_pass?id=${awardRecor_id }&compeId=${awardRecor_competition.compe_id}&pageNum=${pageNum }">通过</a>
+	function disp_prompt(awardRecor_id,compeId){
 		var id = awardRecor_id;
 		var name = prompt("请输入未通过原因")
 		var name1 = window.encodeURI(window.encodeURI(name)); 
 		if (name!=null && name!=""){
-			window.location.href="awardRecord_noPass?id=" + id + "&reason="+name1;
+			window.location.href="awardRecord_noPass?id=" + id + "&reason="+name1 + "&compeId=" + compeId;
 		}
 	}
 </script>

@@ -20,7 +20,7 @@
                 <dd class="first_dd"><a href="student_apply" target="right">报名</a></dd>
                 <dd><a href="student_lookApplyStatus" target="right">报名状态</a></dd>
                 <dd><a href="student_lookAward" target="right">获奖记录</a></dd>
-                <dd><a href="student_nextStageView" target="right">进入下一阶段比赛</a></dd>
+                <!-- <dd><a href="student_nextStageView" target="right">进入下一阶段比赛</a></dd> -->
                 <dd><a href="student_lookPersonInfo" target="right">查看个人信息</a></dd>
             </dl>
 
@@ -36,23 +36,23 @@
 	            
 	            <dl class="custom">
                 <dt>查询<img src="images/select_xl01.png"></dt>
-                <dd><a target="right" href="depManager_seeAllApplyCompNames">查看项目名称审核状态</a></dd>
-                <dd><a target="right" href="depManager_seeAllApplyCompetition">查看项目审核状态</a></dd>
+                <dd><a target="right" href="depManager_seeAllApplyCompNames">查看竞赛名称审核状态</a></dd>
+                <dd><a target="right" href="depManager_seeAllApplyCompetition">查看竞赛审核状态</a></dd>
 	            </dl>
 	            
 	            <dl class="custom">
                 <dt>主要功能<img src="images/select_xl01.png"></dt>
-               	<dd><a target="right" href="depManager_lookProcessingCompetitionStatus">查看项目的报名情况</a></dd>
+               	<dd><a target="right" href="depManager_lookProcessingCompetitionStatus">查看竞赛的报名情况</a></dd>
                 <dd><a target="right" href="depManager_inspectStudentApplyPage">审核报名</a></dd>
-                <dd><a target="right" href="depManager_nextClassCompetition">继续下级比赛</a></dd>
                 <dd><a target="right" href="depManager_registerScoreToDb">录入竞赛成绩</a></dd>
                 <dd><a target="right" href="awardRecord_alertAwardRecordUI.action">修改获奖信息</a></dd>
+                <dd><a target="right" href="depManager_nextClassCompetition">继续下级比赛</a></dd>
 	            </dl>
 	            
 	            <dl class="custom">
                 <dt>查询获奖情况<img src="images/select_xl01.png"></dt>
 	            <dd><a target="right" href="department_findAllAwardRecord.action">查看本院学生获奖情况</a></dd>
-	            <dd><a target="right" href="department_findAllDeCoAwardRecord.action">查看项目获奖情况</a></dd>
+	            <dd><a target="right" href="department_findAllDeCoAwardRecord.action">查看竞赛获奖情况</a></dd>
 	           	
 	            </dl>
 	            
@@ -92,7 +92,7 @@
 	                <dd><a href="competitionName_checkNoName.action" target="right">待审核竞赛名称</a></dd>
 	                <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
 	                <dd><a href="awardRecord_checkNoCompetition.action" target="right">待审核竞赛</a></dd>
-	                <dd><a href="awardRecord_checkNoAwardRecord.action" target="right">待审核竞赛结果</a></dd>
+	                <!-- <dd><a href="awardRecord_checkNoAwardRecord.action" target="right">待审核竞赛结果</a></dd> -->
 	            </dl>
 	            
 	            <dl class="channel">

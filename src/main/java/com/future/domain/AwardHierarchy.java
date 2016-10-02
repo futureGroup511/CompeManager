@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * 奖励等级
  */
 @Entity
-@Table(name="cm_awardHierarchies")
+@Table(name="cm_awardhierarchies")
 public class AwardHierarchy {
 
 	//奖励等级的 id

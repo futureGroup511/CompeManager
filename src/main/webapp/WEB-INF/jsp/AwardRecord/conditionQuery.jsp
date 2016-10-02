@@ -76,7 +76,12 @@
       </thead>
       <tbody>
         <s:iterator value="recordList" status="id">
-			<tr>
+        	<s:if test="awardRecor_status ==2">
+        		<tr style="color:green">
+        	</s:if>
+        	<s:else>
+				<tr>
+        	</s:else>
 				<s:hidden name="awardRecor_id"></s:hidden>
 				<td>${id.index+1 }</td>
 				<td>${awardRecor_student.stu_num }</td>
