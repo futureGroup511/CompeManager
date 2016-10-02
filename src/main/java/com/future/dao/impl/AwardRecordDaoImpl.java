@@ -960,14 +960,15 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		public PageBean getPageBeanAllAlert(int pageNum, int pageSize, Integer depId) {
 			
 			//String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) order by awardRecor_picturePath";
-			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) order by awardRecor_competition_compe_id";
+			//String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) order by awardRecor_competition_compe_id";
+			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) and a.awardRecor_unit =null order by awardRecor_competition_compe_id";
 			
 			List<AwardRecord> awardRecord = getsession().createQuery(hql).setFirstResult((pageNum - 1 ) * pageSize).setMaxResults(pageSize).setParameter(0, depId).list();
 
 			
 			Long count =  (Long) getsession().createQuery("select count (*) from AwardRecord a "
 					+ "where a.awardRecor_competition.compe_id in(select c.compe_id from Competition "
-					+ "c where c.compe_department.de_id = ?)")
+					+ "c where c.compe_department.de_id = ?) and a.awardRecor_unit =null")
 					.setParameter(0, depId).uniqueResult();
 		
 			return new PageBean(pageNum,pageSize,count.intValue(),awardRecord);
@@ -1005,6 +1006,12 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			awardRecord.setAwardRecor_score(model.getAwardRecor_score());
 			awardRecord.setAwardRecor_time(model.getAwardRecor_time());
 			awardRecord.setAwardRecor_unit(model.getAwardRecor_unit());
+			//如果修改过的获奖记录，获奖单位为无，则直接改变状态
+			System.out.println(model.getAwardRecor_unit());
+			if(model.getAwardRecor_unit().equals("无")){
+				System.out.println("本条记录没有获奖");
+				awardRecord.setAwardRecor_status(2);
+			}
 			
 			getsession().save(awardRecord);
 			

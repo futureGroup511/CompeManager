@@ -133,11 +133,11 @@
 	    </div>
 	    <div class="three">
 	    	<div class="row">
-	        	<div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>获奖日期</p></div>
+	        	<div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p style="color:red;">获奖日期</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            	<input class="form-control" type="text" name=awardRecor_time onclick="laydate()" value="<s:date name='awardRecor_time' format='yyyy-MM-dd' />">
 	            </div>
-	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>发奖单位</p></div>
+	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p style="color:red;">发奖单位</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            	<s:textfield cssClass="form-control" name="awardRecor_unit" />
 	            </div>

@@ -44,9 +44,9 @@
                 <dt>主要功能<img src="images/select_xl01.png"></dt>
                	<dd><a target="right" href="depManager_lookProcessingCompetitionStatus">查看竞赛的报名情况</a></dd>
                 <dd><a target="right" href="depManager_inspectStudentApplyPage">审核报名</a></dd>
-                <dd><a target="right" href="depManager_nextClassCompetition">继续下级比赛</a></dd>
                 <dd><a target="right" href="depManager_registerScoreToDb">录入竞赛成绩</a></dd>
                 <dd><a target="right" href="awardRecord_alertAwardRecordUI.action">修改获奖信息</a></dd>
+                <dd><a target="right" href="depManager_nextClassCompetition">继续下级比赛</a></dd>
 	            </dl>
 	            
 	            <dl class="custom">
