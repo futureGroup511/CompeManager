@@ -171,8 +171,8 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	//查看团队报名的队名是否重复
 	public String jugeTeam(){
 		String result="";
-		if(sup.getSignUp_team()!=null&&!sup.getSignUp_team().equals("")){
-			result=sups.jugeTeamexist(sup.getSignUp_team());
+		if(sup.getSignUp_team()!=null&&!sup.getSignUp_team().equals("")&&compe_id>0){
+			result=sups.jugeTeamexist(sup.getSignUp_team(),compe_id);
 			ActionContext.getContext().getValueStack().push(result);
 		}else{
 			ActionContext.getContext().getValueStack().push(null);

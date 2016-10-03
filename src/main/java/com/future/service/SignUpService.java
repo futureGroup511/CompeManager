@@ -73,7 +73,7 @@ public interface SignUpService {
 	
 	public SignUp  jugeStudentuge(Student stu,Competition compe,Integer sup_type);
 	
-	 public String jugeTeamexist(String team_name);
+	 public String jugeTeamexist(String team_name,Integer compe_id);
 	 /**
 	  * 修改指定人员为团队负责人
 	  */

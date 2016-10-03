@@ -59,8 +59,9 @@
 							<td>${award.awardRecor_stuMoney}</td>
 							
 							<td>
-								<a href="student_uploadView?award_id=${award.awardRecor_id }" class="btn btn-primary">上传附件</a>
-								
+								<c:if test="${award.awardRecor_awadHie.awardHie_name ne '未获奖' }">
+									<a href="student_uploadView?award_id=${award.awardRecor_id }" class="btn btn-primary">上传附件</a>
+								</c:if>
 								<c:if test="${!empty award.awardRecor_picturePath }">
 										(<span class="text-danger">已上传过</span>)
 								</c:if>
