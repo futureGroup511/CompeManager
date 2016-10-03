@@ -13,7 +13,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.jar.Attributes.Name;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -217,23 +219,25 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	//文件上传
 		public String uploadFile(){
 			
-			String root = ServletActionContext.getServletContext().getRealPath(
-			               "/UploadFile");// 上传路径
 			
-		    InputStream inputStream;
-	        String pre= getFileFileName().substring(0,getFileFileName().indexOf("."));  
 		    String sfx=getFileFileName().substring(getFileFileName().indexOf("."));
-		    root=root+"\\"+UUID.randomUUID()+sfx;
 	             
+		    String uuid = UUID.randomUUID().toString();
+		    String name1 = null;
 	        try {
-				FileUpLoadUtils.processUploadFile(file, UUID.randomUUID()+sfx,null);
+				name1 = FileUpLoadUtils.processUploadFile(file, UUID.randomUUID()+sfx,null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+	        
+	        String pash = "UploadFile/" + name1.substring(12);
+	        
+	        
 	        AwardRecord ar=ars.findAwardRecordById(award_id);
 	        //String path=root.substring(root.indexOf("UploadFile"));
-	        String path="/UploadFile/" + UUID.randomUUID()+sfx;
-	        ar.setAwardRecor_picturePath(path);
+	        //String path="UploadFile/" + pash;
+	        //ar.setAwardRecor_picturePath(path);
+	        ar.setAwardRecor_picturePath(pash);
 			ars.saveOrUpdaAward(ar);
 	        return "uploadFile";
 		}
