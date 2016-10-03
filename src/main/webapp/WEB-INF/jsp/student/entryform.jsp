@@ -151,8 +151,10 @@ $(function(){
 	$("#teammanager").change(function(){
 		$(".will").empty();
 		var teamname=$(this).val();
+		var comp_id=$("#compe_id").attr("value");
 		var data={
-				"sup.signUp_team":teamname
+				"sup.signUp_team":teamname,
+				"compe_id":comp_id
 		}
 		$.ajax({
 			url:"student_jugeTeam",

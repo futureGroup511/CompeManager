@@ -89,7 +89,7 @@ public interface SignUpDao {
 	
 	public SignUp jugeStudentuge(Student stu,Competition compe,Integer sup_type);
 	
-	public String jugeTeamexist(String team_name);
+	public String jugeTeamexist(String team_name,Integer compe_id);
 	
 	/**
 	 * 通过id修改包名表的状态为0来表示未录入成绩的
