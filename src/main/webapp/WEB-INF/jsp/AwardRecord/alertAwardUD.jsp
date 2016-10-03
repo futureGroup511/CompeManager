@@ -111,7 +111,7 @@
 	    	<div class="row">
 	        	<div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>获奖等级：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<s:select cssClass="form-control" id="awardHieSelect" cssClass="form-control" label="按奖项查询" name="awardRecor_awadHie.awardHie_id" list="awardHieraychys" listKey="awardHie_id" listValue="'(' + awardHie_descr+ ')' + awardHie_name" headerKey="%{awardRecor_awadHie.awardHie_id }" headerValue="%{awardRecor_awadHie.awardHie_name }" />
+	            	<s:select id="awardHieSelect" cssClass="form-control" label="按奖项查询" name="awardRecor_awadHie.awardHie_id" list="awardHieraychys" listKey="awardHie_id" listValue="'(' + awardHie_descr+ ')' + awardHie_name" headerKey="%{awardRecor_awadHie.awardHie_id }" headerValue="%{awardRecor_awadHie.awardHie_name }" />
 	            </div>
 	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>学生奖金：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">

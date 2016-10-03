@@ -20,7 +20,8 @@ public class FileUpLoadUtils {
 			String realPath = ServletActionContext.getServletContext().getRealPath("/UploadFile/");
 			String fileprefix = compeProgramFileFileName.substring(0,compeProgramFileFileName.indexOf("."));
 			//文件前缀 加上一个随机生成的uuid防止文件名重复
-			fileprefix = fileprefix+"_"+UUID.randomUUID();
+			//fileprefix = fileprefix+"_"+UUID.randomUUID();
+			fileprefix = "_"+UUID.randomUUID();
 			//文件后缀
 			String fileSuffix = compeProgramFileFileName.substring(compeProgramFileFileName.indexOf("."));
 			

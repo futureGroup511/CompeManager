@@ -27,6 +27,7 @@ import com.future.domain.Department;
 import com.future.domain.SignUp;
 import com.future.domain.Student;
 import com.future.service.StudentService;
+import com.future.utils.FileUpLoadUtils;
 import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
@@ -212,8 +213,32 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		return "uploadView";
 	}
 	
+	
 	//文件上传
-	public String uploadFile(){
+		public String uploadFile(){
+			
+			String root = ServletActionContext.getServletContext().getRealPath(
+			               "/UploadFile");// 上传路径
+			
+		    InputStream inputStream;
+	        String pre= getFileFileName().substring(0,getFileFileName().indexOf("."));  
+		    String sfx=getFileFileName().substring(getFileFileName().indexOf("."));
+		    root=root+"\\"+UUID.randomUUID()+sfx;
+	             
+	        try {
+				FileUpLoadUtils.processUploadFile(file, UUID.randomUUID()+sfx,null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	        AwardRecord ar=ars.findAwardRecordById(award_id);
+	        //String path=root.substring(root.indexOf("UploadFile"));
+	        String path="/UploadFile/" + UUID.randomUUID()+sfx;
+	        ar.setAwardRecor_picturePath(path);
+			ars.saveOrUpdaAward(ar);
+	        return "uploadFile";
+		}
+	//文件上传
+	/*public String uploadFile(){
 		String root = ServletActionContext.getServletContext().getRealPath(
 		               "/UploadFile");// 上传路径
 		
@@ -245,7 +270,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
         ar.setAwardRecor_picturePath(path);
 		ars.saveOrUpdaAward(ar);
         return "uploadFile";
-	}
+	}*/
 	
 	//学生进入下一阶段
 	public String promotion(){
