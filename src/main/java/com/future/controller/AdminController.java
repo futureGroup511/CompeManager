@@ -50,6 +50,9 @@ public class AdminController extends BaseAction<Admin> implements RequestAware {
 	private Integer de_id;
 	//这些属性都会随着文件的上传自动赋值；
 	
+	public String menu(){
+		return "littleMenu";
+	}
 	
 	//导入数据页面
 	public String importStudentUI(){

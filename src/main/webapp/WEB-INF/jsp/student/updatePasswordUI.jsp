@@ -55,6 +55,14 @@
 	function checkout(){
 		var a = $("#password1").val();
 		var b = $("#password2").val();
+		if(a==null | a ==''){
+			alert("请输入密码！");
+			return false;
+		}
+		if(b ==null | b == ''){
+			alert("请再次输入密码！");
+			return false;
+		}
 		if(a != b){
 			alert("两次输入密码不相同，请再次输入！");
 			return false;

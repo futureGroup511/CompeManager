@@ -93,13 +93,13 @@
 	            
 	            <dl class="channel">
 	                <dt>信息管理<img src="images/select_xl01.png"></dt>
-	            	<dd><a href="admin_findAll" target="right">学院负责人</a> </dd>
-	           		<dd><a href="admin_findAllStudent" target="right">学生</a></dd>
+	            	<dd><a href="admin_menu" target="right">信息管理</a> </dd>
+	           		<!--<dd><a href="admin_findAllStudent" target="right">学生</a></dd>
 	            	<dd><a href="admin_finAllDepartment" target="right">学院</a></dd>
 	            	<dd><a href="comphier_findAllcomphier" target="right">竞赛等级</a></dd>
 	            	<dd><a href="awardstand_findAll" target="right">奖励标准</a></dd>
 	            	<dd><a href="awardhierar_findAll" target="right">获奖等级</a></dd>
-	                <dd><a href="admin_importStudentUI" target="right">导入学生数据</a> </dd>
+	                <dd><a href="admin_importStudentUI" target="right">导入学生数据</a> </dd> -->
 	            </dl>
 	            <dl class="channel">
 	                <dt>信息导出<img src="images/select_xl01.png"></dt>

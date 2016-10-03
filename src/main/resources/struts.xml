@@ -132,6 +132,7 @@
     		<!-- 查看未通过审核,这里和查看审核成功项目用了同一个jsp -->
     		<result name="noPassCheck">WEB-INF/jsp/Admin/noPassCheck.jsp</result>
     	    <result name="alterCompetitionUI">WEB-INF/jsp/Admin/alterCompetitionUI.jsp</result>
+    	    <result name="littleMenu">WEB-INF/jsp/Admin/littleMenu.jsp</result>
     	    <!-- 刘阳 -->
     	    
     	    <result name="all">/WEB-INF/jsp/Admin/allDep.jsp</result>
