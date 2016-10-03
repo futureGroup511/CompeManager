@@ -41,6 +41,14 @@
 				return false;
 			}
 			
+			var mes=confirm("请确定录入成绩无误！确定好录入");
+			if(mes==true){
+				return true; 
+			}
+			else{
+				return false; 
+			}
+			
 			return true;
 		});
 		
@@ -99,7 +107,7 @@
 						<s:select  class="compeHieClass form-control" id="awardHieSelect" name="awardHieId" list="#request.hieList" listKey="awardHie_id" listValue="awardHie_name" headerKey="0" headerValue="==请选择=="></s:select>
 						<span class="zsCompeHieClass" style="display:none;color:red;font-size:20px;">请选择此项内容</span>
 						</td>
-						<td><s:submit value="提交" class="btn btn-default  active"></s:submit></td>
+						<td><s:submit value="提交" class="btn btn-default active"></s:submit></td>
 						<s:iterator value="#request.hieList" var="hie">
 						<td class="${hie.awardHie_id }" style="display: none">${hie.awardHie_standard.award_stuMoney }</td>
 						<td class="${hie.awardHie_id }" style="display: none">${hie.awardHie_standard.award_teaMoney }</td>
