@@ -15,7 +15,7 @@
             <tbody>
                 <tr>
                     <td align="center">学号</td>
-                    <td align="center">${student.stu_num }/td>
+                    <td align="center">${student.stu_num }</td>
                   
                 </tr>
                 <tr>
