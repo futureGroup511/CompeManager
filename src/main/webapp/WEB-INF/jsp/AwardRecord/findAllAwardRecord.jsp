@@ -89,7 +89,7 @@
 				<td>${awardRecor_coachTeacher }</td>
 				<td>${awardRecor_awadHie.awardHie_name }</td>
 				<td>${awardRecor_score }</td>
-				<td>${awardRecor_stuMoney }</td>
+				<td>${awardRecor_stuMonsey }</td>
 				<td>${awardRecor_teaMoney }</td>
 				<td>
 				<s:if test="awardRecor_picturePath == null | awardRecor_picturePath ==''">

@@ -59,7 +59,7 @@
       				<td><s:date name="#competition.compe_endTime" format="yyyy-MM-dd"/></td>
       				<td>${competition.compe_money}</td>	
       				<td>${sessionScope.depManager.depM_department.de_name}</td>	
-      				<td>${competition.compe_status==1?"已申请，正在审核":competition.compe_status==2?"审核通过":competition.compe_status==3?"竞赛正在进行中":competition.compe_status==4?"竞赛已经结束":"审核未通过"}</td>	
+      				<td>${competition.compe_status==1?"已申请，正在审核":competition.compe_status==2?"审核通过,竞赛正在进行":competition.compe_status==3?"竞赛已结束":competition.compe_status==4?"竞赛已经结束":"审核未通过"}</td>	
       				<td><a href="depManager_seeCompetitionDetail?compeId=${competition.compe_id }">查看详细</a></td>	
       			</tr>
       		</s:iterator>
