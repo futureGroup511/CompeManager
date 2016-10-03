@@ -137,7 +137,7 @@
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            	<input class="form-control" type="text" name=awardRecor_time onclick="laydate()" value="<s:date name='awardRecor_time' format='yyyy-MM-dd' />">
 	            </div>
-	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p style="color:red;">发奖单位</p></div>
+	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p style="color:red;">&nbsp;发奖单位<br>（如果未获奖填写‘无’）</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            	<s:textfield cssClass="form-control" name="awardRecor_unit" />
 	            </div>

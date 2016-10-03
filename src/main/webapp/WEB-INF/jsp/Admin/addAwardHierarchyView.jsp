@@ -45,7 +45,7 @@
 		 		</select>
 	        </div>
 	        <div class="col-lg-1 col-md-1 col-xs-1">
-	        	<input class="btn btn-default  active" type="submit">
+	        	<input class="btn btn-default  active" type="submit" value="提交">
 	        </div>
 	</div>
 	</div>

@@ -39,19 +39,19 @@
 <table class="table table-striped table-bordered table-hover">
       <thead>
           <tr>
-              <th>指导老师</th>
-              <th>所报竞赛类型</th>
-              <th>团队名称</th>
-              <th>是否为团队负责人</th>
-              <th>审核状态</th>
-              <th>报名时间</th>
-              <th>学生院系</th>
-              <th>学生班级</th>
-              <th>学生姓名</th>
-              <th>学生学号</th>
-              <th>所报竞赛名称</th>
-              <th>审核通过</th>
-              <th>审核不通过</th>
+              <th>老师</th>
+              <th>类型</th>
+              <th>团队</th>
+              <th>是否为负责人</th>
+              <th>状态</th>
+              <th>时间</th>
+              <th>院系</th>
+              <th>班级</th>
+              <th>姓名</th>
+              <th>学号</th>
+              <th>竞赛</th>
+              <th>通过</th>
+              <th>不通过</th>
               <th>指定为负责人</th>
           </tr>
       </thead>
