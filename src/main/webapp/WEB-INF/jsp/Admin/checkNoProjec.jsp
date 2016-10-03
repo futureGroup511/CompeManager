@@ -16,7 +16,6 @@
   <div class="row">
 
         <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
-        
             <p>当前位置：教务处服务>>查看待审核竞赛项目</p>
         </div>
         
@@ -71,7 +70,7 @@
 						无 
 					</s:if>	
 					<s:if test="compe_program != null ">
-						<a href="competition_upload?inputPath=${compe_program }">单击下载 </a>
+						<a href="competition_upload?inputPath=${compe_program }">下载 </a>
 					</s:if>
 					
 					

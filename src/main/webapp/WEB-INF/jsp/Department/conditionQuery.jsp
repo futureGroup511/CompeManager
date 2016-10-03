@@ -57,7 +57,7 @@
          <th>序号</th>
          <th>学号</th>
          <th>姓名</th>
-         <th>性别</th>
+         <!-- <th>性别</th> -->
          <th>班级</th>
          <th>院系</th>
          <th>比赛</th>
@@ -82,7 +82,7 @@
 				<td>${id.index+1 }</td>
 				<td>${awardRecor_student.stu_num }</td>
 				<td>${awardRecor_student.stu_name }</td>
-				<td>${awardRecor_student.stu_sex }</td>
+				<%-- <td>${awardRecor_student.stu_sex }</td> --%>
 				<td>${awardRecor_student.stu_class }</td>
 				<td>${awardRecor_student.stu_department.de_name }</td>
 				<td>${awardRecor_competition.compe_compeName.compeName_name }</td>

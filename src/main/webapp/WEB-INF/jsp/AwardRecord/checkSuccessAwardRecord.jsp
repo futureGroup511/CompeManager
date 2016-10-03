@@ -29,16 +29,16 @@
          <th>序号</th>
          <th>学号</th>
          <th>姓名</th>
-         <th>性别</th>
+         <!-- <th>性别</th> -->
          <th>班级</th>
          <th>获奖比赛</th>
-         <th>指导老师</th>
-         <th>团队名称</th>
+         <th>老师</th>
+         <th>团队</th>
          <th>是否为负责人</th>
-         <th>获奖等级</th>
-         <th>所加学分</th>
-         <th>所获奖金</th>
-         <th>指导老师所获奖金</th>
+         <th>等级</th>
+         <th>学分</th>
+         <th>奖金</th>
+         <th>老师奖金</th>
         <!--  <th>获奖证书</th> -->
        </tr>
       </thead>
@@ -49,7 +49,7 @@
 				<td>${id.index+1 }</td>
 				<td>${awardRecor_student.stu_num }</td>
 				<td>${awardRecor_student.stu_name }</td>
-				<td>${awardRecor_student.stu_sex }</td>
+				<%-- <td>${awardRecor_student.stu_sex }</td> --%>
 				<td>${awardRecor_student.stu_class }</td>
 				<td>${awardRecor_competition.compe_compeName.compeName_name }</td>
 				<td>${awardRecor_coachTeacher }</td>
