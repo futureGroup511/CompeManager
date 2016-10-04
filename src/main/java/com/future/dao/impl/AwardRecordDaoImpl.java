@@ -1117,7 +1117,8 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		
 		
 		private Integer getSpecialHieAndCompeProjectNum(Integer compeId, Integer hieId1, Integer hieId2){
-			String sql = "select count(*) from cm_awardrecords where awardRecor_competition_compe_id = :compeId and awardRecor_awadHie_awardHie_id = :hieId1 or awardRecor_awadHie_awardHie_id = :hieId2";
+			//String sql = "select count(*) from cm_awardrecords where awardRecor_competition_compe_id = :compeId and awardRecor_awadHie_awardHie_id = :hieId1 or awardRecor_awadHie_awardHie_id = :hieId2";
+			String sql = "select count(*) from cm_awardrecords where awardRecor_competition_compe_id = :compeId and awardRecor_awadHie_awardHie_id in(:hieId1,:hieId2)";
 			return ((Number)getsession().createSQLQuery(sql).setParameter("compeId", compeId).setParameter("hieId1", hieId1).setParameter("hieId2", hieId2).uniqueResult()).intValue();
 		}
 
