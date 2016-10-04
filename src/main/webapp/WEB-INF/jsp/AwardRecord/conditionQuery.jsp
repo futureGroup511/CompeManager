@@ -33,7 +33,7 @@
      </div>
      <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">年度：</label>
     <div class="col-lg-1 col-md-1 col-sm-1">
-          <s:select id="year" cssClass="form-control" name="awardRecor_time" label="按年度查询" name="year" list="years" listKey="id" listValue="name"  headerKey="0" headerValue="请选择年度" />
+          <s:select id="year" cssClass="form-control"  label="按年度查询" name="year" list="years" listKey="id" listValue="name"  headerKey="0" headerValue="请选择年度" />
      </div>
      <label for="inputEmail3"  class="col-lg-1 col-md-1 col-sm-1 control-label">奖项：</label>
      <div class="col-lg-1 col-md-1 col-sm-1">

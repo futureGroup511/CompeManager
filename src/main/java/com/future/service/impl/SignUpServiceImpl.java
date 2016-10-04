@@ -84,9 +84,9 @@ public class SignUpServiceImpl implements SignUpService{
 	}
 
 	@Override
-	public String jugeTeamexist(String team_name) {
+	public String jugeTeamexist(String team_name,Integer compe_id) {
 		
-		return signUpDao.jugeTeamexist(team_name);
+		return signUpDao.jugeTeamexist(team_name,compe_id);
 	}
 
 	@Override

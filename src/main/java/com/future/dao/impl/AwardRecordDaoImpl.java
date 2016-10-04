@@ -961,7 +961,7 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			
 			//String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) order by awardRecor_picturePath";
 			//String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) order by awardRecor_competition_compe_id";
-			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) and a.awardRecor_unit =null order by awardRecor_competition_compe_id";
+			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id in(select c.compe_id from Competition c where c.compe_department.de_id = ?) and a.awardRecor_unit =null or a.awardRecor_unit ='' order by awardRecor_competition_compe_id";
 			
 			List<AwardRecord> awardRecord = getsession().createQuery(hql).setFirstResult((pageNum - 1 ) * pageSize).setMaxResults(pageSize).setParameter(0, depId).list();
 
@@ -1156,12 +1156,6 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 		//根据竞赛id查到所有得比赛记录，并且遍历，如果软布都有获奖单位就返回，如果没有就舍弃
 		@Override
 		public PageBean byCompeFindAward(Integer pageNum, int pageSize, Integer id) {
-			
-		
-			
-			
-			
-			
 			//String hql = "from AwardRecord a where a.awardRecor_competition.compe_id = ? and a.awardRecor_status = 1";
 			String hql = "from AwardRecord a where a.awardRecor_competition.compe_id = ? and a.awardRecor_status = 1 and a.awardRecor_awadHie.awardHie_name not like '%未获奖%'";
 			List<AwardRecord> awardRecord = getsession().createQuery(hql).setParameter(0, id)

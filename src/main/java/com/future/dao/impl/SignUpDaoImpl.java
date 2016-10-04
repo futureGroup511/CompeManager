@@ -117,9 +117,9 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 	}
 
 	@Override
-	public String jugeTeamexist(String team_name) {
-		String hql="select count(signUp_team) FROM SignUp s where s.signUp_team=?";
-		Query query=getsession().createQuery(hql).setString(0, team_name);
+	public String jugeTeamexist(String team_name,Integer compe_id) {
+		String hql="select count(signUp_team) FROM SignUp s where s.signUp_team=? and s.signUp_competition.compe_id=?";
+		Query query=getsession().createQuery(hql).setString(0, team_name).setInteger(1, compe_id);
 		Integer count=((Number)query.iterate().next()).intValue();
 		if(count>0){
 			return "exist";

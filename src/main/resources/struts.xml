@@ -29,10 +29,20 @@
 		
 		
 		
+		<!--定义全局Result--> 
+		<global-results> 
+			<result name="error">/WEB-INF/jsp/Admin/error.jsp</result> 
+		</global-results> 
+		
+    	<!-- 定义全局异常映射 --> 
+		<global-exception-mappings> 
+			<exception-mapping result="error" exception="java.lang.Exception"> </exception-mapping> 
+		</global-exception-mappings>
 		
 		
-	    	<!-- 配置默认 paramsPrepareParam 拦截器栈 -->
-	    	<!-- <default-interceptor-ref name="paramsPrepareParamsStack"></default-interceptor-ref> -->
+		
+    	<!-- 配置默认 paramsPrepareParam 拦截器栈 -->
+    	<!-- <default-interceptor-ref name="paramsPrepareParamsStack"></default-interceptor-ref> -->
 	    <action name="depManager_*" method="{1}" class="depManagerController">
     		<result name="LoginSuccess" type="dispatcher">/WEB-INF/jsp/DepManagerView/DepManagerLoginSuccess.jsp</result>
     		<result name="ReLogin" type="redirect">/index.jsp</result>
@@ -122,6 +132,7 @@
     		<!-- 查看未通过审核,这里和查看审核成功项目用了同一个jsp -->
     		<result name="noPassCheck">WEB-INF/jsp/Admin/noPassCheck.jsp</result>
     	    <result name="alterCompetitionUI">WEB-INF/jsp/Admin/alterCompetitionUI.jsp</result>
+    	    <result name="littleMenu">WEB-INF/jsp/Admin/littleMenu.jsp</result>
     	    <!-- 刘阳 -->
     	    
     	    <result name="all">/WEB-INF/jsp/Admin/allDep.jsp</result>

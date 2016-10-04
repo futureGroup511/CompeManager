@@ -13,7 +13,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.jar.Attributes.Name;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -27,6 +29,7 @@ import com.future.domain.Department;
 import com.future.domain.SignUp;
 import com.future.domain.Student;
 import com.future.service.StudentService;
+import com.future.utils.FileUpLoadUtils;
 import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
@@ -171,8 +174,8 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	//查看团队报名的队名是否重复
 	public String jugeTeam(){
 		String result="";
-		if(sup.getSignUp_team()!=null&&!sup.getSignUp_team().equals("")){
-			result=sups.jugeTeamexist(sup.getSignUp_team());
+		if(sup.getSignUp_team()!=null&&!sup.getSignUp_team().equals("")&&compe_id>0){
+			result=sups.jugeTeamexist(sup.getSignUp_team(),compe_id);
 			ActionContext.getContext().getValueStack().push(result);
 		}else{
 			ActionContext.getContext().getValueStack().push(null);
@@ -212,8 +215,34 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		return "uploadView";
 	}
 	
+	
 	//文件上传
-	public String uploadFile(){
+		public String uploadFile(){
+			
+			
+		    String sfx=getFileFileName().substring(getFileFileName().indexOf("."));
+	             
+		    String uuid = UUID.randomUUID().toString();
+		    String name1 = null;
+	        try {
+				name1 = FileUpLoadUtils.processUploadFile(file, UUID.randomUUID()+sfx,null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	        
+	        String pash = "UploadFile/" + name1.substring(12);
+	        
+	        
+	        AwardRecord ar=ars.findAwardRecordById(award_id);
+	        //String path=root.substring(root.indexOf("UploadFile"));
+	        //String path="UploadFile/" + pash;
+	        //ar.setAwardRecor_picturePath(path);
+	        ar.setAwardRecor_picturePath(pash);
+			ars.saveOrUpdaAward(ar);
+	        return "uploadFile";
+		}
+	//文件上传
+	/*public String uploadFile(){
 		String root = ServletActionContext.getServletContext().getRealPath(
 		               "/UploadFile");// 上传路径
 		
@@ -245,7 +274,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
         ar.setAwardRecor_picturePath(path);
 		ars.saveOrUpdaAward(ar);
         return "uploadFile";
-	}
+	}*/
 	
 	//学生进入下一阶段
 	public String promotion(){

@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+  padding:0;
+  margin:0;
+}
+.table-bordered{
+  width:50%;
+  margin:0 auto;
+  margin-top:50px;
+}
+.table-bordered a:hover{
+  text-decoration: none;
+  color:#FFCA00;
+}

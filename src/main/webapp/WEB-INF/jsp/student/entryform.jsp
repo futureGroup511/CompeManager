@@ -151,8 +151,10 @@ $(function(){
 	$("#teammanager").change(function(){
 		$(".will").empty();
 		var teamname=$(this).val();
+		var comp_id=$("#compe_id").attr("value");
 		var data={
-				"sup.signUp_team":teamname
+				"sup.signUp_team":teamname,
+				"compe_id":comp_id
 		}
 		$.ajax({
 			url:"student_jugeTeam",
@@ -402,10 +404,13 @@ function addTeamMember(){
 		
 		$("#prompt").text("");
 		var comp_type=$(".compe_type").attr("value");
-		
+		if(s_phone===""){
+			$("#prompt").text("请填写正确内容");
+			return false;
+		}
 		if(comp_type==1){
-			if(s_name===""||s_num===""||s_phone===""){
-				$("#prompt").text("请填写正确内容");
+			if(s_name===""||s_num===""){
+				$("#prompt").text("请填写完整内容");
 				return false;
 			}
 		}
