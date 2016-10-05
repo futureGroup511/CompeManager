@@ -16,8 +16,39 @@
 					$("form").append("<p class='text text-danger'>未上传文件请重新选择</p>");
 					return false;
 				}
-			});	
+				
+				var file = $("#file").val();
+				var file1 =file.substr(file.length-3);
+				if(file1 == "jpg" | file1 == "png" | file1=='JPG'){
+					var size = document.getElementById('file').files[0].size;
+					var size1 = size/(1024*1024);
+					if(size1 < 2){
+					} else{
+						alert("文件大小大于2M！");
+						return false;
+					}
+				}else {
+					alert("请选择正确的文件！");
+					return false;
+				}
+				
+			});		
 	})
+	
+	function check(){	
+		var file = $("#file").val();
+		var file1 =file.substr(file.length-3);
+		if(file1 == "jpg" | file1 == "png" | file1=='JPG'){
+			var size = document.getElementById('file').files[0].size;
+			var size1 = size/(1024*1024);
+			if(size1 < 2){
+			} else{
+				alert("文件大小大于2M！");
+			}
+		}else {
+			alert("请选择正确的文件！");
+		}
+	}
 	
 </script>
 </head>
@@ -37,7 +68,7 @@
 	<form action="student_uploadFile" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 	     <div class="col-lg-2 col-lg-offset-4 col-md-2 scol-md-offset-4 col-xs-2  col-xs-offset-4">
-	       <input type="file" name="file" id="file">  
+	       <input type="file" onchange="check()" name="file" id="file">  
 	     </div>
 	      <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1">
 	       <button class="btn btn-info" >上传</button>

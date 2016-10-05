@@ -1010,7 +1010,7 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 			System.out.println(model.getAwardRecor_unit());
 			if(model.getAwardRecor_unit().equals("无")){
 				System.out.println("本条记录没有获奖");
-				awardRecord.setAwardRecor_status(2);
+				awardRecord.setAwardRecor_status(5);
 			}
 			
 			getsession().save(awardRecord);
