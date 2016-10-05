@@ -178,8 +178,8 @@ public class AwardRecordServiceImpl implements AwardRecordService{
 	}
 
 	@Override
-	public Integer getNumByname(String name) {
-		return awardRecordDao.getNumByname(name);
+	public Integer getNumByname(String name,Integer compe_id) {
+		return awardRecordDao.getNumByname(name,compe_id);
 	}
 
 	//查询所有待审核竞赛

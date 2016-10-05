@@ -1130,9 +1130,9 @@ public class AwardRecordDaoImpl extends BaseDao implements AwardRecordDao {
 
 
 		@Override
-		public Integer getNumByname(String name) {
-			String hql="select count(*) from AwardRecord ar where ar.awardRecor_picturePath IS NOT NULL and ar.awardRecor_team= ?";
-			Integer number=((Long) getsession().createQuery(hql).setParameter(0, name).iterate().next()).intValue();
+		public Integer getNumByname(String name,Integer compe_id) {
+			String hql="select count(*) from AwardRecord ar where ar.awardRecor_picturePath IS NOT NULL and ar.awardRecor_team= ? and ar.awardRecor_competition.compe_id=?";
+			Integer number=((Long) getsession().createQuery(hql).setParameter(0, name).setParameter(1, compe_id).iterate().next()).intValue();
 			return number;
 		}
 

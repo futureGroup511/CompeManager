@@ -161,13 +161,13 @@ public class SignUpServiceImpl implements SignUpService{
 	}
 
 	@Override
-	public void updateSignUpRecordsByname(String name) {
-		signUpDao.updateSignUpRecordsByname(name);
+	public void updateSignUpRecordsByname(String name,Integer compe) {
+		signUpDao.updateSignUpRecordsByname(name,compe);
 	}
 
 	@Override
-	public Integer getNumByname(String name) {
-		return signUpDao.getNumByname(name);
+	public Integer getNumByname(String name,Integer compe_id) {
+		return signUpDao.getNumByname(name,compe_id);
 	}
 
 	@Override

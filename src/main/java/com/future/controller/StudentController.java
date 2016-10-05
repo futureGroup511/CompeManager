@@ -298,8 +298,9 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	
 	//判断团队所有人是否都上传了附件
 	public String jugeTeamPcturePath(){
-		int teamnum=sups.getNumByname(sup.getSignUp_team());
-		int picturenum=awardRecordService.getNumByname(sup.getSignUp_team());
+		sup.decodeTeam();
+		int teamnum=sups.getNumByname(sup.getSignUp_team(),sup.getSignUp_competition().getCompe_id());
+		int picturenum=awardRecordService.getNumByname(sup.getSignUp_team(),sup.getSignUp_competition().getCompe_id());
 		if(picturenum%teamnum==0){
 			ActionContext.getContext().getValueStack().push("true");
 		}else{
@@ -310,7 +311,9 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 	}
 	
 	public String nextStage(){
-		sups.updateSignUpRecordsByname(sup.getSignUp_team());
+		sup.decodeTeam();
+		System.out.println(sup.getSignUp_team());
+		sups.updateSignUpRecordsByname(sup.getSignUp_team(),sup.getSignUp_competition().getCompe_id());
 		return "promotion";
 	}
 	

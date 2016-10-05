@@ -89,7 +89,7 @@ public interface AwardRecordService {
 	public List<ProjectAwardNum> getProjectAwardNum();
 	
 	//通过队名得到图片路径的个数
-	public Integer getNumByname(String name);
+	public Integer getNumByname(String name,Integer compe_id);
 
 	//查询所有待审核竞赛
 	//首先拿到待审核竞赛所有竞赛，         竞赛里的值然后再去拿获奖记录，获奖记录等于1代表未审核

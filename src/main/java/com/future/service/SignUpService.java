@@ -102,10 +102,10 @@ public interface SignUpService {
 	//查找可以进入下一级的signup
 	public List<SignUp> getSignUpByNextClassAndStudent(Integer stuid);
 	
-	public void updateSignUpRecordsByname(String name);
+	public void updateSignUpRecordsByname(String name,Integer compe);
 	
 	//查询团队人数
-	public Integer getNumByname(String name);
+	public Integer getNumByname(String name,Integer compe_id);
 	
 	//根据id更新报名报的nextcless和是否录入记录
 	public void updateNextClassAndRecordById(Integer id);

@@ -1,5 +1,6 @@
 package com.future.domain;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -129,5 +130,13 @@ public class SignUp {
 		this.nextClass = nextClass;
 	}
 	
+	
+	public void decodeTeam(){
+		try {
+			this.signUp_team=java.net.URLDecoder.decode(this.signUp_team,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/xue2.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/award.js"></script>
 </head>
 <body>
 		<jsp:include page="operation.jsp"></jsp:include>
@@ -80,7 +80,7 @@
 												<a href="${pageContext.request.contextPath}/student_promotion?sup.signUp_id=${award.awardRecor_signUp.signUp_id}" class="btn btn-primary" onclick="return jugeNext();">进入下一阶段</a>
 											</c:if>
 											<c:if test="${award.awardRecor_signUp.singUp_manager eq 1 }">
-												<a href="${pageContext.request.contextPath}/student_nextStage?sup.signUp_team=${award.awardRecor_signUp.signUp_team}" class="btn btn-primary" onclick="return jugeNextTeam(this);">进入下一阶段</a>
+												<a href="#" class="btn btn-primary" onclick="return jugeTeam('${award.awardRecor_signUp.signUp_team}' ,${award.awardRecor_competition.compe_id})">进入下一阶段</a>
 											</c:if>
 											<c:if test="${award.awardRecor_signUp.singUp_manager eq 0 }">
 												<p class="text text-danger">请联系团队负责人</p>	
@@ -141,47 +141,5 @@
 		</div>
 		
 </body>
-<script type="text/javascript">
- function jugeNext(){
-	var juge=confirm("是否进入下一阶段");
-	if(juge===false){
-		return false;
-	}
- }
- 
- function jugeNextTeam(arr){
-	 var status=1;
-	 var juge=confirm("是否进入下一阶段");
-		if(juge===false){
-			return false;
-		}else{
-			var value=$(arr).attr("href");
-			var datas=value.split('=');
-			var data={"sup.signUp_team":datas[1]};
-			$.ajax({
-				url:"student_jugeTeamPcturePath",
-				type:'post',
-				data:data,
-				dataType:'json',
-				async:false,
-				success:function(data){
-					if(data==="true"){
-						
-						status=1;
-					}else{
-						alert("团队成员上传附件不完整！");
-						status=2;
-					}
-					
-				}
-			});
-			if(status==1){
-				return true;
-			}
-			if(status==2){
-				return false;
-			}
-		}
- }
-</script>
+
 </html>

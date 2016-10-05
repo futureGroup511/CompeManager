@@ -111,9 +111,9 @@ public interface SignUpDao {
 
 	public List<SignUp> getSignUpByNextClassAndStudent(Integer stuid);
 	
-	public void updateSignUpRecordsByname(String name);
+	public void updateSignUpRecordsByname(String name,Integer comid);
 	
-	public Integer getNumByname(String name);
+	public Integer getNumByname(String name,Integer compe_id);
 	
 	public void updateNextClassAndRecordById(Integer id);
 }

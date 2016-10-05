@@ -1,5 +1,6 @@
 package com.future.dao.impl;
 
+import java.nio.charset.Charset;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -315,17 +316,18 @@ public class SignUpDaoImpl extends BaseDao implements SignUpDao {
 
 	//通过队名来修改报名表是否录入记录
 	@Override
-	public void updateSignUpRecordsByname(String name) {
-		String hql="update SignUp s set s.signUp_registerRecord=0,s.nextClass=0 where s.signUp_team=?";
-		getsession().createQuery(hql).setParameter(0, name).executeUpdate();
+	public void updateSignUpRecordsByname(String name,Integer compe) {
+		String hql="update SignUp s set s.signUp_registerRecord=0,s.nextClass=0 where s.signUp_team=? and s.signUp_competition.compe_id=?";
+		getsession().createQuery(hql).setParameter(0, name).setParameter(1, compe).executeUpdate();
 	}
 
 	//查询一个团队的报名人数
 	@Override
-	public Integer getNumByname(String name) {
-		String hql="select count(*) from SignUp s where s.signUp_team=?";
-		Integer number=((Long)getsession().createQuery(hql).setParameter(0, name).iterate().next()).intValue();
-		return number;
+	public Integer getNumByname(String name,Integer compe_id) {
+		
+		String hql="FROM SignUp s where s.signUp_team=? and s.signUp_competition.compe_id=?";
+		List data=getsession().createQuery(hql).setParameter(0, name).setParameter(1, compe_id).list();
+		return data.size();
 	}
 
 	@Override
