@@ -8,6 +8,7 @@
 <title>修改竞赛方案</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/xuanze.css">
+<script type="text/javascript" src="JQueryResources/jquery-2.1.4.js"></script>
 </head>
 
 <body>
@@ -28,19 +29,57 @@
   <div class="form-group">
      <div class="col-lg-2 col-lg-offset-4 col-md-2 scol-md-offset-4 col-xs-2  col-xs-offset-4">
        <!-- <button class="btn btn-primary" type="button">选择文件</button> -->
-       <s:file name="compeProgramFile" label="上传123" value="" ></s:file><br>
+       <s:file name="compeProgramFile"  onchange="check()" id="file" label="上传123" value="" ></s:file><br>
      </div>
      <div class="col-lg-2 col-md-1 col-xs-1">
        <p class="seven"></p>
      </div>
       <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1">
-       <s:submit cssClass="btn btn-primary" value="提交"></s:submit> 
+       <s:submit id="submit" cssClass="btn btn-primary" value="提交"></s:submit> 
        <!-- <button  type="button">上传</button> -->
      </div>
   </div>
 </s:form>
 </div>
 </body>
+<script type="text/javascript">
+	$("#submit").click(function(){
+		var file = $("#file").val()
+		var file1 =file.substr(file.length-3);
+		if(file1 == ""){
+			alert("请选择文件！");
+			return false;
+		} else {
+			if(file1 == "doc" | file1 == "ocx"){
+				var size = document.getElementById('file').files[0].size;
+				var size1 = size/(1024*1024);
+				if(size1 < 2){
+				} else{
+					alert("文件大小大于2M！");
+					return false;
+				}
+			}  else {
+				alert("请选择正确的文件！");
+				return false;
+			}
+		}
+	})
+	
+	function check(){	
+		var file = $("#file").val();
+		var file1 =file.substr(file.length-3);
+		if(file1 == "doc" | file1 == "ocx"){
+			var size = document.getElementById('file').files[0].size;
+			var size1 = size/(1024*1024);
+			if(size1 < 2){
+			} else{
+				alert("文件大小大于2M！");
+			}
+		}else {
+			alert("请选择正确的文件！");
+		}
+	}
+</script>
 </html>
 
 
