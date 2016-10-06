@@ -27,8 +27,8 @@ img{
 }
 
 body {
-  font-size: 62.5%;
-  background-image:url(images/beijing.jpg);
+
+  background-color:#277BD1;
 }
 .headingWrapper {
   text-align: center;
@@ -147,10 +147,10 @@ The final pattern effect works perfectly in Chrome, Firefox and IE seems to lose
 -->
 
 
-<div class="headingWrapper color-bright">
-   <img src="images/header-logo.png" width="100" height="95">
- 　<span style="font-size:34px;position:absolute; margin-top:35px;color:white;margin-left:-1%; font-family: 'Francois One', Helvetica, Arial, sans-serif;">河南科技学院</span>
-   <p class="header header--pushDown header--shadow" title="HOVER ME"><span>大学生竞赛管理系统</span></p>
+<div class="headingWrapper color-bright" style="margin-left:-3.8%;height:140px;margin-top:-10px;padding-top:-10px;">
+  <img src="images/header-logo.png" width="100" height="95" style="margin-top:1%">
+ 　 <span style="font-size:34px;position:absolute; margin-top:40px;color:white;margin-left:-1%; font-family: 'Francois One', Helvetica, Arial, sans-serif;">河南科技学院</span>
+  <p class="header header--pushDown header--shadow" title="HOVER ME" style="paddint-left:-20%;"><span>大学生竞赛管理系统</span></p>
 </div>
 
 </body>

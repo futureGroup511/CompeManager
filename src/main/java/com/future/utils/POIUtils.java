@@ -41,11 +41,11 @@ public class POIUtils {
 	        cell.setCellStyle(style);
 	        cell.setCellValue("竞赛名称");
 	        //设置第一列列宽
-	        sheet.setColumnWidth(0,(int)35.7*220);
+	        sheet.setColumnWidth(0,(int)35.7*250);
 
 	        HSSFCellStyle myStyle = cell.getCellStyle();
 	        HSSFFont font = wb.createFont();
-	        font.setFontName("方正姚体");
+	        font.setFontName("宋体");
 	        font.setFontHeightInPoints((short)10);
 	        myStyle.setFont(font);
 	        cell.setCellStyle(myStyle);
