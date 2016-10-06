@@ -7,6 +7,20 @@
 <title>修改学院负责人页面</title>
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="css/jietu12.css" />
+<style type="text/css">
+.one input{
+	margin-left:-40%;
+}
+.two input{
+	margin-left:-40%;
+}
+.three select{
+	margin-left:-40%;
+}
+.three .redio-one{
+	margin-left:-40%;
+}
+</style>
 </head>
 
 <body>
@@ -33,7 +47,7 @@
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            	<input type="text" class="form-control" name="dm.depM_name" value="${dem.depM_name }">
 	            </div>
-	            <div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>电话号码：</p></div>
+	            <div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>联系方式：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            	<input type="text" class="form-control" name="dm.depM_phoneNum" value="${dem.depM_phoneNum }">
 	            </div>   
@@ -42,7 +56,7 @@
 	    <div class="two">
 	    	<div class="row">
 	            
-	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>帐号：</p></div>
+	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>工号：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            	<input type="text" class="form-control" name="dm.depM_num" readonly="readonly" value="${dem.depM_num }">
 	            </div> 

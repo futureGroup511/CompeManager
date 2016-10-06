@@ -14,6 +14,7 @@
 
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/jietu1.css">
+
 </head>
 
 <body>
@@ -43,12 +44,12 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>序号</th>
-         <th>负责人姓名</th>
-         <th>所属院系</th>
-         <th>性别</th>
-         <th>电话</th>
-         <th>修改</th>
+         <th style="text-align:center">序号</th>
+         <th style="text-align:center">负责人姓名</th>
+         <th style="text-align:center">所属院系</th>
+         <th style="text-align:center">性别</th>
+         <th style="text-align:center">联系方式</th>
+         <th style="text-align:center">修改</th>
        </tr>
       </thead>
       <tbody>

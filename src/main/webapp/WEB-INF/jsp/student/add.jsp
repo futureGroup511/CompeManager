@@ -122,11 +122,11 @@
 	
 	<div class="dangqian">
 		  <div class="row">
-		        <div class="col-lg-2 col-lg-offset-6 col-md-3 col-md-offset-3 col-xs-5  col-xs-offset-1">
-		            <p>当前位置：学生服务>>添加</p>
+		        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
+		            <p>当前位置：学生服务>>添加学生</p>
 		        </div>
-		        <div class="col-lg-2 col-md-3 col-xs-3">
-		            <p>欢迎${stu.stu_name}登录本系统</p>
+		        <div class="col-lg-3 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
+		            <p>欢迎${admin.ad_name}登录本系统</p>
 		        </div>
 		  </div>
 	</div>

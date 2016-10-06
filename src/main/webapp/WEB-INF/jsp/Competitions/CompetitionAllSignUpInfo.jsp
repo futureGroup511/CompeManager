@@ -32,14 +32,14 @@
      <table class=" table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
-			  <th>学生院系</th>
-			  <th>学生班级</th>
-			  <th>团队名称</th>
-              <th>学生学号</th>
-              <th>学生姓名</th>
-              <th>指导老师</th>
-              <th>竞赛名称</th>
-              <th>修改</th>
+			  <th style="text-align:center">院系</th>
+			  <th style="text-align:center">班级</th>
+			  <th style="text-align:center">团队名称</th>
+              <th style="text-align:center">学号</th>
+              <th style="text-align:center">姓名</th>
+              <th style="text-align:center">指导教师</th>
+              <th style="text-align:center">竞赛名称</th>
+              <th style="text-align:center">修改</th>
           </tr>
 		</thead>
 		<s:if test="#request.pageBean.recordList != null && #request.pageBean.recordList.size() >0">

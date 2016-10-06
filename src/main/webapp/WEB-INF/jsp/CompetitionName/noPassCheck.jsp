@@ -34,11 +34,11 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>序号</th>
-         <th>竞赛名称</th>
-         <th>级别</th>
-         <th>描述</th>
-         <th>未通过原因</th>
+         <th style="text-align:center;">序号</th>
+         <th style="text-align:center;">竞赛名称</th>
+         <th style="text-align:center;">级别</th>
+         <th style="text-align:center;">描述</th>
+         <th style="text-align:center;">未通过原因</th>
        </tr>
       </thead>
       <tbody>

@@ -38,10 +38,10 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>序号</th>
-         <th>学院名称</th>
-         <th>学院描述</th>
-         <th>修改</th>
+         <th style="text-align:center">序号</th>
+         <th style="text-align:center">学院名称</th>
+         <th style="text-align:center">学院描述</th>
+         <th style="text-align:center">修改</th>
        </tr>
       </thead>
       <tbody>

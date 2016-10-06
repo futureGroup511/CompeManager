@@ -32,16 +32,16 @@
      <table class=" table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
-              <th>负责人</th>
-              <th>申报时间</th>
-              <th>开始时间</th>
-              <th>结束时间</th>
-              <th>经费</th>
-              <th>审核状态</th>
-              <th>类型</th>
-              <th>摘要</th>
-              <th>下载竞赛方案</th>
-              
+              <th style="text-align:center">负责人</th>
+              <th style="text-align:center">申报时间</th>
+              <th style="text-align:center">开始时间</th>
+              <th style="text-align:center">结束时间</th>
+              <th style="text-align:center">经费</th>
+              <th style="text-align:center">审核状态</th>
+              <th style="text-align:center">类型</th>
+              <th style="text-align:center">摘要</th>
+              <th style="text-align:center">下载竞赛方案</th>
+                  
           </tr>
 		</thead>
 		<tr>

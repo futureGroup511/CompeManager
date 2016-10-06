@@ -38,12 +38,12 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>序号</th>
-         <th>竞赛类型</th>
-         <th>竞赛获奖等级</th>
-         <th>老师所获奖金</th>
-         <th>学生所获奖金</th>
-         <th>修改</th>
+         <th style="text-align:center">序号</th>
+         <th style="text-align:center">竞赛类型</th>
+<!--          <th style="text-align:center">获奖等级</th> -->
+         <th style="text-align:center">教师奖金</th>
+         <th style="text-align:center">学生奖金</th>
+         <th style="text-align:center">修改</th>
        </tr>
       </thead>
       <tbody>
@@ -51,7 +51,7 @@
 			<tr>
 			   	<th>${status.index+1}</th>
 				<th>${awardstand.award_type }</th>
-				<th>${awardstand.award_awardHierarchy.awardHie_name }</th>
+				<%-- <th>${awardstand.award_awardHierarchy.awardHie_name }</th> --%>
 				<th>${awardstand.award_teaMoney}</th>
 				<th>${awardstand.award_stuMoney }</th>
 				<th><a href="awardstand_modifyView?award_id=${awardstand.award_id}">修改</a></th>

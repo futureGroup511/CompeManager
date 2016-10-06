@@ -8,6 +8,20 @@
 <title>添加学院负责人页面</title>
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="css/jietu11.css" />
+<style type="text/css">
+.one input{
+	margin-left:-40%;
+}
+.two input{
+	margin-left:-40%;
+}
+.three select{
+	margin-left:-40%;
+}
+.three .redio-one{
+	margin-left:-40%;
+}
+</style>
 </head>
 
 <body>
@@ -27,11 +41,12 @@
 	<div class="container">
 		<div class="one">
 	    	<div class="row">
-	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>姓名：</p></div>
+	        	<div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>工号：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<input type="text"  class="form-control" name="dm.depM_name" value="" required="required">
-	            </div>
-	            <div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>电话号码：</p></div>
+	            	<input type="text"  class="form-control" name="dm.depM_num" value="" required="required">
+	            </div> 
+	            
+	            <div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>联系方式：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            	<input type="text" class="form-control" name="dm.depM_phoneNum" value="" required="required">
 	            </div>
@@ -44,15 +59,19 @@
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            	<input type="password"  class="form-control" name="dm.depM_password" value="" required="required">
 	            </div>
-	            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>工号：</p></div>
+	            <div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1">
+	        		<p>姓名：</p>
+	        	</div>
+	        	
 	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<input type="text"  class="form-control" name="dm.depM_num" value="" required="required">
-	            </div> 
+	            	<input type="text"  class="form-control" name="dm.depM_name" value="" required="required">
+	            </div>
+	           
 	        </div>
 	    </div>
 	    <div class="three">
 	    	<div class="row">
-	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>所属院系</p></div>
+	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>所属院系：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
 	            
 	           		 <select class="form-control" name="dm.depM_department.de_id" required="required">

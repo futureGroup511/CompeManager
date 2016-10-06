@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>正在进行中的竞赛项目的报名人数</title>
+<title>正在进行中的竞赛项目的报名人数  --竞赛报名情况</title>
 <link rel="stylesheet" href="<%=basePath %>css/bootstrap.css" />
 <link rel="stylesheet" href="<%=basePath %>css/xueyuan4.css"/>
 <script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery-1.11.1.js"></script>
@@ -33,15 +33,15 @@
      <table class=" table table-striped table-bordered table-hover">
      	<thead>
           <tr>
-              <td align="center"><h4>竞赛名称</h4></td>
-              <td align="center"><h4>竞赛负责人</h4></td>
-              <td align="center"><h4>竞赛申报时间</h4></td>
-              <td align="center"><h4>竞赛开始时间</h4></td>
-              <td align="center"><h4>竞赛结束时间</h4></td>
-              <td align="center"><h4>竞赛经费</h4></td>
-              <td align="center"><h4>竞赛申报学院</h4></td>
-              <td align="center"><h4>竞赛已报名人数</h4></td>
-              <td align="center"><h4>查看报名详细情况</h4></td>
+              <th align="center">竞赛名称</th>
+              <th align="center">负责人</th>
+              <th align="center">申报时间</th>
+              <th align="center">开始时间</th>
+              <th align="center">结束时间</th>
+              <th align="center">竞赛经费</th>
+              <th style="text-align:center">申报学院</th>
+              <th align="center">报名人数</th>
+              <th align="center">报名情况</th>
               
           </tr>
       </thead>

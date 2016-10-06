@@ -13,16 +13,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>审核报名</title>
 <link rel="stylesheet" href="<%=basePath %>css/bootstrap.css" />
-<link rel="stylesheet" href="<%=basePath %>css/xueyuan9.css" />
 <script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery-1.11.1.js"></script>
-<%-- <script type="text/javascript" src="<%=basePath %>JQueryResources/fixError.js"></script> --%>
+<link rel="stylesheet" href="<%=basePath %>css/xueyuan9.css"/>
 <style type="text/css">
-	td{
-		text-align: center;
-	}
+
+.table-bordered{
+  width:110%;
+}
+
 </style>
-<link rel="stylesheet" href="<%=basePath %>css/bootstrap.css" />
-<link rel="stylesheet" href="<%=basePath %>css/xueyuan4.css"/>
 </head>
 <body>
 <div class="dangqian">
@@ -39,20 +38,20 @@
 <table class="table table-striped table-bordered table-hover">
       <thead>
           <tr>
-              <th>老师</th>
-              <th>类型</th>
-              <th>团队</th>
-              <th>是否为负责人</th>
-              <th>状态</th>
-              <th>时间</th>
-              <th>院系</th>
-              <th>班级</th>
-              <th>姓名</th>
-              <th>学号</th>
-              <th>竞赛</th>
-              <th>通过</th>
-              <th>不通过</th>
-              <th>指定为负责人</th>
+          	  <th style="text-align:center">竞赛</th>
+              <th style="text-align:center">指导教师</th>
+              <th style="text-align:center">类型</th>
+              <th style="text-align:center">团队名称</th>
+              <th style="text-align:center">负责人</th>
+              <th style="text-align:center">状态</th>
+              <th style="text-align:center">时间</th>
+              <th style="text-align:center">院系</th>
+              <th style="text-align:center">班级</th>
+              <th style="text-align:center">姓名</th>
+              <th style="text-align:center">学号</th>
+              <th style="text-align:center">通过</th>
+              <th style="text-align:center">不通过</th>
+              <th style="text-align:center">指定为负责人</th>
           </tr>
       </thead>
       <tbody>
@@ -64,23 +63,24 @@
       	<s:else>
       		<s:iterator value="#request.pageBean.recordList" var="signUp">
       			<tr>
+      				<td>${signUp.signUp_competition.compe_compeName.compeName_name}</td>
       				<td>${signUp.signUp_teacher}</td>
       				<td>${signUp.singnup_type==1?"团体":"个人" }</td>
-      				<td>${signUp.singnup_type==1?signUp.signUp_team:"无" }</td>
-      				<td>${signUp.singnup_type==2?"无":signUp.singUp_manager==1?"是":"否"}</td>
+      				<td>${signUp.singnup_type==1?signUp.signUp_team:"----------" }</td>
+      				<td>${signUp.singnup_type==2?"----------":signUp.singUp_manager==1?"是":"否"}</td>
       				<td>${signUp.signUp_status==1?"已报名":signUp.signUp_status==2?"审核通过":"审核未通过"}</td>	
       				<td><s:date name="#signUp.signUP_time" format="yyyy-MM-dd"/></td>
       				<td>${signUp.signUp_student.stu_department.de_name}</td>	
       				<td>${signUp.signUp_student.stu_class}</td>
       				<td>${signUp.signUp_student.stu_name}</td>	
       				<td>${signUp.signUp_student.stu_num}</td>
-      				<td>${signUp.signUp_competition.compe_compeName.compeName_name}</td>
+      				
       				<td>
       					<s:if test="#signUp.signUp_status==1">
 	      					<a href="depManager_inspectSuccess?signId=${signUp.signUp_id }&currentPage=${requestScope.pageBean.currentPage}">我要审核</a>
       					</s:if>
       					<s:else>
-      						${signUp.signUp_status==2?"已审核通过":"审核未通过"}
+      						${signUp.signUp_status==2?"通过":"未通过"}
       					</s:else>
       				</td>
       				<td>
@@ -91,7 +91,7 @@
 	      					待审核状态
       					</s:elseif>
       					<s:else>
-      						已禁止通过
+      						已禁止
       					</s:else>
       				</td>
       				<td>
@@ -102,7 +102,7 @@
       						审核未通过
       					</s:elseif>
       					<s:elseif test="#signUp.singnup_type==2">
-      						个人赛无需指定负责人
+      						-------
       					</s:elseif>
       					<s:elseif test="#signUp.singUp_manager==0">
       						<a href="depManager_inspectToTeamLeader?signId=${signUp.signUp_id }&teamName=${signUp.signUp_team }&currentPage=${requestScope.pageBean.currentPage}">指定为负责人</a>

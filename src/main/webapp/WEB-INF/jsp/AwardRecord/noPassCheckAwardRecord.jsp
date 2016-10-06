@@ -26,21 +26,20 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>序号</th>
-         <th>学号</th>
-         <th>姓名</th>
+         <th style="text-align:center;">序号</th>
+         <th style="text-align:center;">学号</th>
+         <th style="text-align:center;">姓名</th>
          <!-- <th>性别</th> -->
-         <th>班级</th>
-         <th>获奖比赛</th>
-         <th>老师</th>
-         <th>团队</th>
-         <th>是否为负责人</th>
-         <th>等级</th>
-         <th>学分</th>
-         <th>奖金</th>
-         <th>老师奖金</th>
-         <th>未通过审核原因</th>
-         <!-- <th>获奖证书</th> -->
+         <th style="text-align:center;">班级</th>
+         <th style="text-align:center;">获奖比赛</th>
+         <th style="text-align:center;">指导教师</th>
+         <th style="text-align:center;">团队名称</th>
+         <th style="text-align:center;">是否为负责人</th>
+         <th style="text-align:center;">获奖等级</th>
+         <th style="text-align:center;">学分</th>
+         <th style="text-align:center;">学生奖金</th>
+         <th style="text-align:center;">教师奖金</th>
+        <!--  <th>获奖证书</th> -->
        </tr>
       </thead>
       <tbody>

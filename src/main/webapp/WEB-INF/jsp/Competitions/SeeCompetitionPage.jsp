@@ -11,11 +11,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>查看竞赛审核转台</title>
+<title>查看竞赛审核状态</title>
 <link rel="stylesheet" href="<%=basePath %>css/bootstrap.css" />
 <link rel="stylesheet" href="<%=basePath %>css/xueyuan4.css"/>
 <script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery-1.11.1.js"></script>
-<%-- <script type="text/javascript" src="<%=basePath %>JQueryResources/fixError.js"></script> --%>
+<style type="text/css">
+	table th{
+		text-align:center;
+	}
+</style>
 </head>
 <body>
 <div class="dangqian">
@@ -30,19 +34,17 @@
 		</div>
 <div class="container">		
  <table class="table table-striped table-bordered table-hover">
-      <thead>
           <tr>
-             <td align="center"><h4>竞赛名称</h4></td>
-             <td align="center"><h4>负责人</h4></td>
-             <td align="center"><h4>申报时间</h4></td>
-             <td align="center"><h4>开始时间</h4></td>
-             <td align="center"><h4>结束时间</h4></td>
-             <td align="center"><h4>经费</h4></td>
-             <td align="center"><h4>申报学院</h4></td>
-             <td align="center"><h4>审核状态</h4></td>
-             <td align="center"><h4>查看详细</h4></td>
+             <th align="center">竞赛名称</th>
+             <th align="center">负责人</th>
+             <th align="center">申报时间</th>
+             <th align="center">开始时间</th>
+             <th align="center">结束时间</th>
+             <th align="center">经费</th>
+             <th align="center">申报学院</th>
+             <th align="center">审核状态</th>
+             <th align="center">查看详细</th>
           </tr>
-      </thead>
       <tbody>
       	<s:if test="#request.pageBean == null || #request.pagBean.recordList.size() == 0">
       		<tr>

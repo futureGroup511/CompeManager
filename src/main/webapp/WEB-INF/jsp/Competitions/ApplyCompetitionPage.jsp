@@ -24,8 +24,6 @@
 	
 		$(function(){
 			$(".btn").click(function(){
-				
-
 				$(".zsCompeDep").css("display", 'none');
 				$(".zsCompeReqTime").css("display", 'none');
 				$(".zsCompeStaTime").css("display", 'none');
@@ -88,6 +86,27 @@
 			});
 		})
 	</script>
+<style type="text/css">
+.one input{
+	margin-left:-35%;
+}
+.two input{
+	margin-left:-35%;
+}
+.three input{
+	margin-left:-35%;
+}
+.four select{
+	margin-left:-35%;
+}
+
+.six textarea{
+	margin-left:-12%;
+}
+#file{
+	margin-left:-130%;
+}
+</style>
 </head>
 <body>
 	<div class="dangqian">
@@ -101,93 +120,16 @@
     		</div>
 		</div>
 		<div class="container">
-<%-- <s:form method="post" action="depManager_saveApplyCompetition" enctype="multipart/form-data">
-	<div class="one">
-	
-    	<div class="row">
-        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛负责人</p></div>
-            <div class="col-lg-3 col-md-3 col-xs-3">
-            <s:textfield class="compeDep form-control" name="compe_manager"></s:textfield>
-            <span class="zsCompeDep" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
-             </div>
-            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛申报时间</p></div>
-            <div class="col-lg-3 col-md-3 col-xs-3">
-            <s:textfield name="compe_requestDate" placeholder="请输入日期" class="compeReqTime laydate-icon form-control" onclick="laydate()"></s:textfield>
-            <span class="zsCompeReqTime" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
-            </div> 
-        </div>
-    </div>
-    <div class="two">
-    	<div class="row">
-        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛开始时间</p></div>
-            <div class="col-lg-3 col-md-3 col-xs-3">
-            <s:textfield name="compe_startTime" placeholder="请输入日期" class="compeStaTime laydate-icon form-control" onclick="laydate()"></s:textfield>
-            <span class="zsCompeStaTime" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
-            </div>
-            <div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛结束时间</p></div>
-            <div class="col-lg-3 col-md-3 col-xs-3">
-            	<s:textfield name="compe_endTime" placeholder="请输入日期" class="compeEndTime laydate-icon form-control" onclick="laydate()"></s:textfield>
-            	<span class="zsCompeEndTime" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
-            </div>
-        </div>
-    </div>
-    <div class="three">
-    	<div class="row">
-        	<div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>所用经费</p></div>
-            <div class="col-lg-3 col-md-3 col-xs-3">
-            	<s:textfield name="compe_money" class="compeMoney form-control"></s:textfield>
-            	<span class="zsCompeMoney" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
-            </div>
-            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>所申报学院</p></div>
-            <div class="col-lg-3 col-md-3 col-xs-3">
-            <s:textfield readonly="true" class="form-control"  value="%{#session.depManager.depM_department.de_name}"></s:textfield>
-            </div>
-        </div>
-    </div>
-    <div class="four">
-    	<div class="row">
-        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛类型</p></div>
-            <div class="col-lg-3 col-md-3 col-xs-3">
-           		 <s:select class="compeType form-control" list="#{'0':'==请选择==','1':'团体', '2':'个人', '3':'团体/个人' }" name="compe_type"></s:select>
-           		 <span class="zsCompeType" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛名称</p></div>
-            <div class="col-lg-3 col-md-3 col-xs-3">
-            	<s:select class="compeName form-control" list="competitionNames" listKey="compeName_id" listValue="compeName_name" name="compe_compeName.compeName_id" headerKey="0" headerValue="==选择竞赛名称=="></s:select>
-            	<span class="zsCompeName" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
-            </div>
-        </div>
-     </div>
-     <div class="six">
-     	<div class="col-lg-9  col-md-offset-1">
-     	竞赛描述：
-     	<s:textarea class="compeDesc form-control" name="compe_digest" rows="5"></s:textarea>
-     	<span class="zsCompeDesc" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
-        </div>
-     </div>
-     <div class="five">
-        <div class="row">
-            <div class="col-lg-1 col-md-2  col-xs-2 col-xs-offset-1"><p>竞赛方案</p></div>
-            <div class="col-lg-1 col-lg-offset-1 col-md-1  col-xs-1 col-xs-offset-1">
-            	<s:file class="btn btn-default  active" name="compeProgramFile"></s:file>
-            </div>
-            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-3 col-xs-offset-1"><a style="display:none">未选择任何文件</a></div>
-         </div>
-     </div>
-     <div class="last">
-     	<s:submit value="提交竞赛申请" class="btn btn-default  active"></s:submit>
-     </div>
- </s:form> --%>
  <s:form method="post" action="depManager_saveApplyCompetition" enctype="multipart/form-data">
 	<div class="one">
 	
     	<div class="row">
-        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛负责人</p></div>
+        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛负责人：</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
             <s:textfield class="compeDep form-control" name="compe_manager"></s:textfield>
             <span class="zsCompeDep" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
              </div>
-            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛申报时间</p></div>
+            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛申报时间：</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
             <s:textfield name="compe_requestDate" placeholder="请输入日期" class="compeReqTime laydate-icon form-control" onclick="laydate()"></s:textfield>
             <span class="zsCompeReqTime" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
@@ -196,12 +138,12 @@
     </div>
     <div class="two">
     	<div class="row">
-        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛开始时间</p></div>
+        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛开始时间：</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
             <s:textfield name="compe_startTime" placeholder="请输入日期" class="compeStaTime laydate-icon form-control" onclick="laydate()"></s:textfield>
             <span class="zsCompeStaTime" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
             </div>
-            <div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛结束时间</p></div>
+            <div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛结束时间：</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
             	<s:textfield name="compe_endTime" placeholder="请输入日期" class="compeEndTime laydate-icon form-control" onclick="laydate()"></s:textfield>
             	<span class="zsCompeEndTime" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
@@ -210,12 +152,12 @@
     </div>
 <div class="three">
     	<div class="row">
-        	<div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>所用经费</p></div>
+        	<div class="col-lg-2  col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>所用经费：</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
             	<s:textfield name="compe_money" class="compeMoney form-control"></s:textfield>
             	<span class="zsCompeMoney" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
             </div>
-            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>所申报学院</p></div>
+            <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>申报学院：</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
             <s:textfield readonly="true" class="form-control"  value="%{#session.depManager.depM_department.de_name}"></s:textfield>
             </div>
@@ -223,37 +165,42 @@
     </div>
     <div class="four">
     	<div class="row">
-        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛类型</p></div>
+        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛类型：</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
            		 <s:select class="compeType form-control" list="#{'0':'==请选择==','1':'团体', '2':'个人', '3':'团体/个人' }" name="compe_type"></s:select>
            		 <span class="zsCompeType" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
             </div>
-            <div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛名称</p></div>
+            <div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>竞赛名称：</p></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
             	<s:select class="compeName form-control" list="competitionNames" listKey="compeName_id" listValue="compeName_name" name="compe_compeName.compeName_id" headerKey="0" headerValue="==选择竞赛名称=="></s:select>
             	<span class="zsCompeName" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
             </div>
         </div>
      </div>
-     <div class="six">
-     	<div class="col-lg-9  col-md-offset-1">
-     	竞赛描述：
-     	<s:textarea class="compeDesc form-control" name="compe_digest" rows="5"></s:textarea>
-     	<span class="zsCompeDesc" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
+     <div class="six" style="margin-left:-1.5%">
+     	<div class="col-lg-2 col-md-offset-1">
+     		竞赛描述：
         </div>
+		<div class="col-lg-8  col-md-9 ">
+	     	<s:textarea class="compeDesc form-control" name="compe_digest" rows="5"></s:textarea>
+		</div>     	
+     	<span class="zsCompeDesc" style="display:none;color:red;font-size:20px;">请填写此项内容</span>
      </div>
-     <div class="five">
+     <div class="five" style="padding-top:130px;">
         <div class="row">
-            <div class="col-lg-1 col-md-2  col-xs-2 col-xs-offset-1"><p>竞赛方案</p></div>
-            <div class="col-lg-1 col-lg-offset-1 col-md-1  col-xs-1 col-xs-offset-1">
-            	<s:file class="btn btn-default  active" name="compeProgramFile"></s:file>
+            <div class="col-lg-2 col-md-2  col-xs-2 col-xs-offset-1"><p>竞赛方案：</p></div>
+            <div class="col-lg-1 col-md-1  col-xs-1 ">
+            	<s:file id="file" cssClass="btn btn-default  active" name="compeProgramFile"></s:file>
             </div>
             <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-xs-3 col-xs-offset-1"><a style="display:none">未选择任何文件</a></div>
+         
+         <div>
+     		<s:submit value="提交竞赛申请" class="btn btn-default  active"></s:submit>
+     	</div>
          </div>
      </div>
-     <div class="last">
-     	<s:submit value="提交竞赛申请" class="btn btn-default  active"></s:submit>
-     </div>
+     
+     
  </s:form>
  
 </div>

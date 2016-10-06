@@ -38,17 +38,17 @@
     <table class="table table-bordered table-hover table-striped" style="width:1000px;">
     <thead>
       <tr class="two">
-         <th>序号</th>
-         <th>学号</th>
-         <th>姓名</th>
-         <th>性别</th>
-         <th>院系</th>
-         <th>专业</th>
-         <th>班级</th>
-         <th>身份证号</th>
-         <th>年级</th>
-         <th>联系方式</th>
-         <th>修改</th>
+         <th style="text-align:center">序号</th>
+         <th style="text-align:center">学号</th>
+         <th style="text-align:center">姓名</th>
+         <th style="text-align:center">性别</th>
+         <th style="text-align:center">院系</th>
+         <th style="text-align:center">专业</th>
+         <th style="text-align:center">班级</th>
+         <th style="text-align:center">身份证号</th>
+         <th style="text-align:center">年级</th>
+         <th style="text-align:center">联系方式</th>
+         <th style="text-align:center">修改</th>
        </tr>
       </thead>
       <tbody>

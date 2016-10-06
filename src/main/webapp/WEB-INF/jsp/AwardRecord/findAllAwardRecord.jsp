@@ -25,20 +25,20 @@
 <form action="awardRecord_conditionQuery">
 <div class="container">
   <div class="row">
-    <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">学院：</label>
-    <div class="col-lg-1 col-md-1 col-sm-1">
+    <label for="inputEmail3" class="col-xs-1 control-label" style="margin-right:-4%">学院：</label>
+    <div class="col-lg-1 col-md-1 col-sm-1" style="width:11%">
           <s:select cssClass="form-control" label="按学院查询" name="awardRecor_student.stu_department.de_id" list="departments" listKey="de_id" listValue="de_name" headerKey="0" headerValue="请选择学院"/>
      </div>
-     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">年度：</label>
-    <div class="col-lg-1 col-md-1 col-sm-1" >
+     <label for="inputEmail3" class="col-xs-1 control-label" style="margin-right:-4%">年度：</label>
+    <div class="col-lg-1 col-md-1 col-sm-1" style="width:11%">
           <s:select cssClass="form-control" label="按年度查询" name="year" list="years" listKey="id" listValue="name"  headerKey="0" headerValue="请选择年度" />
      </div>
-     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">奖项：</label>
-     <div class="col-lg-1 col-md-1 col-sm-1">
+     <label for="inputEmail3" class="col-xs-1 control-label" style="margin-right:-4%">奖项：</label>
+     <div class="col-lg-1 col-md-1 col-sm-1" style="width:13%">
           <s:select cssClass="form-control" label="按奖项查询" name="awardRecor_awadHie.awardHie_id" list="awardHieraychys" listKey="awardHie_id" listValue="awardHie_name" headerKey="0" headerValue="请选择奖项" />
      </div>
-     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">项目：</label>
-     <div class="col-lg-1 col-md-1 col-sm-1" >
+     <label for="inputEmail3" class="col-xs-1 control-label" style="margin-right:-4%">项目：</label>
+     <div class="col-lg-1 col-md-1 col-sm-1" style="width:13%">
           <s:select cssClass="form-control" label="按竞赛项目查询" name="awardRecor_competition.compe_id" list="competitons" listKey="id" listValue="name"  headerKey="0" headerValue="请选择项目" />
      </div>
      <div class="col-lg-1 col-lg-offset-1 col-md-1 col-md-offset-1 col-sm-1 col-sm-offset-1">
@@ -55,19 +55,19 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>序号</th>
-         <th>学号</th>
-         <th>姓名</th>
+         <th style="text-align:center;">序号</th>
+         <th style="text-align:center;">学号</th>
+         <th style="text-align:center;">姓名</th>
          <!-- <th>性别</th> -->
-         <th>班级</th>
-         <th>院系</th>
-         <th>比赛</th>
-         <th>老师</th>
-         <th>获奖等级</th>
-         <th>学分</th>
-         <th>奖金</th>
-         <th>老师获奖金</th>
-         <th>证书</th>
+         <th style="text-align:center;">班级</th>
+         <th style="text-align:center;">院系</th>
+         <th style="text-align:center;">比赛</th>
+         <th style="text-align:center;">指导教师</th>
+         <th style="text-align:center;">获奖等级</th>
+         <th style="text-align:center;">学分</th>
+         <th style="text-align:center;">学生奖金</th>
+         <th style="text-align:center;">教师奖金</th>
+         <th style="text-align:center;">获奖证书</th>
        </tr>
       </thead>
       <tbody>
@@ -97,7 +97,7 @@
 				</s:if>
 				<s:else>
 					<a class="image-icon" rel="gallery[modal]" href="${awardRecor_picturePath }">
-					<img height="20" width="100" src="${awardRecor_picturePath }"></a>
+					<img height="20" width="50" src="${awardRecor_picturePath }"></a>
 				</s:else>
 				</td>
 			</tr>

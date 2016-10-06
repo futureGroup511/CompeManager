@@ -27,17 +27,17 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>序号</th>
-         <th>竞赛名称</th>
-         <th>负责人</th>
-         <th>院系</th>
-         <th>经费</th>
-         <th>方式</th>
-         <th>申报时间</th>
-         <th>开始时间</th>
-         <th>结束时间</th>
-         <th>摘要</th>
-         <th>竞赛方案</th>
+         <th style="text-align:center;">序号</th>
+         <th style="text-align:center;">竞赛名称</th>
+         <th style="text-align:center;">负责人</th>
+         <th style="text-align:center;">院系</th>
+         <th style="text-align:center;">经费</th>
+         <th style="text-align:center;">方式</th>
+         <th style="text-align:center;">申报时间</th>
+         <th style="text-align:center;">开始时间</th>
+         <th style="text-align:center;">结束时间</th>
+         <th style="text-align:center;">摘要</th>
+         <th style="text-align:center;">竞赛方案</th>
        </tr>
       </thead>
       <tbody>

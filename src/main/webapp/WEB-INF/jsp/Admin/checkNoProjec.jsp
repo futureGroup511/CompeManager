@@ -29,18 +29,18 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>序号</th>
-         <th>名称</th>
-         <th>负责人</th>
-         <th>院系</th>
-         <th>经费</th>
-         <th>方式</th>
-         <th>申报时间</th>
-         <th>开始时间</th>
-         <th>结束时间</th>
-         <th>摘要</th>
-         <th>竞赛方案</th>
-         <th>处理</th>
+         <th style="text-align:center;">序号</th>
+         <th style="text-align:center;">名称</th>
+         <th style="text-align:center;">负责人</th>
+         <th style="text-align:center;">院系</th>
+         <th style="text-align:center;">经费</th>
+         <th style="text-align:center;">方式</th>
+         <th style="text-align:center;">申报时间</th>
+         <th style="text-align:center;">开始时间</th>
+         <th style="text-align:center;">结束时间</th>
+         <th style="text-align:center;">摘要</th>
+         <th style="text-align:center;">竞赛方案</th>
+         <th style="text-align:center;">处理</th>
        </tr>
       </thead>
       <tbody>
@@ -64,12 +64,12 @@
 				<td><s:date name="compe_requestDate" format="yyyy-MM-dd" /></td>
 				<td><s:date name="compe_startTime" format="yyyy-MM-dd" /></td>
 				<td><s:date name="compe_endTime" format="yyyy-MM-dd" /></td>
-				<td title="${compe_digest }">${fn:substring(compe_digest,0,10) }……</td>
+				<td title="${compe_digest }">${fn:substring(compe_digest,0,5) }……</td>
 				<td>
 					<s:if test="compe_program == null ">
 						无 
-					</s:if>	
-					<s:if test="compe_program != null ">
+				</s:if>	
+				<s:if test="compe_program != null ">
 						<a href="competition_upload?inputPath=${compe_program }">下载 </a>
 					</s:if>
 					

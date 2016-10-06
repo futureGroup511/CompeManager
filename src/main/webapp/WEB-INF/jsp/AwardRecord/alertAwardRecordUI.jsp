@@ -10,6 +10,11 @@
 
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/jiao10.css">
+<style type="text/css">
+	th{
+	text-align:center;
+	}
+</style>
 </head>
 
 <body>
@@ -31,15 +36,14 @@
          <th>序号</th>
          <th>学号</th>
          <th>姓名</th>
-         <th>性别</th>
          <th>班级</th>
          <th>比赛</th>
-         <th>老师</th>
+         <th>指导教师</th>
          <th>等级</th>
          <th>学分</th>
-         <th>奖金</th>
-         <th>老师奖金</th>
-         <th>证书</th>
+         <th>学生奖金</th>
+         <th>教师奖金</th>
+         <th>获奖证书</th>
          <th>发奖单位</th>
          <th>日期</th>
          <th>编辑</th>
@@ -52,7 +56,7 @@
 				<td>${id.index+1 }</td>
 				<td>${awardRecor_student.stu_num }</td>
 				<td>${awardRecor_student.stu_name }</td>
-				<td>${awardRecor_student.stu_sex }</td>
+				<%-- <td>${awardRecor_student.stu_sex }</td> --%>
 				<td>${awardRecor_student.stu_class }</td>
 				<td>${awardRecor_competition.compe_compeName.compeName_name }</td>
 				<td>${awardRecor_coachTeacher }</td>
@@ -66,7 +70,7 @@
 				</s:if>
 				<s:else>
 					<a class="image-icon" rel="gallery[modal]" href="${awardRecor_picturePath }">
-					<img height="20px" width="100px" src="${awardRecor_picturePath }"></a>
+					<img height="20px" width="50px" src="${awardRecor_picturePath }"></a>
 					
 				</s:else>
 				</td>

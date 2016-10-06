@@ -8,6 +8,11 @@
 <title>查看本院项目项目获奖情况</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/jiao10.css">
+<style type="text/css">
+	th{
+		text-align:center;
+	}
+</style>
 </head>
 
 <body>
@@ -26,15 +31,15 @@
 <form action="department_findAllDeCoAcCond">
 <div class="container">
   <div class="row">
-     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">年度：</label>
+     <label for="inputEmail3" class="col-xs-1 control-label" style="margin-right:-4%">年度：</label>
     <div class="col-lg-1 col-md-1 col-sm-1" style="width:130px;">
           <s:select cssClass="form-control" label="按年度查询" name="year" list="years" listKey="id" listValue="name"  headerKey="0" headerValue="请选择年度" />
      </div>
-     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">奖项：</label>
+     <label for="inputEmail3" class="col-xs-1 control-label" style="margin-right:-4%">奖项：</label>
      <div class="col-lg-1 col-md-1 col-sm-1" style="width:175px;">
          <s:select cssClass="form-control" label="按奖项查询" name="award" list="awardHieraychys" listKey="awardHie_id" listValue="awardHie_name" headerKey="0" headerValue="请选择奖项" />
      </div>
-     <label for="inputEmail3" class="col-lg-1 col-md-1 col-sm-1 control-label">项目：</label>
+     <label for="inputEmail3" class="col-xs-1 control-label" style="margin-right:-4%">&nbsp;&nbsp;项目：</label>
      <div class="col-lg-1 col-md-1 col-sm-1" style="width:130px;">
          <s:select cssClass="form-control" label="按竞赛项目查询" name="competiton" list="competitons" listKey="id" listValue="name"  headerKey="0" headerValue="请选择竞赛项目" />
      </div>
@@ -55,17 +60,16 @@
          <th>序号</th>
          <th>学号</th>
          <th>姓名</th>
-         <!-- <th>性别</th> -->
          <th>班级</th>
          <th>院系</th>
          <th>比赛</th>
-         <th>老师</th>
-         <th>获奖等级</th>
-         <th>获奖日期</th>
+         <th>指导教师</th>
+         <th>等级</th>
+         <th>日期</th>
          <th>学分</th>
-         <th>奖金</th>
-         <th>老师奖金</th>
-         <th>证书</th>
+         <th>学生奖金</th>
+         <th>教师奖金</th>
+         <th>获奖证书</th>
        </tr>
       </thead>
       <tbody>
@@ -96,7 +100,7 @@
 				</s:if>
 				<s:else>
 					<a class="image-icon" rel="gallery[modal]" href="${awardRecor_picturePath }">
-					<img height="20px" width="100px" src="${awardRecor_picturePath }"></a>
+					<img height="20px" width="50px" src="${awardRecor_picturePath }"></a>
 				</s:else>
 				</td>
 			</tr>

@@ -16,11 +16,14 @@
         <div class="line"></div>
         	<c:if test="${sessionScope.stu != null}">
         		<dl class="system_log">
-	                <dt onClick="changeImage()">学生服务<img src="images/select_xl01.png"></dt>
-	                <dd class="first_dd"><a href="student_apply" target="right">报名</a></dd>
-	                <dd><a href="student_lookApplyStatus" target="right">报名状态</a></dd>
-	                <dd><a href="student_lookAward" target="right">获奖记录</a></dd>
-	                <dd><a href="student_lookPersonInfo" target="right">查看个人信息</a></dd>
+	                <!-- <dt onClick="changeImage()">学生服务<img src="images/select_xl01.png"></dt> -->
+	                <dt><a href="student_apply" target="right" style="color:white">报名</a><img src="images/select_xl01.png"></dt>
+	                <dt><a href="student_lookApplyStatus" target="right" style="color:white">报名状态</a><img src="images/select_xl01.png"></dt>
+	                <dt><a href="student_lookAward" target="right" style="color:white">获奖记录</a><img src="images/select_xl01.png"></dt>
+	                <dt><a href="student_lookPersonInfo" target="right" style="color:white">查看个人信息</a><img src="images/select_xl01.png"></dt>
+	                
+	                
+	                
           	  	</dl>
         	</c:if>
         	
@@ -65,7 +68,6 @@
 	                <dd><a href="competitionName_checkNoName.action" target="right">待审核竞赛名称</a></dd>
 	                <dd class="first_dd"><a href="admin_checkNoProject.action" target="right">待审核竞赛项目</a></dd>
 	                <dd><a href="awardRecord_checkNoCompetition.action" target="right">待审核竞赛</a></dd>
-	                <!-- <dd><a href="awardRecord_checkNoAwardRecord.action" target="right">待审核竞赛结果</a></dd> -->
 	            </dl>
 	            
 	            <dl class="channel">
@@ -87,29 +89,19 @@
 	            </dl>
 	            
 	            <dl class="channel">
-	                <dt>查询获奖情况<img src="images/select_xl01.png"></dt>
-	                <dd><a href="awardRecord_findAllAwardRecord.action" target="right">学生获奖情况</a></dd>
+	                <dt><a href="awardRecord_findAllAwardRecord.action" style="color:white" target="right">查询获奖情况</a><img src="images/select_xl01.png"></dt>
 	            </dl>
 	            
 	            <dl class="channel">
-	                <dt>信息管理<img src="images/select_xl01.png"></dt>
-	            	<dd><a href="admin_menu" target="right">信息管理</a> </dd>
-	           		<!--<dd><a href="admin_findAllStudent" target="right">学生</a></dd>
-	            	<dd><a href="admin_finAllDepartment" target="right">学院</a></dd>
-	            	<dd><a href="comphier_findAllcomphier" target="right">竞赛等级</a></dd>
-	            	<dd><a href="awardstand_findAll" target="right">奖励标准</a></dd>
-	            	<dd><a href="awardhierar_findAll" target="right">获奖等级</a></dd>
-	                <dd><a href="admin_importStudentUI" target="right">导入学生数据</a> </dd> -->
+	                <dt><a href="admin_menu" target="right" style="color:white">信息管理</a><img src="images/select_xl01.png"></dt>
 	            </dl>
 	            <dl class="channel">
-	                <dt>信息导出<img src="images/select_xl01.png"></dt>
-	                <dd><a href="admin_doCounterJob" target="right">导出数据</a></dd>
+	                <dt><a href="admin_doCounterJob" style="color:white">导出数据</a><img src="images/select_xl01.png"></dt>
 	            </dl>
         	</c:if>
 				
 			<dl class="system_log">
-                <dt onClick="changeImage()">退出登陆<img src="images/select_xl01.png"></dt>
-                <dd class="first_dd"><a href="loginControll_loginOut">退出</a></dd>
+                <dt onClick="if(confirm( '确定要退出吗！ ')==false)return   false;"><a href="loginControll_loginOut" style="color:white">退出登陆</a><img src="images/select_xl01.png"></dt>
             </dl>	
     </div>
 </div>

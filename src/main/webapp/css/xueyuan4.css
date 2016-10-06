@@ -19,8 +19,8 @@ a:hover{
 }
 .container{
   width:100%;
-  padding-left:10%;
-  padding-right:10%;
+/*   padding-left:10%;
+  padding-right:10%; */
   margin-top:3%;
 }
 .footer{
@@ -28,7 +28,7 @@ a:hover{
   margin-top:8%;
 }
 .table-bordered{
-  width:90%;
+  width:100%!important;
   margin-left:5%;
 }
 /* CSS Document */

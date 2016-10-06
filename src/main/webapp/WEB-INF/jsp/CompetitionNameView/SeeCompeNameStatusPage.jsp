@@ -15,13 +15,19 @@
 <link rel="stylesheet" href="<%=basePath %>css/bootstrap.css" />
 <link rel="stylesheet" href="<%=basePath %>css/xueyuan1-2.css" />
 <script type="text/javascript" src="<%=basePath %>jQuery-validator/jquery-1.11.1.js"></script>
-<%-- <script type="text/javascript" src="<%=basePath %>JQueryResources/fixError.js"></script> --%>
+<style type="text/css">
+.table-bordered{
+  width:60%;
+  margin-left:20%;
+  margin-top:4%;
+}
+</style>
 </head>
 <body>
 		<div class="dangqian">
     		<div class="row">
 		        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-3  col-xs-offset-1">
-		            <p>当前位置：学院负责人>>竞赛名称审核</p>
+		            <p>当前位置：学院负责人>>竞赛名称审核状态</p>
 		        </div>
 		        <div class="col-lg-3 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-2  col-xs-offset-4 ">
 		            <p>欢迎 	${sessionScope.depManager.depM_name }  登录本系统</p>
@@ -35,10 +41,10 @@
 	<s:else>
 	<table class="table table-striped table-bordered table-hover">
 		<tr>
-			<th align="center">竞赛项目名称</th>
-			<th align="center">竞赛项目级别</th> 
-			<th align="center">竞赛项目审核状态</th>
-			<th align="center">未通过原因</th>
+			<th style="text-align:center">竞赛项目名称</th>
+			<th style="text-align:center">竞赛项目级别</th> 
+			<th style="text-align:center">竞赛项目审核状态</th>
+			<th style="text-align:center">未通过原因</th>
 		</tr>
 		<s:iterator value="#request.pageBean.recordList" var="compeName">
 			<tr>

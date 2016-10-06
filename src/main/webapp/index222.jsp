@@ -71,7 +71,7 @@ body {
 <div class="one">
 	<div class="row">
     	<div class="col-sm-8  col-md-8 col-md-offset-1 col-lg-7 col-lg-offset-1">
-        	<h3><p>竞赛通知系统</p></h3>
+        	<h3><p>竞赛通知</p></h3>
         </div>
         
     </div>

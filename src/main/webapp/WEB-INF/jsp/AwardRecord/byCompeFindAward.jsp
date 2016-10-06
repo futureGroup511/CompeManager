@@ -39,22 +39,22 @@
     <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr class="two">
-         <th>#</th>
-         <th>学号</th>
-         <th>姓名</th>
-         <th>性别</th>
-         <th>班级</th>
-         <th>比赛</th>
-         <th>老师</th>
-         <th>团队名称</th>
-         <th>负责人</th>
-         <th>等级</th>
-         <th>学分</th>
-         <th>奖金</th>
-         <th>老师奖金</th>
-         <th>发奖单位</th>
-         <th>证书</th>
-         <th>编辑</th>
+         <th style="text-align:center;">#</th>
+         <th style="text-align:center;">学号</th>
+         <th style="text-align:center;">姓名</th>
+         <!-- <th style="text-align:center;">性别</th> -->
+         <th style="text-align:center;">班级</th>
+         <th style="text-align:center;">竞赛</th>
+         <th style="text-align:center;">指导教师</th>
+         <th style="text-align:center;">团队名称</th>
+         <th style="text-align:center;">负责人</th>
+         <th style="text-align:center;">等级</th>
+         <th style="text-align:center;">学分</th>
+         <th style="text-align:center;">学生奖金</th>
+         <th style="text-align:center;">教师奖金</th>
+         <th style="text-align:center;">发奖单位</th>
+         <th style="text-align:center;">获奖证书</th>
+         <th style="text-align:center;">是否通过</th>
        </tr>
       </thead>
       <tbody>
@@ -67,13 +67,13 @@
 				<td>${st.index+1 }</td>
 				<td>${awardRecor_student.stu_num }</td>
 				<td>${awardRecor_student.stu_name }</td>
-				<td>${awardRecor_student.stu_sex }</td>
+				<%-- <td>${awardRecor_student.stu_sex }</td> --%>
 				<td>${awardRecor_student.stu_class }</td>
 				<td>${awardRecor_competition.compe_compeName.compeName_name }</td>
 				<td>${awardRecor_coachTeacher }</td>
 				<s:if test="awardRecor_team ==null ">
-					<td>----------</td>
-					<td>----------</td>
+					<td>-------</td>
+					<td>------</td>
 				</s:if>
 				<s:else>
 					<td>${awardRecor_team }</td>
@@ -98,12 +98,12 @@
 				</s:if>
 				<s:else>
 					<a class="image-icon" rel="gallery[modal]" href="${awardRecor_picturePath }">
-					<img height="20" width="100" src="${awardRecor_picturePath }"></a>
+					<img height="20" width="50" src="${awardRecor_picturePath }"></a>
 				</s:else>
 				</td>
 				<td>
-					<a href="awardRecord_pass?id=${awardRecor_id }&compeId=${awardRecor_competition.compe_id}&pageNum=${pageNum }">通过</a>
-					<a href="#" onclick="disp_prompt(${awardRecor_id },${awardRecor_competition.compe_id})">未通过</a>
+					<a href="awardRecord_pass?id=${awardRecor_id }&compeId=${awardRecor_competition.compe_id}&pageNum=${pageNum }">是</a>
+					<a href="#" onclick="disp_prompt(${awardRecor_id },${awardRecor_competition.compe_id})">否</a>
 				</td>
 			</tr>
 	</s:iterator>

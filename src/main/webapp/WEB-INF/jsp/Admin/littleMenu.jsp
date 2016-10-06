@@ -33,7 +33,7 @@
        </tr>
         <tr>
           <td><a href="admin_findAllStudent">学生</a></td>
-          <td><a href="comphier_findAllcomphier">奖励等级</a></td>
+          <td><a href="comphier_findAllcomphier">竞赛等级</a></td>
         </tr>
          <tr>
           <td><a href="admin_finAllDepartment">学院</a></td>
