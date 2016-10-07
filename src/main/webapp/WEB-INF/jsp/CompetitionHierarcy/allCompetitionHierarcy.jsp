@@ -50,10 +50,10 @@
       <tbody>
         <c:forEach items="${ps.recordlist}" varStatus="status" var="comph">
 			<tr>
-			   	<th>${status.index+1}</th>
-				<th>${comph.compeHie_name}</th>
-				<th>${comph.compeHie_descr }</th>
-				<th><a href="comphier_modifyCompHierarchy?compeHie_id=${comph.compeHie_id}">修改</a></th>
+			   	<td>${status.index+1}</td>
+				<td>${comph.compeHie_name}</td>
+				<td>${comph.compeHie_descr }</td>
+				<td><a href="comphier_modifyCompHierarchy?compeHie_id=${comph.compeHie_id}">修改</a></td>
 			</tr>
 		</c:forEach>
        

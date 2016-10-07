@@ -54,16 +54,16 @@
       <tbody>
         <c:forEach items="${ps.recordlist}" varStatus="status" var="stu">
 					<tr>
-					   	<th>${status.index+1}</th>
-						<th>${stu.stu_num }</th>
-						<th>${stu.stu_name }</th>
-						<th>${stu.stu_sex }</th>
-						<th>${stu.stu_department.de_name }</th>
-						<th>${stu.stu_major }</th>
-						<th>${stu.stu_class }</th>
-						<th>${stu.stu_idCard }</th>
-						<th>${stu.stu_grade }</th>
-						<th>${stu.stu_phone }</th>
+					   	<td>${status.index+1}</td>
+						<td>${stu.stu_num }</td>
+						<td>${stu.stu_name }</td>
+						<td>${stu.stu_sex }</td>
+						<td>${stu.stu_department.de_name }</td>
+						<td>${stu.stu_major }</td>
+						<td>${stu.stu_class }</td>
+						<td>${stu.stu_idCard }</td>
+						<td>${stu.stu_grade }</td>
+						<td>${stu.stu_phone }</td>
 						<th><a href="admin_modifyStuView?stu.stu_id=${stu.stu_id}&&de_id=${stu.stu_department.de_id}">修改</a></th>
 					</tr>
 				</c:forEach>

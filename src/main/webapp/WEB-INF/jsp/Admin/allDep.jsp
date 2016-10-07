@@ -55,12 +55,12 @@
       <tbody>
         <c:forEach items="${ps.recordlist}" varStatus="status" var="Dep">
 			<tr>
-			   	<th>${status.index+1}</th>
-				<th>${Dep.depM_name }</th>
-				<th>${Dep.depM_department.de_name }</th>
-				<th>${Dep.depM_sex }</th>
-				<th>${Dep.depM_phoneNum }</th>
-				<th><a href="admin_modifyDep?dm.depM_id=${Dep.depM_id}">修改</a></th>
+			   	<td>${status.index+1}</td>
+				<td>${Dep.depM_name }</td>
+				<td>${Dep.depM_department.de_name }</td>
+				<td>${Dep.depM_sex }</td>
+				<td>${Dep.depM_phoneNum }</td>
+				<td><a href="admin_modifyDep?dm.depM_id=${Dep.depM_id}">修改</a></td>
 			</tr>
 		</c:forEach>
        </tbody>

@@ -47,10 +47,10 @@
       <tbody>
         <c:forEach items="${ps.recordlist}" varStatus="status" var="depart">
 					<tr>
-					   	<th>${status.index+1}</th>
-						<th>${depart.de_name}</th>
-						<th>${depart.de_descr}</th>
-						<th><a href="admin_modifyDepartView?department.de_id=${depart.de_id}">修改</a></th>
+					   	<td>${status.index+1}</td>
+						<td>${depart.de_name}</td>
+						<td>${depart.de_descr}</td>
+						<td><a href="admin_modifyDepartView?department.de_id=${depart.de_id}">修改</a></td>
 					</tr>
 				</c:forEach>
        </tbody>

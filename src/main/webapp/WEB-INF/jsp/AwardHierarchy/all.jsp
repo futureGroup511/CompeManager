@@ -49,10 +49,10 @@
       <tbody>
         <c:forEach items="${ps.recordlist}" varStatus="status" var="awardh">
 			<tr>
-			   	<th>${status.index+1}</th>
-				<th>${awardh.awardHie_name}</th>
-				<th>${awardh.awardHie_descr }</th>
-				<th><a href="awardhierar_modifyView?awardHie_id=${awardh.awardHie_id}">修改</a></th>
+			   	<td>${status.index+1}</td>
+				<td>${awardh.awardHie_name}</td>
+				<td>${awardh.awardHie_descr }</td>
+				<td><a href="awardhierar_modifyView?awardHie_id=${awardh.awardHie_id}">修改</a></td>
 			</tr>
 		</c:forEach>
        
