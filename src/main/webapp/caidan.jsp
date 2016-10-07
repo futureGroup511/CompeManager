@@ -55,10 +55,13 @@
 		            <dd><a target="right" href="department_findAllDeCoAwardRecord.action">竞赛获奖情况</a></dd>
 	            </dl>
 	            <dl class="custom">
-                <dt>通知<img src="images/select_xl01.png"></dt>
-                <dd><a target="right" href="depManager_sendInformView">发布通知</a></dd>
-	           	<dd><a href="depManager_lookInformView" target="right">查看通知</a></dd>
-	            </dl>   
+	                <dt>通知<img src="images/select_xl01.png"></dt>
+	                <dd><a target="right" href="depManager_sendInformView">发布通知</a></dd>
+		           	<dd><a href="depManager_lookInformView" target="right">查看通知</a></dd>
+	            </dl>
+	            <dl class="custom">
+	                <dt><a href="depManager_updatePasswordUI" style="color:white" target="right">修改密码</a><img src="images/select_xl01.png"></dt>
+	            </dl>    
 	            
         	</c:if>
 				

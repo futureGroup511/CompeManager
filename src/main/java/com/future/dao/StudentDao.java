@@ -30,5 +30,8 @@ public interface StudentDao {
 
 	//学生修改密码
 	public void updatePassword(Student stu);
+
+	//走Ajax校验原密码是否正确
+	public boolean isOrNopassword(Integer id,String isPassword);
 }
 

@@ -85,13 +85,15 @@
  			<result name="modifySignUpView">/WEB-INF/jsp/SignUpView/modifySignUpView.jsp</result>
  			<result name="modifySignUp" type="redirect">depManager_lookProcessingCompetitionStatus</result>
  			<result name="loginLy" type="redirect">loginControll_firstLogin</result>
+ 			
+ 			<result name="updatePasswordUI">/WEB-INF/jsp/DepManagerView/updatePasswordUI.jsp</result>
+ 			<result name="isOrNopassword" type="json"></result>
+ 			<result name="updatePassword">/WEB-INF/jsp/DepManagerView/updatePasswordMess.jsp</result>
  		</action> 
  		
     	<action name="testController_*" method="{1}" class="testController">
     	    <result name="success">WEB-INF/jsp/test/testSuccess.jsp</result>
     	    <result name="failure">WEB-INF/jsp/test/testFailure.jsp</result>
-    	    
-    	    
  		</action> 
  		
  		
@@ -118,7 +120,8 @@
     		<result name="lookPersonInfo">WEB-INF/jsp/student/lookPersonInfo.jsp</result>
     		<result name="updatePasswordUI">WEB-INF/jsp/student/updatePasswordUI.jsp</result>
     		<result name="updatePassword" type="redirect">student_apply</result>
-    	
+    		<result name="isOrNopassword" type="json">student_apply</result>
+    		
     	</action>	
     	
     	<!-- 教务处 -->	

@@ -121,4 +121,19 @@ public class StudentDaoImp extends BaseDao implements StudentDao{
 		student.setStu_password(md5);
 		getsession().save(student);
 	}
+
+	//走Ajax校验原密码是否正确
+	@Override
+	public boolean isOrNopassword(Integer id,String isPassword) {
+		String md5Digest = DigestUtils.md5Hex(isPassword);
+		String hql = "from Student s where s.stu_id = ?";
+		Student stu = (Student) getsession().createQuery(hql).setParameter(0, id).uniqueResult();
+		System.out.println(md5Digest);
+		System.out.println(stu.getStu_password());
+		if(stu.getStu_password().equals(md5Digest)){
+			return true;
+		} else{
+			return false;
+		}
+	}
 }

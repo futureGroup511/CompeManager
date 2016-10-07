@@ -61,6 +61,47 @@ public class DepManagerController extends BaseAction<Object> implements SessionA
 	private AwardHierarchyService awardHierarchyService;
 	@Resource
 	private AwardRecordService awardRecordService;
+	
+	private Integer id;
+	private String password;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	//刘阳修改密码
+	public String updatePasswordUI(){
+		return "updatePasswordUI";
+	}
+	
+	//走Ajax校验原密码是否正确
+	public String isOrNopassword(){
+		//给一个id一个账号判断是否正确
+		boolean b = depManagerService.isOrNopassword(id,password);
+		ActionContext.getContext().getValueStack().push(b);
+		return "isOrNopassword";
+	}
+	
+	//修改密码
+	public String updatePassword(){
+		depManagerService.updatePassword(id,password);
+		return "updatePassword";
+	}
+	
+	
+	
 	//根据 paramterMap 参数判断应该创建那个模型 之后再方法中进行强制转换
 	private Object model = new Object();
 	private Map<String, Object> sessionMap;

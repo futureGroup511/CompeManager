@@ -19,42 +19,94 @@
 </div>
 <div class="container">
 	<form id="form" action="student_updatePassword">
-		<s:hidden name="stu_id"></s:hidden>
-		<div class="one">
+		<s:hidden name="stu_id" id="stu_id"></s:hidden>
+		
+		<div class="two">
+	    	<div class="row">
+	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>请输入原始密码：</p></div>
+	            <div class="col-lg-3 col-md-3 col-xs-3">
+	            	<input type="password" class="form-control" id="psword" onblur="verify(${stu_id })"> 
+	            </div>
+	            <div class="col-lg-2 col-md-3 col-xs-3">
+	            	<p id="mess1" style="color:red;display:none">原始密码不正确！</p>
+	            </div>
+	        </div>
+	    </div>
+	    
+		<div class="two">
 	    	<div class="row">
 	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>请输入密码：</p></div>
 	            <div class="col-lg-3 col-md-3 col-xs-3">
-	            	<input type="password" class="form-control" id="password1" name="stu_password"> 
+	            	<input type="password" class="form-control" id="password1" name="stu_password" onblur="mess2()"> 
 	            </div>
-	            
+	            <div class="col-lg-2 col-md-3 col-xs-3">
+	            	<p id="mess2" style="color:red;display:none">密码不能为空！</p>
+	            </div>
 	        </div>
 	    </div>
+	    
 	    <div class="two">
 	    	<div class="row">
 	        	<div class="col-lg-2 col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1"><p>请再次输入密码：</p></div>
-	            <div class="col-lg-3 col-md-3 col-xs-3"><input class="form-control" type="password" id="password2" name="stu_password2"></div>
-	           
+	            <div class="col-lg-3 col-md-3 col-xs-3"><input class="form-control" type="password" id="password2" name="stu_password2" onblur="mess3()"></div>
+	        <div class="col-lg-2 col-md-1 col-xs-1">
+	         	<p id="mess3" style="color:red;display:none">密码不能为空！</p>
+	         	<p id="mess4" style="color:red;display:none">两次输入密码不同！</p>
+	        </div>
 	        </div>
 	    </div>
-	     <div class="last">
+	    
+	    <div class="col-lg-2" style="margin-top:10px;margin-left:24%;width:30px;">
 	     	<input type="button" id="button" class="btn btn-default  active" value="提交">
-	     </div>
-     
+	    </div>
      </form>
 </div>
 <script type="text/javascript">
 
-	$(document).ready(function(){  
+	$(document).ready(function(){
 	    $("#button").click(function(){  
 	        if(checkout()==true){  
 	            $("#form").submit();  
 	        }  
 	    });  
 	});
+	
+	function verify(id){
+		var password = $("#psword").val();
+		var date = {
+				"id":id,
+				"isPassword" : password
+		}
+		
+		$.ajax({
+			//先走校验的action
+			url : 'student_isOrNopassword',
+			type : 'post',
+			data : date,
+			dataType : 'text',
+			success : function(date) {
+				if(date == "false"){
+					$("#button").attr("disabled","true");
+					$("#mess1").show();
+				} else{
+					$("#button").removeAttr("disabled");
+					$("#mess1").hide();
+				}
+			}
+
+		});
+		
+	}
     
 	function checkout(){
 		var a = $("#password1").val();
 		var b = $("#password2").val();
+		var c = $("#psword").val();
+		if(c==null | c ==''){
+			alert("请输入原始密码！");
+			return false;
+		}
+		
 		if(a==null | a ==''){
 			alert("请输入密码！");
 			return false;
@@ -70,6 +122,28 @@
 			return true;
 		}
 		
+	}
+	
+	function mess2(){
+		if($("#password1").val()==''){
+			$("#mess2").show();
+		} else{
+			$("#mess2").hide();
+		}
+	}
+	
+	function mess3(){
+		if($("#password2").val()==''){
+			$("#mess3").show();
+		} else{
+			$("#mess3").hide();
+		}
+		
+		if($("#password1").val() != $("#password2").val()){
+			$("#mess4").show();
+		} else{
+			$("#mess4").hide();
+		}
 	}
 </script>
 </body>

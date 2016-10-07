@@ -32,4 +32,10 @@ public interface DepManagerService {
 
 	//添加学院负责人
 	public void addDepartmentManager(DepManager dm);
+
+	//给一个id一个账号判断是否正确
+	public boolean isOrNopassword(Integer id, String password);
+
+	//修改密码
+	public void updatePassword(Integer id, String password);
 }

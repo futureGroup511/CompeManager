@@ -1,22 +1,13 @@
 package com.future.controller;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.jar.Attributes.Name;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
@@ -28,7 +19,6 @@ import com.future.domain.Competition;
 import com.future.domain.Department;
 import com.future.domain.SignUp;
 import com.future.domain.Student;
-import com.future.service.StudentService;
 import com.future.utils.FileUpLoadUtils;
 import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ActionContext;
@@ -338,6 +328,7 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		ActionContext.getContext().getValueStack().push(stu);
 		return "updatePasswordUI";
 	}
+	
 	//修改密码
 	public String updatePassword(){
 		//System.out.println("id： " + stu.getStu_id());
@@ -346,6 +337,35 @@ public class StudentController extends BaseAction<Student> implements ModelDrive
 		return "updatePassword";
 	}
 	
+	private String isPassword;
+	private Integer id;
+	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getIsPassword() {
+		return isPassword;
+	}
+
+	public void setIsPassword(String isPassword) {
+		this.isPassword = isPassword;
+	}
+
+	//走Ajax校验原密码是否正确
+	public String isOrNopassword(){
+		System.out.println(isPassword);
+		System.out.println("ajax:====" + id);
+		boolean b = stuser.isOrNopassword(id,isPassword);
+		System.out.println(b);
+		ActionContext.getContext().getValueStack().push(b);
+		return "isOrNopassword";
+	}
 	
 	
 	

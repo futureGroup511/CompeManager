@@ -12,6 +12,7 @@ import com.future.base.BaseDao;
 import com.future.dao.DepManagerDao;
 import com.future.domain.DepManager;
 import com.future.domain.SignUp;
+import com.future.domain.Student;
 import com.future.utils.Page_S;
 
 @Repository
@@ -94,6 +95,34 @@ public class DepManagerDaoImpl extends BaseDao implements DepManagerDao {
 		String md5Digest = DigestUtils.md5Hex(dm.getDepM_password());
 		dm.setDepM_password(md5Digest);
 		getsession().save(dm);
+	}
+
+	//给一个id一个账号判断是否正确
+	@Override
+	public boolean isOrNopassword(Integer id, String password) {
+		String md5Digest = DigestUtils.md5Hex(password);
+		String hql = "from DepManager d where d.depM_id = ?";
+		DepManager depM =(DepManager) getsession().createQuery(hql).setParameter(0, id).uniqueResult();
+		if(depM.getDepM_password().equals(md5Digest)){
+			return true;
+		} else{
+			return false;
+		}
+	}
+
+	//修改密码
+	@Override
+	public void updatePassword(Integer id, String password) {
+		//先找到id对象
+		String hql = "from DepManager d where d.depM_id = ?";
+		DepManager dep =(DepManager) getsession().createQuery(hql).setParameter(0, id).uniqueResult();
+		//加密密码
+		String md5Disgest = DigestUtils.md5Hex(password);
+		//设置对象新密码
+		dep.setDepM_password(md5Disgest);
+		
+		//保存
+		getsession().save(dep);
 	}
 
 }

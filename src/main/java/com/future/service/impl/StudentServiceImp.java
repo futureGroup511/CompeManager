@@ -65,4 +65,10 @@ public class StudentServiceImp implements StudentService {
 	public void updatePassword(Student stu) {
 		studao.updatePassword(stu);
 	}
+
+	//走Ajax校验原密码是否正确
+	@Override
+	public boolean isOrNopassword(Integer id,String isPassword) {
+		return studao.isOrNopassword(id,isPassword);
+	}
 }

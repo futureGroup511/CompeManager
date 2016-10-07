@@ -61,4 +61,16 @@ public class DepManagerServiceImpl implements DepManagerService{
 	public void addDepartmentManager(DepManager dm) {
 		depManagerDao.addDepartmentManager(dm);
 	}
+
+	//给一个id一个账号判断是否正确
+	@Override
+	public boolean isOrNopassword(Integer id, String password) {
+		return depManagerDao.isOrNopassword(id,password);
+	}
+
+	//修改密码
+	@Override
+	public void updatePassword(Integer id, String password) {
+		depManagerDao.updatePassword(id,password);
+	}
 }
