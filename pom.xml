@@ -134,6 +134,13 @@ One or more constraints have not been satisfied.	CompeManager		line 1	Maven Java
 			<artifactId>spring-orm</artifactId>
 			<version>4.2.4.RELEASE</version>
 		</dependency>
+		<!-- 测试jar包spring-test -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>4.2.5.RELEASE</version>
+		</dependency>
+		
 		<!--jstl标签库所需jar包  -->
 		<dependency>
 		    <groupId>jstl</groupId>
