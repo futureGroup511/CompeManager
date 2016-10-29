@@ -47,6 +47,7 @@
 				<td>${compeName_name }</td>
 				<td>${compeName_compeHierarchy.compeHie_name }</td>
 				<td title="${compeName_descr }">${fn:substring(compeName_descr,0,30) }……</td>
+				<%-- <td><abbr title="${compeName_descr }">${fn:substring(compeName_descr,0,30) }……</abbr></td> --%>
 			</tr>
 	</s:iterator>
          
