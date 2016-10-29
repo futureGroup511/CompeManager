@@ -1,4 +1,4 @@
-package com.poi.test;
+/*package com.poi.test;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -13,17 +13,18 @@ import com.future.domain.AwardRecord;
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})
 public class EvaluatedRecordActionTest {
 	//private static Logger logger=Logger.getLogger(AwardRecord.class);
-	/*@Resource
-	private EvaluatedRecordService evaluatedRecordService;*/
+	@Resource
+	private EvaluatedRecordService evaluatedRecordService;
 	//@Resource
 
 	
-	/*@Test
+	@Test
 	public void TestLikeFindByExpert(){
 		Page_S data=evaluatedRecordService.likeFindByExpertNameOrAllassessment("夏", "30", page);
 		printfPagedata(data);
-	}*/
+	}
 	
 	
 
 }
+*/
