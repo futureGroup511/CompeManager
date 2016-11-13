@@ -137,7 +137,7 @@ body {
             <div class="input-two">
         		<div class="input-group">
                     <div class="input-group-addon"><a><img  src="images/user.png"/></a></div>
-                    <input type="text" form="from" class="form-control"  name="number" placeholder="请输入用户名">
+                    <input type="text" form="from" class="form-control" name="number" placeholder="请输入用户名" autofocus>
                 </div>
             </div>
             <div class="input-three">
