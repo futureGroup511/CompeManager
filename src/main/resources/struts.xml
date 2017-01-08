@@ -30,14 +30,14 @@
 		
 		
 		<!--定义全局Result--> 
-		<!-- <global-results> 
+		<global-results> 
 			<result name="error">/WEB-INF/jsp/Admin/error.jsp</result> 
-		</global-results>  -->
+		</global-results>
 		
     	<!-- 定义全局异常映射 --> 
-		<!-- <global-exception-mappings> 
+		<global-exception-mappings> 
 			<exception-mapping result="error" exception="java.lang.Exception"> </exception-mapping> 
-		</global-exception-mappings> -->
+		</global-exception-mappings>
 		
 		
 		
