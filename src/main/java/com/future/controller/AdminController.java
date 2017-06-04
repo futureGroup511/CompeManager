@@ -1,7 +1,5 @@
 package com.future.controller;
 
-
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,17 +10,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.swing.plaf.synth.SynthSpinnerUI;
-
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
-/**
- * 注释
- * */
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.future.base.BaseAction;
 import com.future.domain.Admin;
 import com.future.domain.AwardHierarchy;

@@ -1,9 +1,7 @@
 package com.future.dao.impl;
 
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
-
 import com.future.base.BaseDao;
 import com.future.dao.AdminDao;
 import com.future.domain.Admin;

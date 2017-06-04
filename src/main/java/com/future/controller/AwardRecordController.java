@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.future.base.BaseAction;
 import com.future.domain.AwardHierarchy;
 import com.future.domain.AwardRecord;
@@ -17,6 +16,7 @@ import com.future.domain.DepManager;
 import com.future.domain.Department;
 import com.future.utils.PageBean;
 import com.opensymphony.xwork2.ActionContext;
+
 @Controller
 @Scope("prototype")
 public class AwardRecordController extends BaseAction<AwardRecord>{

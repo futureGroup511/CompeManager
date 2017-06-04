@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.future.base.BaseAction;
 import com.future.domain.AwardHierarchy;
 import com.future.domain.Competition;
@@ -15,6 +14,7 @@ import com.future.domain.DepManager;
 import com.future.utils.DeQuery;
 import com.future.utils.PageBean;
 import com.opensymphony.xwork2.ActionContext;
+
 @Controller
 @Scope("prototype")
 public class DepartmentController extends BaseAction<DeQuery>{

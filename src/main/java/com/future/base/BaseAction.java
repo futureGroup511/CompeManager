@@ -1,17 +1,9 @@
 package com.future.base;
 
-
-
-
-
-
-
 import java.lang.reflect.ParameterizedType;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.future.service.AdminService;
 import com.future.service.AwardHierarchyService;
 import com.future.service.AwardRecordService;

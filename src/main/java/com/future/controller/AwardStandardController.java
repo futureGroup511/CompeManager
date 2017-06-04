@@ -3,15 +3,13 @@ package com.future.controller;
 import java.util.Map;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.future.base.BaseAction;
-
 import org.apache.struts2.interceptor.RequestAware;
-
 import com.future.domain.AwardStandard;
 import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
+
 @Controller
 @Scope("prototype")
 public class AwardStandardController extends BaseAction<AwardStandard> implements ModelDriven<AwardStandard>,RequestAware{

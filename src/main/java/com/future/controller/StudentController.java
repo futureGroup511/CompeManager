@@ -12,7 +12,6 @@ import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.future.base.BaseAction;
 import com.future.domain.AwardRecord;
 import com.future.domain.Competition;
@@ -28,6 +27,10 @@ import com.opensymphony.xwork2.ModelDriven;
 @Scope("prototype")
 public class StudentController extends BaseAction<Student> implements ModelDriven<Student>,SessionAware,RequestAware{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer currentPage=1; //当前页默认为1
 	private Integer pageSize=10;
 	private Integer compe_id;

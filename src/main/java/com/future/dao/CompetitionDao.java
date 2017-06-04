@@ -1,7 +1,6 @@
 package com.future.dao;
 
 import java.util.List;
-
 import com.future.domain.Competition;
 import com.future.utils.PageBean;
 import com.future.utils.Page_S;

@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
-
 import com.future.base.BaseDao;
 import com.future.dao.AwardHierarchyDao;
 import com.future.domain.AwardHierarchy;

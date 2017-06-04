@@ -3,12 +3,12 @@ package com.future.controller;
 import java.util.Map;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.future.base.BaseAction;
 import org.apache.struts2.interceptor.RequestAware;
 import com.future.domain.CompetitionHierarchy;
 import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ModelDriven;
+
 @Controller
 @Scope("prototype")
 public class CompetitionHierarchyController extends BaseAction<CompetitionHierarchy> implements RequestAware,ModelDriven<CompetitionHierarchy>{

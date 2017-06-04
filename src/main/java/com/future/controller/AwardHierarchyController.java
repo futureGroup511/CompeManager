@@ -9,6 +9,7 @@ import org.apache.struts2.interceptor.RequestAware;
 import com.future.domain.AwardHierarchy;
 import com.future.utils.Page_S;
 import com.opensymphony.xwork2.ModelDriven;
+
 @Controller
 @Scope("prototype")
 public class AwardHierarchyController extends BaseAction<AwardHierarchy> implements RequestAware,ModelDriven<AwardHierarchy>{

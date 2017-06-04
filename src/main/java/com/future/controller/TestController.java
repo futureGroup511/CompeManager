@@ -17,8 +17,6 @@ public class TestController {
 	private String username;
 	private String password;
 	
-	
-	
 	public String login(){
 		System.out.println("()()()()()()()()()()()()()()((");
 		 Admin admin = new Admin();
